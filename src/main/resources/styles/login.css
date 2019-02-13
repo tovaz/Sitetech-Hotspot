@@ -1,0 +1,8 @@
+.btnlogin {
+    background: #0099cc;
+}
+
+.loginPanel{
+    background-color: #00a1d7;
+    -fx-background-image: url("../Imagenes/fondoapp.png");
+}
