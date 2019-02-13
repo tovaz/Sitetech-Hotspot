@@ -12,20 +12,20 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="rootApp" prefHeight="400.0" prefWidth="600.0" styleClass="rootApp" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sitetech.hotspot.Controladores.UsuariosController">
-   <children>
-      <VBox styleClass="VBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<AnchorPane id="rootApp" prefHeight="400.0" prefWidth="600.0" styleClass="rootApp" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sitetech.hotspot.Controladores.RoutersController">
+    <children>
+      <VBox styleClass="rootApp" stylesheets="@../styles/Styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="63.0" prefWidth="580.0">
+            <AnchorPane prefHeight="41.0" prefWidth="580.0">
                <children>
-                  <Label fx:id="titulo" layoutY="18.0" text="Gestion de Usuarios">
+                  <Label fx:id="titulo" layoutY="22.0" text="Gestion de Routers">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="60.0" fitWidth="59.0" layoutX="507.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="60.0" fitWidth="200.0" layoutX="506.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Imagenes/user.png" />
+                        <Image url="@../Imagenes/router.png" />
                      </image>
                   </ImageView>
                </children>
@@ -39,13 +39,13 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0">
                            <children>
-                              <TableView id="tusuarios" fx:id="tvusuarios" layoutX="-27.0" layoutY="4.0" onMouseClicked="#editarUsuarioTablaAction" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <TableView id="tusuarios" fx:id="tvrouters" layoutX="-27.0" layoutY="4.0" onMouseClicked="#editarRouterTablaAction" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columns>
                                   <TableColumn id="tcid" prefWidth="63.0" text="Id" visible="false" />
                                   <TableColumn id="tcno" editable="false" prefWidth="48.0" resizable="false" text="No." />
-                                    <TableColumn id="tcusuario" editable="false" prefWidth="139.0" text="Usuario" />
-                                    <TableColumn id="tcprivilegios" editable="false" prefWidth="125.0" resizable="false" text="Privilegios" />
-                                    <TableColumn id="tcdeshabilitado" editable="false" prefWidth="115.0" resizable="false" text="Activo" />
+                                    <TableColumn editable="false" prefWidth="139.0" text="Nombre" />
+                                    <TableColumn editable="false" prefWidth="125.0" resizable="false" text="Api Activada" />
+                                    <TableColumn editable="false" prefWidth="115.0" resizable="false" text="Activo" />
                                 </columns>
                               </TableView>
                            </children>
@@ -56,11 +56,11 @@
                                  <children>
                                     <AnchorPane>
                                        <children>
-                                          <Button mnemonicParsing="false" onAction="#agregarUsuarioAction" prefHeight="50.0" text="Agregar" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                          <Button mnemonicParsing="false" onAction="#agregarRouterAction" prefHeight="50.0" text="Agregar" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                              <graphic>
                                                 <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../../Imagenes/useradd.png" />
+                                                      <Image url="@../Imagenes/routeradd.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic></Button>
@@ -68,11 +68,11 @@
                                     </AnchorPane>
                                     <AnchorPane>
                                        <children>
-                                          <Button mnemonicParsing="false" onAction="#editarUsuarioAction" prefHeight="50.0" text="Editar" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                          <Button mnemonicParsing="false" onAction="#editarRouterAction" prefHeight="50.0" text="Editar" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                              <graphic>
                                                 <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../../Imagenes/useredit.png" />
+                                                      <Image url="@../Imagenes/routeredit.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic></Button>
@@ -80,11 +80,11 @@
                                     </AnchorPane>
                                     <AnchorPane>
                                        <children>
-                                          <Button mnemonicParsing="false" onAction="#onEliminarAction" prefHeight="50.0" text="Eliminar" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                          <Button mnemonicParsing="false" onAction="#EliminarRouterAction" prefHeight="50.0" text="Eliminar" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                              <graphic>
                                                 <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../../Imagenes/userdel.png" />
+                                                      <Image url="@../Imagenes/routerdel.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic></Button>
