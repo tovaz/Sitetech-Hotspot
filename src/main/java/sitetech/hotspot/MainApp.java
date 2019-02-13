@@ -60,6 +60,7 @@ public class MainApp extends Application {
         //AnchorPane rootLayout = (AnchorPane) loader.load();
         VBox rootLayout = (VBox) loader.load();
         Scene scene = new Scene(rootLayout);
+        scene.getStylesheets().add("../../../resources/styles/Styles.css");
         primaryStage.setScene(scene);
         
         LoginController controladorx = loader.getController();
@@ -80,6 +81,7 @@ public class MainApp extends Application {
         
         AnchorPane rootLayout = (AnchorPane) loader.load();
         Scene scene = new Scene(rootLayout);
+        scene.getStylesheets().add("../../../resources/styles/Styles.css");
         primaryStage.setScene(scene);
         
         MainController controladorx = loader.getController();
