@@ -57,7 +57,7 @@ public class UsuariosController implements Initializable {
 
             thisStage.initModality(Modality.WINDOW_MODAL);
             Scene thisScene = new Scene((Parent)loader.load());
-            thisScene.getStylesheets().add("/styles/Styles.css");
+            thisScene.getStylesheets().add("../../../resources/styles/Styles.css");
             thisStage.setScene(thisScene);
             thisStage.setTitle("Gestion de Usuarios");
             
@@ -118,6 +118,7 @@ public class UsuariosController implements Initializable {
             ButtonType btn = Util.util.mostrarAlerta("¿Desea realmente eliminar al usuario \" " + uSeleccionado.getNombre() + "\" ?", "Eliminar Usuario", ButtonType.YES, ButtonType.NO);
             if ( btn == ButtonType.YES) {
                 um.eliminarUsuario(uSeleccionado);
+                um.getUsuarios();
             }
         }
         else
