@@ -12,8 +12,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -25,6 +28,7 @@ import sitetech.hotspot.Modelos.Router;
 import sitetech.hotspot.Modelos.RouterManager;
 
 import javafx.scene.control.TextField;
+import sitetech.hotspot.dbManager;
 /**
  * FXML Controller class
  *
@@ -39,46 +43,8 @@ public class RoutersController implements Initializable {
     @FXML
     private TableView<Router> tvrouters;
     
-    private RouterManager ur;
-
-    // ************************************************************
-    @FXML
-    private TextField tnombre;
-
-    @FXML
-    private TextField tip;
-
-    @FXML
-    private TextField tusuario;
-
-    @FXML
-    private TextField tcontraseña;
-
-    @FXML
-    private TextField tpuertoApi;
-
-    @FXML
-    private TextField tpuertoWeb;
-
-    @FXML
-    private TextField tlan;
-
-    @FXML
-    private TextField twlan;
-
-    @FXML
-    private TextArea trangos;
-
-    @FXML
-    void agregarRouterAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cancelarAction(ActionEvent event) {
-
-    }
-    // ************************************************************
+    private RouterManager rm;
+    
     /**
      * Initializes the controller class.
      */
@@ -91,39 +57,71 @@ public class RoutersController implements Initializable {
         
         thisStage = new Stage();
         Util.util.cargarStage("/Vistas/Routers/Routers.fxml", "Gestion de Routers", thisStage, this, Modality.APPLICATION_MODAL);
+        rm = new RouterManager();
+        cargarTabla();
         
     }
     
     public void cargarTabla(){
-        ur = new RouterManager();
-        tvrouters.getColumns().get(1).setCellValueFactory( new PropertyValueFactory("Id") );
+        tvrouters.getColumns().get(0).setCellValueFactory( new PropertyValueFactory("Id") );
         tvrouters.getColumns().get(2).setCellValueFactory( new PropertyValueFactory("Nombre") );
         tvrouters.getColumns().get(3).setCellValueFactory( new PropertyValueFactory("Ip") );
-        tvrouters.getColumns().get(4).setCellValueFactory( new PropertyValueFactory("IsApiActiva") );
-        tvrouters.setItems(ur.listaRouters);
-    }
-    
-    
-
-    @FXML
-    private void editarRouterTablaAction(MouseEvent event) {
-    }
-
-    @FXML
-    private void showAgregarRouter(ActionEvent event) {
-        Util.util.mostrarStage("/Vistas/Routers/adeRouters.fxml", "Agregar Router", null, this, Modality.APPLICATION_MODAL);
-    }
-
-    @FXML
-    private void showEditarRouter(ActionEvent event) {
-    }
-
-    @FXML
-    private void EliminarRouterAction(ActionEvent event) {
+        tvrouters.getColumns().get(4).setCellValueFactory( new PropertyValueFactory("puertoApi") );
+        tvrouters.getColumns().get(5).setCellValueFactory( new PropertyValueFactory("lanInterface") );
+        tvrouters.getColumns().get(6).setCellValueFactory( new PropertyValueFactory("apiActiva") );
+        tvrouters.setItems(rm.getRouters());
     }
     
     public void showStage() {
         thisStage.showAndWait();
+    }
+
+    Router rSeleccionado;
+    @FXML
+    private void editarRouterTablaAction(MouseEvent event) { // LISTA DE ROUTERS
+        if (event.getClickCount() == 2 ) {
+            showEditarRouter(new ActionEvent());
+        }
+    }
+    
+    @FXML
+    private void showAgregarRouter(ActionEvent event) {
+        adeRouterController agregarRouterC = new adeRouterController();
+        agregarRouterC.showStage();
+        cargarTabla();
+    }
+
+    @FXML
+    private void showEditarRouter(ActionEvent event) {
+        rSeleccionado = tvrouters.getSelectionModel().getSelectedItem();
+        if (rSeleccionado != null) {
+            adeRouterController editarRouterC = new adeRouterController();
+            editarRouterC.cargarRouterInfo(rSeleccionado);
+            editarRouterC.showStage();
+            cargarTabla();
+        }
+        else
+            Util.util.mostrarAlerta("Debe de seleccionar un router para poder editarlo.", "No a seleccionado ningun router", ButtonType.OK);
+    }
+
+    @FXML
+    private void EliminarRouterAction(ActionEvent event) {
+        rSeleccionado = tvrouters.getSelectionModel().getSelectedItem();
+        if (rSeleccionado != null) {
+            ButtonType btn = Util.util.mostrarAlerta("¿Desea realmente eliminar al router \" " + rSeleccionado.getNombre() + "\" ?", "Eliminar Router", ButtonType.YES, ButtonType.NO);
+            if ( btn == ButtonType.YES) {
+                rm.eliminarRouter(rSeleccionado);
+                cargarTabla();
+            }
+        }
+        else
+            Util.util.mostrarAlerta("Debe de seleccionar un router para poder eliminarlo.", "Eliminar Router", ButtonType.OK);
+    }
+    
+    
+    @FXML
+    void agregarRouterAction(ActionEvent event) {
+        
     }
 
 }

@@ -5,6 +5,8 @@
  */
 package sitetech.hotspot.Controladores;
 
+import Util.ActionButtonTableCell;
+import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,13 +16,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import sitetech.hotspot.MainApp;
 import sitetech.hotspot.Modelos.Usuario;
 import sitetech.hotspot.Modelos.usuarioManager;
@@ -73,6 +80,8 @@ public class UsuariosController implements Initializable {
         tvusuarios.getColumns().get(2).setCellValueFactory( new PropertyValueFactory("Nombre") );
         tvusuarios.getColumns().get(3).setCellValueFactory( new PropertyValueFactory("Privilegios") );
         tvusuarios.getColumns().get(4).setCellValueFactory( new PropertyValueFactory("Activo") );
+        //
+        
         tvusuarios.setItems(um.listaUsuarios);
     }
     

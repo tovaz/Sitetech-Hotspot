@@ -1,6 +1,3 @@
-.button {
-    -fx-font-weight: bold;
-}
 
 AnchorPane, VBox, HBox, SplitPane {
     background-color: #000;
@@ -17,3 +14,22 @@ AnchorPane, VBox, HBox, SplitPane {
     fx-background-image: url("../Imagenes/fondoapp.png");
 }
 
+.backgroundLineal-boton {
+    -fx-background-color: linear-gradient(to top right, #69F0AE, #40C4FF);
+}
+
+.backgroundLineal-boton:hover {
+    -fx-background-color: linear-gradient(to top right, #7aF1bf, #51d5fF);
+}
+
+.aceptarBoton {
+    -fx-background-color: linear-gradient(to top right, #0288D1, #40C4FF);
+}
+
+.aceptarBoton:hover {
+    -fx-background-color: linear-gradient(to top right, #1299e2, #51d5fF);
+}
+
+.fondoApp {
+    -fx-background-color: radial-gradient(focus-angle 254deg , focus-distance 74% , center 50% 50% , radius 55% , #E0F7FA, #E8EAF6);
+}

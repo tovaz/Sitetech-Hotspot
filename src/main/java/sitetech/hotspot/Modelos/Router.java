@@ -33,8 +33,12 @@ public class Router {
     private String wlanInterface;
     private String rangosIp;
     private boolean apiActiva;
+    private boolean eliminado;
 
-    public Router(int id, String nombre, String ip, String usuario, String password, int puertoApi, int puertoWeb, String lanInterface, String wlanInterface, String rangosIp, boolean habilitarApi) {
+    
+    public Router() { }
+    
+    public Router(int id, String nombre, String ip, String usuario, String password, int puertoApi, int puertoWeb, String lanInterface, String wlanInterface, String rangosIp, boolean habilitarApi, boolean _eliminado) {
         this.id = id;
         this.nombre = nombre;
         this.ip = ip;
@@ -46,6 +50,7 @@ public class Router {
         this.wlanInterface = wlanInterface;
         this.rangosIp = rangosIp;
         this.apiActiva = habilitarApi;
+        this.eliminado = _eliminado;
     }
     
     public int getId() {
@@ -136,6 +141,12 @@ public class Router {
         this.apiActiva = habilitarApi;
     }
     
-    
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
+    }
     
 }

@@ -48,7 +48,7 @@ public class util {
         return alert.getResult();
     }
     
-    public static void mostrarStage(String vista, String titulo, Stage main, Object Controlador, Modality modalidad)
+    public static Object mostrarStage(String vista, String titulo, Stage main, Object Controlador, Modality modalidad)
     {
         Stage nuevaStage;
         if (main == null)
@@ -70,13 +70,15 @@ public class util {
                 nuevaStage.show();
             else
                 nuevaStage.showAndWait();
+            return Controlador;
             
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+        return null;
     }
     
-    public static void cargarStage(String vista, String titulo, Stage main, Object Controlador, Modality modalidad)
+    public static Object cargarStage(String vista, String titulo, Stage main, Object Controlador, Modality modalidad)
     {
         try {
             FXMLLoader loader = new FXMLLoader(Controlador.getClass().getResource(vista));
@@ -87,9 +89,11 @@ public class util {
             //thisScene.getStylesheets().add("../../resources/styles/Styles.css");
             main.setScene(thisScene);
             main.setTitle(titulo);
+            return Controlador;
             
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+        return null;
     }
 }

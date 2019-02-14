@@ -1,92 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="363.0" prefWidth="338.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane id="AnchorPane" prefHeight="363.0" prefWidth="338.0" styleClass="fondoApp" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fx:id="vboxRoot" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
             <AnchorPane>
                <children>
-                  <Label fx:id="ltitulo" layoutX="89.0" layoutY="-1.0" prefHeight="30.0" prefWidth="141.0" text="Agregar usuario" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="-1.0">
+                  <Label fx:id="ltitulo" layoutX="89.0" prefHeight="30.0" prefWidth="141.0" text="Agregar usuario" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="Segoe UI Light" size="20.0" />
                      </font>
                   </Label>
+                  <ImageView fitHeight="150.0" fitWidth="45.0" layoutX="273.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Imagenes/users.fw.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
-            <Label text="Usuario">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin></Label>
-            <TextField fx:id="tusuario">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
-            <Label text="Contraseña" />
-            <PasswordField fx:id="tcontraseña">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </PasswordField>
-            <Label text="Confirmar Contraseña" />
-            <PasswordField fx:id="tcontraseña2">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </PasswordField>
-            <Label fx:id="lnota" graphicTextGap="140.0" prefHeight="17.0" prefWidth="316.0" text="Si no desea cambiar la contraseña, dejela en blanco." textAlignment="RIGHT" textFill="#e46363">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <Label fx:id="ldeshabilitado" text="Estado del Usuario" />
-            <CheckBox fx:id="checkDeshabilitado" mnemonicParsing="false" prefHeight="30.0" prefWidth="253.0" selected="true" text="Activado">
-               <font>
-                  <Font size="14.0" />
-               </font>
+            <VBox style="-fx-background-color: #ECEFF1;">
+               <children>
+                  <Label text="Usuario" />
+                  <TextField fx:id="tusuario" />
+                  <Label text="Contraseña" />
+                  <PasswordField fx:id="tcontraseña" />
+                  <Label text="Confirmar Contraseña" />
+                  <PasswordField fx:id="tcontraseña2" />
+                  <Label fx:id="lnota" graphicTextGap="140.0" prefHeight="17.0" prefWidth="316.0" text="Si no desea cambiar la contraseña, dejela en blanco." textAlignment="RIGHT" textFill="#e46363">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="ldeshabilitado" text="Estado del Usuario">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="checkDeshabilitado" mnemonicParsing="false" prefHeight="30.0" prefWidth="253.0" selected="true" text="Activado">
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </CheckBox>
+                  <Label text="Privilegios" />
+                  <ComboBox fx:id="cbprivilegios" prefHeight="25.0" prefWidth="202.0" promptText="Selecciona un privilegio" style="-fx-font: 12px &quot;System&quot;;">
+                      <items>
+                          <FXCollections fx:factory="observableArrayList">
+                          <String fx:value="Administrador" />
+                          <String fx:value="Usuario" />
+                          <String fx:value="Cajero" />
+                          </FXCollections>
+                      </items>
+                  </ComboBox>
+               </children>
                <padding>
-                  <Insets bottom="10.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
-            </CheckBox>
-            <Label text="Privilegios" />
-            <ComboBox fx:id="cbprivilegios" prefHeight="25.0" prefWidth="202.0" promptText="Selecciona un privilegio" style="-fx-font: 14px &quot;System&quot;;">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Administrador" />
-                    <String fx:value="Usuario" />
-                    <String fx:value="Cajero" />
-                    </FXCollections>
-                </items>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </ComboBox>
+            </VBox>
             <AnchorPane>
                <children>
                   <VBox fx:id="pguardar" prefHeight="40.0" prefWidth="318.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -95,16 +80,8 @@
                            <children>
                               <AnchorPane prefHeight="40.0" prefWidth="318.0">
                                  <children>
-                                    <Button layoutX="36.0" layoutY="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#guardarAction" prefHeight="24.0" prefWidth="121.0" style="-fx-background-color: #0088dd;" text="Guardar" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="0.0">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button mnemonicParsing="false" onAction="#bcancelar" prefHeight="40.0" prefWidth="88.0" style="-fx-background-color: #dd3300;" text="Cancelar" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="0.0">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Button>
+                                    <JFXButton buttonType="RAISED" defaultButton="true" layoutX="36.0" layoutY="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#guardarAction" prefHeight="24.0" prefWidth="121.0" styleClass="aceptarBoton" text="Guardar" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="0.0" />
+                                    <JFXButton mnemonicParsing="false" onAction="#bcancelar" prefHeight="40.0" prefWidth="88.0" style="-fx-background-color: #BDBDBD;" text="Cancelar" textFill="#404040" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -115,16 +92,8 @@
                      <children>
                         <AnchorPane minHeight="40.0" prefHeight="40.0" prefWidth="318.0">
                            <children>
-                              <Button layoutX="30.0" layoutY="10.0" mnemonicParsing="false" onAction="#bcancelar" prefHeight="40.0" prefWidth="88.0" style="-fx-background-color: #dd3300;" text="Cancelar" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Button>
-                              <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#agregarAction" style="-fx-background-color: #0088dd;" text="Agregar Usuario" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Button>
+                              <JFXButton cancelButton="true" layoutX="30.0" layoutY="10.0" mnemonicParsing="false" onAction="#bcancelar" prefHeight="40.0" prefWidth="88.0" style="-fx-background-color: #BDBDBD;" text="Cancelar" textFill="#404040" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="0.0" />
+                              <JFXButton buttonType="RAISED" defaultButton="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#agregarAction" styleClass="aceptarBoton" text="Agregar Usuario" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -135,6 +104,9 @@
                </VBox.margin>
             </AnchorPane>
          </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
       </VBox>
    </children>
 </AnchorPane>

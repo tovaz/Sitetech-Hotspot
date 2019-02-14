@@ -54,15 +54,15 @@ public class RouterManager {
         }
     }
     
-    public void eliminarUsuario(Usuario usuario){
-        usuario.setEliminado(true);
+    public void eliminarRouter(Router rx){
+        rx.setEliminado(true);
         try {
             if (db.conectarHb()) {
-                db.session.update(usuario);
+                db.session.update(rx);
                 db.Flush();
                 db.Cerrar();
                 
-                System.out.println("Usuario eliminado exitosamente.");
+                System.out.println("Router eliminado exitosamente.");
                 this.getRouters();
             }
         } catch (Exception ex) {
