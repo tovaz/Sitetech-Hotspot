@@ -81,7 +81,7 @@
                               <AnchorPane prefHeight="40.0" prefWidth="318.0">
                                  <children>
                                     <JFXButton buttonType="RAISED" defaultButton="true" layoutX="36.0" layoutY="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#guardarAction" prefHeight="24.0" prefWidth="121.0" styleClass="aceptarBoton" text="Guardar" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="0.0" />
-                                    <JFXButton mnemonicParsing="false" onAction="#bcancelar" prefHeight="40.0" prefWidth="88.0" style="-fx-background-color: #BDBDBD;" text="Cancelar" textFill="#404040" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="0.0" />
+                                    <JFXButton cancelButton="true" mnemonicParsing="false" onAction="#bcancelar" prefHeight="40.0" prefWidth="88.0" style="-fx-background-color: #BDBDBD;" text="Cancelar" textFill="#404040" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                            </children>
