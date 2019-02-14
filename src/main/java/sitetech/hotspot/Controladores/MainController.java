@@ -19,7 +19,7 @@ import sitetech.hotspot.MainApp;
 public class MainController implements Initializable {
     
     private MainApp App;
-    private Stage stage;
+    private Stage thisStage;
     @FXML
     private AnchorPane panelPrincipal;
 
@@ -37,39 +37,45 @@ public class MainController implements Initializable {
         this.loadUsuarios();
     }
     
+    public MainController (){
+        thisStage = new Stage();
+        /*try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("/Vistas/mainScene.fxml"));
+            loader.setController(this);
+
+            thisStage.initModality(Modality.APPLICATION_MODAL);
+            Scene scene = new Scene((Parent)loader.load());
+            scene.getStylesheets().add("../../resources/styles/Styles.css");
+            thisStage.setScene(scene);
+            thisStage.setTitle("Hotspot 1.0");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }*/
+    }
+    
+    public void showStage() {
+        thisStage.show();
+    }
+    
     @FXML
     public void loadUsuarios () throws IOException {
-        UsuariosController uvController = new UsuariosController();
-        uvController.showStage();
+        adUsuarioController adUsuario = new adUsuarioController();
+        adUsuario.showAgregar(new UsuariosController());
     }  
-
-    public void pasarStage (MainApp _app, Stage _stage)
-    {
-        this.App = _app;
-        this.stage = _stage;
-        
-        stage.setAlwaysOnTop(false);
-        stage.setResizable(true);
-        stage.setTitle("Sitetech :: Hotspot");
-    }
     
     @FXML
     private void onMenuAction(ActionEvent event) throws IOException {
         MenuItem mi = (MenuItem) event.getSource();
         System.out.println(mi.getText());
         
-        if (mi.getText().equals("Usuarios"))
-        {
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource("/Vistas/Usuarios/UsuariosVista.fxml"));
-                Stage stage = new Stage();
-                stage.initModality(Modality.APPLICATION_MODAL);
-                //stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(new Scene(root));  
-                stage.show();
-            } catch(Exception e) {
-                System.out.println(e.getMessage());
-            }
+        if (mi.getText().equals("Usuarios")){
+            UsuariosController uvController = new UsuariosController();
+            uvController.showStage();
+        }
+        if (mi.getText().equals("Routers")){
+            RoutersController rController = new RoutersController();
+            rController.showStage();
         }
         
     }  

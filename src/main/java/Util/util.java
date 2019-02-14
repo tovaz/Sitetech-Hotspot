@@ -5,11 +5,18 @@
  */
 package Util;
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import sitetech.hotspot.MainApp;
 
 /**
  *
@@ -39,5 +46,50 @@ public class util {
         alert.setHeaderText(titulo);
         alert.showAndWait();
         return alert.getResult();
+    }
+    
+    public static void mostrarStage(String vista, String titulo, Stage main, Object Controlador, Modality modalidad)
+    {
+        Stage nuevaStage;
+        if (main == null)
+            nuevaStage = new Stage();
+        else
+            nuevaStage = main;
+        
+        try {
+            FXMLLoader loader = new FXMLLoader(Controlador.getClass().getResource(vista));
+            loader.setController(Controlador);
+
+            nuevaStage.initModality(modalidad);
+            Scene thisScene = new Scene((Parent)loader.load());
+            //thisScene.getStylesheets().add("../../resources/styles/Styles.css");
+            nuevaStage.setScene(thisScene);
+            nuevaStage.setTitle(titulo);
+            
+            if (modalidad == Modality.NONE)
+                nuevaStage.show();
+            else
+                nuevaStage.showAndWait();
+            
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public static void cargarStage(String vista, String titulo, Stage main, Object Controlador, Modality modalidad)
+    {
+        try {
+            FXMLLoader loader = new FXMLLoader(Controlador.getClass().getResource(vista));
+            loader.setController(Controlador);
+
+            main.initModality(modalidad);
+            Scene thisScene = new Scene((Parent)loader.load());
+            //thisScene.getStylesheets().add("../../resources/styles/Styles.css");
+            main.setScene(thisScene);
+            main.setTitle(titulo);
+            
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

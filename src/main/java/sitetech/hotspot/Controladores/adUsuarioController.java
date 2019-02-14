@@ -72,9 +72,8 @@ public class adUsuarioController implements Initializable {
 
             thisStage.initModality(Modality.APPLICATION_MODAL);
             Scene thisScene = new Scene((Parent)loader.load());
-            thisScene.getStylesheets().add("/styles/Styles.css");
+            //thisScene.getStylesheets().add("/styles/Styles.css");
             thisStage.setScene(thisScene);
-
             thisStage.setTitle("Agregar Usuario");
         } catch (IOException e) {
             System.out.println(e.getMessage());

@@ -30,7 +30,7 @@ public class MainApp extends Application {
         stage.show();*/
         
         primaryStage = new Stage();
-        loginScene();
+        mainScene();
         
         //********************************************
         //setUserAgentStylesheet(STYLESHEET_MODENA);
@@ -51,7 +51,7 @@ public class MainApp extends Application {
         launch(args);
     }
     
-        public void loginScene()
+    public void loginScene()
     {
         try {
         FXMLLoader loader = new FXMLLoader();
@@ -74,18 +74,23 @@ public class MainApp extends Application {
         }
     }
     
+    public void mainScene2(Stage stagePrincipal){
+        MainController mainController = new MainController();
+        mainController.showStage();
+    }
+
     public void mainScene() throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(MainApp.class.getResource("/Vistas/mainScene.fxml"));
         
-        AnchorPane rootLayout = (AnchorPane) loader.load();
+        AnchorPane rootLayout = loader.load();
         Scene scene = new Scene(rootLayout);
         scene.getStylesheets().add("../../../resources/styles/Styles.css");
         primaryStage.setScene(scene);
         
         MainController controladorx = loader.getController();
-        controladorx.pasarStage(this, primaryStage);
+        //controladorx.pasarStage(this, primaryStage);
         
         //primaryStage.getIcons().add(new Image(this.getClass().getResource("icon.png").toString()) );
         primaryStage.show();

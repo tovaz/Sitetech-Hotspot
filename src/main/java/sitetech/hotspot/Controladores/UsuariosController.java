@@ -21,6 +21,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sitetech.hotspot.MainApp;
 import sitetech.hotspot.Modelos.Usuario;
 import sitetech.hotspot.Modelos.usuarioManager;
 
@@ -55,12 +56,11 @@ public class UsuariosController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/Usuarios/UsuariosVista.fxml"));
             loader.setController(this);
 
-            thisStage.initModality(Modality.WINDOW_MODAL);
+            thisStage.initModality(Modality.APPLICATION_MODAL);
             Scene thisScene = new Scene((Parent)loader.load());
-            thisScene.getStylesheets().add("../../../resources/styles/Styles.css");
+            //thisScene.getStylesheets().add("/styles/Styles.css");
             thisStage.setScene(thisScene);
-            thisStage.setTitle("Gestion de Usuarios");
-            
+            thisStage.setTitle("Gestion de Usuario");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
