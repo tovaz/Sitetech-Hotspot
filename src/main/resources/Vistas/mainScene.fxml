@@ -6,6 +6,8 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -42,8 +44,31 @@
               </Menu>
                   <Menu mnemonicParsing="false" text="Administracion">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Usuarios" />
-                        <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Tarifas" />
+                        <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Usuarios">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Imagenes/users.fw.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Routers">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Imagenes/router3.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Paquetes de Internet">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Imagenes/router3.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
                      </items>
                   </Menu>
             </menus>

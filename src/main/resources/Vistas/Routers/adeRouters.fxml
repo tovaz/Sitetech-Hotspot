@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" minHeight="525.0" minWidth="529.0" prefHeight="525.0" prefWidth="529.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="20.0" layoutY="20.0" prefHeight="480.0" prefWidth="566.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane minHeight="45.0">
+               <children>
+                  <Label layoutX="166.0" minWidth="124.0" prefHeight="27.0" prefWidth="124.0" text="Agregar Router" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="166.0" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="50.0" fitWidth="45.0" layoutX="535.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <image>
+                        <Image url="@../../Imagenes/routeradd.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <VBox>
+               <children>
+                  <HBox>
+                     <children>
+                        <TitledPane collapsible="false" prefHeight="200.0" prefWidth="200.0" text="Informacion basica">
+                           <content>
+                              <VBox prefHeight="89.0" prefWidth="198.0">
+                                 <children>
+                                    <VBox prefHeight="89.0" prefWidth="198.0">
+                                       <children>
+                                          <Label text="Nombre" />
+                                          <TextField fx:id="tnombre" />
+                                          <Label text="Ip" />
+                                          <TextField fx:id="tip" promptText="Ejemplo: 192.168.1.1" />
+                                       </children>
+                                    </VBox>
+                                    <Label layoutX="20.0" layoutY="188.0" text="Datos de acceso">
+                                       <padding>
+                                          <Insets bottom="5.0" top="10.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Usuario" />
+                                    <TextField fx:id="tusuario" />
+                                    <Label text="Contraseña" />
+                                    <TextField fx:id="tcontraseña" />
+                                    <Label layoutX="20.0" layoutY="20.0" text="Configuracion de puertos">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets bottom="5.0" top="10.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="20.0" layoutY="104.0" text="Puerto de API" />
+                                    <TextField fx:id="tpuertoApi" layoutX="20.0" layoutY="37.0" prefWidth="125.0" promptText="Ejemplo: 8728" />
+                                    <Label layoutX="20.0" layoutY="62.0" text="Puerto Web" />
+                                    <TextField fx:id="tpuertoWeb" layoutX="20.0" layoutY="79.0" promptText="80" text="80" />
+                                    <CheckBox mnemonicParsing="false" selected="true" text="Habilitar API">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </CheckBox>
+                                 </children>
+                              </VBox>
+                           </content>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </TitledPane>
+                        <TitledPane prefHeight="200.0" prefWidth="200.0" text="Interface y seguridad">
+                           <content>
+                              <VBox>
+                                 <children>
+                                    <Label text="Interface Lan" />
+                                    <TextField fx:id="tlan" prefWidth="125.0" promptText="Ejemplo: Eth0" />
+                                    <Label text="Interface Wlan" />
+                                    <TextField fx:id="twlan" promptText="Ejemplo Eth1" />
+                                    <Label layoutX="20.0" layoutY="62.0" text="Rango Ip" />
+                                    <TextArea fx:id="trangos" prefHeight="200.0" prefWidth="200.0" />
+                                 </children>
+                              </VBox>
+                           </content>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </TitledPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox>
+               <children>
+                  <AnchorPane prefHeight="40.0" prefWidth="226.0">
+                     <children>
+                        <Button layoutX="37.0" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#cancelarAction" prefHeight="40.0" text="Cancelar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="40.0" prefWidth="257.0">
+                     <children>
+                        <Button layoutX="53.0" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#agregarRouterAction" prefHeight="40.0" text="Agregar Router" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</AnchorPane>

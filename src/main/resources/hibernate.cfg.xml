@@ -15,5 +15,6 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		
 		<mapping class="sitetech.hotspot.Modelos.Usuario"/>
+                <mapping class="sitetech.hotspot.Modelos.Router"/>
 	</session-factory>
 </hibernate-configuration>
