@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sitetech.hotspot;
+package sitetech.Helpers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,6 +22,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+import sitetech.hotspot.Modelos.Router;
 /**
  *
  * @author megan
@@ -116,5 +117,7 @@ public class dbManager {
             Logger.getLogger(dbManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
     
 }

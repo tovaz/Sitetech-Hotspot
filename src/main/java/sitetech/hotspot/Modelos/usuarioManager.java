@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import sitetech.hotspot.dbManager;
+import sitetech.Helpers.dbHelper;
+import sitetech.Helpers.dbManager;
 
 /**
  *
@@ -21,122 +22,37 @@ import sitetech.hotspot.dbManager;
  */
 public class usuarioManager {
     private dbManager db;
+    private dbHelper DbHelper;
     public ObservableList<Usuario> listaUsuarios = FXCollections.observableArrayList();
     public Usuario usuarioLogeado=null;
     
     public usuarioManager()
     {
+        DbHelper = new dbHelper();
         db = new dbManager();
         listaUsuarios = this.getUsuarios();
     }
     
-    public void crearUsuario(Usuario usuario){
-        try {
-            if (db.conectarHb()) {
-                db.session.save(usuario);
-                db.Flush();
-                db.Cerrar();
-                
-                System.out.println("Usuario agregado exitosamente.");
-                this.getUsuarios();
-            }
-        } catch (Exception ex) {
-            System.err.println(ex.getMessage());
-        }
-    }
-    
-    public void editarUsuario(Usuario usuario){
-        try {
-            if (db.conectarHb()) {
-                db.session.update(usuario);
-                db.Flush();
-                db.Cerrar();
-                
-                System.out.println("Usuario editado exitosamente.");
-                this.getUsuarios();
-            }
-        } catch (Exception ex) {
-            System.err.println(ex.getMessage());
-        }
-    }
-    
-    public void eliminarUsuario(Usuario usuario){
-        usuario.setEliminado(true);
-        try {
-            if (db.conectarHb()) {
-                db.session.update(usuario);
-                db.Flush();
-                db.Cerrar();
-                
-                System.out.println("Usuario eliminado exitosamente.");
-                this.getUsuarios();
-            }
-        } catch (Exception ex) {
-            System.err.println(ex.getMessage());
-        }
-    }
-    
-    
-    //int _id, String _nombre, String _password, String _privilegios, int _eliminado, int _deshabilitado
-    public ObservableList<Usuario> getUsuarios()
+    public void AgregarUsuario(Usuario pack)
     {
-        ResultSet result = null;
-        ObservableList<Usuario> ltemporal= FXCollections.observableArrayList();;
-        try {
-            if (db.conectarHb()){
-                List<Usuario> lusuarios = db.session.createQuery("FROM Usuario WHERE eliminado=false").list();
-                System.out.println(" ** Obteniendo usuarios ** ");
-
-                for (Usuario usuario : lusuarios) {
-                    System.out.println("Id: " + usuario.getId() + " | Name:"  + usuario.getNombre() + " | Email:" + usuario.getPrivilegios());
-                    ltemporal.add(usuario);
-                }
-            
-            }
-            db.Cerrar();
-            System.out.println("=======================");
-        } catch (Exception ex) {
-            System.err.println(ex.getMessage());
-        }
-        
-        return listaUsuarios = ltemporal;
+        DbHelper.Agregar(pack);
     }
     
-    public Usuario getUsuariobyId(int id)
+    public void EditarUsuario(Usuario pack)
     {
-        ResultSet result = null;
-        try {
-            db.conectar();
-            PreparedStatement st = db.conexion.prepareStatement("SELECT * FROM usuario WHERE id = ?");
-            result = st.executeQuery();
-            System.out.print(" ****** Obteniendo usuario con id " + id + " ****** ");
-            
-            int registros = 0;
-            if (result.last()) {
-                registros = result.getRow();
-                result.beforeFirst();
-            }
-            
-            if (registros == 1){
-                Usuario ux = new Usuario(result.getInt("id"), 
-                        result.getString("nombre"), 
-                        result.getString("password"), 
-                        result.getString("privilegios"), 
-                        Boolean.parseBoolean( result.getString(  "eliminado") ),
-                        Boolean.parseBoolean ( result.getString("activo") )  );
-                
-                System.out.println("Usuario encontrado ...");
-                System.out.println(ux.toString());
-                db.cerrar();
-                return ux;
-            }
-            
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-            return null;
-        }
-        
-        return null;
+        DbHelper.Editar(pack);
+    }
+    
+    public void EliminarUsuario(Usuario pack)
+    {
+        pack.setEliminado(true);
+        DbHelper.Editar(pack);
+    }
+    
+    
+    public ObservableList<Usuario> getUsuarios(){
+        return listaUsuarios = (ObservableList<Usuario>) 
+        DbHelper.Select("FROM Usuario WHERE eliminado=false");
     }
     
     public boolean checkLogin(String nombre, String contraseña)

@@ -18,8 +18,14 @@
         <!-- Used as the 'Vendor' for JNLP generation -->
         <name>Sitetech</name>
     </organization>
-    
+        
     <dependencies>
+        <dependency>
+            <groupId>WilliamValdez</groupId>
+            <artifactId>JavaFxController</artifactId>
+            <version>1.1</version>
+        </dependency>
+        
         <!-- Jfoenix  -->
         <dependency>
             <groupId>com.jfoenix</groupId>

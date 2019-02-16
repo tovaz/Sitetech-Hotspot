@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sitetech.hotspot.Controladores;
 
 import Util.ActionButtonTableCell;
@@ -91,13 +86,13 @@ public class UsuariosController implements Initializable {
     
     public void AgregarUsuario(Usuario ux)
     {
-        um.crearUsuario(ux);
+        um.AgregarUsuario(ux);
         cargarTabla();
     }
     
     public void editarUsuario(Usuario ux)
     {
-        um.editarUsuario(ux);
+        um.EditarUsuario(ux);
         cargarTabla();
     }
     
@@ -126,7 +121,7 @@ public class UsuariosController implements Initializable {
         if (uSeleccionado != null) {
             ButtonType btn = Util.util.mostrarAlerta("¿Desea realmente eliminar al usuario \" " + uSeleccionado.getNombre() + "\" ?", "Eliminar Usuario", ButtonType.YES, ButtonType.NO);
             if ( btn == ButtonType.YES) {
-                um.eliminarUsuario(uSeleccionado);
+                um.EliminarUsuario(uSeleccionado);
                 um.getUsuarios();
             }
         }

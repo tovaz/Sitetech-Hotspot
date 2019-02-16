@@ -28,7 +28,7 @@ import sitetech.hotspot.Modelos.Router;
 import sitetech.hotspot.Modelos.RouterManager;
 
 import javafx.scene.control.TextField;
-import sitetech.hotspot.dbManager;
+import sitetech.Helpers.dbManager;
 /**
  * FXML Controller class
  *
