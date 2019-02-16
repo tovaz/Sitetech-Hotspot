@@ -5,21 +5,14 @@
  */
 package sitetech.hotspot.Controladores;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
@@ -27,8 +20,6 @@ import javafx.stage.Stage;
 import sitetech.hotspot.Modelos.Router;
 import sitetech.hotspot.Modelos.RouterManager;
 
-import javafx.scene.control.TextField;
-import sitetech.Helpers.dbManager;
 /**
  * FXML Controller class
  *
@@ -110,7 +101,7 @@ public class RoutersController implements Initializable {
         if (rSeleccionado != null) {
             ButtonType btn = Util.util.mostrarAlerta("¿Desea realmente eliminar al router \" " + rSeleccionado.getNombre() + "\" ?", "Eliminar Router", ButtonType.YES, ButtonType.NO);
             if ( btn == ButtonType.YES) {
-                rm.eliminarRouter(rSeleccionado);
+                rm.EliminarRouter(rSeleccionado);
                 cargarTabla();
             }
         }

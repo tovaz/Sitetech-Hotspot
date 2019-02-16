@@ -26,6 +26,13 @@
             <version>1.1</version>
         </dependency>
         
+        <!-- JFXtras  -->
+        <dependency>
+            <groupId>org.jfxtras</groupId>
+            <artifactId>jfxtras-all</artifactId>
+            <version>8.0-r6</version>
+        </dependency>
+
         <!-- Jfoenix  -->
         <dependency>
             <groupId>com.jfoenix</groupId>

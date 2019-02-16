@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -15,7 +16,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sitetech.hotspot.Modelos.Paquete;
 import sitetech.hotspot.Modelos.PaqueteManager;
-import sitetech.hotspot.Modelos.RouterManager;
 
 /**
  * FXML Controller class
@@ -31,6 +31,7 @@ public class PaquetesController implements Initializable {
 
     private final Stage thisStage;
     private PaqueteManager pm;
+    private Paquete pSeleccionado;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -46,10 +47,9 @@ public class PaquetesController implements Initializable {
     public void cargarTabla(){
         tvpaquetes.getColumns().get(0).setCellValueFactory( new PropertyValueFactory("Id") );
         tvpaquetes.getColumns().get(2).setCellValueFactory( new PropertyValueFactory("Nombre") );
-        tvpaquetes.getColumns().get(3).setCellValueFactory( new PropertyValueFactory("Ip") );
-        tvpaquetes.getColumns().get(4).setCellValueFactory( new PropertyValueFactory("puertoApi") );
-        tvpaquetes.getColumns().get(5).setCellValueFactory( new PropertyValueFactory("lanInterface") );
-        tvpaquetes.getColumns().get(6).setCellValueFactory( new PropertyValueFactory("apiActiva") );
+        tvpaquetes.getColumns().get(3).setCellValueFactory( new PropertyValueFactory("Precio") );
+        tvpaquetes.getColumns().get(4).setCellValueFactory( new PropertyValueFactory("Duracion") );
+        tvpaquetes.getColumns().get(5).setCellValueFactory( new PropertyValueFactory("LimiteInternet") );
         tvpaquetes.setItems( pm.getPaquetes() );
     }
     
@@ -66,15 +66,36 @@ public class PaquetesController implements Initializable {
 
     @FXML
     private void showAgregar(ActionEvent event) {
-        
+        AdePaqueteController agregarController = new AdePaqueteController();
+        agregarController.showStage();
+        cargarTabla();
     }
 
     @FXML
     private void showEditar(ActionEvent event) {
+        pSeleccionado = tvpaquetes.getSelectionModel().getSelectedItem();
+        if (pSeleccionado != null) {
+            AdePaqueteController agregarController = new AdePaqueteController();
+            agregarController.cargarInfo(pSeleccionado);
+            agregarController.showStage();
+            cargarTabla();
+        }
+        else
+            Util.util.mostrarAlerta("Debe de seleccionar un paquete para poder editarlo.", "No a seleccionado ningun paquete", ButtonType.OK);
     }
 
     @FXML
     private void EliminarAction(ActionEvent event) {
+        pSeleccionado = tvpaquetes.getSelectionModel().getSelectedItem();
+        if (pSeleccionado != null) {
+            ButtonType btn = Util.util.mostrarAlerta("¿Desea realmente eliminar al paquete \" " + pSeleccionado.getNombre() + "\" ?", "Eliminar Paquete", ButtonType.YES, ButtonType.NO);
+            if ( btn == ButtonType.YES) {
+                pm.EliminarPaquete(pSeleccionado);
+                cargarTabla();
+            }
+        }
+        else
+            Util.util.mostrarAlerta("Debe de seleccionar un paquete para poder eliminarlo.", "Eliminar Paquete", ButtonType.OK);
     }
     
 }

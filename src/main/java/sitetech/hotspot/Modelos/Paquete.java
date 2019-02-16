@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Paquete")
@@ -20,9 +21,13 @@ public class Paquete {
     private boolean eliminado;
     private int cantidadTickets;
     
-    private String limiteTiempo;
-    private String limiteSubida;
-    private String limiteBajada;
+    private int dias;
+    private int horas;
+    private int minutos;
+    private double megasDescarga;
+    private double gigasDescarga;
+    private double megasSubida;
+    private double gigasSubida;
         
     private Date fechaCreacion;
     private Date fechaActualizacion;
@@ -37,14 +42,23 @@ public class Paquete {
       this.fechaActualizacion = new Date();
     }
 
-    public Paquete(int id, String nombre, Double precio, boolean eliminado, String limiteTiempo, String limiteSubida, String limiteBajada) {
+    public Paquete() {
+    }
+
+    
+    public Paquete(int id, String nombre, Double precio, boolean eliminado, int cantidadTickets, int dias, int horas, int minutos, double megasDescarga, double gigasDescarga, double megasSubida, double gigasSubida) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.eliminado = eliminado;
-        this.limiteTiempo = limiteTiempo;
-        this.limiteSubida = limiteSubida;
-        this.limiteBajada = limiteBajada;
+        this.cantidadTickets = cantidadTickets;
+        this.dias = dias;
+        this.horas = horas;
+        this.minutos = minutos;
+        this.megasDescarga = megasDescarga;
+        this.gigasDescarga = gigasDescarga;
+        this.megasSubida = megasSubida;
+        this.gigasSubida = gigasSubida;
     }
 
     public int getId() {
@@ -87,28 +101,28 @@ public class Paquete {
         this.cantidadTickets = cantidadTickets;
     }
 
-    public String getLimiteTiempo() {
-        return limiteTiempo;
+    public int getDias() {
+        return dias;
     }
 
-    public void setLimiteTiempo(String limiteTiempo) {
-        this.limiteTiempo = limiteTiempo;
+    public void setDias(int dias) {
+        this.dias = dias;
     }
 
-    public String getLimiteSubida() {
-        return limiteSubida;
+    public int getHoras() {
+        return horas;
     }
 
-    public void setLimiteSubida(String limiteSubida) {
-        this.limiteSubida = limiteSubida;
+    public void setHoras(int horas) {
+        this.horas = horas;
     }
 
-    public String getLimiteBajada() {
-        return limiteBajada;
+    public int getMinutos() {
+        return minutos;
     }
 
-    public void setLimiteBajada(String limiteBajada) {
-        this.limiteBajada = limiteBajada;
+    public void setMinutos(int minutos) {
+        this.minutos = minutos;
     }
 
     public Date getFechaCreacion() {
@@ -126,5 +140,60 @@ public class Paquete {
     public void setFechaActualizacion(Date fechaActualizacion) {
         this.fechaActualizacion = fechaActualizacion;
     }
+
+    public double getMegasDescarga() {
+        return megasDescarga;
+    }
+
+    public void setMegasDescarga(double megasDescarga) {
+        this.megasDescarga = megasDescarga;
+    }
+
+    public double getGigasDescarga() {
+        return gigasDescarga;
+    }
+
+    public void setGigasDescarga(double gigasDescarga) {
+        this.gigasDescarga = gigasDescarga;
+    }
+
+    public double getMegasSubida() {
+        return megasSubida;
+    }
+
+    public void setMegasSubida(double megasSubida) {
+        this.megasSubida = megasSubida;
+    }
+
+    public double getGigasSubida() {
+        return gigasSubida;
+    }
+
+    public void setGigasSubida(double gigasSubida) {
+        this.gigasSubida = gigasSubida;
+    }
+    
+    @Transient
+    public String Duracion;
+    @Transient
+    public String LimiteInternet;
+
+    public String getDuracion() {
+        return String.valueOf(dias) + " dias y " + String.valueOf(horas) + "hr " + String.valueOf(minutos) + " min";
+    }
+
+    public void setDuracion(String Duracion) {
+        this.Duracion = Duracion;
+    }
+
+    public String getLimiteInternet() {
+        return "Megas D/U " + String.valueOf(megasDescarga) + " / " + String.valueOf(megasSubida) +
+                "Gigas D/U " + String.valueOf(gigasDescarga) + " / " + String.valueOf(gigasSubida);
+    }
+
+    public void setLimiteInternet(String LimiteInternet) {
+        this.LimiteInternet = LimiteInternet;
+    }
+    
     
 }

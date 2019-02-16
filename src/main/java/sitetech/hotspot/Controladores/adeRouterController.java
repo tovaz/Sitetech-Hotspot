@@ -103,7 +103,7 @@ public class adeRouterController implements Initializable {
         if (bAgregar.getText().equals("Agregar Router")) {
             Router rt = new Router(0, tnombre.getText(), tip.getText(), tusuario.getText(), tcontraseña.getText(), Integer.parseInt(tpuertoApi.getText()), 
                     Integer.parseInt(tpuertoWeb.getText()), tlan.getText(), twlan.getText(), trangos.getText(), checkApi.isSelected(), false);
-            rM.crearRouter(rt);
+            rM.AgregarRouter(rt);
         }
         else{
             editarRouter(rM);
@@ -127,7 +127,7 @@ public class adeRouterController implements Initializable {
         Rseleccionado.setWlanInterface(twlan.getText());
         Rseleccionado.setRangosIp(trangos.getText());
         
-        rM.editarRouter(Rseleccionado);
+        rM.EditarRouter(Rseleccionado);
     }
     
     @FXML

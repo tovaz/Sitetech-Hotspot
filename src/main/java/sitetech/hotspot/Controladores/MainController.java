@@ -68,15 +68,25 @@ public class MainController implements Initializable {
     private void onMenuAction(ActionEvent event) throws IOException {
         MenuItem mi = (MenuItem) event.getSource();
         System.out.println(mi.getText());
-        
-        if (mi.getText().equals("Usuarios")){
-            UsuariosController uvController = new UsuariosController();
-            uvController.showStage();
+    
+        switch (mi.getText()){
+            case "Usuarios":
+                UsuariosController uvController = new UsuariosController();
+                uvController.showStage();
+                break;
+                
+            case "Routers":
+                RoutersController rController = new RoutersController();
+                rController.showStage();
+                break;
+                
+            case "Paquetes de Internet":
+                PaquetesController pController = new PaquetesController();
+                pController.showStage();
+                break;
+                
         }
-        if (mi.getText().equals("Routers")){
-            RoutersController rController = new RoutersController();
-            rController.showStage();
-        }
         
-    }  
+    }
+    
 }

@@ -33,3 +33,9 @@ AnchorPane, VBox, HBox, SplitPane {
 .fondoApp {
     -fx-background-color: radial-gradient(focus-angle 254deg , focus-distance 74% , center 50% 50% , radius 55% , #E0F7FA, #E8EAF6);
 }
+
+.tab-pane *.tab-header-background {
+    /*-fx-background-color: -fx-outer-border, -fx-inner-border, derive(-fx-color, -20%);
+    -fx-effect: innershadow(two-pass-box , rgba(0,0,0,0.6) , 4, 0.0 , 0 , 0);
+    */
+}
