@@ -66,7 +66,7 @@ public class PaquetesController implements Initializable {
 
     @FXML
     private void showAgregar(ActionEvent event) {
-        AdePaqueteController agregarController = new AdePaqueteController();
+        adePaqueteController agregarController = new adePaqueteController();
         agregarController.showStage();
         cargarTabla();
     }
@@ -75,7 +75,7 @@ public class PaquetesController implements Initializable {
     private void showEditar(ActionEvent event) {
         pSeleccionado = tvpaquetes.getSelectionModel().getSelectedItem();
         if (pSeleccionado != null) {
-            AdePaqueteController agregarController = new AdePaqueteController();
+            adePaqueteController agregarController = new adePaqueteController();
             agregarController.cargarInfo(pSeleccionado);
             agregarController.showStage();
             cargarTabla();

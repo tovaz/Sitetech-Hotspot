@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
@@ -14,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" minHeight="560.0" minWidth="502.0" prefHeight="560.0" prefWidth="502.0" styleClass="fondoApp" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" minHeight="560.0" minWidth="502.0" prefHeight="560.0" prefWidth="528.0" styleClass="fondoApp" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox layoutX="20.0" layoutY="20.0" prefHeight="480.0" prefWidth="566.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -36,15 +37,33 @@
                <children>
                   <HBox prefWidth="471.0" style="-fx-background-color: #F5F5F5;">
                      <children>
-                        <TitledPane collapsible="false" prefHeight="200.0" prefWidth="200.0" text="Informacion basica">
+                        <TitledPane collapsible="false" prefHeight="411.0" prefWidth="271.0" text="Informacion basica">
                            <content>
                               <VBox prefHeight="89.0" prefWidth="198.0" style="-fx-background-color: #ECEFF1;">
                                  <children>
                                     <VBox prefHeight="89.0" prefWidth="198.0">
                                        <children>
-                                          <Label text="Nombre" />
+                                          <HBox>
+                                             <children>
+                                                <Label text="Nombre *" />
+                                                <Label fx:id="ltnombre">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                             </children>
+                                          </HBox>
                                           <TextField fx:id="tnombre" />
-                                          <Label text="Ip" />
+                                          <HBox>
+                                             <children>
+                                                <Label text="Ip *" />
+                                                <Label fx:id="ltip">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                             </children>
+                                          </HBox>
                                           <TextField fx:id="tip" promptText="Ejemplo: 192.168.1.1" />
                                        </children>
                                     </VBox>
@@ -56,9 +75,27 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Usuario" />
+                                    <HBox>
+                                       <children>
+                                          <Label text="Usuario *" />
+                                          <Label fx:id="ltusuario">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
                                     <TextField fx:id="tusuario" />
-                                    <Label text="Contraseña" />
+                                    <HBox>
+                                       <children>
+                                          <Label text="Contraseña *" />
+                                          <Label fx:id="ltcontraseña">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
                                     <TextField fx:id="tcontraseña" />
                                     <Label layoutX="20.0" layoutY="20.0" text="Configuracion de puertos">
                                        <VBox.margin>
@@ -71,9 +108,27 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="20.0" layoutY="104.0" text="Puerto de API" />
+                                    <HBox>
+                                       <children>
+                                          <Label text="Puerto de API *" />
+                                          <Label fx:id="ltpuertoApi">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
                                     <TextField fx:id="tpuertoApi" layoutX="20.0" layoutY="37.0" prefWidth="125.0" promptText="Ejemplo: 8728" />
-                                    <Label layoutX="20.0" layoutY="62.0" text="Puerto Web" />
+                                    <HBox>
+                                       <children>
+                                          <Label text="Puerto Web *" />
+                                          <Label fx:id="ltpuertoWeb">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
                                     <TextField fx:id="tpuertoWeb" layoutX="20.0" layoutY="79.0" promptText="80" text="80" />
                                     <Label text="Habilitar la utilizacion de la api">
                                        <font>
@@ -145,4 +200,8 @@
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
+   <stylesheets>
+      <URL value="@../../styles/Styles.css" />
+      <URL value="@../../styles/validation.css" />
+   </stylesheets>
 </AnchorPane>

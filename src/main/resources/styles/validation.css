@@ -1,14 +1,24 @@
-.mensajeError{
+.controlError{
     -fx-background-color: linear-gradient(to top right, #FFEBEE, #FCE4EC);
     -fx-effect: dropshadow(one-pass-box, #E53935, 5, 0.3, 1, 1);
-    -fx-border-color: #E53935;
+    /*-fx-border-color: #E53935;*/
 }
 
 .labelError{
-    -fx-text-inner-color: #EF5350;
+    -fx-text-fill: #EF5350;
+    visibility: visible;
+    /*-fx-min-height: 20;
+    -fx-pref-height: 20;*/
 }
 
-.controlError{
+.labelNormal2{
+    visibility: collapse;
+    /*-fx-min-height: 20;
+    -fx-pref-height: 20;*/
+        
+}
+
+.customControlError{
     /*-fx-background-color: linear-gradient(to top right, #FFEBEE, #FCE4EC);*/
     /*-fx-border-color: #E53935;*/
     -fx-effect: dropshadow(one-pass-box, #E53935, 5, 0.3, 1, 1);

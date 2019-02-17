@@ -1,7 +1,9 @@
 
 package sitetech.hotspot.Controladores;
+import Util.Validar;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.UnaryOperator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,6 +13,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+import javafx.scene.control.TextFormatter.Change;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
@@ -58,9 +62,25 @@ public class adeRouterController implements Initializable {
     @FXML
     private ImageView img;
     
+    @FXML private Label ltnombre;
+    @FXML private Label ltip;
+    @FXML private Label ltusuario;
+    @FXML private Label ltcontraseña;
+    @FXML private Label ltpuertoApi;
+    @FXML private Label ltpuertoWeb;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+        String regex = Util.util.makePartialIPRegex();
+        final UnaryOperator<Change> ipAddressFilter = c -> {
+            String text = c.getControlNewText();
+            if  (text.matches(regex)) {
+                return c ;
+            } else {
+                return null ;
+            }
+        };
+        tip.setTextFormatter(new TextFormatter<>(ipAddressFilter));
     }
 
     private final Stage thisStage;
@@ -99,17 +119,19 @@ public class adeRouterController implements Initializable {
     
     @FXML
     void agregarRouterAction(ActionEvent event) {
-        RouterManager rM = new RouterManager();
-        if (bAgregar.getText().equals("Agregar Router")) {
-            Router rt = new Router(0, tnombre.getText(), tip.getText(), tusuario.getText(), tcontraseña.getText(), Integer.parseInt(tpuertoApi.getText()), 
-                    Integer.parseInt(tpuertoWeb.getText()), tlan.getText(), twlan.getText(), trangos.getText(), checkApi.isSelected(), false);
-            rM.AgregarRouter(rt);
+        if (camposValidos()) {
+            RouterManager rM = new RouterManager();
+            if (bAgregar.getText().equals("Agregar Router")) {
+                Router rt = new Router(0, tnombre.getText(), tip.getText(), tusuario.getText(), tcontraseña.getText(), Integer.parseInt(tpuertoApi.getText()), 
+                        Integer.parseInt(tpuertoWeb.getText()), tlan.getText()+"", twlan.getText() + "", trangos.getText() + "", checkApi.isSelected(), false);
+                rM.AgregarRouter(rt);
+            }
+            else{
+                editarRouter(rM);
+            }
+
+            cancelarAction(event);
         }
-        else{
-            editarRouter(rM);
-        }
-        
-        cancelarAction(event);
     }
 
     void editarRouter(RouterManager rM)
@@ -129,6 +151,16 @@ public class adeRouterController implements Initializable {
         
         rM.EditarRouter(Rseleccionado);
     }
+    
+    private boolean camposValidos(){
+        boolean t1 = !Validar.esTextfieldVacio(tnombre, ltnombre, "Un nombres es requerido.");
+        boolean t2 = !Validar.esTextfieldVacio(tip, ltip, "Se requiere una direccion ip.");
+        boolean t3 = !Validar.esTextfieldVacio(tusuario, ltusuario, "Es requerido el nombre de usuario.");
+        boolean t4 = !Validar.esTextfieldVacio(tcontraseña, ltcontraseña, "Contraseña es requerida.");
+        boolean t5 = !Validar.esTextfieldNumero(tpuertoApi, ltpuertoApi, "Numero de puerto es requerido.", false);
+        boolean t6 = !Validar.esTextfieldNumero(tpuertoWeb, ltpuertoWeb, "Numero de puerto requerido.", false);
+        return t1 && t2 && t3 && t4 && t5 && t6;
+    } 
     
     @FXML
     void cancelarAction(ActionEvent event) {

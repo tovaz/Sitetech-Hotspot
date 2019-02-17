@@ -16,8 +16,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -134,16 +132,17 @@ public class adUsuarioController implements Initializable {
     }
     
     private boolean camposValidos(boolean todos){
-        boolean t2=false, t3=false; 
+        boolean t2=true, t3=true; 
         
-        boolean t1 = Validar.esTextfieldVacio(tusuario, ltusuario, "Debe ingresar un usuario.") && 
-                !Validar.esTextfieldVacio(tcontraseña, ltcontraseña, "Debe ingresar una contraseña.") &&
-                !Validar.esComboboxCorrecto(cbprivilegios, lcbprivilegios, "Debe de seleccionar un privilegio");
+        boolean t1 = !Validar.esTextfieldVacio(tusuario, ltusuario, "Debe ingresar un usuario.") && 
+                Validar.esComboboxCorrecto(cbprivilegios, lcbprivilegios, "Debe de seleccionar un privilegio");
         
-        
-        if (todos)
-            t2 =  Validar.VerificarContraseña(tcontraseña, tcontraseña2, ltconfirmar, "Las contraseñas no coinciden.");
-        else if (!tcontraseña.getText().isEmpty())
+        if (todos){
+            t2 =  Validar.VerificarContraseña(tcontraseña, tcontraseña2, ltconfirmar, "Las contraseñas no coinciden.") &&
+                  !Validar.esTextfieldVacio(tcontraseña, ltcontraseña, "Debe de ingresar una contraseña.");
+            
+        }
+        if (!tcontraseña.getText().isEmpty())
             t3 = Validar.VerificarContraseña(tcontraseña, tcontraseña2, ltconfirmar, "Las contraseñas no coinciden.");
         
         return (t1 && t2 && t3);
