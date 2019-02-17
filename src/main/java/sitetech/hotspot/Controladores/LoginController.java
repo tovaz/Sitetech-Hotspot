@@ -5,12 +5,14 @@
  */
 package sitetech.hotspot.Controladores;
 
+import Util.Validar;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -27,6 +29,11 @@ import sitetech.hotspot.MainApp;
  */
 public class LoginController implements Initializable {
 
+    @FXML
+    private Label ltusuario;
+    @FXML
+    private Label ltcontraseña;
+    
     @FXML
     private TextField tusuario;
     @FXML
@@ -53,14 +60,24 @@ public class LoginController implements Initializable {
     
     @FXML
     public void loginAction (ActionEvent event) throws IOException{
-        usuarioManager um = new usuarioManager();
-        boolean login = um.checkLogin(tusuario.getText(), tcontraseña.getText());
-        if (login){
-            App.usuarioLogeado = um.usuarioLogeado;
-            App.mainScene();
+        if (camposValidos()) {
+            usuarioManager um = new usuarioManager();
+            boolean login = um.checkLogin(tusuario.getText(), tcontraseña.getText());
+            if (login){
+                App.usuarioLogeado = um.usuarioLogeado;
+                App.mainScene();
+            }
+            else
+                plogin.setVisible(true);
         }
-        else
-            plogin.setVisible(true);
+    }
+    
+    private boolean camposValidos(){
+        if (Validar.esTextfieldVacio(tusuario, ltusuario, "Debe ingresar un usuario.")) return false;
+        if (Validar.esTextfieldVacio(tcontraseña, ltcontraseña, "Debe ingresar una contraseña.")) return false;
+        
+        
+        return true;
     }
     
     @FXML

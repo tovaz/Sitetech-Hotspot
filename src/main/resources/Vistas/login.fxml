@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="rootApp" minWidth="324.0" prefHeight="377.0" prefWidth="324.0" styleClass="rootApp" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sitetech.hotspot.Controladores.LoginController">
+<VBox id="rootApp" minWidth="324.0" prefHeight="377.0" prefWidth="324.0" styleClass="fondoApp" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sitetech.hotspot.Controladores.LoginController">
    <children>
       <AnchorPane>
          <children>   
@@ -24,23 +24,24 @@
          </children>
       </AnchorPane>
       
-                        <TextField fx:id="tusuario" onKeyPressed="#onKeyPress" prefHeight="44.0" prefWidth="214.0" promptText="Usuario">
+                        <TextField fx:id="tusuario" onKeyPressed="#onKeyPress" prefHeight="44.0" prefWidth="214.0" promptText="Usuario" stylesheets="@../styles/validation.css">
          <font>
             <Font size="15.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="10.0" top="10.0" />
+            <Insets top="10.0" />
          </VBox.margin>
       </TextField>
-         
-                           <PasswordField fx:id="tcontraseña" onKeyPressed="#onKeyPress" prefHeight="44.0" prefWidth="214.0" promptText="Contraseña">
-         <font>
-            <Font size="15.0" />
-         </font>
+      <Label fx:id="ltusuario">
          <VBox.margin>
-            <Insets bottom="10.0" top="10.0" />
+            <Insets bottom="10.0" />
          </VBox.margin>
+      </Label>
+         
+         <PasswordField fx:id="tcontraseña" onKeyPressed="#onKeyPress" prefHeight="44.0" prefWidth="214.0" promptText="Contraseña">
+         
       </PasswordField>
+      <Label fx:id="ltcontraseña" />
       <AnchorPane id="plogin" fx:id="plogin" maxHeight="332.0" maxWidth="357.0" minHeight="30.0" minWidth="357.0" prefHeight="30.0" prefWidth="357.0" style="-fx-background-color: #f46b6b;" visible="false">
          <children>
             <Label layoutX="60.0" layoutY="6.0" prefHeight="17.0" prefWidth="238.0" text="Error: Usuario o contraseña incorrecta" textFill="WHITE">
@@ -52,7 +53,7 @@
       <AnchorPane>
          <children>
             
-                        <Button id="blogin" layoutX="94.0" layoutY="-8.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="44.0" prefWidth="117.0" style="-fx-background-image: url(&quot;@.../Imagenes/glass1.png&quot;);" styleClass="btnlogin" stylesheets="@../styles/login.css" text="Iniciar Sesion" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="94.0" AnchorPane.rightAnchor="93.0" AnchorPane.topAnchor="-8.0">
+                        <Button id="blogin" layoutX="94.0" layoutY="-8.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="44.0" prefWidth="117.0" style="-fx-background-image: url(&quot;@.../Imagenes/glass1.png&quot;);" styleClass="backgroundLineal-boton" stylesheets="@../styles/login.css" text="Iniciar Sesion" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="94.0" AnchorPane.rightAnchor="93.0" AnchorPane.topAnchor="-8.0">
                <effect>
                   <Blend />
                </effect>

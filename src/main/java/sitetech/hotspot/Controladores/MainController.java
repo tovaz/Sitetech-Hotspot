@@ -1,5 +1,6 @@
 package sitetech.hotspot.Controladores;
 
+import Util.Validar;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,9 +12,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javassist.bytecode.analysis.Util;
 import sitetech.hotspot.MainApp;
 
 public class MainController implements Initializable {
@@ -26,6 +29,10 @@ public class MainController implements Initializable {
     @FXML
     private Label label;
 
+    @FXML
+    private TextField tprueba;
+    @FXML
+    private Label ltprueba;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -34,7 +41,7 @@ public class MainController implements Initializable {
     
     @FXML
     void testAction(ActionEvent event) throws IOException {
-        this.loadUsuarios();
+        boolean s = Validar.esTextfieldNumero(tprueba, ltprueba, "Debe de llenar este campo con numeros.", true);
     }
     
     public MainController (){

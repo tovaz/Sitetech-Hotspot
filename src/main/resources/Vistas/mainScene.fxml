@@ -7,6 +7,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -87,6 +88,8 @@
                 </font>
               </Label>
                   <Button fx:id="bprueba" layoutX="520.0" layoutY="14.0" mnemonicParsing="false" onAction="#testAction" text="Boton de prueba" />
+                  <TextField fx:id="tprueba" layoutX="520.0" layoutY="47.0" stylesheets="@../styles/validation.css" />
+                  <Label fx:id="ltprueba" layoutX="520.0" layoutY="80.0" stylesheets="@../styles/validation.css" text="Label" />
             </children>
           </AnchorPane>
          </center>

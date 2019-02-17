@@ -1,5 +1,6 @@
 package sitetech.hotspot.Controladores;
 
+import Util.Validar;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,11 +42,14 @@ public class adUsuarioController implements Initializable {
     @FXML
     private PasswordField tcontraseña2;
 
-    @FXML
-    private Label lnota;
+    @FXML private Label lnota;
     
-    @FXML
-    private Label ltitulo;
+    @FXML private Label ltitulo;
+    
+    @FXML private Label ltusuario;
+    @FXML private Label ltcontraseña;
+    @FXML private Label ltconfirmar;
+    @FXML private Label lcbprivilegios;
     
     @FXML
     private ComboBox<String> cbprivilegios;
@@ -87,11 +91,13 @@ public class adUsuarioController implements Initializable {
     
     @FXML
     void agregarAction(ActionEvent event) throws Throwable {
-        Usuario ux = new Usuario(0, tusuario.getText(), "123", cbprivilegios.getValue(), false, checkDeshabilitado.isSelected());
-        ux.setContraseña(tcontraseña.getText());
-        
-        uvController.AgregarUsuario(ux);
-        bcancelar(event);
+        if (camposValidos(true)){
+            Usuario ux = new Usuario(0, tusuario.getText(), "123", cbprivilegios.getValue(), false, checkDeshabilitado.isSelected());
+            ux.setContraseña(tcontraseña.getText());
+
+            uvController.AgregarUsuario(ux);
+            bcancelar(event);
+        }
     }
 
     @FXML
@@ -127,18 +133,35 @@ public class adUsuarioController implements Initializable {
         this.showStage();
     }
     
+    private boolean camposValidos(boolean todos){
+        boolean t2=false, t3=false; 
+        
+        boolean t1 = Validar.esTextfieldVacio(tusuario, ltusuario, "Debe ingresar un usuario.") && 
+                !Validar.esTextfieldVacio(tcontraseña, ltcontraseña, "Debe ingresar una contraseña.") &&
+                !Validar.esComboboxCorrecto(cbprivilegios, lcbprivilegios, "Debe de seleccionar un privilegio");
+        
+        
+        if (todos)
+            t2 =  Validar.VerificarContraseña(tcontraseña, tcontraseña2, ltconfirmar, "Las contraseñas no coinciden.");
+        else if (!tcontraseña.getText().isEmpty())
+            t3 = Validar.VerificarContraseña(tcontraseña, tcontraseña2, ltconfirmar, "Las contraseñas no coinciden.");
+        
+        return (t1 && t2 && t3);
+    }
 
     @FXML
     void guardarAction(ActionEvent event) throws Throwable {
-        selUsuario.setNombre(tusuario.getText());
-        selUsuario.setPrivilegios(cbprivilegios.getValue());
-        selUsuario.setActivo(checkDeshabilitado.isSelected());
-        
-        if (!tcontraseña.getText().equals(""))
-            selUsuario.setContraseña(tcontraseña.getText());
-        
-        uvController.editarUsuario(selUsuario);
-        this.bcancelar(event);
+         if (camposValidos(false)){
+            selUsuario.setNombre(tusuario.getText());
+            selUsuario.setPrivilegios(cbprivilegios.getValue());
+            selUsuario.setActivo(checkDeshabilitado.isSelected());
+
+            if (!tcontraseña.getText().equals(""))
+                selUsuario.setContraseña(tcontraseña.getText());
+
+            uvController.editarUsuario(selUsuario);
+            this.bcancelar(event);
+         }
     }
 
     

@@ -103,7 +103,6 @@ public class UsuariosController implements Initializable {
         if (uSeleccionado != null) {
             adUsuarioController adUsuario = new adUsuarioController();
             adUsuario.showEditar(uSeleccionado, this);
-            
         }
         else
             Util.util.mostrarAlerta("Debe de seleccionar un usuario para poder editarlo.", "No a seleccionado ningun usuario", ButtonType.OK);

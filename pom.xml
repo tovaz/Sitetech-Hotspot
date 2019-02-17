@@ -27,17 +27,17 @@
         </dependency>
         
         <!-- JFXtras  -->
-        <dependency>
+        <!--dependency>
             <groupId>org.jfxtras</groupId>
             <artifactId>jfxtras-all</artifactId>
             <version>8.0-r6</version>
-        </dependency>
+        </dependency-->
 
         <!-- Jfoenix  -->
         <dependency>
             <groupId>com.jfoenix</groupId>
             <artifactId>jfoenix</artifactId>
-            <version>8.0.8</version>
+            <version>8.0.7</version>
         </dependency>
         
         <!-- hibernate -->
@@ -144,6 +144,7 @@
                     </compilerArguments>
                 </configuration>
             </plugin>
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>

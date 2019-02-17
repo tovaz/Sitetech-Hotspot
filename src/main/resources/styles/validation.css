@@ -1,0 +1,15 @@
+.mensajeError{
+    -fx-background-color: linear-gradient(to top right, #FFEBEE, #FCE4EC);
+    -fx-effect: dropshadow(one-pass-box, #E53935, 5, 0.3, 1, 1);
+    -fx-border-color: #E53935;
+}
+
+.labelError{
+    -fx-text-inner-color: #EF5350;
+}
+
+.controlError{
+    /*-fx-background-color: linear-gradient(to top right, #FFEBEE, #FCE4EC);*/
+    /*-fx-border-color: #E53935;*/
+    -fx-effect: dropshadow(one-pass-box, #E53935, 5, 0.3, 1, 1);
+}
