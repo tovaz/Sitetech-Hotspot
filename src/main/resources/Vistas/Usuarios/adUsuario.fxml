@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -77,10 +77,10 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <CheckBox fx:id="checkDeshabilitado" mnemonicParsing="false" prefHeight="30.0" prefWidth="253.0" selected="true" stylesheets="@../../styles/Styles.css" text="Activado">
+                        <JFXToggleButton fx:id="checkDeshabilitado" mnemonicParsing="false" prefHeight="58.0" prefWidth="118.0" selected="true" stylesheets="@../../styles/Styles.css" text="Activado">
                            <VBox.margin>
                               <Insets bottom="15.0" />
-                           </VBox.margin></CheckBox>
+                           </VBox.margin></JFXToggleButton>
                         <Label text="Privilegios" />
                         <ComboBox fx:id="cbprivilegios" prefHeight="25.0" prefWidth="202.0" promptText="Selecciona un privilegio" style="-fx-font: 12px &quot;System&quot;;" stylesheets="@../../styles/validation.css">
                             <items>
