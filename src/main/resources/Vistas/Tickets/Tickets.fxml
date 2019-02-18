@@ -18,7 +18,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="521.0" prefWidth="797.0" styleClass="fondoApp" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <JFXToolbar AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
@@ -91,7 +90,7 @@
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../../../../Pictures/ticketgenerate.png" />
+                                          <Image url="@../../Imagenes/ticketgenerate.png" />
                                        </image>
                                     </ImageView>
                                     <Label text="Generar tickets" />
@@ -105,7 +104,7 @@
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../../../../Pictures/ticketprint.png" />
+                                          <Image url="@../../Imagenes/ticketprint.png" />
                                        </image>
                                     </ImageView>
                                     <Label text="Imprimir" />
@@ -119,7 +118,7 @@
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../../../../Pictures/ticketsell.png" />
+                                          <Image url="@../../Imagenes/ticketsell.png" />
                                        </image>
                                     </ImageView>
                                     <Label text="Vender" />
@@ -134,7 +133,7 @@
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../../../../Pictures/ticketdelbar.png" />
+                                          <Image url="@../../Imagenes/ticketdelbar.png" />
                                        </image>
                                     </ImageView>
                                     <Label text="Eliminar" />
