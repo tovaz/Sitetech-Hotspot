@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sitetech.hotspot.MainApp;
@@ -91,6 +92,19 @@ public class util {
             main.setTitle(titulo);
             return Controlador;
             
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+    
+    public static Object cargarSceneEnPanel(String vista, String titulo, Object Controlador)
+    {
+        try {
+            //FXMLLoader loader = new FXMLLoader(Controlador.getClass().getResource(vista));
+            //loader.setController(Controlador);
+            Object control = FXMLLoader.load(Controlador.getClass().getResource(vista));
+            return control;
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

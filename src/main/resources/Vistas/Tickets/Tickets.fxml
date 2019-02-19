@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXToolbar?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -20,7 +20,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="521.0" prefWidth="797.0" styleClass="fondoApp" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXToolbar AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <JFXToolbar AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <AnchorPane BorderPane.alignment="CENTER">
                <children>
@@ -49,12 +49,13 @@
                                     <JFXComboBox prefHeight="25.0" prefWidth="145.0" />
                                  </children>
                               </VBox>
+                              <JFXButton prefHeight="25.0" prefWidth="69.0" styleClass="aceptarBoton" text="Buscar" textFill="WHITE" />
                            </items>
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                            <padding>
-                              <Insets top="10.0" />
+                              <Insets bottom="10.0" top="10.0" />
                            </padding>
                         </ToolBar>
                         <TableView>
@@ -74,7 +75,7 @@
          <top>
             <VBox BorderPane.alignment="CENTER">
                <children>
-                  <ToolBar prefWidth="757.0">
+                  <ToolBar prefWidth="757.0" styleClass="ticket-toolbar">
                     <items>
                         <Label text="Tickets">
                            <font>
@@ -84,7 +85,7 @@
                               <Insets right="50.0" />
                            </padding>
                         </Label>
-                      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="67.0" prefWidth="117.0">
+                      <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
                            <graphic>
                               <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
                                  <children>
@@ -97,8 +98,8 @@
                                  </children>
                               </VBox>
                            </graphic>
-                        </Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="67.0" prefWidth="117.0">
+                        </JFXButton>
+                        <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
                            <graphic>
                               <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
                                  <children>
@@ -111,8 +112,8 @@
                                  </children>
                               </VBox>
                            </graphic>
-                        </Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="67.0" prefWidth="117.0">
+                        </JFXButton>
+                        <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
                            <graphic>
                               <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
                                  <children>
@@ -125,9 +126,9 @@
                                  </children>
                               </VBox>
                            </graphic>
-                        </Button>
+                        </JFXButton>
                         <Separator orientation="VERTICAL" />
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="67.0" prefWidth="117.0">
+                        <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
                            <graphic>
                               <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
                                  <children>
@@ -140,7 +141,7 @@
                                  </children>
                               </VBox>
                            </graphic>
-                        </Button>
+                        </JFXButton>
                     </items>
                   </ToolBar>
                </children>

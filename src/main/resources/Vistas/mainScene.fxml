@@ -34,15 +34,10 @@
                 <items>
                   <MenuItem mnemonicParsing="false" text="Generar tickets" />
                   <MenuItem mnemonicParsing="false" text="Vender Ticket" />
+                  <MenuItem mnemonicParsing="false" text="Imprimir tickets" />
                   <SeparatorMenuItem mnemonicParsing="false" text="separadormenu" />
-                        <MenuItem mnemonicParsing="false" text="Anular ticket" />
+                        <MenuItem mnemonicParsing="false" text="Eliminar ticket" />
                   <MenuItem mnemonicParsing="false" text="Modificar Ticket" />
-                  <MenuItem mnemonicParsing="false" text="Buscar ticket" />
-                </items>
-              </Menu>
-              <Menu mnemonicParsing="false" text="Otros">
-                <items>
-                  <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
                 </items>
               </Menu>
                   <Menu mnemonicParsing="false" text="Administracion">
@@ -80,7 +75,7 @@
           </MenuBar>
          </top>
          <center>
-          <AnchorPane fx:id="panelPrincipal" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" stylesheets="@../styles/Styles.css" BorderPane.alignment="CENTER">
+          <AnchorPane fx:id="panelPrincipal" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="fondoApp" stylesheets="@../styles/Styles.css" BorderPane.alignment="CENTER">
             <children>
               <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="Drag components from Library here…" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false" AnchorPane.bottomAnchor="146.0" AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="187.0" AnchorPane.topAnchor="177.0">
                 <font>

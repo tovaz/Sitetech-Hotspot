@@ -65,8 +65,6 @@ public class adePaqueteController implements Initializable {
     @FXML private Label lsmegasDown;
     @FXML private Label lsgigasDown;
     
-    @FXML private Label lsmegasUp;
-    @FXML private Label lsmegasUp;
     private final Stage thisStage;
     
     @Override
@@ -113,7 +111,7 @@ public class adePaqueteController implements Initializable {
         else if ( x > sldias.getMax() ) { x = sldias.getMax(); }
         else if ( x < sldias.getMin() ) { x = sldias.getMin(); }
         
-        tdias.setText(String.valueOf(x));
+        tdias.setText(String.valueOf((int)x));
     }
 
     @FXML
@@ -129,45 +127,52 @@ public class adePaqueteController implements Initializable {
     //int id, String nombre, Double precio, boolean eliminado, int cantidadTickets, int dias, int horas, int minutos, double megasDescarga, double gigasDescarga, double megasSubida, double gigasSubida
     @FXML
     private void agregarAction(ActionEvent event) {
-        PaqueteManager pM = new PaqueteManager();
-        if (bAgregar.getText().equals("Agregar Paquete")) {
-            Paquete px = new Paquete(0, tnombre.getText(), Double.valueOf(tprecio.getText()), false, 0, (int)sldias.getValue(),
-            (int)slhoras.getValue(), (int)slminutos.getValue(), slmegasDown.getValue(), slgigasDown.getValue(), slmegasUp.getValue(), 
-            slgigasUp.getValue());
-            
-            pM.AgregarPaquete(px);
+        if (camposValidos()){
+            PaqueteManager pM = new PaqueteManager();
+            if (bAgregar.getText().equals("Agregar Paquete")) {
+                Paquete px = new Paquete(0, tnombre.getText(), Double.valueOf(tprecio.getText()), false, 0, (int)sldias.getValue(),
+                (int)slhoras.getValue(), (int)slminutos.getValue(), slmegasDown.getValue(), slgigasDown.getValue(), slmegasUp.getValue(), 
+                slgigasUp.getValue());
+
+                pM.AgregarPaquete(px);
+            }
+            else{
+                editarRegistro(pM);
+            }
+
+            cancelarAction(event);
         }
-        else{
-            editarRegistro(pM);
-        }
-        
-        cancelarAction(event);
     }
     
     void editarRegistro(PaqueteManager rM)
     {
-        Pseleccionado.setNombre(tnombre.getText());
-        Pseleccionado.setPrecio(Double.valueOf( tprecio.getText()) );
-        Pseleccionado.setDias((int)sldias.getValue());
-        Pseleccionado.setHoras((int)slhoras.getValue());
-        Pseleccionado.setMinutos((int)slminutos.getValue());
-        
-        Pseleccionado.setMegasDescarga(slmegasDown.getValue());
-        Pseleccionado.setGigasDescarga(slgigasDown.getValue());
-        Pseleccionado.setMegasSubida(slmegasUp.getValue());
-        Pseleccionado.setGigasSubida(slgigasUp.getValue());
-        
-        rM.EditarPaquete(Pseleccionado);
+        if (camposValidos()){
+            Pseleccionado.setNombre(tnombre.getText());
+            Pseleccionado.setPrecio(Double.valueOf( tprecio.getText()) );
+            Pseleccionado.setDias((int)sldias.getValue());
+            Pseleccionado.setHoras((int)slhoras.getValue());
+            Pseleccionado.setMinutos((int)slminutos.getValue());
+
+            Pseleccionado.setMegasDescarga(slmegasDown.getValue());
+            Pseleccionado.setGigasDescarga(slgigasDown.getValue());
+            Pseleccionado.setMegasSubida(slmegasUp.getValue());
+            Pseleccionado.setGigasSubida(slgigasUp.getValue());
+
+            rM.EditarPaquete(Pseleccionado);
+        }
     }
     
     private boolean camposValidos(){
         boolean t1 = !Validar.esTextfieldVacio(tnombre, ltnombre, "Un nombres es requerido.");
         boolean t2 = !Validar.esTextfieldNumero(tprecio, ltprecio, "Se requiere un precio.", true);
-        boolean t3 = !Validar.esTextfieldVacio(tusuario, ltusuario, "Es requerido el nombre de usuario.");
-        boolean t4 = !Validar.esTextfieldVacio(tcontraseña, ltcontraseña, "Contraseña es requerida.");
-        boolean t5 = !Validar.esTextfieldNumero(tpuertoApi, ltpuertoApi, "Numero de puerto es requerido.", false);
-        boolean t6 = !Validar.esTextfieldNumero(tpuertoWeb, ltpuertoWeb, "Numero de puerto requerido.", false);
-        return t1 && t2 && t3 && t4 && t5 && t6;
+        
+        boolean t3 = !Validar.esTextfieldVacio(tdias, ltdias, "Requiere almenos un limite..");
+        boolean t4 = Validar.esCircularSliderCorrecto(slhoras, lshoras, "Es requerido fijar un tiempo o un limite de megas.");
+        boolean t5 = Validar.esCircularSliderCorrecto(slminutos, lsminutos, "Es requerido fijar un tiempo o un limite de megas.");
+        
+        boolean t6 = Validar.esCircularSliderCorrecto(slmegasDown, lsmegasDown, "Requiere almenos un limite Tiempo/Megas.");
+        boolean t7 = Validar.esCircularSliderCorrecto(slgigasDown, lsgigasDown, "Requiere almenos un limite Tiempo/Megas.");
+        return (t1 && t2) && ( (t3 || t4 || t5) || (t5 || t6) );
     }
     
 }

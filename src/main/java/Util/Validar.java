@@ -10,6 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import slider.control.CircularSlider;
 
 /**
  *
@@ -106,6 +107,21 @@ public class Validar {
             b = false;
             msg = mensaje;
             cb.getStyleClass().add("customControlError");
+            lb.getStyleClass().add("labelError");
+        }
+        lb.setText(msg);
+        return b;
+    }
+    
+    public static boolean esCircularSliderCorrecto(CircularSlider cs, Label lb, String mensaje){
+        boolean b = true;
+        String msg = null;
+        cs.getStyleClass().remove("customControlError");
+        lb.getStyleClass().remove("labelError");
+        if ( cs.getValue()<=0 ){
+            b = false;
+            msg = mensaje;
+            cs.getStyleClass().add("customControlError");
             lb.getStyleClass().add("labelError");
         }
         lb.setText(msg);
