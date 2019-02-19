@@ -1,6 +1,7 @@
 package sitetech.hotspot.Controladores;
 
 import Util.Validar;
+import com.jfoenix.controls.JFXToggleButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -56,7 +57,7 @@ public class adUsuarioController implements Initializable {
     private VBox pguardar;
 
     @FXML
-    private CheckBox checkDeshabilitado;
+    private JFXToggleButton checkDeshabilitado;
 
     @FXML
     private HBox pagregar;
@@ -67,7 +68,7 @@ public class adUsuarioController implements Initializable {
     }
     
     public adUsuarioController (){
-        thisStage = new Stage();
+        /*thisStage = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/Usuarios/adUsuario.fxml"));
             loader.setController(this);
@@ -80,6 +81,9 @@ public class adUsuarioController implements Initializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+        */
+        thisStage = new Stage();
+        Util.util.cargarStage("/Vistas/Usuarios/adUsuario.fxml", "Agregar Usuario", thisStage, this, Modality.APPLICATION_MODAL);
     }
     
     public void showStage() {

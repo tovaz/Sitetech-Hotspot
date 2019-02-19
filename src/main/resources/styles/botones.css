@@ -1,0 +1,172 @@
+.btn-rojo {
+  -fx-background-color: linear-gradient(#D50000, #FF1744); }
+
+.btn-rosado {
+  -fx-background-color: linear-gradient(#C51162, #F50057); }
+
+.btn-purpura {
+  -fx-background-color: linear-gradient(#AA00FF, #D500F9); }
+
+.btn-purpura2 {
+  -fx-background-color: linear-gradient(#6200EA, #651FFF); }
+
+.btn-indigo {
+  -fx-background-color: linear-gradient(#304FFE, #3D5AFE); }
+
+.btn-azul {
+  -fx-background-color: linear-gradient(#2962FF, #2979FF); }
+
+.btn-celeste {
+  -fx-background-color: linear-gradient(#0091EA, #00B0FF); }
+
+.btn-cyan {
+  -fx-background-color: linear-gradient(#00B8D4, #00E5FF); }
+
+.btn-turquesa {
+  -fx-background-color: linear-gradient(#00BFA5, #1DE9B6); }
+
+.btn-verde {
+  -fx-background-color: linear-gradient(#1B5E20, #2E7D32); }
+
+.btn-lima {
+  -fx-background-color: linear-gradient(#64DD17, #76FF03); }
+
+.btn-lima2 {
+  -fx-background-color: linear-gradient(#AEEA00, #C6FF00); }
+
+.btn-amarillo {
+  -fx-background-color: linear-gradient(#FFD600, #FFEA00); }
+
+.btn-ambar {
+  -fx-background-color: linear-gradient(#FFAB00, #FFC400); }
+
+.btn-naranja {
+  -fx-background-color: linear-gradient(#FF6D00, #FF9100); }
+
+.btn-naranja2 {
+  -fx-background-color: linear-gradient(#DD2C00, #FF3D00); }
+
+.btn-cafes {
+  -fx-background-color: linear-gradient(#3E2723, #4E342E); }
+
+.btn-gris {
+  -fx-background-color: linear-gradient(#212121, #424242); }
+
+.btn-gris-claro {
+  -fx-background-color: linear-gradient(#9E9E9E, #E0E0E0); }
+
+.btn-gris-azul {
+  -fx-background-color: linear-gradient(#263238, #546E7A); }
+
+/**************************** BOTONES HOVER ***********************************/
+.btn-rojo:hover {
+  -fx-background-color: linear-gradient(#ff3333, #ff4a77); }
+
+.btn-rosado:hover {
+  -fx-background-color: linear-gradient(#f84495, #ff338a); }
+
+.btn-purpura:hover {
+  -fx-background-color: linear-gradient(#dd33ff, #ff33ff); }
+
+.btn-purpura2:hover {
+  -fx-background-color: linear-gradient(#9533ff, #9852ff); }
+
+.btn-indigo:hover {
+  -fx-background-color: linear-gradient(#6382ff, #708dff); }
+
+.btn-azul:hover {
+  -fx-background-color: linear-gradient(#5c95ff, #5cacff); }
+
+.btn-celeste:hover {
+  -fx-background-color: linear-gradient(#33c4ff, #33e3ff); }
+
+.btn-cyan:hover {
+  -fx-background-color: linear-gradient(#33ebff, #33ffff); }
+
+.btn-turquesa:hover {
+  -fx-background-color: linear-gradient(#33f2d8, #50ffe9); }
+
+.btn-verde:hover {
+  -fx-background-color: linear-gradient(#4e9153, #61b065); }
+
+.btn-lima:hover {
+  -fx-background-color: linear-gradient(#97ff4a, #a9ff36); }
+
+.btn-lima2:hover {
+  -fx-background-color: linear-gradient(#e1ff33, #f9ff33); }
+
+.btn-amarillo:hover {
+  -fx-background-color: linear-gradient(#ffff33, #ffff33); }
+
+.btn-ambar:hover {
+  -fx-background-color: linear-gradient(#ffde33, #fff733); }
+
+.btn-naranja:hover {
+  -fx-background-color: linear-gradient(#ffa033, #ffc433); }
+
+.btn-naranja2:hover {
+  -fx-background-color: linear-gradient(#ff5f33, #ff7033); }
+
+.btn-cafes:hover {
+  -fx-background-color: linear-gradient(#715a56, #816761); }
+
+.btn-gris:hover {
+  -fx-background-color: linear-gradient(#545454, #757575); }
+
+.btn-gris-claro:hover {
+  -fx-background-color: linear-gradient(#d1d1d1, white); }
+
+.btn-gris-azul:hover {
+  -fx-background-color: linear-gradient(#59656b, #87a1ad); }
+
+/* ******************************* DEGRADADOS *********************************/
+.btn-dg-azul-turquesa:hover {
+  -fx-background-color: linear-gradient(to top right, #73f7ff, #9cffe1); }
+
+.btn-dg-cian-purpura:hover {
+  -fx-background-color: linear-gradient(to top right, #9cffe1, #dd33ff); }
+
+.btn-dg-rojo-rosado:hover {
+  -fx-background-color: linear-gradient(to top right, #ff3333, #ff5196); }
+
+/* *********************************** TEXTOS ****************************/
+.txt-rojo {
+  -fx-text-fill: #D50000; }
+
+.txt-azul {
+  -fx-text-fill: #2962FF; }
+
+.txt-indigo {
+  -fx-text-fill: #304FFE; }
+
+.txt-rosado {
+  -fx-text-fill: #C51162; }
+
+.txt-verde {
+  -fx-text-fill: #1B5E20; }
+
+.txt-lima {
+  -fx-text-fill: #64DD17; }
+
+.txt-cafes {
+  -fx-text-fill: #3E2723; }
+
+.txt-gris1 {
+  -fx-text-fill: #212121; }
+
+.txt-gris2 {
+  -fx-text-fill: #424242; }
+
+.txt-gris-claro {
+  -fx-text-fill: #9E9E9E; }
+
+.txt-gris-claro2 {
+  -fx-text-fill: #E0E0E0; }
+
+.txt-turquesa {
+  -fx-text-fill: #00BFA5; }
+
+.txt-celeste {
+  -fx-text-fill: #0091EA; }
+
+/*# sourceMappingURL=botones.css.map */

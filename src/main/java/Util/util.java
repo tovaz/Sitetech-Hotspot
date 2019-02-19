@@ -100,15 +100,10 @@ public class util {
     
     public static Object cargarSceneEnPanel(String vista, String titulo, Object Controlador)
     {
-        try {
-            //FXMLLoader loader = new FXMLLoader(Controlador.getClass().getResource(vista));
-            //loader.setController(Controlador);
-            Object control = FXMLLoader.load(Controlador.getClass().getResource(vista));
-            return control;
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
+        FXMLLoader loader = new FXMLLoader(Controlador.getClass().getResource(vista));
+        loader.setController(Controlador);
+        Object control = loader.getRoot();
+        return control;
     }
     
     //IP TEXT REGEX

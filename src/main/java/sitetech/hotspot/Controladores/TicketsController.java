@@ -30,15 +30,19 @@ public class TicketsController implements Initializable {
 
     public TicketsController() {
         thisStage = new Stage();
-        //Util.util.cargarStage("/Vistas/Tickets/Tickets.fxml", "Tickets", thisStage, this, Modality.APPLICATION_MODAL);
+        Util.util.cargarStage("/Vistas/Tickets/Tickets.fxml", "Tickets", thisStage, this, Modality.APPLICATION_MODAL);
     }
     
     public void cargarPanel(AnchorPane panel) throws IOException {
-        AnchorPane newLoadedPane =  FXMLLoader.load(getClass().getResource("/Vistas/Tickets/Tickets.fxml"));
-        panel.getChildren().setAll( newLoadedPane );
+        AnchorPane anchorpane =  FXMLLoader.load(getClass().getResource("/Vistas/Tickets/Tickets.fxml"));
+        
+        panel.getChildren().setAll( anchorpane );
     }
     
     public void showStage(AnchorPane panel) {
         thisStage.showAndWait();
     }
+    
+    //******************************** FUNCIONES PRINCPALES *********************/
+    
 }

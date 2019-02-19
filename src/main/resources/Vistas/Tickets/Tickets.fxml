@@ -2,8 +2,9 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import com.jfoenix.controls.JFXToolbar?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -18,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="521.0" prefWidth="797.0" styleClass="fondoApp" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="521.0" prefWidth="797.0" styleClass="fondoApp" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <JFXToolbar AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -26,12 +27,12 @@
                <children>
                   <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ToolBar prefHeight="73.0" prefWidth="567.0">
+                        <ToolBar prefHeight="73.0" prefWidth="567.0" styleClass="fondoApp">
                            <items>
                               <VBox>
                                  <children>
                                     <Label text="Usuario" />
-                                    <TextField />
+                                    <TextField fx:id="tnombre" />
                                  </children>
                                  <padding>
                                     <Insets left="10.0" />
@@ -40,16 +41,19 @@
                               <VBox>
                                  <children>
                                     <Label text="Estado del Ticket" />
-                                    <JFXComboBox prefHeight="25.0" prefWidth="169.0" />
+                                    <JFXComboBox fx:id="cbestado" prefHeight="25.0" prefWidth="169.0" />
                                  </children>
                               </VBox>
                               <VBox>
                                  <children>
                                     <Label text="Paquete del ticket" />
-                                    <JFXComboBox prefHeight="25.0" prefWidth="145.0" />
+                                    <JFXComboBox fx:id="cbpaquetes" prefHeight="25.0" prefWidth="145.0" />
                                  </children>
                               </VBox>
-                              <JFXButton prefHeight="25.0" prefWidth="69.0" styleClass="aceptarBoton" text="Buscar" textFill="WHITE" />
+                              <JFXButton onAction="#onBuscarAction" prefHeight="23.0" prefWidth="96.0" styleClass="btn-azul" text="Buscar" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></JFXButton>
                            </items>
                            <VBox.margin>
                               <Insets />
@@ -58,7 +62,7 @@
                               <Insets bottom="10.0" top="10.0" />
                            </padding>
                         </ToolBar>
-                        <TableView>
+                        <TableView fx:id="tvtickets">
                           <columns>
                             <TableColumn prefWidth="75.0" text="C1" />
                             <TableColumn prefWidth="75.0" text="C2" />
@@ -77,7 +81,7 @@
                <children>
                   <ToolBar prefWidth="757.0" styleClass="ticket-toolbar">
                     <items>
-                        <Label text="Tickets">
+                        <Label styleClass="txt-gris2" text="Tickets">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -85,7 +89,7 @@
                               <Insets right="50.0" />
                            </padding>
                         </Label>
-                      <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
+                      <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGenerarAction" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
                            <graphic>
                               <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
                                  <children>
@@ -99,7 +103,7 @@
                               </VBox>
                            </graphic>
                         </JFXButton>
-                        <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
+                        <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onImprimirAction" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
                            <graphic>
                               <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
                                  <children>
@@ -113,7 +117,7 @@
                               </VBox>
                            </graphic>
                         </JFXButton>
-                        <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
+                        <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onVenderAction" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
                            <graphic>
                               <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
                                  <children>
@@ -128,7 +132,7 @@
                            </graphic>
                         </JFXButton>
                         <Separator orientation="VERTICAL" />
-                        <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
+                        <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onEliminarAction" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
                            <graphic>
                               <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
                                  <children>
@@ -148,20 +152,21 @@
             </VBox>
          </top>
          <right>
-            <VBox prefHeight="444.0" prefWidth="190.0" style="-fx-background-color: #ccc;" BorderPane.alignment="CENTER">
+            <VBox prefHeight="444.0" prefWidth="190.0" styleClass="fondoApp" BorderPane.alignment="CENTER">
                <children>
-                  <Label prefHeight="47.0" prefWidth="193.0" text="Informacion del ticket" textFill="#004db2">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="193.0" styleClass="txt-azul" text="Informacion del ticket" textAlignment="CENTER" textFill="#004db2">
                      <font>
                         <Font size="14.0" />
                      </font>
-                     <padding>
-                        <Insets right="50.0" />
-                     </padding>
                   </Label>
-                  <JFXListView prefHeight="174.0" prefWidth="190.0" />
+                  <JFXSpinner progress="0.35" />
                </children>
             </VBox>
          </right>
       </JFXToolbar>
    </children>
+   <stylesheets>
+      <URL value="@../../styles/Styles.css" />
+      <URL value="@../../styles/botones.css" />
+   </stylesheets>
 </AnchorPane>
