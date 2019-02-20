@@ -130,9 +130,9 @@ public class adePaqueteController implements Initializable {
         if (camposValidos()){
             PaqueteManager pM = new PaqueteManager();
             if (bAgregar.getText().equals("Agregar Paquete")) {
-                Paquete px = new Paquete(0, tnombre.getText(), Double.valueOf(tprecio.getText()), false, 0, (int)sldias.getValue(),
-                (int)slhoras.getValue(), (int)slminutos.getValue(), slmegasDown.getValue(), slgigasDown.getValue(), slmegasUp.getValue(), 
-                slgigasUp.getValue());
+                Paquete px = new Paquete(0, tnombre.getText(), Double.valueOf(tprecio.getText()), false, 0, (int)sldias.getValue()+0,
+                (int)slhoras.getValue()+0, (int)slminutos.getValue()+0, slmegasDown.getValue()+0, slgigasDown.getValue()+0, slmegasUp.getValue()+0, 
+                slgigasUp.getValue()+0);
 
                 pM.AgregarPaquete(px);
             }
@@ -149,14 +149,14 @@ public class adePaqueteController implements Initializable {
         if (camposValidos()){
             Pseleccionado.setNombre(tnombre.getText());
             Pseleccionado.setPrecio(Double.valueOf( tprecio.getText()) );
-            Pseleccionado.setDias((int)sldias.getValue());
-            Pseleccionado.setHoras((int)slhoras.getValue());
-            Pseleccionado.setMinutos((int)slminutos.getValue());
+            Pseleccionado.setDias((int)sldias.getValue()+0);
+            Pseleccionado.setHoras((int)slhoras.getValue()+0);
+            Pseleccionado.setMinutos((int)slminutos.getValue()+0);
 
-            Pseleccionado.setMegasDescarga(slmegasDown.getValue());
-            Pseleccionado.setGigasDescarga(slgigasDown.getValue());
-            Pseleccionado.setMegasSubida(slmegasUp.getValue());
-            Pseleccionado.setGigasSubida(slgigasUp.getValue());
+            Pseleccionado.setMegasDescarga(slmegasDown.getValue()+0);
+            Pseleccionado.setGigasDescarga(slgigasDown.getValue()+0);
+            Pseleccionado.setMegasSubida(slmegasUp.getValue()+0);
+            Pseleccionado.setGigasSubida(slgigasUp.getValue()+0);
 
             rM.EditarPaquete(Pseleccionado);
         }
