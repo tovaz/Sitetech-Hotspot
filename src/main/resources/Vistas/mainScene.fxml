@@ -23,9 +23,9 @@
    <children>
       <VBox prefHeight="630.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER_LEFT" styleClass="fondoApp" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" maxHeight="28.0" minHeight="28.0" prefHeight="28.0" styleClass="fondoApp" VBox.vgrow="ALWAYS">
                <children>
-                  <AnchorPane fx:id="panelTitulo" HBox.hgrow="ALWAYS">
+                  <AnchorPane fx:id="panelTitulo" maxHeight="28.0" minHeight="28.0" prefHeight="28.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Label fx:id="ltitulo" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" prefHeight="28.0" prefWidth="935.0" styleClass="txt-azul" text="Label" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
