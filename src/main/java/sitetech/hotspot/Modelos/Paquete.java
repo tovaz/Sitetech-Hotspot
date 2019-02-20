@@ -1,5 +1,6 @@
 package sitetech.hotspot.Modelos;
 import java.util.Date;
+import javafx.beans.property.StringProperty;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -195,5 +196,8 @@ public class Paquete {
         this.LimiteInternet = LimiteInternet;
     }
     
-    
+    @Override
+    public String toString() { 
+        return nombre + " - Q. " + precio + "  Limite: " + dias + "d " + horas + ":" + minutos + " * " + megasDescarga + " Mb + " + gigasDescarga + " Gb"; 
+    } 
 }

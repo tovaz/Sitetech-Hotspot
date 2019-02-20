@@ -64,7 +64,7 @@ public class MainController implements Initializable, ArrastrarScene {
             loader.setLocation(MainApp.class.getResource("/Vistas/mainScene.fxml"));
             loader.setController(this);
 
-            thisStage.initStyle(StageStyle.TRANSPARENT);
+            thisStage.initStyle(StageStyle.DECORATED);
             Scene scene = new Scene((Parent)loader.load());
 
             thisStage.setScene(scene);
@@ -75,7 +75,7 @@ public class MainController implements Initializable, ArrastrarScene {
     }
     
     public void showStage() {
-        ltitulo.setText("Hotspot - Sitetech");
+        //ltitulo.setText("Hotspot - Sitetech");
         thisStage.show();
     }
     

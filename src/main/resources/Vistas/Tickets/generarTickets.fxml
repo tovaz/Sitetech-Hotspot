@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="483.0" prefWidth="734.0" styleClass="fondoApp" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <HBox>
+               <children>
+                  <Label prefHeight="23.0" prefWidth="44.0" text="Paquete" />
+                  <ComboBox fx:id="cbpaquetes" prefHeight="25.0" prefWidth="164.0" promptText="Selecciona un Paquete">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <Label prefHeight="24.0" prefWidth="36.0" text="Router">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ComboBox fx:id="cbrouters" prefHeight="25.0" prefWidth="164.0" promptText="Selecciona un Router">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <JFXCheckBox fx:id="checkNumeros" text="Usar solo numeros en la contraseña">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXCheckBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0">
+               <children>
+                  <VBox>
+                     <children>
+                        <HBox VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="90.0" text="Longitud usuario" />
+                              <ComboBox fx:id="cbusuario">
+                                  <items>
+                                      <FXCollections fx:factory="observableArrayList">
+                                      <String fx:value="1" />
+                                      <String fx:value="2" />
+                                      <String fx:value="3" />
+                                      <String fx:value="4" />
+                                      <String fx:value="5" />
+                                      <String fx:value="6" />
+                                      <String fx:value="7" />
+                                      <String fx:value="8" />
+                                      <String fx:value="9" />
+                                      <String fx:value="10" />
+                                      <String fx:value="11" />
+                                      <String fx:value="12" />
+                                      <String fx:value="13" />
+                                      <String fx:value="14" />
+                                      <String fx:value="15" />
+                                      </FXCollections>
+                                  </items>
+                                 <HBox.margin>
+                                    <Insets left="29.0" />
+                                 </HBox.margin>
+                              </ComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="109.0" text="Longitud contraseña" />
+                              <ComboBox fx:id="cbcontraseña">
+                                  <items>
+                                      <FXCollections fx:factory="observableArrayList">
+                                      <String fx:value="1" />
+                                      <String fx:value="2" />
+                                      <String fx:value="3" />
+                                      <String fx:value="4" />
+                                      <String fx:value="5" />
+                                      <String fx:value="6" />
+                                      <String fx:value="7" />
+                                      <String fx:value="8" />
+                                      <String fx:value="9" />
+                                      <String fx:value="10" />
+                                      <String fx:value="11" />
+                                      <String fx:value="12" />
+                                      <String fx:value="13" />
+                                      <String fx:value="14" />
+                                      <String fx:value="15" />
+                                      </FXCollections>
+                                  </items>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </ComboBox>
+                           </children>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="55.0" prefWidth="121.0">
+                     <children>
+                        <Label text="Cantidad de tickets" VBox.vgrow="NEVER" />
+                        <TextField fx:id="tcantidad" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <HBox HBox.hgrow="ALWAYS">
+                     <children>
+                        <JFXButton minHeight="30.0" onAction="#generarAction" prefHeight="30.0" styleClass="btn-gris-azul" text="Generar tickets" textFill="WHITE">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Imagenes/ticketadd.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton minHeight="30.0" onAction="#guardarAction" prefHeight="30.0" styleClass="btn-azul" text="Guardar" textFill="WHITE">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Imagenes/save.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </JFXButton>
+                        <JFXButton minHeight="30.0" onAction="#imprimirAction" prefHeight="30.0" styleClass="txt-azul" text="Imprimir" textFill="WHITE">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Imagenes/print.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </JFXButton>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets top="12.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <AnchorPane VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <children>
+                  <TableView fx:id="tvtickets" prefHeight="200.0" prefWidth="648.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <columns>
+                          <TableColumn id="tcno" editable="false" prefWidth="48.0" resizable="false" text="No." />
+                          <TableColumn id="tcusuario" editable="false" prefWidth="139.0" text="Usuario" />
+                          <TableColumn id="tcprivilegios" editable="false" prefWidth="125.0" resizable="false" text="Contraseña" />
+                          <TableColumn id="tcdeshabilitado" editable="false" prefWidth="115.0" resizable="false" text="Paquete" />
+                          <TableColumn id="tcdeshabilitado" editable="false" prefWidth="115.0" resizable="false" text="Estado" />
+                      </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+   <stylesheets>
+      <URL value="@../../styles/botones.css" />
+      <URL value="@../../styles/Styles.css" />
+   </stylesheets>
+</AnchorPane>

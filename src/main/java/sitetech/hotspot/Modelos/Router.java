@@ -149,4 +149,9 @@ public class Router {
         this.eliminado = eliminado;
     }
     
+    @Override
+    public String toString() { 
+        return nombre + " - " + ip + ":" + puertoWeb + "|" + puertoApi; 
+    } 
+    
 }

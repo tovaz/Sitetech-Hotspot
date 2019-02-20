@@ -31,7 +31,7 @@ public class Ticket {
     @JoinColumn(name="idPaquete")
     Paquete paquete;
     
-    private String nombre;
+    private String usuario;
     private String contraseña;
     private String ip;
     private String mac;
@@ -83,7 +83,7 @@ public class Ticket {
     public Ticket(int id, String nombre, String contraseña, EstadosType estado, Paquete paquete) {
         this.id = id;
         this.paquete = paquete;
-        this.nombre = nombre;
+        this.usuario = nombre;
         this.contraseña = contraseña;
         this.eliminado = false;
         this.estado = estado;
@@ -114,12 +114,12 @@ public class Ticket {
         this.paquete = paquete;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setUsuario(String nombre) {
+        this.usuario = nombre;
     }
 
     public String getContraseña() {

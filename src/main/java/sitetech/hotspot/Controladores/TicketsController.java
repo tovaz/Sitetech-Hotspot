@@ -73,7 +73,8 @@ public class TicketsController implements Initializable,ArrastrarScene {
 
     @FXML
     void onGenerarAction(ActionEvent event) {
-
+        GenerarTicketsController genTicket = new GenerarTicketsController();
+        genTicket.showStage();
     }
 
     @FXML
