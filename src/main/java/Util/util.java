@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -98,12 +100,18 @@ public class util {
         return null;
     }
     
-    public static Object cargarSceneEnPanel(String vista, String titulo, Object Controlador)
+    public static Object cargarEscenaEnPanel(String vista, String titulo, Object Controlador)
     {
         FXMLLoader loader = new FXMLLoader(Controlador.getClass().getResource(vista));
         loader.setController(Controlador);
-        Object control = loader.getRoot();
-        return control;
+        Object control;
+        try {
+            control = loader.load();
+            return control;
+        } catch (IOException ex) {
+            Logger.getLogger(util.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
     //IP TEXT REGEX

@@ -10,10 +10,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-/**
- *
- * @author willi
- */
 public class dbHelper extends dbManager{
     //******************** QUERYS BASICAS *********************
     public boolean Agregar(Object clase){

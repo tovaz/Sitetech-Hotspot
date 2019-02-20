@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import sitetech.hotspot.Controladores.LoginController;
 import sitetech.hotspot.Controladores.MainController;
 import sitetech.hotspot.Modelos.Usuario;
@@ -39,14 +40,6 @@ public class MainApp extends Application {
         //********************************************
     }
 
-    /**
-     * The main() method is ignored in correctly deployed JavaFX application.
-     * main() serves only as fallback in case the application can not be
-     * launched through deployment artifacts, e.g., in IDEs with limited FX
-     * support. NetBeans ignores main().
-     *
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         launch(args);
     }
@@ -60,7 +53,7 @@ public class MainApp extends Application {
         //AnchorPane rootLayout = (AnchorPane) loader.load();
         VBox rootLayout = (VBox) loader.load();
         Scene scene = new Scene(rootLayout);
-        scene.getStylesheets().add("../../../resources/styles/Styles.css");
+        scene.getStylesheets().add("../../resources/styles/Styles.css");
         primaryStage.setScene(scene);
         
         LoginController controladorx = loader.getController();
@@ -81,19 +74,10 @@ public class MainApp extends Application {
 
     public void mainScene() throws IOException
     {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MainApp.class.getResource("/Vistas/mainScene.fxml"));
         
-        AnchorPane rootLayout = loader.load();
-        Scene scene = new Scene(rootLayout);
-        scene.getStylesheets().add("../../../resources/styles/Styles.css");
-        primaryStage.setScene(scene);
-        
-        MainController controladorx = loader.getController();
-        //controladorx.pasarStage(this, primaryStage);
-        
-        //primaryStage.getIcons().add(new Image(this.getClass().getResource("icon.png").toString()) );
-        primaryStage.show();
+        MainController mainControlador = new MainController();
+        mainControlador.showStage();
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
     }
 
 }

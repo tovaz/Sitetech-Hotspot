@@ -28,8 +28,15 @@
     -fx-background-color: linear-gradient(#00BCD4, #03A9F4);
 }
 
+.main-menu {
+    -fx-background-color: linear-gradient(#03A9F4, #00BCD4);
+}
+
+.main-titlebar {
+    -fx-background-color: linear-gradient(#03A9F4, #03A9F4);
+}
+
 .ticket-button-toolbar {
-    
     -fx-background-color: rgba(255,255,255,0.5);
 }
 

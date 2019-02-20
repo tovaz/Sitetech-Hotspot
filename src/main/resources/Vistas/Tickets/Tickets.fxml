@@ -19,9 +19,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="521.0" prefWidth="797.0" styleClass="fondoApp" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="ticketsPanel" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXToolbar AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <JFXToolbar prefHeight="580.0" prefWidth="808.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <AnchorPane BorderPane.alignment="CENTER">
                <children>
@@ -53,7 +53,8 @@
                               <JFXButton onAction="#onBuscarAction" prefHeight="23.0" prefWidth="96.0" styleClass="btn-azul" text="Buscar" textFill="WHITE">
                                  <font>
                                     <Font size="18.0" />
-                                 </font></JFXButton>
+                                 </font>
+                              </JFXButton>
                            </items>
                            <VBox.margin>
                               <Insets />
@@ -77,79 +78,83 @@
             </AnchorPane>
          </center>
          <top>
-            <VBox BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="panelTicket" BorderPane.alignment="CENTER">
                <children>
-                  <ToolBar prefWidth="757.0" styleClass="ticket-toolbar">
-                    <items>
-                        <Label styleClass="txt-gris2" text="Tickets">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <padding>
-                              <Insets right="50.0" />
-                           </padding>
-                        </Label>
-                      <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGenerarAction" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
-                           <graphic>
-                              <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
-                                 <children>
-                                    <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../Imagenes/ticketgenerate.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label text="Generar tickets" />
-                                 </children>
-                              </VBox>
-                           </graphic>
-                        </JFXButton>
-                        <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onImprimirAction" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
-                           <graphic>
-                              <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
-                                 <children>
-                                    <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../Imagenes/ticketprint.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label text="Imprimir" />
-                                 </children>
-                              </VBox>
-                           </graphic>
-                        </JFXButton>
-                        <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onVenderAction" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
-                           <graphic>
-                              <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
-                                 <children>
-                                    <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../Imagenes/ticketsell.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label text="Vender" />
-                                 </children>
-                              </VBox>
-                           </graphic>
-                        </JFXButton>
-                        <Separator orientation="VERTICAL" />
-                        <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onEliminarAction" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
-                           <graphic>
-                              <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
-                                 <children>
-                                    <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../Imagenes/ticketdelbar.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label text="Eliminar" />
-                                 </children>
-                              </VBox>
-                           </graphic>
-                        </JFXButton>
-                    </items>
-                  </ToolBar>
+                  <VBox prefHeight="77.0" prefWidth="808.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ToolBar prefWidth="757.0" styleClass="ticket-toolbar">
+                          <items>
+                              <Label styleClass="txt-gris2" text="Tickets">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets right="50.0" />
+                                 </padding>
+                              </Label>
+                            <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGenerarAction" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
+                                 <graphic>
+                                    <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
+                                       <children>
+                                          <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../Imagenes/ticketgenerate.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="Generar tickets" />
+                                       </children>
+                                    </VBox>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onImprimirAction" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
+                                 <graphic>
+                                    <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
+                                       <children>
+                                          <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../Imagenes/ticketprint.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="Imprimir" />
+                                       </children>
+                                    </VBox>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onVenderAction" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
+                                 <graphic>
+                                    <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
+                                       <children>
+                                          <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../Imagenes/ticketsell.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="Vender" />
+                                       </children>
+                                    </VBox>
+                                 </graphic>
+                              </JFXButton>
+                              <Separator orientation="VERTICAL" />
+                              <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onEliminarAction" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
+                                 <graphic>
+                                    <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
+                                       <children>
+                                          <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../Imagenes/ticketdelbar.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="Eliminar" />
+                                       </children>
+                                    </VBox>
+                                 </graphic>
+                              </JFXButton>
+                          </items>
+                        </ToolBar>
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
+            </AnchorPane>
          </top>
          <right>
             <VBox prefHeight="444.0" prefWidth="190.0" styleClass="fondoApp" BorderPane.alignment="CENTER">

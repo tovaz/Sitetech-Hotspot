@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sitetech.hotspot.Controladores;
 
 import java.net.URL;
@@ -20,11 +15,6 @@ import javafx.stage.Stage;
 import sitetech.hotspot.Modelos.Router;
 import sitetech.hotspot.Modelos.RouterManager;
 
-/**
- * FXML Controller class
- *
- * @author megan
- */
 public class RoutersController implements Initializable {
 
     private final Stage thisStage;
@@ -36,9 +26,6 @@ public class RoutersController implements Initializable {
     
     private RouterManager rm;
     
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

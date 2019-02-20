@@ -17,5 +17,6 @@
 		<mapping class="sitetech.hotspot.Modelos.Usuario"/>
                 <mapping class="sitetech.hotspot.Modelos.Router"/>
                 <mapping class="sitetech.hotspot.Modelos.Paquete"/>
+                <mapping class="sitetech.hotspot.Modelos.Ticket"/>
 	</session-factory>
 </hibernate-configuration>
