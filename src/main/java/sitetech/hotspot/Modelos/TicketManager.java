@@ -27,17 +27,17 @@ public class TicketManager {
         DbHelper.Select("FROM Ticket WHERE eliminado=false");
     }
     
-    public void AgregarPaquete(Ticket tq)
+    public void AgregarTicket(Ticket tq)
     {
         DbHelper.Agregar(tq);
     }
     
-    public void EditarPaquete(Ticket tq)
+    public void EditarTicket(Ticket tq)
     {
         DbHelper.Editar(tq);
     }
     
-    public void EliminarPaquete(Ticket tq)
+    public void EliminarTicket(Ticket tq)
     {
         tq.setEliminado(true);
         DbHelper.Editar(tq);

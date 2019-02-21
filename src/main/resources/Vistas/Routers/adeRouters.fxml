@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.CheckBox?>
@@ -35,7 +36,7 @@
             </AnchorPane>
             <VBox>
                <children>
-                  <HBox prefWidth="471.0" style="-fx-background-color: #F5F5F5;">
+                  <HBox prefWidth="471.0">
                      <children>
                         <TitledPane collapsible="false" prefHeight="411.0" prefWidth="271.0" text="Informacion basica">
                            <content>
@@ -150,23 +151,54 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </TitledPane>
-                        <TitledPane prefHeight="200.0" prefWidth="200.0" text="Interface y seguridad">
-                           <content>
-                              <VBox style="-fx-background-color: #ECEFF1;">
-                                 <children>
-                                    <Label text="Interface Lan" />
-                                    <TextField fx:id="tlan" prefWidth="125.0" promptText="Ejemplo: Eth0" />
-                                    <Label text="Interface Wlan" />
-                                    <TextField fx:id="twlan" promptText="Ejemplo Eth1" />
-                                    <Label layoutX="20.0" layoutY="62.0" text="Rango Ip" />
-                                    <TextArea fx:id="trangos" prefHeight="200.0" prefWidth="200.0" />
-                                 </children>
-                              </VBox>
-                           </content>
+                        <VBox alignment="TOP_CENTER">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
-                        </TitledPane>
+                           <children>
+                              <TitledPane prefHeight="200.0" prefWidth="200.0" text="Interface y seguridad">
+                                 <content>
+                                    <VBox style="-fx-background-color: #ECEFF1;">
+                                       <children>
+                                          <Label text="Interface Lan" />
+                                          <TextField fx:id="tlan" prefWidth="125.0" promptText="Ejemplo: Eth0" />
+                                          <Label text="Interface Wlan" />
+                                          <TextField fx:id="twlan" promptText="Ejemplo Eth1" />
+                                          <Label layoutX="20.0" layoutY="62.0" text="Rango Ip" />
+                                          <TextArea fx:id="trangos" prefHeight="200.0" prefWidth="200.0" />
+                                       </children>
+                                    </VBox>
+                                 </content>
+                              </TitledPane>
+                              <JFXButton onAction="#verificarConexionAction" styleClass="btn-lima2" text="Verificar conexion del router">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </JFXButton>
+                              <AnchorPane prefHeight="35.0" prefWidth="200.0" VBox.vgrow="SOMETIMES">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <Label fx:id="lconexion" styleClass="txt-azul" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane>
+                                 <children>
+                                    <ImageView fx:id="imgconexion" fitHeight="150.0" fitWidth="100.0" layoutX="50.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
+                                       <image>
+                                          <Image url="@../../Imagenes/routerok.png" />
+                                       </image>
+                                    </ImageView>
+                                    <JFXSpinner fx:id="spconexion" layoutY="100.0" visible="false" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
                      </children>
                      <VBox.margin>
                         <Insets />
@@ -203,5 +235,6 @@
    <stylesheets>
       <URL value="@../../styles/Styles.css" />
       <URL value="@../../styles/validation.css" />
+      <URL value="@../../styles/botones.css" />
    </stylesheets>
 </AnchorPane>

@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.collections.FXCollections?>
@@ -53,7 +54,7 @@
                <children>
                   <VBox>
                      <children>
-                        <HBox VBox.vgrow="ALWAYS">
+                        <HBox VBox.vgrow="NEVER">
                            <children>
                               <Label prefHeight="25.0" prefWidth="90.0" text="Longitud usuario" />
                               <ComboBox fx:id="cbusuario">
@@ -82,8 +83,11 @@
                               </ComboBox>
                            </children>
                            <VBox.margin>
-                              <Insets bottom="5.0" />
+                              <Insets />
                            </VBox.margin>
+                           <padding>
+                              <Insets bottom="5.0" />
+                           </padding>
                         </HBox>
                         <HBox>
                            <children>
@@ -128,49 +132,69 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </VBox>
-                  <HBox HBox.hgrow="ALWAYS">
-                     <children>
-                        <JFXButton minHeight="30.0" onAction="#generarAction" prefHeight="30.0" styleClass="btn-gris-azul" text="Generar tickets" textFill="WHITE">
-                           <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Imagenes/ticketadd.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </JFXButton>
-                        <JFXButton minHeight="30.0" onAction="#guardarAction" prefHeight="30.0" styleClass="btn-azul" text="Guardar" textFill="WHITE">
-                           <graphic>
-                              <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Imagenes/save.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </JFXButton>
-                        <JFXButton minHeight="30.0" onAction="#imprimirAction" prefHeight="30.0" styleClass="txt-azul" text="Imprimir" textFill="WHITE">
-                           <graphic>
-                              <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Imagenes/print.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </JFXButton>
-                     </children>
+                  <VBox HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin>
-                     <padding>
-                        <Insets top="12.0" />
-                     </padding>
-                  </HBox>
+                     <children>
+                        <HBox fx:id="pbotones">
+                           <children>
+                              <JFXButton minHeight="30.0" onAction="#generarAction" prefHeight="30.0" styleClass="btn-gris-azul" text="Generar tickets" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Imagenes/ticketadd.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton minHeight="30.0" onAction="#guardarAction" prefHeight="30.0" styleClass="btn-azul" text="Guardar" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Imagenes/save.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton minHeight="30.0" onAction="#imprimirAction" prefHeight="30.0" styleClass="txt-azul" text="Imprimir" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Imagenes/print.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                           </children>
+                           <padding>
+                              <Insets top="12.0" />
+                           </padding>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label fx:id="lmensaje" prefHeight="25.0" prefWidth="102.0" />
+                              <JFXSpinner fx:id="sptrabajando" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" prefHeight="25.0" prefWidth="25.0" visible="false">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </JFXSpinner>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

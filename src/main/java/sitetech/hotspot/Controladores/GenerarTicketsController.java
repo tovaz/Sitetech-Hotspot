@@ -5,8 +5,11 @@
  */
 package sitetech.hotspot.Controladores;
 
+import Util.Mikrotik;
 import Util.cadenaAletoria;
+import Util.claseRetorno;
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXSpinner;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -16,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -27,6 +31,7 @@ import sitetech.hotspot.Modelos.PaqueteManager;
 import sitetech.hotspot.Modelos.Router;
 import sitetech.hotspot.Modelos.RouterManager;
 import sitetech.hotspot.Modelos.Ticket;
+import sitetech.hotspot.Modelos.TicketManager;
 import sitetech.hotspot.Modelos.usuarioManager;
 
 /**
@@ -43,6 +48,8 @@ public class GenerarTicketsController implements Initializable {
     @FXML private TableView<Ticket> tvtickets;
     @FXML private JFXCheckBox checkNumeros;
     @FXML private TextField tcantidad;
+    @FXML private Label lmensaje;
+    @FXML private JFXSpinner sptrabajando;
     
     private final Stage thisStage;
     
@@ -85,6 +92,8 @@ public class GenerarTicketsController implements Initializable {
         this.generarTickets(longusuario, longcontraseña, cantidad);
     }
 
+    
+    
     private ObservableList<Ticket> listaTickets;
     public void generarTickets(int longusuario, int longcontraseña, int cantidad)
     {
@@ -96,9 +105,8 @@ public class GenerarTicketsController implements Initializable {
             else
                 contraseña = cadenaAletoria.generarCadena(longcontraseña);
             
-            
             String usuario = crearUsuario(longusuario, listaTickets, listaTickets);
-            Ticket tx = new Ticket(i, usuario, contraseña, Ticket.EstadosType.Activo, cbpaquetes.getValue());
+            Ticket tx = new Ticket(i, usuario, contraseña, Ticket.EstadosType.Generado, cbpaquetes.getValue());
             listaTickets.add(tx);
         }
         tvtickets.setItems(listaTickets);
@@ -106,14 +114,14 @@ public class GenerarTicketsController implements Initializable {
     
     public String crearUsuario(int longusuario, ObservableList<Ticket> lista1, ObservableList<Ticket> lista2){
         String usuario = cadenaAletoria.generarCadena(longusuario);
-        for(Ticket tx : lista1) {
+        for(Ticket tx : lista1)
             if ( tx.getUsuario().equals( usuario ) )
                 crearUsuario(longusuario, lista1, lista2);
-        }
-        for(Ticket tx : lista2) {
+            
+        for(Ticket tx : lista2) 
             if ( tx.getUsuario().equals( usuario ) )
                 crearUsuario(longusuario, lista1, lista2);
-        }
+
         System.out.println("Usuario creado: " + usuario);
         return usuario;
     }
@@ -129,8 +137,34 @@ public class GenerarTicketsController implements Initializable {
     
     @FXML
     private void guardarAction(ActionEvent event) {
+        lmensaje.setText("Espere mientras se guardan los usuarios en el router.");
+        sptrabajando.setVisible(true);
+        new Thread( () -> checkRouteryGuardar() ).start();
+        //checkRouteryGuardar();
     }
 
+    private void checkRouteryGuardar() {
+        TicketManager tm = new TicketManager();
+        Router rx = cbrouters.getValue();
+        Mikrotik mk = new Mikrotik (rx.getIp(), rx.getUsuario(), rx.getPassword());
+        int contadorUsuarios = 0;
+        
+        if ((boolean)mk.conectar().getDato()){
+            for (Ticket tc : listaTickets){
+                tc.setEstado(Ticket.EstadosType.Activo);
+                claseRetorno cr = mk.agregarHotspotUsuario(tc.getUsuario(), tc.getContraseña(), tc.getPaquete());
+                if (!(boolean)cr.getDato())
+                    tc.setEstado(Ticket.EstadosType.Generado);
+                else { 
+                    tm.AgregarTicket(tc);
+                    contadorUsuarios ++;
+                }
+            }
+        }
+        lmensaje.setText(contadorUsuarios + " tickets creados...");
+        sptrabajando.setVisible(false);
+    }
+    
     @FXML
     private void imprimirAction(ActionEvent event) {
     }

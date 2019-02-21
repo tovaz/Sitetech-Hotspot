@@ -33,6 +33,13 @@
             <version>8.0-r6</version>
         </dependency-->
 
+        <!-- Mikrotik API  -->
+        <dependency>
+            <groupId>me.legrange</groupId>
+            <artifactId>mikrotik</artifactId>
+            <version>3.0.5</version>
+        </dependency>
+        
         <!-- Jfoenix  -->
         <dependency>
             <groupId>com.jfoenix</groupId>

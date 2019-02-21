@@ -1,8 +1,12 @@
 
 package sitetech.hotspot.Controladores;
+import Util.Mikrotik;
 import Util.Validar;
+import Util.claseRetorno;
+import com.jfoenix.controls.JFXSpinner;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.UnaryOperator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,44 +27,31 @@ import sitetech.hotspot.Modelos.Router;
 import sitetech.hotspot.Modelos.RouterManager;
 
 public class adeRouterController implements Initializable {
-    @FXML
-    private TextField tnombre;
+    @FXML private TextField tnombre;
 
-    @FXML
-    private TextField tip;
+    @FXML private TextField tip;
 
-    @FXML
-    private TextField tusuario;
+    @FXML private TextField tusuario;
 
-    @FXML
-    private TextField tcontraseña;
+    @FXML private TextField tcontraseña;
 
-    @FXML
-    private TextField tpuertoApi;
+    @FXML private TextField tpuertoApi;
 
-    @FXML
-    private TextField tpuertoWeb;
+    @FXML private TextField tpuertoWeb;
 
-    @FXML
-    private CheckBox checkApi;
+    @FXML private CheckBox checkApi;
 
-    @FXML
-    private TextField tlan;
+    @FXML private TextField tlan;
 
-    @FXML
-    private TextField twlan;
+    @FXML private TextField twlan;
 
-    @FXML
-    private TextArea trangos;
+    @FXML private TextArea trangos;
 
-    @FXML
-    private Button bAgregar;
+    @FXML private Button bAgregar;
     
-    @FXML
-    private Label ltitulo;
+    @FXML private Label ltitulo;
 
-    @FXML
-    private ImageView img;
+    @FXML private ImageView img;
     
     @FXML private Label ltnombre;
     @FXML private Label ltip;
@@ -68,6 +59,10 @@ public class adeRouterController implements Initializable {
     @FXML private Label ltcontraseña;
     @FXML private Label ltpuertoApi;
     @FXML private Label ltpuertoWeb;
+    
+    @FXML private Label lconexion;
+    @FXML private ImageView imgconexion;
+    @FXML private JFXSpinner spconexion;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -167,6 +162,29 @@ public class adeRouterController implements Initializable {
         ((Node)(event.getSource())).getScene().getWindow().hide();
     }
 
-
+    @FXML
+    void verificarConexionAction(ActionEvent event) {
+        spconexion.setVisible(true);
+        imgconexion.setVisible(false);
+        lconexion.setText("");
+        new Thread( () -> verificarConexion() ).start();
+    }
+    
+    private void verificarConexion(){
+        Mikrotik mk = new Mikrotik(tip.getText(), tusuario.getText(), tcontraseña.getText());
+        claseRetorno cr = mk.conectar();
+        spconexion.setVisible(false);
+        if ((boolean)cr.getDato()){
+            imgconexion.setVisible(true);
+            imgconexion.setImage( new Image(getClass().getResourceAsStream("/Imagenes/routerok.png")) ); 
+            lconexion.setText(cr.getMensaje());
+            lconexion.getStyleClass().setAll("txt-verde");
+        } else {
+            imgconexion.setVisible(true);
+            imgconexion.setImage( new Image(getClass().getResourceAsStream("/Imagenes/routererror.png")) ); 
+            lconexion.setText(cr.getMensaje());
+            lconexion.getStyleClass().setAll("txt-rojo");
+        }
+    }
 }
 
