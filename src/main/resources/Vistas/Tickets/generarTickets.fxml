@@ -12,6 +12,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,43 +21,47 @@
 
 <AnchorPane id="AnchorPane" prefHeight="483.0" prefWidth="734.0" styleClass="fondoApp" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox>
-               <children>
-                  <Label prefHeight="23.0" prefWidth="44.0" text="Paquete" />
-                  <ComboBox fx:id="cbpaquetes" prefHeight="25.0" prefWidth="164.0" promptText="Selecciona un Paquete">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </ComboBox>
-                  <Label prefHeight="24.0" prefWidth="36.0" text="Router">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </Label>
-                  <ComboBox fx:id="cbrouters" prefHeight="25.0" prefWidth="164.0" promptText="Selecciona un Router">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </ComboBox>
-                  <JFXCheckBox fx:id="checkNumeros" text="Usar solo numeros en la contraseña">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </JFXCheckBox>
-               </children>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="10.0">
+            <ToolBar>
+               <items>
+                  <HBox>
+                     <children>
+                        <Label prefHeight="23.0" prefWidth="44.0" text="Paquete" />
+                        <ComboBox fx:id="cbpaquetes" prefHeight="25.0" prefWidth="164.0" promptText="Selecciona un Paquete">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                        <Label prefHeight="24.0" prefWidth="36.0" text="Router">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ComboBox fx:id="cbrouters" prefHeight="25.0" prefWidth="164.0" promptText="Selecciona un Router">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                        <JFXCheckBox fx:id="checkNumeros" text="Usar solo numeros en la contraseña">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </JFXCheckBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+               </items>
+            </ToolBar>
+            <HBox layoutX="10.0" layoutY="10.0" styleClass="btn-gris-30">
                <children>
                   <VBox>
                      <children>
                         <HBox VBox.vgrow="NEVER">
                            <children>
-                              <Label prefHeight="25.0" prefWidth="90.0" text="Longitud usuario" />
+                              <Label prefHeight="25.0" prefWidth="90.0" text="Longitud Carac" />
                               <ComboBox fx:id="cbusuario">
                                   <items>
                                       <FXCollections fx:factory="observableArrayList">
@@ -139,16 +144,16 @@
                      <children>
                         <HBox fx:id="pbotones">
                            <children>
-                              <JFXButton minHeight="30.0" onAction="#generarAction" prefHeight="30.0" styleClass="btn-gris-azul" text="Generar tickets" textFill="WHITE">
+                              <JFXButton minHeight="30.0" onAction="#generarAction" prefHeight="30.0" styleClass="btn-azul" text="Generar tickets" textFill="#f8f8f8">
                                  <graphic>
-                                    <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../Imagenes/ticketadd.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                               </JFXButton>
-                              <JFXButton minHeight="30.0" onAction="#guardarAction" prefHeight="30.0" styleClass="btn-azul" text="Guardar" textFill="WHITE">
+                              <JFXButton minHeight="30.0" onAction="#guardarAction" prefHeight="30.0" ripplerFill="#f2f2f2" styleClass="btn-dg-azul-turquesa" text="Guardar">
                                  <graphic>
                                     <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -173,13 +178,10 @@
                                  </HBox.margin>
                               </JFXButton>
                            </children>
-                           <padding>
-                              <Insets top="12.0" />
-                           </padding>
                         </HBox>
                         <HBox>
                            <children>
-                              <Label fx:id="lmensaje" prefHeight="25.0" prefWidth="102.0" />
+                              <Label fx:id="ltrabajando" prefHeight="25.0" prefWidth="318.0" HBox.hgrow="ALWAYS" />
                               <JFXSpinner fx:id="sptrabajando" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" prefHeight="25.0" prefWidth="25.0" visible="false">
                                  <HBox.margin>
                                     <Insets left="10.0" />
@@ -190,7 +192,7 @@
                               <Insets />
                            </VBox.margin>
                            <padding>
-                              <Insets left="10.0" top="5.0" />
+                              <Insets left="10.0" />
                            </padding>
                         </HBox>
                      </children>

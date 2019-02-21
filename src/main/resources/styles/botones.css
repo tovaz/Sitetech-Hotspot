@@ -1,3 +1,80 @@
+/************** COLORES BRIOLLOSOS */
+.btn-redondo {
+  -fx-background-radius: 8px; }
+
+/*************** BORDES DE COLORES *************/
+.borde-Rojo {
+  -fx-border-color: #D50000;
+  -fx-border-width: 2px; }
+
+.borde-Rosado {
+  -fx-border-color: #C51162;
+  -fx-border-width: 2px; }
+
+.borde-Purpura {
+  -fx-border-color: #AA00FF;
+  -fx-border-width: 2px; }
+
+.borde-Purpura2 {
+  -fx-border-color: 2;
+  -fx-border-width: 2px; }
+
+.borde-Indigo {
+  -fx-border-color: #304FFE;
+  -fx-border-width: 2px; }
+
+.borde-Indigo2 {
+  -fx-border-color: #3D5AFE;
+  -fx-border-width: 2px; }
+
+.borde-Azul {
+  -fx-border-color: #2962FF;
+  -fx-border-width: 2px; }
+
+.borde-Azul2 {
+  -fx-border-color: #2979FF;
+  -fx-border-width: 2px; }
+
+.borde-Celeste {
+  -fx-border-color: #0091EA;
+  -fx-border-width: 2px; }
+
+.borde-Cian {
+  -fx-border-color: #00B8D4;
+  -fx-border-width: 2px; }
+
+.borde-Turquesa {
+  -fx-border-color: #00BFA5;
+  -fx-border-width: 2px; }
+
+.borde-Verde {
+  -fx-border-color: #1B5E20;
+  -fx-border-width: 2px; }
+
+.borde-Lima {
+  -fx-border-color: #64DD17;
+  -fx-border-width: 2px; }
+
+.borde-Amarillo {
+  -fx-border-color: #FFD600;
+  -fx-border-width: 2px; }
+
+.borde-Ambar {
+  -fx-border-color: #FFAB00;
+  -fx-border-width: 2px; }
+
+.borde-Naranja {
+  -fx-border-color: #FF6D00;
+  -fx-border-width: 2px; }
+
+.borde-Cafes {
+  -fx-border-color: #3E2723;
+  -fx-border-width: 2px; }
+
+.borde-Gris {
+  -fx-border-color: #212121;
+  -fx-border-width: 2px; }
+
 .btn-rojo {
   -fx-background-color: linear-gradient(#D50000, #FF1744); }
 
@@ -58,76 +135,155 @@
 .btn-gris-azul {
   -fx-background-color: linear-gradient(#263238, #546E7A); }
 
+/************************* BOTONES CLAROS ****************************/
+.btn-rojo-claro {
+  -fx-background-color: linear-gradient(#FFEBEE, #FFEBEE); }
+
+.btn-rosado-claro {
+  -fx-background-color: linear-gradient(#FCE4EC, #FCE4EC); }
+
+.btn-purpura-claro {
+  -fx-background-color: linear-gradient(#F3E5F5, #F3E5F5); }
+
+.btn-indigo-claro {
+  -fx-background-color: linear-gradient(#E8EAF6, #E8EAF6); }
+
+.btn-azul-claro {
+  -fx-background-color: linear-gradient(#E3F2FD, #E1F5FE); }
+
+.btn-celeste-claro {
+  -fx-background-color: linear-gradient(#E1F5FE, #E1F5FE); }
+
+.btn-cian-claro {
+  -fx-background-color: linear-gradient(#E0F7FA, #E0F7FA); }
+
+.btn-turquesa-claro {
+  -fx-background-color: linear-gradient(#E0F2F1, #E0F2F1); }
+
+.btn-verde-claro {
+  -fx-background-color: linear-gradient(#1B5E20, #2E7D32); }
+
+.btn-lima-claro {
+  -fx-background-color: linear-gradient(#F1F8E9, #F9FBE7); }
+
+.btn-amarillo-claro {
+  -fx-background-color: linear-gradient(#FFFDE7, #FFFDE7); }
+
+.btn-ambar-claro {
+  -fx-background-color: linear-gradient(#FFF8E1, #FFF8E1); }
+
+.btn-naranja-claro {
+  -fx-background-color: linear-gradient(#FFF3E0, #FBE9E7); }
+
+.btn-cafes-claro {
+  -fx-background-color: linear-gradient(#EFEBE9, #EFEBE9); }
+
+.btn-gris-claro {
+  -fx-background-color: linear-gradient(#FAFAFA, #FAFAFA); }
+
+.btn-default {
+  -fx-background-color: linear-gradient(#EEEEEE, #EEEEEE); }
+
+.btn-gris-30 {
+  -fx-background-color: linear-gradient(#EEEEEE, #E0E0E0); }
+
+.btn-gris-40 {
+  -fx-background-color: linear-gradient(#E0E0E0, #BDBDBD); }
+
+.btn-gris-50 {
+  -fx-background-color: linear-gradient(#BDBDBD, #9E9E9E); }
+
+.btn-gris-60 {
+  -fx-background-color: linear-gradient(#9E9E9E, #757575); }
+
+.btn-gris-70 {
+  -fx-background-color: linear-gradient(#757575, #616161); }
+
+.btn-gris-80 {
+  -fx-background-color: linear-gradient(#616161, #424242); }
+
+.btn-gris-90 {
+  -fx-background-color: linear-gradient(#424242, #212121); }
+
 /**************************** BOTONES HOVER ***********************************/
 .btn-rojo:hover {
-  -fx-background-color: linear-gradient(#ff3333, #ff4a77); }
+  -fx-background-color: linear-gradient(#f72222, #ff3966); }
 
 .btn-rosado:hover {
-  -fx-background-color: linear-gradient(#f84495, #ff338a); }
+  -fx-background-color: linear-gradient(#e73384, #ff2279); }
 
 .btn-purpura:hover {
-  -fx-background-color: linear-gradient(#dd33ff, #ff33ff); }
+  -fx-background-color: linear-gradient(#cc22ff, #f722ff); }
 
 .btn-purpura2:hover {
-  -fx-background-color: linear-gradient(#9533ff, #9852ff); }
+  -fx-background-color: linear-gradient(#8422ff, #8741ff); }
 
 .btn-indigo:hover {
-  -fx-background-color: linear-gradient(#6382ff, #708dff); }
+  -fx-background-color: linear-gradient(#5271ff, #5f7cff); }
 
 .btn-azul:hover {
-  -fx-background-color: linear-gradient(#5c95ff, #5cacff); }
+  -fx-background-color: linear-gradient(#4b84ff, #4b9bff); }
 
 .btn-celeste:hover {
-  -fx-background-color: linear-gradient(#33c4ff, #33e3ff); }
+  -fx-background-color: linear-gradient(#22b3ff, #22d2ff); }
 
 .btn-cyan:hover {
-  -fx-background-color: linear-gradient(#33ebff, #33ffff); }
+  -fx-background-color: linear-gradient(#22daf6, #22ffff); }
 
 .btn-turquesa:hover {
-  -fx-background-color: linear-gradient(#33f2d8, #50ffe9); }
+  -fx-background-color: linear-gradient(#22e1c7, #3fffd8); }
 
 .btn-verde:hover {
-  -fx-background-color: linear-gradient(#4e9153, #61b065); }
+  -fx-background-color: linear-gradient(#3d8042, #509f54); }
 
 .btn-lima:hover {
-  -fx-background-color: linear-gradient(#97ff4a, #a9ff36); }
+  -fx-background-color: linear-gradient(#86ff39, #98ff25); }
 
 .btn-lima2:hover {
-  -fx-background-color: linear-gradient(#e1ff33, #f9ff33); }
+  -fx-background-color: linear-gradient(#d0ff22, #e8ff22); }
 
 .btn-amarillo:hover {
-  -fx-background-color: linear-gradient(#ffff33, #ffff33); }
+  -fx-background-color: linear-gradient(#fff822, #ffff22); }
 
 .btn-ambar:hover {
-  -fx-background-color: linear-gradient(#ffde33, #fff733); }
+  -fx-background-color: linear-gradient(#ffcd22, #ffe622); }
 
 .btn-naranja:hover {
-  -fx-background-color: linear-gradient(#ffa033, #ffc433); }
+  -fx-background-color: linear-gradient(#ff8f22, #ffb322); }
 
 .btn-naranja2:hover {
-  -fx-background-color: linear-gradient(#ff5f33, #ff7033); }
+  -fx-background-color: linear-gradient(#ff4e22, #ff5f22); }
 
 .btn-cafes:hover {
-  -fx-background-color: linear-gradient(#715a56, #816761); }
+  -fx-background-color: linear-gradient(#604945, #705650); }
 
 .btn-gris:hover {
-  -fx-background-color: linear-gradient(#545454, #757575); }
+  -fx-background-color: linear-gradient(#434343, #646464); }
 
 .btn-gris-claro:hover {
-  -fx-background-color: linear-gradient(#d1d1d1, white); }
+  -fx-background-color: linear-gradient(silver, white); }
 
 .btn-gris-azul:hover {
-  -fx-background-color: linear-gradient(#59656b, #87a1ad); }
+  -fx-background-color: linear-gradient(#48545a, #76909c); }
 
 /* ******************************* DEGRADADOS *********************************/
+.btn-dg-azul-turquesa {
+  -fx-background-color: linear-gradient(to top right, #40C4FF, #69F0AE); }
+
+.btn-dg-cian-purpura {
+  -fx-background-color: linear-gradient(to top right, #69F0AE, #AA00FF); }
+
+.btn-dg-rojo-rosado {
+  -fx-background-color: linear-gradient(to top right, #D50000, #E91E63); }
+
 .btn-dg-azul-turquesa:hover {
-  -fx-background-color: linear-gradient(to top right, #73f7ff, #9cffe1); }
+  -fx-background-color: linear-gradient(to top right, #40C4FF, #8bffd0); }
 
 .btn-dg-cian-purpura:hover {
-  -fx-background-color: linear-gradient(to top right, #9cffe1, #dd33ff); }
+  -fx-background-color: linear-gradient(to top right, #69F0AE, #cc22ff); }
 
 .btn-dg-rojo-rosado:hover {
-  -fx-background-color: linear-gradient(to top right, #ff3333, #ff5196); }
+  -fx-background-color: linear-gradient(to top right, #D50000, #ff4085); }
 
 /* *********************************** TEXTOS ****************************/
 .txt-rojo {

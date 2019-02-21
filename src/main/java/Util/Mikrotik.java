@@ -43,9 +43,21 @@ public class Mikrotik {
         }
     }
     
+    public boolean Conectar()
+    {
+        try {
+            conexion = ApiConnection.connect(ip);
+            conexion.login(usuario,contraseña);
+            return true;
+        } catch (MikrotikApiException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
+    
     public boolean enviarComando(String comando){
         try {
-            if ((boolean)this.conectar().getDato()){
+            if (this.Conectar()){
                 conexion.execute(comando);
                 conexion.close();
                 return true;
@@ -72,30 +84,20 @@ public class Mikrotik {
     }
     
     public claseRetorno agregarHotspotUsuario(String usuario, String password, Paquete paq ){
-        try {
-            claseRetorno cr = new claseRetorno("Error", estadoTipo.Error, false);
-            if ((boolean) this.conectar().getDato() ){
-                int limiteDescarga = (int)( (paq.getGigasDescarga() * 1024) + paq.getMegasDescarga() );
-                int limiteSubida = (int)( (paq.getGigasDescarga() * 1024) + paq.getMegasDescarga() );
-                String limiteTiempo = paq.getDias() + "d" + paq.getHoras() + ":" + paq.getMinutos() + ":00";
-                String profile = "default";
-                
-                String comando = "/ip/hotspot/user/add name=" + usuario + 
-                        " password=" + password + " profile=" + profile + 
-                        " limit-uptime=" + limiteTiempo + " limit-bytes-out=" + limiteSubida +
-                        "M limit-bytes-in=" + limiteDescarga + "M";
+        int limiteDescarga = (int)( (paq.getGigasDescarga() * 1024) + paq.getMegasDescarga() );
+        int limiteSubida = (int)( (paq.getGigasDescarga() * 1024) + paq.getMegasDescarga() );
+        String limiteTiempo = paq.getDias() + "d" + paq.getHoras() + ":" + paq.getMinutos() + ":00";
+        String profile = "default";
 
-                if ( this.enviarComando(comando) )
-                    cr = new claseRetorno("Usuario agregado con exito.", estadoTipo.Exito, true);
-                else
-                    cr = new claseRetorno("Error al agregar el usuario.", estadoTipo.Error, false);
-                this.conexion.close();
-                
-            }
-            return cr;
-        } catch (MikrotikApiException ex) {
-            return new claseRetorno(ex.getMessage(), estadoTipo.Error, false);
-        }
+        String comando = "/ip/hotspot/user/add name=" + usuario + 
+                " password=" + password + " profile=" + profile + 
+                " limit-uptime=" + limiteTiempo + " limit-bytes-out=" + limiteSubida +
+                "M limit-bytes-in=" + limiteDescarga + "M";
+
+        if ( this.enviarComando(comando) )
+            return  new claseRetorno("Usuario agregado con exito.", estadoTipo.Exito, true);
+
+        return new claseRetorno("Error al agregar el usuario.", estadoTipo.Error, false);
         
     }
 }

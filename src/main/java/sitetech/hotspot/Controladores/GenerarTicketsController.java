@@ -5,34 +5,35 @@
  */
 package sitetech.hotspot.Controladores;
 
+import Util.Dialogo;
 import Util.Mikrotik;
 import Util.cadenaAletoria;
 import Util.claseRetorno;
+import Util.util;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXSpinner;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
 import static javafx.collections.FXCollections.observableArrayList;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 import sitetech.hotspot.Modelos.Paquete;
 import sitetech.hotspot.Modelos.PaqueteManager;
 import sitetech.hotspot.Modelos.Router;
 import sitetech.hotspot.Modelos.RouterManager;
 import sitetech.hotspot.Modelos.Ticket;
 import sitetech.hotspot.Modelos.TicketManager;
-import sitetech.hotspot.Modelos.usuarioManager;
 
 /**
  * FXML Controller class
@@ -48,8 +49,9 @@ public class GenerarTicketsController implements Initializable {
     @FXML private TableView<Ticket> tvtickets;
     @FXML private JFXCheckBox checkNumeros;
     @FXML private TextField tcantidad;
-    @FXML private Label lmensaje;
+    @FXML private Label ltrabajando;
     @FXML private JFXSpinner sptrabajando;
+    @FXML private HBox pbotones;
     
     private final Stage thisStage;
     
@@ -137,32 +139,56 @@ public class GenerarTicketsController implements Initializable {
     
     @FXML
     private void guardarAction(ActionEvent event) {
-        lmensaje.setText("Espere mientras se guardan los usuarios en el router.");
+        mensaje("Espere mientras se crean los tickets en el router.");
         sptrabajando.setVisible(true);
+        pbotones.setDisable(true);
+        
+        /*Thread thread = new Thread(){
+            @Override
+            public void run(){
+              checkRouteryGuardar();
+            }
+            
+            
+        };*/
+
+        //thread.start();
         new Thread( () -> checkRouteryGuardar() ).start();
         //checkRouteryGuardar();
     }
 
-    private void checkRouteryGuardar() {
+    private synchronized void checkRouteryGuardar() {
         TicketManager tm = new TicketManager();
         Router rx = cbrouters.getValue();
         Mikrotik mk = new Mikrotik (rx.getIp(), rx.getUsuario(), rx.getPassword());
-        int contadorUsuarios = 0;
-        
-        if ((boolean)mk.conectar().getDato()){
-            for (Ticket tc : listaTickets){
-                tc.setEstado(Ticket.EstadosType.Activo);
-                claseRetorno cr = mk.agregarHotspotUsuario(tc.getUsuario(), tc.getContraseña(), tc.getPaquete());
-                if (!(boolean)cr.getDato())
-                    tc.setEstado(Ticket.EstadosType.Generado);
-                else { 
-                    tm.AgregarTicket(tc);
-                    contadorUsuarios ++;
-                }
+        int ctickets = 0;
+
+        for (int i=0; i<listaTickets.size(); i++){
+            Ticket tc = listaTickets.get(i);
+            tc.setEstado(Ticket.EstadosType.Activo);
+            claseRetorno cr = mk.agregarHotspotUsuario(tc.getUsuario(), tc.getContraseña(), tc.getPaquete());
+            if ((boolean)cr.getDato()){
+                tm.AgregarTicket(tc);
+                ctickets++;
             }
+            else tc.setEstado( Ticket.EstadosType.Generado );
         }
-        lmensaje.setText(contadorUsuarios + " tickets creados...");
+        
         sptrabajando.setVisible(false);
+        pbotones.setDisable(false);
+        System.out.println(ctickets);
+        
+        String Sctickets = String.valueOf(ctickets);
+        
+        if (ctickets == listaTickets.size())
+            Dialogo.mostrarInformacion("Se generaron " + Sctickets + " tickets correctamente.", "Todos los tickets se guardaron.", ButtonType.OK);
+        else
+            Dialogo.mostrarError("Se generaron " + Sctickets + " tickets correctamente.", "No se guardaron todos los tickets.", ButtonType.OK);
+        mensaje("Se generaron " + Sctickets + " tickets correctamente.");
+    }
+    
+    private void mensaje(String msg){
+        ltrabajando.setText(msg);
     }
     
     @FXML

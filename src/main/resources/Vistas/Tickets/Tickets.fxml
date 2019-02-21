@@ -92,9 +92,9 @@
                                     <Insets right="50.0" />
                                  </padding>
                               </Label>
-                            <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGenerarAction" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
+                            <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGenerarAction" prefHeight="55.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
                                  <graphic>
-                                    <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
+                                    <VBox alignment="CENTER" prefHeight="55.0" prefWidth="90.0">
                                        <children>
                                           <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -106,11 +106,11 @@
                                     </VBox>
                                  </graphic>
                               </JFXButton>
-                              <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onImprimirAction" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
+                              <JFXButton alignment="CENTER" contentDisplay="CENTER" maxHeight="55.0" minHeight="55.0" mnemonicParsing="false" onAction="#onImprimirAction" prefHeight="55.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
                                  <graphic>
                                     <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
                                        <children>
-                                          <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../../Imagenes/ticketprint.png" />
                                              </image>
@@ -120,7 +120,7 @@
                                     </VBox>
                                  </graphic>
                               </JFXButton>
-                              <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onVenderAction" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
+                              <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onVenderAction" prefHeight="55.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
                                  <graphic>
                                     <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
                                        <children>
@@ -135,7 +135,7 @@
                                  </graphic>
                               </JFXButton>
                               <Separator orientation="VERTICAL" />
-                              <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onEliminarAction" prefHeight="67.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
+                              <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onEliminarAction" prefHeight="55.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
                                  <graphic>
                                     <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
                                        <children>

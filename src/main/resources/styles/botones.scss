@@ -45,16 +45,69 @@ $cAzul3: #40C4FF;
 $cAzul4: #00B8D4;
 $cFusia: #AA00FF;
 $cRosado3: #E91E63;
+$cBlanco: #222222;
 
-$cBlanco: #333333;
+/************** COLORES BRIOLLOSOS */
+$cRojo-claro: #FFEBEE;
+$cRosado-claro: #FCE4EC;
+$cPurpura-claro: #F3E5F5;
+$cIndigo-claro: #E8EAF6;
+$cAzul-claro: #E3F2FD;
+$cCeleste-claro: #E1F5FE;
+$cCian-claro: #E0F7FA;
+$cTurquesa-claro: #E0F2F1;
+$cVerde-claro: #E8F5E9;
+$cLima-claro: #F1F8E9;
+$cLima-claro2: #F9FBE7;
+$cAmarillo-claro: #FFFDE7;
+$cAmbar-claro: #FFF8E1;
+$cNaranja-claro: #FFF3E0;
+$cNaranja-claro2: #FBE9E7;
+$cCafes-claro: #EFEBE9;
+$cGris-claro: #FAFAFA;
+$cGrisAzul-claro: #ECEFF1;
+$cAmbar-claro: #FFF8E1;
 
-.btn {
-    
+$cGris10: #F5F5F5;
+$cGris20: #EEEEEE;
+$cGris30: #E0E0E0;
+$cGris40: #BDBDBD;
+$cGris50: #9E9E9E;
+$cGris60: #757575;
+$cGris70: #616161;
+$cGris80: #424242;
+$cGris90: #212121;
+
+$bode-Grosor: 2px;
+
+.btn-redondo {
+    -fx-background-radius: 8px;
 }
+
 
 .btn:hover { 
     
 }
+
+/*************** BORDES DE COLORES *************/
+.borde-Rojo { -fx-border-color: $cRojo; -fx-border-width: $bode-Grosor; }
+.borde-Rosado { -fx-border-color: $cRosado; -fx-border-width: $bode-Grosor; }
+.borde-Purpura{ -fx-border-color: $cPurpura; -fx-border-width: $bode-Grosor; }
+.borde-Purpura2{ -fx-border-color: 2; -fx-border-width: $bode-Grosor; }
+.borde-Indigo{ -fx-border-color: $cIndigo; -fx-border-width: $bode-Grosor; }
+.borde-Indigo2{ -fx-border-color: $cIndigo2; -fx-border-width: $bode-Grosor; }
+.borde-Azul{ -fx-border-color: $cAzul; -fx-border-width: $bode-Grosor; }
+.borde-Azul2{ -fx-border-color: $cAzul2; -fx-border-width: $bode-Grosor; }
+.borde-Celeste{ -fx-border-color: $cCeleste; -fx-border-width: $bode-Grosor; }
+.borde-Cian{ -fx-border-color: $cCian; -fx-border-width: $bode-Grosor; }
+.borde-Turquesa{ -fx-border-color: $cTurquesa; -fx-border-width: $bode-Grosor; }
+.borde-Verde{ -fx-border-color: $cVerde; -fx-border-width: $bode-Grosor; }
+.borde-Lima{ -fx-border-color: $cLima; -fx-border-width: $bode-Grosor; }
+.borde-Amarillo{ -fx-border-color: $cAmarillo; -fx-border-width: $bode-Grosor; }
+.borde-Ambar{ -fx-border-color: $cAmbar; -fx-border-width: $bode-Grosor; }
+.borde-Naranja{ -fx-border-color: $cNaranja; -fx-border-width: $bode-Grosor; }
+.borde-Cafes{ -fx-border-color: $cCafes; -fx-border-width: $bode-Grosor; }
+.borde-Gris{ -fx-border-color: $cGris; -fx-border-width: $bode-Grosor; }
 
 .btn-rojo {
     -fx-background-color: linear-gradient($cRojo, $cRojo2);
@@ -134,6 +187,101 @@ $cBlanco: #333333;
 
 .btn-gris-azul{
     -fx-background-color: linear-gradient($cGris-Azul, $cGris-Azul2);
+}
+
+/************************* BOTONES CLAROS ****************************/
+.btn-rojo-claro {
+    -fx-background-color: linear-gradient($cRojo-claro, $cRojo-claro);
+}
+
+.btn-rosado-claro {
+    -fx-background-color: linear-gradient($cRosado-claro, $cRosado-claro);
+}
+
+.btn-purpura-claro {
+    -fx-background-color: linear-gradient($cPurpura-claro, $cPurpura-claro);
+}
+
+.btn-indigo-claro {
+    -fx-background-color: linear-gradient($cIndigo-claro, $cIndigo-claro);
+}
+
+.btn-azul-claro {
+    -fx-background-color: linear-gradient($cAzul-claro, $cCeleste-claro);
+}
+
+.btn-celeste-claro {
+    -fx-background-color: linear-gradient($cCeleste-claro, $cCeleste-claro);
+}
+
+.btn-cian-claro{
+    -fx-background-color: linear-gradient($cCian-claro, $cCian-claro);
+}
+
+.btn-turquesa-claro {
+    -fx-background-color: linear-gradient($cTurquesa-claro, $cTurquesa-claro);
+}
+
+.btn-verde-claro {
+    -fx-background-color: linear-gradient($cVerde, $cVerde2);
+}
+
+.btn-lima-claro {
+    -fx-background-color: linear-gradient($cLima-claro, $cLima-claro2);
+}
+
+
+.btn-amarillo-claro {
+    -fx-background-color: linear-gradient($cAmarillo-claro, $cAmarillo-claro);
+}
+
+.btn-ambar-claro {
+    -fx-background-color: linear-gradient($cAmbar-claro, $cAmbar-claro);
+}
+
+.btn-naranja-claro{
+    -fx-background-color: linear-gradient($cNaranja-claro, $cNaranja-claro2);
+}
+
+
+.btn-cafes-claro{
+    -fx-background-color: linear-gradient($cCafes-claro, $cCafes-claro);
+}
+
+.btn-gris-claro{
+    -fx-background-color: linear-gradient($cGris-claro, $cGris-claro);
+}
+
+.btn-default{
+    -fx-background-color: linear-gradient($cGris20, $cGris20);
+}
+
+.btn-gris-30{
+    -fx-background-color: linear-gradient($cGris20, $cGris30);
+}
+
+.btn-gris-40{
+    -fx-background-color: linear-gradient($cGris30, $cGris40);
+}
+
+.btn-gris-50{
+    -fx-background-color: linear-gradient($cGris40, $cGris50);
+}
+
+.btn-gris-60{
+    -fx-background-color: linear-gradient($cGris50, $cGris60);
+}
+
+.btn-gris-70{
+    -fx-background-color: linear-gradient($cGris60, $cGris70);
+}
+
+.btn-gris-80{
+    -fx-background-color: linear-gradient($cGris70, $cGris80);
+}
+
+.btn-gris-90{
+    -fx-background-color: linear-gradient($cGris80, $cGris90);
 }
 
 /**************************** BOTONES HOVER ***********************************/
@@ -219,19 +367,29 @@ $cBlanco: #333333;
 
 
 /* ******************************* DEGRADADOS *********************************/
+.btn-dg-azul-turquesa {
+    -fx-background-color: linear-gradient(to top right, $cAzul3, $cCian3 );
+} 
+ 
+.btn-dg-cian-purpura{
+    -fx-background-color: linear-gradient(to top right, $cCian3, $cFusia );
+}
+
+.btn-dg-rojo-rosado{
+    -fx-background-color: linear-gradient(to top right, $cRojo, $cRosado3 );
+}
+
 .btn-dg-azul-turquesa:hover {
-    -fx-background-color: linear-gradient(to top right, $cAzul3 + $cBlanco, $cCian3 + $cBlanco);
+    -fx-background-color: linear-gradient(to top right, $cAzul3, $cCian3 + $cBlanco);
 } 
  
 .btn-dg-cian-purpura:hover{
-    -fx-background-color: linear-gradient(to top right, $cCian3 + $cBlanco, $cFusia + $cBlanco);
+    -fx-background-color: linear-gradient(to top right, $cCian3, $cFusia + $cBlanco);
 }
 
 .btn-dg-rojo-rosado:hover{
-    -fx-background-color: linear-gradient(to top right, $cRojo + $cBlanco, $cRosado3 + $cBlanco);
+    -fx-background-color: linear-gradient(to top right, $cRojo, $cRosado3 + $cBlanco);
 }
-
-
 /* *********************************** TEXTOS ****************************/
 .txt {
     
