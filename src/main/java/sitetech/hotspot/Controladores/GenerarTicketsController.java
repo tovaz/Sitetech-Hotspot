@@ -138,30 +138,39 @@ public class GenerarTicketsController implements Initializable {
     
     
     @FXML
-    private void guardarAction(ActionEvent event) {
+    private void guardarAction(ActionEvent event) throws InterruptedException {
         mensaje("Espere mientras se crean los tickets en el router.");
         sptrabajando.setVisible(true);
         pbotones.setDisable(true);
         
-        /*Thread thread = new Thread(){
+        ctickets = 0;
+        Thread thread = new Thread(){
             @Override
-            public void run(){
-              checkRouteryGuardar();
+            public void run(){      
+                ctickets = checkRouteryGuardar();
+                while (true) {
+                  if (Thread.interrupted()) {
+                    hiloTermino(ctickets);
+                  }
+                  // Continue to do nothing
+                }
+              
             }
-            
-            
-        };*/
+        };
 
-        //thread.start();
-        new Thread( () -> checkRouteryGuardar() ).start();
+        thread.start();
+        //thread.join();
+        //hiloTermino(ctickets);
+        //new Thread( () -> checkRouteryGuardar() ).start();
         //checkRouteryGuardar();
     }
 
-    private synchronized void checkRouteryGuardar() {
+    int ctickets;
+    private int checkRouteryGuardar() {
         TicketManager tm = new TicketManager();
         Router rx = cbrouters.getValue();
         Mikrotik mk = new Mikrotik (rx.getIp(), rx.getUsuario(), rx.getPassword());
-        int ctickets = 0;
+        ctickets = 0;
 
         for (int i=0; i<listaTickets.size(); i++){
             Ticket tc = listaTickets.get(i);
@@ -174,17 +183,19 @@ public class GenerarTicketsController implements Initializable {
             else tc.setEstado( Ticket.EstadosType.Generado );
         }
         
+        return ctickets;
+    }
+    
+    private void hiloTermino(int ctickets){
         sptrabajando.setVisible(false);
         pbotones.setDisable(false);
         System.out.println(ctickets);
         
-        String Sctickets = String.valueOf(ctickets);
-        
         if (ctickets == listaTickets.size())
-            Dialogo.mostrarInformacion("Se generaron " + Sctickets + " tickets correctamente.", "Todos los tickets se guardaron.", ButtonType.OK);
+            Dialogo.mostrarInformacion("Se generaron "+ ctickets + " tickets correctamente.", "Todos los tickets se guardaron.", ButtonType.OK);
         else
-            Dialogo.mostrarError("Se generaron " + Sctickets + " tickets correctamente.", "No se guardaron todos los tickets.", ButtonType.OK);
-        mensaje("Se generaron " + Sctickets + " tickets correctamente.");
+            Dialogo.mostrarError("Se generaron "+ ctickets + " tickets correctamente.", "No se guardaron todos los tickets.", ButtonType.OK);
+        mensaje("Se generaron "+ ctickets + " tickets correctamente.");
     }
     
     private void mensaje(String msg){
