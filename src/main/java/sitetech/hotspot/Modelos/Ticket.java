@@ -64,7 +64,7 @@ public class Ticket {
     
     public static enum EstadosType {  Activo, Desactivado, En_Uso, Eliminado, Consumido, Generado, Error };
     private EstadosType estado;
-    
+
     
     @PrePersist
     protected void onCreate() {

@@ -14,6 +14,7 @@ import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXSpinner;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import static javafx.collections.FXCollections.observableArrayList;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -139,51 +140,35 @@ public class GenerarTicketsController implements Initializable {
     
     @FXML
     private void guardarAction(ActionEvent event) throws InterruptedException {
-        mensaje("Espere mientras se crean los tickets en el router.");
+        ltrabajando.setText("Espere mientras se crean los tickets en el router.");
         sptrabajando.setVisible(true);
         pbotones.setDisable(true);
         
-        ctickets = 0;
-        Thread thread = new Thread(){
-            @Override
-            public void run(){      
-                ctickets = checkRouteryGuardar();
-                while (true) {
-                  if (Thread.interrupted()) {
-                    hiloTermino(ctickets);
-                  }
-                  // Continue to do nothing
-                }
-              
-            }
-        };
-
-        thread.start();
-        //thread.join();
-        //hiloTermino(ctickets);
-        //new Thread( () -> checkRouteryGuardar() ).start();
-        //checkRouteryGuardar();
+        Thread th = new Thread( () -> guardarTickets() );
+        
+        th.start();
     }
 
-    int ctickets;
-    private int checkRouteryGuardar() {
+    private void guardarTickets() {
         TicketManager tm = new TicketManager();
         Router rx = cbrouters.getValue();
         Mikrotik mk = new Mikrotik (rx.getIp(), rx.getUsuario(), rx.getPassword());
-        ctickets = 0;
+        int ctickets = 0;
 
         for (int i=0; i<listaTickets.size(); i++){
             Ticket tc = listaTickets.get(i);
             tc.setEstado(Ticket.EstadosType.Activo);
-            claseRetorno cr = mk.agregarHotspotUsuario(tc.getUsuario(), tc.getContraseña(), tc.getPaquete());
-            if ((boolean)cr.getDato()){
+            boolean agreagadoExitoso = mk.agregarHotspotUsuario(tc.getUsuario(), tc.getContraseña(), tc.getPaquete());
+            if (agreagadoExitoso){
                 tm.AgregarTicket(tc);
                 ctickets++;
+                listaTickets.set(i, tc);
             }
             else tc.setEstado( Ticket.EstadosType.Generado );
         }
         
-        return ctickets;
+        final int cxtickets = ctickets;
+        Platform.runLater(() -> hiloTermino(cxtickets) );
     }
     
     private void hiloTermino(int ctickets){
@@ -191,19 +176,24 @@ public class GenerarTicketsController implements Initializable {
         pbotones.setDisable(false);
         System.out.println(ctickets);
         
+        ltrabajando.setText("Se generaron "+ ctickets + " tickets correctamente.");
         if (ctickets == listaTickets.size())
-            Dialogo.mostrarInformacion("Se generaron "+ ctickets + " tickets correctamente.", "Todos los tickets se guardaron.", ButtonType.OK);
+            Dialogo.mostrarInformacion("Se guardaron "+ ctickets + " tickets correctamente.", "Todos los tickets se guardaron.", ButtonType.OK);
         else
-            Dialogo.mostrarError("Se generaron "+ ctickets + " tickets correctamente.", "No se guardaron todos los tickets.", ButtonType.OK);
-        mensaje("Se generaron "+ ctickets + " tickets correctamente.");
-    }
-    
-    private void mensaje(String msg){
-        ltrabajando.setText(msg);
+            Dialogo.mostrarError("Se guardaron solamente "+ ctickets + " tickets correctamente.", "No se guardaron todos los tickets.", ButtonType.OK);
+        
+        tvtickets.getItems().removeAll();
+        tvtickets.setItems(listaTickets);
     }
     
     @FXML
     private void imprimirAction(ActionEvent event) {
+        int i = tvtickets.getSelectionModel().getSelectedIndex();
+        Ticket tx = listaTickets.get(i);
+        tx.setEstado(Ticket.EstadosType.Activo);
+        System.out.println(tx.getUsuario() + " -- " + tx.getEstado());
+        
+        listaTickets.set(i, tx);
     }
     
 }

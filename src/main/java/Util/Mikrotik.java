@@ -8,8 +8,6 @@ package Util;
 import Util.claseRetorno.estadoTipo;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import me.legrange.mikrotik.ApiConnection;
 import me.legrange.mikrotik.MikrotikApiException;
 import sitetech.hotspot.Modelos.Paquete;
@@ -28,8 +26,8 @@ public class Mikrotik {
         this.contraseña = contraseña;
     }
     
-    public claseRetorno conectar()
-    {
+    
+    public  claseRetorno conectar(){
         try {
             conexion = ApiConnection.connect(ip);
             conexion.login(usuario,contraseña);
@@ -83,7 +81,7 @@ public class Mikrotik {
         return null;
     }
     
-    public claseRetorno agregarHotspotUsuario(String usuario, String password, Paquete paq ){
+    public boolean agregarHotspotUsuario(String usuario, String password, Paquete paq ){
         int limiteDescarga = (int)( (paq.getGigasDescarga() * 1024) + paq.getMegasDescarga() );
         int limiteSubida = (int)( (paq.getGigasDescarga() * 1024) + paq.getMegasDescarga() );
         String limiteTiempo = paq.getDias() + "d" + paq.getHoras() + ":" + paq.getMinutos() + ":00";
@@ -95,9 +93,9 @@ public class Mikrotik {
                 "M limit-bytes-in=" + limiteDescarga + "M";
 
         if ( this.enviarComando(comando) )
-            return  new claseRetorno("Usuario agregado con exito.", estadoTipo.Exito, true);
+            return true;
 
-        return new claseRetorno("Error al agregar el usuario.", estadoTipo.Error, false);
+        return false;
         
     }
 }

@@ -6,7 +6,7 @@ import Util.claseRetorno;
 import com.jfoenix.controls.JFXSpinner;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.CompletableFuture;
+import static java.util.concurrent.CompletableFuture.completedFuture;
 import java.util.function.UnaryOperator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,6 +25,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sitetech.hotspot.Modelos.Router;
 import sitetech.hotspot.Modelos.RouterManager;
+import static com.ea.async.Async.await;
+import java.util.concurrent.CompletableFuture;
+import javafx.application.Platform;
+
 
 public class adeRouterController implements Initializable {
     @FXML private TextField tnombre;
@@ -177,12 +181,13 @@ public class adeRouterController implements Initializable {
         if ((boolean)cr.getDato()){
             imgconexion.setVisible(true);
             imgconexion.setImage( new Image(getClass().getResourceAsStream("/Imagenes/routerok.png")) ); 
-            lconexion.setText(cr.getMensaje());
+            Platform.runLater(() -> lconexion.setText(cr.getMensaje()));
             lconexion.getStyleClass().setAll("txt-verde");
         } else {
             imgconexion.setVisible(true);
             imgconexion.setImage( new Image(getClass().getResourceAsStream("/Imagenes/routererror.png")) ); 
-            lconexion.setText(cr.getMensaje());
+            
+            Platform.runLater(() -> lconexion.setText(cr.getMensaje()));
             lconexion.getStyleClass().setAll("txt-rojo");
         }
     }
