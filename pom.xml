@@ -33,6 +33,13 @@
             <version>1.1</version>
         </dependency>
         
+        <!-- Ticket Control -->
+        <dependency>
+            <groupId>Sitetech</groupId>
+            <artifactId>TicketControl</artifactId>
+            <version>1.0</version>
+        </dependency>
+        
         <!-- JFXtras  -->
         <!--dependency>
             <groupId>org.jfxtras</groupId>

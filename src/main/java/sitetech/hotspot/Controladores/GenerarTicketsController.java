@@ -12,6 +12,7 @@ import Util.claseRetorno;
 import Util.util;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXSpinner;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -187,13 +188,9 @@ public class GenerarTicketsController implements Initializable {
     }
     
     @FXML
-    private void imprimirAction(ActionEvent event) {
-        int i = tvtickets.getSelectionModel().getSelectedIndex();
-        Ticket tx = listaTickets.get(i);
-        tx.setEstado(Ticket.EstadosType.Activo);
-        System.out.println(tx.getUsuario() + " -- " + tx.getEstado());
-        
-        listaTickets.set(i, tx);
+    private void imprimirAction(ActionEvent event) throws IOException {
+        ImprimirTicketsController itc = new ImprimirTicketsController(listaTickets);
+        itc.showStage();
     }
     
 }
