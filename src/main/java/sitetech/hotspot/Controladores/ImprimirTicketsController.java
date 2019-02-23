@@ -29,7 +29,7 @@ import javafx.scene.layout.TilePane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sitetech.hotspot.Modelos.Ticket;
-import ticketcontrol.ticketControl;
+//import ticketcontrol.ticketControl;
 
 /**
  * FXML Controller class
@@ -67,13 +67,13 @@ public class ImprimirTicketsController implements Initializable, Printable {
     public void cargarTickets() throws IOException{
         ptickets.getChildren().removeAll();
         
-        for (Ticket tx : listaTickets){
+        /*for (Ticket tx : listaTickets){
             ticketControl tc = crearControl(tx);
             ptickets.getChildren().add(tc);
-        }
+        }*/
     }
     
-    public ticketControl crearControl(Ticket tx){
+    /*public ticketControl crearControl(Ticket tx){
         ticketControl tc = new ticketControl();
         tc.setmostrarFecha(true);
         tc.setmostrarInstrucciones(true);
@@ -87,15 +87,15 @@ public class ImprimirTicketsController implements Initializable, Printable {
         tc.setInstrucciones("Aqui van unas instrucciones de uso...");
         tc.setTiempo(tx.getLimiteDias() + "dias y " + tx.getLimiteHoras() + ":" + tx.getLimiteMinutos());
         return tc;
-    }
+    }*/
     
     @FXML
     private void verAction(ActionEvent event) {
         
-        for (Node tc : ptickets.getChildren()){
+        /*for (Node tc : ptickets.getChildren()){
             ticketControl tcx = (ticketControl) tc;
             
-        }
+        }*/
     }
 
     @FXML

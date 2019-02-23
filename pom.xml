@@ -34,12 +34,19 @@
         </dependency>
         
         <!-- Ticket Control -->
-        <dependency>
+        <!--dependency>
             <groupId>Sitetech</groupId>
             <artifactId>TicketControl</artifactId>
             <version>1.0</version>
-        </dependency>
+        </dependency-->
         
+        <!-- Reportes Jasper  -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.7.0</version>
+        </dependency>
+
         <!-- JFXtras  -->
         <!--dependency>
             <groupId>org.jfxtras</groupId>
@@ -65,14 +72,14 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.2.12.Final</version>
+            <version>5.4.1.Final</version>
         </dependency>
- 
+        
         <!-- SQLite JDBC library -->
         <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
-            <version>3.25.2</version>
+            <version>3.5.9-universal</version>
         </dependency>
  
         <!-- junit test -->
@@ -81,13 +88,6 @@
             <artifactId>junit</artifactId>
             <version>3.8.1</version>
             <scope>test</scope>
-        </dependency>
-        
-        <!-- EA Async -->
-        <dependency>
-            <groupId>com.ea.async</groupId>
-            <artifactId>ea-async</artifactId>
-            <version>1.2.2</version>
         </dependency>
     </dependencies>
     

@@ -25,34 +25,23 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sitetech.hotspot.Modelos.Router;
 import sitetech.hotspot.Modelos.RouterManager;
-import static com.ea.async.Async.await;
 import java.util.concurrent.CompletableFuture;
 import javafx.application.Platform;
 
 
 public class adeRouterController implements Initializable {
     @FXML private TextField tnombre;
-
     @FXML private TextField tip;
-
     @FXML private TextField tusuario;
-
     @FXML private TextField tcontraseña;
-
     @FXML private TextField tpuertoApi;
-
     @FXML private TextField tpuertoWeb;
-
     @FXML private CheckBox checkApi;
-
     @FXML private TextField tlan;
-
     @FXML private TextField twlan;
-
     @FXML private TextArea trangos;
-
     @FXML private Button bAgregar;
-    
+   
     @FXML private Label ltitulo;
 
     @FXML private ImageView img;

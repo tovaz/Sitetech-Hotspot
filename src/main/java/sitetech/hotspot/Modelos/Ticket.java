@@ -65,6 +65,7 @@ public class Ticket {
     public static enum EstadosType {  Activo, Desactivado, En_Uso, Eliminado, Consumido, Generado, Error };
     private EstadosType estado;
 
+    private boolean imprimir;
     
     @PrePersist
     protected void onCreate() {
@@ -98,6 +99,7 @@ public class Ticket {
         this.limiteMinutos = paquete.getMinutos();
     }
 
+    
     public int getId() {
         return id;
     }
@@ -288,6 +290,14 @@ public class Ticket {
 
     public void setEstado(EstadosType estado) {
         this.estado = estado;
+    }
+
+    public boolean isImprimir() {
+        return imprimir;
+    }
+
+    public void setImprimir(boolean imprimir) {
+        this.imprimir = imprimir;
     }
 
     
