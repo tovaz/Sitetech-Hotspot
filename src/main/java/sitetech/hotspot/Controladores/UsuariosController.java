@@ -1,7 +1,5 @@
 package sitetech.hotspot.Controladores;
 
-import Util.ActionButtonTableCell;
-import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
