@@ -12,19 +12,12 @@ import java.awt.print.PrinterJob;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -72,22 +65,6 @@ public class ImprimirTicketsController implements Initializable, Printable {
             ptickets.getChildren().add(tc);
         }*/
     }
-    
-    /*public ticketControl crearControl(Ticket tx){
-        ticketControl tc = new ticketControl();
-        tc.setmostrarFecha(true);
-        tc.setmostrarInstrucciones(true);
-        tc.setmostrarLimiteDescarga(true);
-        tc.setmostrarLimiteTiempo(true);
-        
-        tc.setUsuario(tx.getUsuario());
-        tc.setContraseña(tx.getContraseña());
-        tc.setlimiteDescarga(tx.getLimiteGigasDown() + " Gb + " + tx.getLimiteMegasDown() + " Mb");
-        tc.setlimiteSubida(tx.getLimiteGigasUp() + " Gb + " + tx.getLimiteMegasUp() + " Mb");
-        tc.setInstrucciones("Aqui van unas instrucciones de uso...");
-        tc.setTiempo(tx.getLimiteDias() + "dias y " + tx.getLimiteHoras() + ":" + tx.getLimiteMinutos());
-        return tc;
-    }*/
     
     @FXML
     private void verAction(ActionEvent event) {

@@ -14,6 +14,8 @@ import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXSpinner;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import static javafx.collections.FXCollections.observableArrayList;
@@ -30,6 +32,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import sitetech.hotspot.Modelos.Paquete;
 import sitetech.hotspot.Modelos.PaqueteManager;
 import sitetech.hotspot.Modelos.Router;
@@ -188,9 +198,15 @@ public class GenerarTicketsController implements Initializable {
     }
     
     @FXML
-    private void imprimirAction(ActionEvent event) throws IOException {
-        ImprimirTicketsController itc = new ImprimirTicketsController(listaTickets);
-        itc.showStage();
+    private void imprimirAction(ActionEvent event) throws IOException, JRException {
+        JasperReport jp = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/imprimirTicket.frxml"));
+        
+        JRBeanCollectionDataSource listaReporte = new JRBeanCollectionDataSource(listaTickets);
+        Map<String, Object> parametros = new HashMap<String, Object>();
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jp, parametros);
+        
+        JasperViewer jv = new JasperViewer(jasperPrint);
+        jv.show();
     }
     
 }
