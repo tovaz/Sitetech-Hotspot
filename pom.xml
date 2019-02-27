@@ -4,7 +4,7 @@
 
     <groupId>sitetech</groupId>
     <artifactId>Hotspot</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>Hotspot</name>
@@ -18,11 +18,11 @@
         <!-- Used as the 'Vendor' for JNLP generation -->
         <name>Sitetech</name>
     </organization>
-    
+
     <repositories>
         <repository>
-          <id>oss.sonatype.org</id>
-          <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <id>oss.sonatype.org</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
     </repositories>
 
@@ -31,6 +31,13 @@
             <groupId>WilliamValdez</groupId>
             <artifactId>JavaFxController</artifactId>
             <version>1.1</version>
+        </dependency>
+
+        <!-- Grovy -->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy</artifactId>
+            <version>2.5.6</version>
         </dependency>
 
         <!-- Reportes Jasper  -->
@@ -53,28 +60,28 @@
             <artifactId>mikrotik</artifactId>
             <version>3.0.5</version>
         </dependency>
-        
+
         <!-- Jfoenix  -->
         <dependency>
             <groupId>com.jfoenix</groupId>
             <artifactId>jfoenix</artifactId>
             <version>8.0.8</version>
         </dependency>
-        
+
         <!-- hibernate -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>5.4.1.Final</version>
         </dependency>
-        
+
         <!-- SQLite JDBC library -->
         <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
-            <version>3.5.9-universal</version>
+            <version>3.25.2</version>
         </dependency>
- 
+
         <!-- junit test -->
         <dependency>
             <groupId>junit</groupId>
@@ -82,21 +89,23 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
-    
+
     <build>
         <plugins>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>2.4.1</version>
                 <configuration>
-                  <skip>true</skip>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.6</version>
+                <version>3.1.1</version>
                 <executions>
                     <execution>
                         <id>unpack-dependencies</id>
@@ -108,51 +117,28 @@
                             <excludeScope>system</excludeScope>
                             <excludeGroupIds>junit,org.mockito,org.hamcrest</excludeGroupIds>
                             <outputDirectory>${project.build.directory}/classes</outputDirectory>
+                            <failOnError>false</failOnError>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2.1</version>
+                <version>1.6.0</version>
                 <executions>
                     <execution>
-                        <id>unpack-dependencies</id>
-                        
-                        <phase>package</phase>
                         <goals>
-                            <goal>exec</goal>
+                            <goal>java</goal>
                         </goals>
-                        <configuration>
-                            <executable>${java.home}/../bin/javafxpackager</executable>
-                            <arguments>
-                                <argument>-createjar</argument>
-                                <argument>-nocss2bin</argument>
-                                <argument>-appclass</argument>
-                                <argument>${mainClass}</argument>
-                                <argument>-srcdir</argument>
-                                <argument>${project.build.directory}/classes</argument>
-                                <argument>-outdir</argument>
-                                <argument>${project.build.directory}</argument>
-                                <argument>-outfile</argument>
-                                <argument>${project.build.finalName}.jar</argument>
-                            </arguments>
-                        </configuration>
                     </execution>
-                    <execution>
-                        <id>default-cli</id>
-                        <goals>
-                            <goal>exec</goal>                            
-                        </goals>
-                        <configuration>
-                            <!--skip>true</skip-->
-                            <executable>${java.home}/bin/java</executable>
-                            <commandlineArgs>${runfx.args}</commandlineArgs>
-                        </configuration>
-                    </execution>
-                </executions>  
+                </executions>
+                <configuration>
+                    <mainClass>sitetech.hotspot.MainApp</mainClass>
+                </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -165,7 +151,7 @@
                     </compilerArguments>
                 </configuration>
             </plugin>
-            
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>

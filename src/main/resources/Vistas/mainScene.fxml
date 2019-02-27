@@ -19,123 +19,123 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="fondoApp" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox prefHeight="630.0" prefWidth="1230.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-          <MenuBar style="-fx-background-color: transparent;">
-            <menus>
-              <Menu mnemonicParsing="false" text="Caja">
-                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Consultar caja" />
-                  <SeparatorMenuItem mnemonicParsing="false" onAction="#onMenuAction" />
-                  <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Ingreso" />
-                  <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Egreso" />
-                  <Menu mnemonicParsing="false" onAction="#onMenuAction" text="Cerrar caja" />
-                </items>
-              </Menu>
-              <Menu mnemonicParsing="false" text="Tickets">
-                <items>
-                  <MenuItem mnemonicParsing="false" text="Generar tickets" />
-                  <MenuItem mnemonicParsing="false" text="Vender Ticket" />
-                  <MenuItem mnemonicParsing="false" text="Imprimir tickets" />
-                  <SeparatorMenuItem mnemonicParsing="false" text="separadormenu" />
-                        <MenuItem mnemonicParsing="false" text="Eliminar ticket" />
-                  <MenuItem mnemonicParsing="false" text="Modificar Ticket" />
-                </items>
-              </Menu>
-                  <Menu mnemonicParsing="false" text="Administracion">
-                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Usuarios">
-                           <graphic>
-                              <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Imagenes/users.fw.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </MenuItem>
-                        <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Routers">
-                           <graphic>
-                              <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Imagenes/router3.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </MenuItem>
-                        <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Paquetes de Internet">
-                           <graphic>
-                              <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Imagenes/paquete.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </MenuItem>
-                     </items>
-                  </Menu>
-            </menus>
-          </MenuBar>
-            <JFXToolbar>
-               <top>
-                  <VBox BorderPane.alignment="CENTER" />
-               </top>
-               <center>
-                <AnchorPane fx:id="panelPrincipal" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="fondoApp" stylesheets="@../styles/Styles.css" BorderPane.alignment="CENTER">
-                  <children>
-                        <AnchorPane layoutX="155.0" layoutY="14.0" style="-fx-background-color: #eee;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                          <Label alignment="CENTER" layoutX="413.0" layoutY="274.0" style="&#10;" text="Panel principal" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false" AnchorPane.bottomAnchor="274.0" AnchorPane.leftAnchor="413.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="274.0">
-                            <font>
-                              <Font size="18.0" />
-                            </font>
-                          </Label>
-                              <Button fx:id="bprueba" layoutX="365.0" mnemonicParsing="false" onAction="#testAction" text="Boton de prueba" />
-                              <TextField fx:id="tprueba" layoutX="365.0" layoutY="33.0" stylesheets="@../styles/validation.css" />
-                              <Label fx:id="ltprueba" layoutX="365.0" layoutY="66.0" stylesheets="@../styles/validation.css" text="Label" />
-                           </children>
+    <children>
+        <VBox prefHeight="630.0" prefWidth="1230.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <MenuBar style="-fx-background-color: transparent;">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="Caja">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Consultar caja" />
+                                <SeparatorMenuItem mnemonicParsing="false" onAction="#onMenuAction" />
+                                <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Ingreso" />
+                                <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Egreso" />
+                                <Menu mnemonicParsing="false" onAction="#onMenuAction" text="Cerrar caja" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Tickets">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Generar tickets" />
+                                <MenuItem mnemonicParsing="false" text="Vender Ticket" />
+                                <MenuItem mnemonicParsing="false" text="Imprimir tickets" />
+                                <SeparatorMenuItem mnemonicParsing="false" text="separadormenu" />
+                                <MenuItem mnemonicParsing="false" text="Eliminar ticket" />
+                                <MenuItem mnemonicParsing="false" text="Modificar Ticket" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Administracion">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Usuarios">
+                                    <graphic>
+                                        <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../Imagenes/users.fw.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </MenuItem>
+                                <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Routers">
+                                    <graphic>
+                                        <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../Imagenes/router3.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </MenuItem>
+                                <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Paquetes de Internet">
+                                    <graphic>
+                                        <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../Imagenes/paquete.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </MenuItem>
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+                <JFXToolbar>
+                    <top>
+                        <VBox BorderPane.alignment="CENTER" />
+                    </top>
+                    <center>
+                        <AnchorPane fx:id="panelPrincipal" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="fondoApp" stylesheets="@../styles/Styles.css" BorderPane.alignment="CENTER">
+                            <children>
+                                <AnchorPane layoutX="155.0" layoutY="14.0" style="-fx-background-color: #eee;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <Label alignment="CENTER" layoutX="413.0" layoutY="274.0" style="&#10;" text="Panel principal" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false" AnchorPane.bottomAnchor="274.0" AnchorPane.leftAnchor="413.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="274.0">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                        </Label>
+                                        <Button fx:id="bprueba" layoutX="365.0" mnemonicParsing="false" onAction="#testAction" text="Boton de prueba" />
+                                        <TextField fx:id="tprueba" layoutX="365.0" layoutY="33.0" stylesheets="@../styles/validation.css" />
+                                        <Label fx:id="ltprueba" layoutX="365.0" layoutY="66.0" stylesheets="@../styles/validation.css" text="Label" />
+                                    </children>
+                                </AnchorPane>
+                            </children>
                         </AnchorPane>
-                  </children>
-                </AnchorPane>
-               </center>
-            </JFXToolbar>
-         </children>
-      </VBox>
-      <HBox alignment="CENTER_LEFT" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" styleClass="fondoApp" visible="false">
-         <children>
-            <AnchorPane fx:id="panelTitulo" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" styleClass="main-titlebar" HBox.hgrow="ALWAYS">
-               <children>
-                  <Label fx:id="ltitulo" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" prefHeight="28.0" prefWidth="935.0" styleClass="txt-azul" text="Label" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-            <HBox alignment="CENTER_RIGHT" minHeight="28.0" prefHeight="30.0" prefWidth="85.0" HBox.hgrow="NEVER">
-               <children>
-                  <JFXButton fx:id="minimizarAction" onAction="#minimizarAction" styleClass="txt-azul" text="_" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton onAction="#maximizarAction" styleClass="txt-azul" text="□" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton onAction="#cerrarAction" styleClass="txt-rojo" text="X" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXButton>
-               </children>
-            </HBox>
-         </children>
-      </HBox>
-   </children>
-   <stylesheets>
-      <URL value="@../styles/Styles.css" />
-      <URL value="@../styles/botones.css" />
-   </stylesheets>
+                    </center>
+                </JFXToolbar>
+            </children>
+        </VBox>
+        <!--HBox alignment="CENTER_LEFT" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" styleClass="fondoApp" visible="false">
+           <children>
+              <AnchorPane fx:id="panelTitulo" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" styleClass="main-titlebar" HBox.hgrow="ALWAYS">
+                 <children>
+                    <Label fx:id="ltitulo" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" prefHeight="28.0" prefWidth="935.0" styleClass="txt-azul" text="Label" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                       <font>
+                          <Font size="16.0" />
+                       </font>
+                    </Label>
+                 </children>
+              </AnchorPane>
+              <HBox alignment="CENTER_RIGHT" minHeight="28.0" prefHeight="30.0" prefWidth="85.0" HBox.hgrow="NEVER">
+                 <children>
+                    <JFXButton fx:id="minimizarAction" onAction="#minimizarAction" styleClass="txt-azul" text="_" textFill="WHITE">
+                       <font>
+                          <Font size="14.0" />
+                       </font>
+                    </JFXButton>
+                    <JFXButton onAction="#maximizarAction" styleClass="txt-azul" text="□" textFill="WHITE">
+                       <font>
+                          <Font size="14.0" />
+                       </font>
+                    </JFXButton>
+                    <JFXButton onAction="#cerrarAction" styleClass="txt-rojo" text="X" textFill="WHITE">
+                       <font>
+                          <Font size="14.0" />
+                       </font>
+                    </JFXButton>
+                 </children>
+              </HBox>
+           </children>
+        </HBox-->
+    </children>
+    <stylesheets>
+        <URL value="@../styles/Styles.css" />
+        <URL value="@../styles/botones.css" />
+    </stylesheets>
 </AnchorPane>

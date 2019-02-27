@@ -23,64 +23,64 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Ticket")
 public class Ticket {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    
+
     @ManyToOne
-    @JoinColumn(name="idPaquete")
+    @JoinColumn(name = "idPaquete")
     Paquete paquete;
-    
+
     private String usuario;
     private String contraseña;
     private String ip;
     private String mac;
-    
+
     // ******************** LIMITES **************
     private double limiteMegasDown;
     private double limiteGigasDown;
     private double limiteMegasUp;
     private double limiteGigasUp;
-    
+
     private int limiteDias;
     private int limiteHoras;
     private int limiteMinutos;
-    
+
     // ******************** CONSUMO **************
-    
     private double megasConsumidosDown;
     private double megasConsumidosUp;
     private double gigasConsumidosDown;
     private double gigasConsumidosUp;
-    
+
     private int diasConsumidos;
     private int horasConsumidas;
     private int minutosConsumidos;
-    
+
     private Date fechaCreacion;
     private Date fechaActualizacion;
-    
+
     private boolean eliminado;
-    
-    public static enum EstadosType {  Activo, Desactivado, En_Uso, Eliminado, Consumido, Generado, Error };
+
+    public static enum EstadosType {
+        Activo, Desactivado, En_Uso, Eliminado, Consumido, Generado, Error
+    };
     private EstadosType estado;
 
-    private boolean imprimir;
-    
+    //private boolean imprimir;
     @PrePersist
     protected void onCreate() {
-      this.fechaCreacion = new Date();
+        this.fechaCreacion = new Date();
     }
 
     @PreUpdate
     protected void onUpdate() {
-      this.fechaActualizacion = new Date();
+        this.fechaActualizacion = new Date();
     }
 
     public Ticket() {
     }
 
-    
     public Ticket(int id, String nombre, String contraseña, EstadosType estado, Paquete paquete) {
         this.id = id;
         this.paquete = paquete;
@@ -88,7 +88,7 @@ public class Ticket {
         this.contraseña = contraseña;
         this.eliminado = false;
         this.estado = estado;
-        
+
         // limites
         this.limiteMegasDown = paquete.getMegasDescarga();
         this.limiteGigasDown = paquete.getGigasDescarga();
@@ -99,7 +99,6 @@ public class Ticket {
         this.limiteMinutos = paquete.getMinutos();
     }
 
-    
     public int getId() {
         return id;
     }
@@ -292,14 +291,12 @@ public class Ticket {
         this.estado = estado;
     }
 
-    public boolean isImprimir() {
+    /*public boolean isImprimir() {
         return imprimir;
     }
 
     public void setImprimir(boolean imprimir) {
         this.imprimir = imprimir;
     }
-
-    
-    
+     */
 }

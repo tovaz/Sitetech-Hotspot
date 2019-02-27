@@ -14,31 +14,28 @@ import sitetech.Helpers.dbHelper;
  * @author megan
  */
 public class TicketManager {
+
     private dbHelper DbHelper;
     public ObservableList<Ticket> listaTickets = FXCollections.observableArrayList();
-    
+
     public TicketManager() {
         DbHelper = new dbHelper();
-        listaTickets = this.getTickets();
+        //listaTickets = this.getTickets();
     }
-    
-    public ObservableList<Ticket> getTickets(){
-        return listaTickets = (ObservableList<Ticket>) 
-        DbHelper.Select("FROM Ticket WHERE eliminado=false");
+
+    public ObservableList<Ticket> getTickets() {
+        return listaTickets = (ObservableList<Ticket>) DbHelper.Select("FROM Ticket WHERE eliminado=false");
     }
-    
-    public void AgregarTicket(Ticket tq)
-    {
+
+    public void AgregarTicket(Ticket tq) {
         DbHelper.Agregar(tq);
     }
-    
-    public void EditarTicket(Ticket tq)
-    {
+
+    public void EditarTicket(Ticket tq) {
         DbHelper.Editar(tq);
     }
-    
-    public void EliminarTicket(Ticket tq)
-    {
+
+    public void EliminarTicket(Ticket tq) {
         tq.setEliminado(true);
         DbHelper.Editar(tq);
     }

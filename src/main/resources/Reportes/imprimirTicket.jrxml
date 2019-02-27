@@ -3,10 +3,6 @@
 	<property name="ireport.zoom" value="2.143588810000002"/>
 	<property name="ireport.x" value="58"/>
 	<property name="ireport.y" value="0"/>
-	<subDataset name="dataset1" uuid="110de364-2e8d-452c-bbe4-f2026819c7c4"/>
-	<queryString language="SQL">
-		<![CDATA[SELECT * from Ticket;]]>
-	</queryString>
 	<field name="usuario" class="java.lang.Object"/>
 	<field name="contraseña" class="java.lang.Object"/>
 	<field name="fechaCreacion" class="java.lang.Object"/>
@@ -102,13 +98,11 @@
 				<textElement>
 					<font size="13"/>
 				</textElement>
-				<textFieldExpression><![CDATA[(($F{limiteGigasDown}>0)? $F{limiteGigasDown} + " Gb + ": "") + $F{limiteMegasDown} + " Mb "
-
-]]></textFieldExpression>
+				<textFieldExpression><![CDATA[(($F{limiteGigasDown}>0)? $F{limiteGigasDown} + " Gb + ": "") + $F{limiteMegasDown} + " Mb "]]></textFieldExpression>
 			</textField>
 			<image>
 				<reportElement x="1" y="3" width="28" height="22" uuid="7d444537-f17e-4a0f-9ca6-ab4d6a97d7b8"/>
-				<imageExpression><![CDATA["F:\\DOCUMENTOS\\Documents\\NetBeansProjects\\Hotspot\\src\\main\\resources\\Imagenes\\icon.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{REPORT_CONTEXT}.getResource("..\\Imagenes\\icon.png")]]></imageExpression>
 			</image>
 		</band>
 	</detail>

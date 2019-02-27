@@ -32,6 +32,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -54,26 +57,36 @@ import sitetech.hotspot.Modelos.TicketManager;
  */
 public class GenerarTicketsController implements Initializable {
 
-    @FXML private ComboBox<Paquete> cbpaquetes;
-    @FXML private ComboBox<Router> cbrouters;
-    @FXML private ComboBox<String> cbusuario;
-    @FXML private ComboBox<String> cbcontraseña;
-    @FXML private TableView<Ticket> tvtickets;
-    @FXML private JFXCheckBox checkNumeros;
-    @FXML private TextField tcantidad;
-    @FXML private Label ltrabajando;
-    @FXML private JFXSpinner sptrabajando;
-    @FXML private HBox pbotones;
-    
+    @FXML
+    private ComboBox<Paquete> cbpaquetes;
+    @FXML
+    private ComboBox<Router> cbrouters;
+    @FXML
+    private ComboBox<String> cbusuario;
+    @FXML
+    private ComboBox<String> cbcontraseña;
+    @FXML
+    private TableView<Ticket> tvtickets;
+    @FXML
+    private JFXCheckBox checkNumeros;
+    @FXML
+    private TextField tcantidad;
+    @FXML
+    private Label ltrabajando;
+    @FXML
+    private JFXSpinner sptrabajando;
+    @FXML
+    private HBox pbotones;
+
     private final Stage thisStage;
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     public GenerarTicketsController() {
         thisStage = new Stage();
@@ -84,129 +97,135 @@ public class GenerarTicketsController implements Initializable {
         this.cargarDatos();
         thisStage.showAndWait();
     }
-    
-    public void cargarDatos(){
+
+    public void cargarDatos() {
         cbusuario.getSelectionModel().select(5);
         cbcontraseña.getSelectionModel().select(4);
-        
+
         PaqueteManager pm = new PaqueteManager();
         RouterManager rm = new RouterManager();
         cbpaquetes.getItems().addAll(pm.listaPaquetes);
         cbrouters.getItems().addAll(rm.listaRouters);
-        
+
         this.actualizarTabla();
     }
-    
+
     @FXML
     private void generarAction(ActionEvent event) {
         int longusuario = Integer.valueOf(cbusuario.getSelectionModel().getSelectedItem().toString());
         int longcontraseña = Integer.valueOf(cbcontraseña.getSelectionModel().getSelectedItem().toString());
         int cantidad = Integer.valueOf(tcantidad.getText());
-        
+
         this.generarTickets(longusuario, longcontraseña, cantidad);
     }
 
-    
-    
     private ObservableList<Ticket> listaTickets;
-    public void generarTickets(int longusuario, int longcontraseña, int cantidad)
-    {
+
+    public void generarTickets(int longusuario, int longcontraseña, int cantidad) {
         listaTickets = observableArrayList();
-        for (int i=1; i<=cantidad; i++){
+        for (int i = 1; i <= cantidad; i++) {
             String contraseña;
-            if (checkNumeros.isSelected())
+            if (checkNumeros.isSelected()) {
                 contraseña = cadenaAletoria.generarNumeros(longcontraseña);
-            else
+            } else {
                 contraseña = cadenaAletoria.generarCadena(longcontraseña);
-            
+            }
+
             String usuario = crearUsuario(longusuario, listaTickets, listaTickets);
             Ticket tx = new Ticket(i, usuario, contraseña, Ticket.EstadosType.Generado, cbpaquetes.getValue());
             listaTickets.add(tx);
         }
         tvtickets.setItems(listaTickets);
     }
-    
-    public String crearUsuario(int longusuario, ObservableList<Ticket> lista1, ObservableList<Ticket> lista2){
+
+    public String crearUsuario(int longusuario, ObservableList<Ticket> lista1, ObservableList<Ticket> lista2) {
         String usuario = cadenaAletoria.generarCadena(longusuario);
-        for(Ticket tx : lista1)
-            if ( tx.getUsuario().equals( usuario ) )
+        for (Ticket tx : lista1) {
+            if (tx.getUsuario().equals(usuario)) {
                 crearUsuario(longusuario, lista1, lista2);
-            
-        for(Ticket tx : lista2) 
-            if ( tx.getUsuario().equals( usuario ) )
+            }
+        }
+
+        for (Ticket tx : lista2) {
+            if (tx.getUsuario().equals(usuario)) {
                 crearUsuario(longusuario, lista1, lista2);
+            }
+        }
 
         System.out.println("Usuario creado: " + usuario);
         return usuario;
     }
-    
-    public void actualizarTabla(){
-        tvtickets.getColumns().get(0).setCellValueFactory( new PropertyValueFactory("Id") );
-        tvtickets.getColumns().get(1).setCellValueFactory( new PropertyValueFactory("Usuario") );
-        tvtickets.getColumns().get(2).setCellValueFactory( new PropertyValueFactory("Contraseña") );
-        tvtickets.getColumns().get(3).setCellValueFactory( new PropertyValueFactory("Paquete") );
-        tvtickets.getColumns().get(4).setCellValueFactory( new PropertyValueFactory("Estado") );
+
+    public void actualizarTabla() {
+        tvtickets.getColumns().get(0).setCellValueFactory(new PropertyValueFactory("Id"));
+        tvtickets.getColumns().get(1).setCellValueFactory(new PropertyValueFactory("Usuario"));
+        tvtickets.getColumns().get(2).setCellValueFactory(new PropertyValueFactory("Contraseña"));
+        tvtickets.getColumns().get(3).setCellValueFactory(new PropertyValueFactory("Paquete"));
+        tvtickets.getColumns().get(4).setCellValueFactory(new PropertyValueFactory("Estado"));
     }
-    
-    
+
     @FXML
     private void guardarAction(ActionEvent event) throws InterruptedException {
         ltrabajando.setText("Espere mientras se crean los tickets en el router.");
         sptrabajando.setVisible(true);
         pbotones.setDisable(true);
-        
-        Thread th = new Thread( () -> guardarTickets() );
-        
+
+        Thread th = new Thread(() -> guardarTickets());
+
         th.start();
     }
 
     private void guardarTickets() {
         TicketManager tm = new TicketManager();
         Router rx = cbrouters.getValue();
-        Mikrotik mk = new Mikrotik (rx.getIp(), rx.getUsuario(), rx.getPassword());
+        Mikrotik mk = new Mikrotik(rx.getIp(), rx.getUsuario(), rx.getPassword());
         int ctickets = 0;
 
-        for (int i=0; i<listaTickets.size(); i++){
+        for (int i = 0; i < listaTickets.size(); i++) {
             Ticket tc = listaTickets.get(i);
             tc.setEstado(Ticket.EstadosType.Activo);
             boolean agreagadoExitoso = mk.agregarHotspotUsuario(tc.getUsuario(), tc.getContraseña(), tc.getPaquete());
-            if (agreagadoExitoso){
+            if (agreagadoExitoso) {
                 tm.AgregarTicket(tc);
                 ctickets++;
                 listaTickets.set(i, tc);
+            } else {
+                tc.setEstado(Ticket.EstadosType.Generado);
             }
-            else tc.setEstado( Ticket.EstadosType.Generado );
         }
-        
+
         final int cxtickets = ctickets;
-        Platform.runLater(() -> hiloTermino(cxtickets) );
+        Platform.runLater(() -> hiloTermino(cxtickets));
     }
-    
-    private void hiloTermino(int ctickets){
+
+    private void hiloTermino(int ctickets) {
         sptrabajando.setVisible(false);
         pbotones.setDisable(false);
         System.out.println(ctickets);
-        
-        ltrabajando.setText("Se generaron "+ ctickets + " tickets correctamente.");
-        if (ctickets == listaTickets.size())
-            Dialogo.mostrarInformacion("Se guardaron "+ ctickets + " tickets correctamente.", "Todos los tickets se guardaron.", ButtonType.OK);
-        else
-            Dialogo.mostrarError("Se guardaron solamente "+ ctickets + " tickets correctamente.", "No se guardaron todos los tickets.", ButtonType.OK);
-        
+
+        ltrabajando.setText("Se generaron " + ctickets + " tickets correctamente.");
+        if (ctickets == listaTickets.size()) {
+            Dialogo.mostrarInformacion("Se guardaron " + ctickets + " tickets correctamente.", "Todos los tickets se guardaron.", ButtonType.OK);
+        } else {
+            Dialogo.mostrarError("Se guardaron solamente " + ctickets + " tickets correctamente.", "No se guardaron todos los tickets.", ButtonType.OK);
+        }
+
         tvtickets.getItems().removeAll();
         tvtickets.setItems(listaTickets);
     }
-    
+
     @FXML
-    private void imprimirAction(ActionEvent event) throws IOException, JRException {
-        JasperReport jp = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/imprimirTicket.frxml"));
-        
+    private void imprimirAction(ActionEvent event) throws IOException, JRException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+        JasperReport jp = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/imprimirTicket.jasper"));
+
         JRBeanCollectionDataSource listaReporte = new JRBeanCollectionDataSource(listaTickets);
-        Map<String, Object> parametros = new HashMap<String, Object>();
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jp, parametros);
-        
-        JasperViewer jv = new JasperViewer(jasperPrint);
-        jv.show();
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jp, null, listaReporte);
+
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        JasperViewer jv = new JasperViewer(jasperPrint, false);
+        jv.setTitle("Tickets Generados");
+        jv.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ticketprint.png")).getImage());
+        jv.setVisible(true);
     }
-    
+
 }

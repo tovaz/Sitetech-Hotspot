@@ -1,8 +1,6 @@
 package sitetech.hotspot.Controladores;
 
-import Util.Validar;
 import Util.ArrastrarScene;
-import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,26 +9,27 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import sitetech.hotspot.MainApp;
 
 public class MainController implements Initializable, ArrastrarScene {
+
     private MainApp App;
     private Stage thisStage;
-    
-    @FXML private AnchorPane panelPrincipal;
-    @FXML private AnchorPane panelTitulo;
-    
+
+    @FXML
+    private AnchorPane panelPrincipal;
+    @FXML
+    private AnchorPane panelTitulo;
+
     @FXML
     private Label ltitulo;
 
@@ -38,11 +37,11 @@ public class MainController implements Initializable, ArrastrarScene {
     private TextField tprueba;
     @FXML
     private Label ltprueba;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.ArrastrarScene(panelTitulo);
-        
+        //this.ArrastrarScene(panelTitulo);
+
         TicketsController tc = new TicketsController();
         try {
             tc.cargarPanel(panelPrincipal);
@@ -50,13 +49,13 @@ public class MainController implements Initializable, ArrastrarScene {
             System.err.println(ex.getMessage());
         }
     }
-    
+
     @FXML
     void testAction(ActionEvent event) throws IOException {
-        
+
     }
-    
-    public MainController (){
+
+    public MainController() {
         thisStage = new Stage();
         //util.cargarStage("/Vistas/mainScene.fxml", "Hotspot", thisStage, this, Modality.APPLICATION_MODAL);
         try {
@@ -65,7 +64,7 @@ public class MainController implements Initializable, ArrastrarScene {
             loader.setController(this);
 
             thisStage.initStyle(StageStyle.DECORATED);
-            Scene scene = new Scene((Parent)loader.load());
+            Scene scene = new Scene((Parent) loader.load());
 
             thisStage.setScene(scene);
             thisStage.setTitle("Hotspot 1.0");
@@ -73,57 +72,59 @@ public class MainController implements Initializable, ArrastrarScene {
             System.out.println(e.getMessage());
         }
     }
-    
+
     public void showStage() {
         //ltitulo.setText("Hotspot - Sitetech");
         thisStage.show();
     }
-    
+
     @FXML
-    public void loadUsuarios () throws IOException {
+    public void loadUsuarios() throws IOException {
         adUsuarioController adUsuario = new adUsuarioController();
         adUsuario.showAgregar(new UsuariosController());
-    }  
-    
+    }
+
     @FXML
     private void onMenuAction(ActionEvent event) throws IOException {
         MenuItem mi = (MenuItem) event.getSource();
         System.out.println(mi.getText());
-    
-        switch (mi.getText()){
+
+        switch (mi.getText()) {
             case "Usuarios":
                 UsuariosController uvController = new UsuariosController();
                 uvController.showStage();
                 break;
-                
+
             case "Routers":
                 RoutersController rController = new RoutersController();
                 rController.showStage();
                 break;
-                
+
             case "Paquetes de Internet":
                 PaquetesController pController = new PaquetesController();
                 pController.showStage();
                 break;
-                
+
         }
-        
+
     }
-    
+
     @FXML
     void cerrarAction(ActionEvent event) {
         Platform.exit();
     }
-    
+
     @FXML
     void minimizarAction(ActionEvent event) {
         thisStage.setIconified(true);
     }
-    
-    private boolean isMaximized=false;
+
+    private boolean isMaximized = false;
     private double ancho, alto, x, y;
-    @FXML void maximizarAction(ActionEvent event) {
-        
+
+    @FXML
+    void maximizarAction(ActionEvent event) {
+
         Screen screen = Screen.getPrimary();
         javafx.geometry.Rectangle2D bounds = screen.getVisualBounds();
 
@@ -132,13 +133,12 @@ public class MainController implements Initializable, ArrastrarScene {
             y = thisStage.getY();
             ancho = thisStage.getWidth();
             alto = thisStage.getHeight();
-            
+
             thisStage.setX(bounds.getMinX());
             thisStage.setY(bounds.getMinY());
             thisStage.setWidth(bounds.getWidth());
             thisStage.setHeight(bounds.getHeight());
-        }
-        else {
+        } else {
             thisStage.setX(x);
             thisStage.setY(y);
             thisStage.setWidth(ancho);
