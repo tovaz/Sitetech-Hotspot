@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import static javafx.collections.FXCollections.observableArrayList;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,6 +23,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sitetech.hotspot.Modelos.Paquete;
+import sitetech.hotspot.Modelos.PaqueteManager;
+import sitetech.hotspot.Modelos.RouterManager;
 import sitetech.hotspot.Modelos.Ticket;
 import sitetech.hotspot.Modelos.TicketManager;
 
@@ -41,10 +45,10 @@ public class TicketsController implements Initializable, ArrastrarScene {
     private TextField tnombre;
 
     @FXML
-    private JFXComboBox<?> cbestado;
+    private JFXComboBox<Ticket.EstadosType> cbestado;
 
     @FXML
-    private JFXComboBox<?> cbpaquetes;
+    private JFXComboBox<Paquete> cbpaquetes;
 
     @FXML
     private TableView<Ticket> tvtickets;
@@ -83,6 +87,7 @@ public class TicketsController implements Initializable, ArrastrarScene {
         panel.getChildren().setAll(nodo);
 
         actualizarTabla();
+        cargarDatos();
     }
 
     public void showStage() {
@@ -98,10 +103,25 @@ public class TicketsController implements Initializable, ArrastrarScene {
         tvtickets.setItems(listaTickets);
     }
 
+    public void cargarDatos() {
+        PaqueteManager pm = new PaqueteManager();
+        RouterManager rm = new RouterManager();
+        cbpaquetes.getItems().addAll(pm.listaPaquetes);
+        cbpaquetes.getItems().add(0, new Paquete(true));
+        
+        cbestado.getItems().setAll(Ticket.EstadosType.values());
+        
+        cbpaquetes.getSelectionModel().select(0);
+        cbestado.getSelectionModel().select(0);
+
+        this.actualizarTabla();
+    }
+    
     //******************************** FUNCIONES PRINCPALES *********************/
     @FXML
     void onBuscarAction(ActionEvent event) {
-
+        listaTickets = tm.buscarTickets(tnombre.getText(), cbpaquetes.getValue(), cbestado.getValue());
+        tvtickets.setItems(listaTickets);
     }
 
     @FXML

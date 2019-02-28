@@ -32,10 +32,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -216,11 +214,15 @@ public class GenerarTicketsController implements Initializable {
 
     @FXML
     private void imprimirAction(ActionEvent event) throws IOException, JRException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+        Map<String,Object> parametros = new HashMap<String,Object>();
+        parametros.put("dominio",new String("st.com/")); // propiedad de configuracion
+        parametros.put("iTicket",new String(getClass().getResource("/Imagenes/icon.png").toString())); // propiedad de configuracion
+        
         JasperReport jp = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/imprimirTicket.jasper"));
-
         JRBeanCollectionDataSource listaReporte = new JRBeanCollectionDataSource(listaTickets);
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jp, null, listaReporte);
-
+        
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jp, (Map<String,Object>)parametros, listaReporte);
+        
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         JasperViewer jv = new JasperViewer(jasperPrint, false);
         jv.setTitle("Tickets Generados");

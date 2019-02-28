@@ -33,6 +33,9 @@ public class Paquete {
     private Date fechaCreacion;
     private Date fechaActualizacion;
     
+    @Transient
+    public boolean  Combobox_default;
+    
     @PrePersist
     protected void onCreate() {
       this.fechaCreacion = new Date();
@@ -46,6 +49,9 @@ public class Paquete {
     public Paquete() {
     }
 
+    public Paquete(boolean _cb) {
+        Combobox_default = _cb;
+    }
     
     public Paquete(int id, String nombre, Double precio, boolean eliminado, int cantidadTickets, int dias, int horas, int minutos, double megasDescarga, double gigasDescarga, double megasSubida, double gigasSubida) {
         this.id = id;
@@ -178,7 +184,7 @@ public class Paquete {
     public String Duracion;
     @Transient
     public String LimiteInternet;
-
+    
     public String getDuracion() {
         return String.valueOf(dias) + " dias y " + String.valueOf(horas) + "hr " + String.valueOf(minutos) + " min";
     }
@@ -198,6 +204,9 @@ public class Paquete {
     
     @Override
     public String toString() { 
-        return nombre + " - Q. " + precio + "  Limite: " + dias + "d " + horas + ":" + minutos + " * " + megasDescarga + " Mb + " + gigasDescarga + " Gb"; 
+        if (!Combobox_default)
+            return nombre + " - Q. " + precio + "  Limite: " + dias + "d " + horas + ":" + minutos + " * " + megasDescarga + " Mb + " + gigasDescarga + " Gb"; 
+        else
+            return "Todos";
     } 
 }

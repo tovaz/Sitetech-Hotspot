@@ -153,6 +153,36 @@
             </plugin>
 
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>appassembler-maven-plugin</artifactId>
+                <version>1.0</version>
+                <executions>
+                  <execution>
+                    <id>generate-jsw-scripts</id>
+                    <phase>package</phase>
+                    <goals>
+                      <goal>generate-daemons</goal>
+                    </goals>
+                  </execution>
+                </executions>
+                <configuration>
+                  <daemons>
+                    <daemon>
+                      <id>Hotspot</id>
+                      <mainClass>sitetech.hotspot.MainApp</mainClass>
+                      <commandLineArguments>
+                        <commandLineArgument>start</commandLineArgument>
+                      </commandLineArguments>
+                      <platforms>
+                        <platform>jsw</platform>
+                      </platforms>              
+                    </daemon>
+                  </daemons>
+                  <target>${project.build.directory}/appassembler</target>
+                </configuration>
+            </plugin>
+              
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
