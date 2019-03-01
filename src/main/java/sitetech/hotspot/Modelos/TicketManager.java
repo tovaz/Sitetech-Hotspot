@@ -31,11 +31,11 @@ public class TicketManager {
         String paquete = " ";
         String estad = " ";
         
-        if (pq.toString() != "Todos") paquete = " OR paquete=" + pq.getId() + " ";
-        if (estado != Ticket.EstadosType.Todos) estad = " OR estado=" + estado.toString() + " ";
-        if (usuario.isEmpty()) usuario = " eliminado=false "; else usuario = "usuario like '%" + usuario + "%'";
+        if (pq.toString() != "Todos") paquete = " paquete=" + pq.getId() + " "; else paquete = " paquete <> 0 ";
+        if (estado != Ticket.EstadosType.Todos) estad = " OR estado=" + estado.toString() + " "; else estad = " OR estado <> 0 ";
+        if (usuario.isEmpty()) usuario = "usuario like '%%' "; else usuario = " usuario like '%" + usuario + "%' ";
         
-        return listaTickets = (ObservableList<Ticket>) DbHelper.Select("FROM Ticket WHERE eliminado=false AND (" + usuario + paquete + estad + ")" );
+        return listaTickets = (ObservableList<Ticket>) DbHelper.Select("FROM Ticket WHERE eliminado=false AND " + usuario + " AND (" + paquete + estad + ")" );
     }
 
     public void AgregarTicket(Ticket tq) {

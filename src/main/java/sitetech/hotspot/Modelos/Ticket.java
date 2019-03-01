@@ -32,6 +32,10 @@ public class Ticket {
     @JoinColumn(name = "idPaquete")
     Paquete paquete;
 
+    @ManyToOne
+    @JoinColumn(name = "idRouter")
+    Router router;
+    
     private String usuario;
     private String contraseña;
     private String ip;
@@ -60,7 +64,8 @@ public class Ticket {
     private Date fechaCreacion;
     private Date fechaActualizacion;
 
-    private boolean eliminado;
+    private boolean eliminado = false;
+    private boolean eliminadoenRouter = false;
 
     public static enum EstadosType {
         Todos, Activo, Desactivado, En_Uso, Eliminado, Consumido, Generado, Error
@@ -82,14 +87,16 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(int id, String nombre, String contraseña, EstadosType estado, Paquete paquete) {
+    public Ticket(int id, String nombre, String contraseña, EstadosType estado, Paquete paquete, Router _router) {
         this.id = id;
         this.paquete = paquete;
         this.usuario = nombre;
         this.contraseña = contraseña;
         this.eliminado = false;
         this.estado = estado;
-
+        this.router = _router;
+        this.eliminadoenRouter = false;
+        
         // limites
         this.limiteMegasDown = paquete.getMegasDescarga();
         this.limiteGigasDown = paquete.getGigasDescarga();
@@ -292,6 +299,7 @@ public class Ticket {
         this.estado = estado;
     }
 
+    
     /*public boolean isImprimir() {
         return imprimir;
     }
@@ -300,4 +308,22 @@ public class Ticket {
         this.imprimir = imprimir;
     }
      */
+
+    public Router getRouter() {
+        return router;
+    }
+
+    public void setRouter(Router router) {
+        this.router = router;
+    }
+
+    public boolean isEliminadoenRouter() {
+        return eliminadoenRouter;
+    }
+
+    public void setEliminadoenRouter(boolean eliminadoenRouter) {
+        this.eliminadoenRouter = eliminadoenRouter;
+    }
+    
+    
 }

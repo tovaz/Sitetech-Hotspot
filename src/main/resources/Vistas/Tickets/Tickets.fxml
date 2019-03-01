@@ -144,7 +144,7 @@
                                             </graphic>
                                         </JFXButton>
                                         <Separator orientation="VERTICAL" />
-                                        <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onEliminarAction" prefHeight="55.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
+                                        <JFXButton fx:id="beliminar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onEliminarAction" prefHeight="55.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
                                             <graphic>
                                                 <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
                                                     <children>
@@ -158,6 +158,12 @@
                                                 </VBox>
                                             </graphic>
                                         </JFXButton>
+                              <VBox fx:id="ptrabajando">
+                                 <children>
+                                    <Label fx:id="ltrabajando" text="Label" />
+                                    <JFXSpinner fx:id="sptrabajando" maxHeight="35.0" minHeight="35.0" prefHeight="35.0" />
+                                 </children>
+                              </VBox>
                                     </items>
                                 </ToolBar>
                             </children>

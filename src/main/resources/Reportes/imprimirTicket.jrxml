@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Tickets" language="groovy" columnCount="5" printOrder="Horizontal" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="115" columnSpacing="1" leftMargin="15" rightMargin="15" topMargin="15" bottomMargin="15" uuid="44c68a96-9c22-4299-bb5a-63d1c0f033be">
-	<property name="ireport.zoom" value="2.143588810000002"/>
-	<property name="ireport.x" value="58"/>
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="dominio" class="java.lang.String"/>
+	<parameter name="iTicket" class="java.lang.String"/>
 	<field name="usuario" class="java.lang.Object"/>
 	<field name="contraseña" class="java.lang.Object"/>
 	<field name="fechaCreacion" class="java.lang.Object"/>
@@ -42,59 +44,59 @@
 				<reportElement mode="Transparent" x="0" y="4" width="113" height="171" uuid="1846436f-206c-4b14-ad1a-f983cd0bf68d"/>
 			</rectangle>
 			<textField>
-				<reportElement x="3" y="22" width="107" height="30" forecolor="#0033CC" uuid="69ce23ff-dd53-47f0-a758-f1bbd7a8000f"/>
+				<reportElement x="3" y="17" width="107" height="30" forecolor="#0033CC" uuid="69ce23ff-dd53-47f0-a758-f1bbd7a8000f"/>
 				<textElement textAlignment="Center">
 					<font size="20"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{usuario}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="3" y="7" width="107" height="16" uuid="d9ad7562-b7f4-413d-aa73-c0bedf2af483"/>
+				<reportElement x="3" y="4" width="107" height="16" uuid="d9ad7562-b7f4-413d-aa73-c0bedf2af483"/>
 				<textElement textAlignment="Center">
 					<font size="11"/>
 				</textElement>
 				<text><![CDATA[Usuario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="50" width="107" height="16" uuid="d5ac2ca9-ff50-452d-91b5-6c473d2b82e3"/>
+				<reportElement x="3" y="47" width="107" height="16" uuid="d5ac2ca9-ff50-452d-91b5-6c473d2b82e3"/>
 				<textElement textAlignment="Center">
 					<font size="11"/>
 				</textElement>
 				<text><![CDATA[Contraseña]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="3" y="64" width="107" height="24" uuid="2d58061e-a97a-4b52-946d-a9f40e00a916"/>
+				<reportElement x="3" y="61" width="107" height="24" uuid="2d58061e-a97a-4b52-946d-a9f40e00a916"/>
 				<textElement textAlignment="Center">
 					<font size="18"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{contraseña}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="89" width="113" height="1" forecolor="#666666" uuid="a7acad0b-fcdd-43a8-911f-8dd8d36caacc"/>
+				<reportElement x="0" y="85" width="113" height="1" forecolor="#666666" uuid="a7acad0b-fcdd-43a8-911f-8dd8d36caacc"/>
 			</line>
 			<staticText>
-				<reportElement x="3" y="90" width="107" height="16" uuid="15204ded-339f-4a71-bc06-9cc46b147041"/>
+				<reportElement x="3" y="85" width="107" height="16" uuid="15204ded-339f-4a71-bc06-9cc46b147041"/>
 				<textElement textAlignment="Left">
 					<font size="11"/>
 				</textElement>
 				<text><![CDATA[Limite de tiempo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="125" width="107" height="16" uuid="78c03514-6b06-4774-8fdd-2eb3175f9ab8"/>
+				<reportElement x="3" y="118" width="107" height="16" uuid="78c03514-6b06-4774-8fdd-2eb3175f9ab8"/>
 				<textElement textAlignment="Left">
 					<font size="11"/>
 				</textElement>
 				<text><![CDATA[Limite de internet]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="3" y="106" width="107" height="19" uuid="c03661d3-0f37-4770-b394-e849d13df513"/>
+				<reportElement x="3" y="99" width="107" height="19" uuid="c03661d3-0f37-4770-b394-e849d13df513"/>
 				<textElement>
 					<font size="13"/>
 				</textElement>
 				<textFieldExpression><![CDATA[( ($F{limiteDias} > 0)?  $F{limiteDias} + " dias y " : "")+ $F{limiteHoras} + " hr y " + $F{limiteMinutos} + " min"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="140" width="107" height="18" uuid="abd851c0-a313-4933-b3c0-025c92dc941d"/>
+				<reportElement x="3" y="132" width="107" height="18" uuid="abd851c0-a313-4933-b3c0-025c92dc941d"/>
 				<textElement>
 					<font size="13"/>
 				</textElement>
@@ -102,7 +104,7 @@
 			</textField>
 			<image>
 				<reportElement x="1" y="3" width="28" height="22" uuid="7d444537-f17e-4a0f-9ca6-ab4d6a97d7b8"/>
-				<imageExpression><![CDATA[$P{REPORT_CONTEXT}.getResource("..\\Imagenes\\icon.png")]]></imageExpression>
+				<imageExpression><![CDATA[$P{iTicket}]]></imageExpression>
 			</image>
 		</band>
 	</detail>

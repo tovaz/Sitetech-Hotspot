@@ -41,6 +41,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import sitetech.Helpers.reporteHelper;
 import sitetech.hotspot.Modelos.Paquete;
 import sitetech.hotspot.Modelos.PaqueteManager;
 import sitetech.hotspot.Modelos.Router;
@@ -130,7 +131,7 @@ public class GenerarTicketsController implements Initializable {
             }
 
             String usuario = crearUsuario(longusuario, listaTickets, listaTickets);
-            Ticket tx = new Ticket(i, usuario, contraseña, Ticket.EstadosType.Generado, cbpaquetes.getValue());
+            Ticket tx = new Ticket(i, usuario, contraseña, Ticket.EstadosType.Generado, cbpaquetes.getValue(), cbrouters.getValue());
             listaTickets.add(tx);
         }
         tvtickets.setItems(listaTickets);
@@ -214,20 +215,7 @@ public class GenerarTicketsController implements Initializable {
 
     @FXML
     private void imprimirAction(ActionEvent event) throws IOException, JRException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-        Map<String,Object> parametros = new HashMap<String,Object>();
-        parametros.put("dominio",new String("st.com/")); // propiedad de configuracion
-        parametros.put("iTicket",new String(getClass().getResource("/Imagenes/icon.png").toString())); // propiedad de configuracion
-        
-        JasperReport jp = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/imprimirTicket.jasper"));
-        JRBeanCollectionDataSource listaReporte = new JRBeanCollectionDataSource(listaTickets);
-        
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jp, (Map<String,Object>)parametros, listaReporte);
-        
-        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        JasperViewer jv = new JasperViewer(jasperPrint, false);
-        jv.setTitle("Tickets Generados");
-        jv.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ticketprint.png")).getImage());
-        jv.setVisible(true);
+        reporteHelper.imprimirTickets(listaTickets);
     }
 
 }
