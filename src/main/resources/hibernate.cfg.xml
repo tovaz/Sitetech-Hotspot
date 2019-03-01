@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" 
-"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN" 
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
-	<session-factory>
-		<property name="show_sql">true</property>
-		<property name="format_sql">true</property>
-		<property name="dialect">org.hibernate.dialect.SQLiteDialect</property>
-		<property name="connection.driver_class">org.sqlite.JDBC</property>
-		<property name="connection.url">jdbc:sqlite:hotspot.db</property>
-		<property name="connection.username"></property>
-		<property name="connection.password"></property>
-		
-		<property name="hibernate.hbm2ddl.auto">update</property>
-		
-		<mapping class="sitetech.hotspot.Modelos.Usuario"/>
-                <mapping class="sitetech.hotspot.Modelos.Router"/>
-                <mapping class="sitetech.hotspot.Modelos.Paquete"/>
-                <mapping class="sitetech.hotspot.Modelos.Ticket"/>
-	</session-factory>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.ClientDriver</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">to34va80z5200</property>
+        <property name="hibernate.connection.url">jdbc:derby://localhost:1527/hotspot</property>
+
+        <property name="show_sql">true</property>
+	<property name="format_sql">true</property>
+        
+        <!-- Enable Hibernate's automatic session context management -->
+        <property name="current_session_context_class">thread</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        
+        <property name="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</property>
+        <mapping class="sitetech.hotspot.Modelos.Usuario"/>
+        <mapping class="sitetech.hotspot.Modelos.Router"/>
+        <mapping class="sitetech.hotspot.Modelos.Paquete"/>
+        <mapping class="sitetech.hotspot.Modelos.Ticket"/>
+    </session-factory>
 </hibernate-configuration>

@@ -137,7 +137,7 @@ public class TicketsController implements Initializable, ArrastrarScene {
 
     @FXML
     void onImprimirAction(ActionEvent event) {
-
+        
     }
 
     @FXML

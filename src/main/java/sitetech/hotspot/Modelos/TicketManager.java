@@ -28,12 +28,12 @@ public class TicketManager {
     }
     
     public ObservableList<Ticket> buscarTickets(String usuario, Paquete pq, Ticket.EstadosType estado) {
-        String paquete = "";
-        String estad = "";
+        String paquete = " ";
+        String estad = " ";
         
-        if (pq.toString() != "Todos") paquete = " OR paquete=" + pq.getId();
-        if (estado != Ticket.EstadosType.Todos) estad = " OR estado=" + estado.toString();
-        if (usuario.isEmpty()) usuario = " usuario like '%%' "; else usuario = "usuario like '%" + usuario + "%'";
+        if (pq.toString() != "Todos") paquete = " OR paquete=" + pq.getId() + " ";
+        if (estado != Ticket.EstadosType.Todos) estad = " OR estado=" + estado.toString() + " ";
+        if (usuario.isEmpty()) usuario = " eliminado=false "; else usuario = "usuario like '%" + usuario + "%'";
         
         return listaTickets = (ObservableList<Ticket>) DbHelper.Select("FROM Ticket WHERE eliminado=false AND (" + usuario + paquete + estad + ")" );
     }
