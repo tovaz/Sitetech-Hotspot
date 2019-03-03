@@ -32,7 +32,7 @@ public class TicketManager {
         String estad = " ";
         
         if (pq.toString() != "Todos") paquete = " paquete=" + pq.getId() + " "; else paquete = " paquete <> 0 ";
-        if (estado != Ticket.EstadosType.Todos) estad = " OR estado=" + estado.toString() + " "; else estad = " OR estado <> 0 ";
+        if (estado != Ticket.EstadosType.Todos) estad = " AND estado=" + estado.toString() + " "; else estad = " AND estado <> 0 ";
         if (usuario.isEmpty()) usuario = "usuario like '%%' "; else usuario = " usuario like '%" + usuario + "%' ";
         
         return listaTickets = (ObservableList<Ticket>) DbHelper.Select("FROM Ticket WHERE eliminado=false AND " + usuario + " AND (" + paquete + estad + ")" );

@@ -43,3 +43,24 @@
 .ticket-button-toolbar:hover {
     -fx-background-color: rgba(255,255,255,0.7);
 }
+
+.combobox-text-blanco .cell{
+    -fx-text-fill: #ccc;
+}
+
+/********************** PROBAR **************/
+.fondo-azul{
+    -fx-background-color: radial-gradient(center 50% -40%, radius 200%, #00FFFF 45%, #00BFFF 50%);
+}
+
+.fondo-verde{
+    -fx-background-color: linear-gradient(greenyellow   , limegreen );
+}
+
+.fondo-naranja{
+    -fx-background-color: linear-gradient(orange, orangered );
+}
+
+.fondo-negro99{
+    -fx-background-color: linear-gradient(#999999 0%, #000000 50%, #999999 100%);
+}

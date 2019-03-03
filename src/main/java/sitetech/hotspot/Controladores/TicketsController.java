@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import static javafx.collections.FXCollections.observableArrayList;
 import javafx.collections.ObservableList;
@@ -26,6 +28,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -60,12 +63,28 @@ public class TicketsController implements Initializable, ArrastrarScene {
     @FXML private Label ltrabajando;
     @FXML private JFXSpinner sptrabajando;
     
+    @FXML private Label lusuario;
+    @FXML private Label lcontraseña;
+    @FXML private Label lip;
+    @FXML private Label lmac;
+    @FXML private Label lestado;
+    @FXML private Label ltiempoConsumido;
+    @FXML private Label lconsumidoDown;
+    @FXML private JFXSpinner spConsumidoDown;
+    @FXML private Label lconsumidoUp;
+    @FXML private JFXSpinner spConsumidoUp;
+    @FXML private Label lpaquete;
+    @FXML private Label lprecio;
+    @FXML private Label llimiteDescarga;
+    @FXML private Label llimiteSubida;
+    @FXML private Label llimiteTiempo;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //this.ArrastrarScene(panelTicket);
     }
 
-    private ObservableList<Ticket> listaTickets;
+    public ObservableList<Ticket> listaTickets;
     private TicketManager tm;
 
     public TicketsController() {
@@ -92,6 +111,8 @@ public class TicketsController implements Initializable, ArrastrarScene {
 
         actualizarTabla();
         cargarDatos();
+        
+        tvtickets.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> { llenarDetalles(newSelection); });
     }
 
     public void showStage() {
@@ -101,10 +122,18 @@ public class TicketsController implements Initializable, ArrastrarScene {
     public void actualizarTabla() {
         tvtickets.getColumns().get(0).setCellValueFactory(new PropertyValueFactory("Id"));
         tvtickets.getColumns().get(1).setCellValueFactory(new PropertyValueFactory("Usuario"));
-        tvtickets.getColumns().get(2).setCellValueFactory(new PropertyValueFactory("Contraseña"));
-        tvtickets.getColumns().get(3).setCellValueFactory(new PropertyValueFactory("Paquete"));
-        tvtickets.getColumns().get(4).setCellValueFactory(new PropertyValueFactory("Estado"));
         
+        //TableColumn paqueteColum = tvtickets.getColumns().get(2);
+        //paqueteColum.setCellValueFactory(cellData -> ((Ticket) cellData).getPaquete().getNombre() );
+        tvtickets.getColumns().get(3).setCellValueFactory(new PropertyValueFactory("Paquete.getNombre()"));
+        tvtickets.getColumns().get(3).setCellValueFactory(new PropertyValueFactory("Estado"));
+        
+        tvtickets.getColumns().get(4).setCellValueFactory(new PropertyValueFactory("fechaCreacion"));
+        tvtickets.getColumns().get(5).setCellValueFactory(new PropertyValueFactory("duracion"));
+        tvtickets.getColumns().get(6).setCellValueFactory(new PropertyValueFactory("LimiteInternetDown"));
+        tvtickets.getColumns().get(7).setCellValueFactory(new PropertyValueFactory("LimiteInternetUp"));
+
+    
         tvtickets.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         tvtickets.setItems(listaTickets);
     }
@@ -131,6 +160,7 @@ public class TicketsController implements Initializable, ArrastrarScene {
         tvtickets.setItems(listaTickets);
     }
 
+    // ACCIONES AL ELIMINAR UN TICKET
     @FXML
     void onEliminarAction(ActionEvent event) {
          ObservableList<Ticket> ticketsSeleccionados = tvtickets.getSelectionModel().getSelectedItems();
@@ -147,8 +177,14 @@ public class TicketsController implements Initializable, ArrastrarScene {
             if ( btn == ButtonType.YES) {
                 if (ticketsSeleccionados.size() == 1){
                     if (mk.Conectar()){
-                        if (mk.eliminarHotspotUsuario(ticketsSeleccionados.get(0).getUsuario()))
+                        if (mk.eliminarHotspotUsuario(ticketsSeleccionados.get(0).getUsuario())){
                             tm.EliminarTicket(ticketsSeleccionados.get(0));
+                            listaTickets.remove(ticketsSeleccionados.get(0));
+                            Dialogo.mostrarInformacion("Ticket eliminado correctamente. ", "Eliminado correctamente", ButtonType.OK);
+                        }
+                        else
+                            Dialogo.mostrarError("Error al eliminar el ticket \"" + ticketsSeleccionados.get(0).getUsuario()+"\".", "Error al eliminar el ticket", ButtonType.OK);
+                            
                     }
                     else
                         Util.util.mostrarAlerta("Error al eliminar el ticket en el router, verifica la coneccion y vuelve a intentar.", "Error al eliminar ticket", ButtonType.OK);
@@ -171,6 +207,7 @@ public class TicketsController implements Initializable, ArrastrarScene {
             Ticket tc = ticketsSeleccinados.get(i);
             if (mk.eliminarHotspotUsuario(tc.getUsuario())){
                 tm.EliminarTicket(tc);
+                listaTickets.remove(tc);
                 ticketsEliminados ++;
             }
         }
@@ -194,18 +231,62 @@ public class TicketsController implements Initializable, ArrastrarScene {
         
     @FXML
     void onGenerarAction(ActionEvent event) {
-        GenerarTicketsController genTicket = new GenerarTicketsController();
+        GenerarTicketsController genTicket = new GenerarTicketsController(this);
         genTicket.showStage();
     }
 
     @FXML
     void onImprimirAction(ActionEvent event) {
         ObservableList<Ticket> ticketsSeleccionados = tvtickets.getSelectionModel().getSelectedItems();
-        reporteHelper.imprimirTickets(ticketsSeleccionados);
+        if (ticketsSeleccionados != null)
+            reporteHelper.imprimirTickets(ticketsSeleccionados);
+        else 
+            Util.util.mostrarAlerta("Debe de seleccionar uno o mas tickets para imprimir ", "No hay tickets seleccionados para imprimir", ButtonType.OK);
     }
 
     @FXML
     void onVenderAction(ActionEvent event) {
 
+    }
+    
+    void llenarDetalles(Ticket tc) {
+        if (tc != null){
+            lusuario.setText(tc.getUsuario());
+            lcontraseña.setText(tc.getContraseña());
+            lip.setText(tc.getIp());
+            lmac.setText(tc.getMac());
+            lestado.setText(tc.getEstado().name());
+
+            ltiempoConsumido.setText(tc.getDuracion());
+            lconsumidoDown.setText(tc.getmegasConsumidoDown().toString() + " Mb ");
+            lconsumidoUp.setText(tc.getmegasConsumidoUp().toString() + " Mb ");
+
+            spConsumidoDown.setProgress( tc.getmegasConsumidoDown() / ( (tc.getLimiteGigasDown() * 1024) + tc.getLimiteMegasDown() ) );
+            spConsumidoUp.setProgress(tc.getPorcentaje(tc.getmegasConsumidoUp(), (tc.getLimiteGigasUp() * 1024) + tc.getLimiteMegasUp()) );
+
+            lpaquete.setText(tc.getPaquete().getNombre());
+            lprecio.setText("Q " + tc.getPaquete().getPrecio().toString());
+            llimiteTiempo.setText(tc.getPaquete().getDuracion());
+            llimiteDescarga.setText(tc.getPaquete().getLimiteInternet());
+        }
+        else {
+            lusuario.setText("");
+            lcontraseña.setText("");
+            lip.setText("");
+            lmac.setText("");
+            lestado.setText("");
+
+            ltiempoConsumido.setText("");
+            lconsumidoDown.setText("");
+            lconsumidoUp.setText("");
+
+            spConsumidoDown.setProgress(0);
+            spConsumidoUp.setProgress(0);
+
+            lpaquete.setText("");
+            lprecio.setText("");
+            llimiteTiempo.setText("");
+            llimiteDescarga.setText("");
+        }
     }
 }

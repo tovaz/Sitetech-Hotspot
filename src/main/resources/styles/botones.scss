@@ -18,6 +18,7 @@ $cTurquesa: #00BFA5;
 $cTurquesa2: #1DE9B6;
 $cVerde: #1B5E20;
 $cVerde2: #2E7D32;
+$cVerde3: #0F9D58;
 $cLima: #64DD17;
 $cLima2: #76FF03;
 $cLima3: #AEEA00;
@@ -45,7 +46,7 @@ $cAzul3: #40C4FF;
 $cAzul4: #00B8D4;
 $cFusia: #AA00FF;
 $cRosado3: #E91E63;
-$cBlanco: #222222;
+$cIluminar: #222222;
 
 /************** COLORES BRIOLLOSOS */
 $cRojo-claro: #FFEBEE;
@@ -68,6 +69,7 @@ $cGris-claro: #FAFAFA;
 $cGrisAzul-claro: #ECEFF1;
 $cAmbar-claro: #FFF8E1;
 
+$cBlanco: #fff;
 $cGris10: #F5F5F5;
 $cGris20: #EEEEEE;
 $cGris30: #E0E0E0;
@@ -78,36 +80,82 @@ $cGris70: #616161;
 $cGris80: #424242;
 $cGris90: #212121;
 
-$bode-Grosor: 2px;
-
+$borde-radio: 25px;
+$background-Radio: 25;
+$background-Insets: 0.5;
 .btn-redondo {
     -fx-background-radius: 8px;
 }
-
+.btn-borde{ -fx-border-width: $borde-radio; -fx-background-radius: $background-Radio; -fx-background-insets: $background-Insets; }
 
 .btn:hover { 
     
 }
 
 /*************** BORDES DE COLORES *************/
-.borde-Rojo { -fx-border-color: $cRojo; -fx-border-width: $bode-Grosor; }
-.borde-Rosado { -fx-border-color: $cRosado; -fx-border-width: $bode-Grosor; }
-.borde-Purpura{ -fx-border-color: $cPurpura; -fx-border-width: $bode-Grosor; }
-.borde-Purpura2{ -fx-border-color: 2; -fx-border-width: $bode-Grosor; }
-.borde-Indigo{ -fx-border-color: $cIndigo; -fx-border-width: $bode-Grosor; }
-.borde-Indigo2{ -fx-border-color: $cIndigo2; -fx-border-width: $bode-Grosor; }
-.borde-Azul{ -fx-border-color: $cAzul; -fx-border-width: $bode-Grosor; }
-.borde-Azul2{ -fx-border-color: $cAzul2; -fx-border-width: $bode-Grosor; }
-.borde-Celeste{ -fx-border-color: $cCeleste; -fx-border-width: $bode-Grosor; }
-.borde-Cian{ -fx-border-color: $cCian; -fx-border-width: $bode-Grosor; }
-.borde-Turquesa{ -fx-border-color: $cTurquesa; -fx-border-width: $bode-Grosor; }
-.borde-Verde{ -fx-border-color: $cVerde; -fx-border-width: $bode-Grosor; }
-.borde-Lima{ -fx-border-color: $cLima; -fx-border-width: $bode-Grosor; }
-.borde-Amarillo{ -fx-border-color: $cAmarillo; -fx-border-width: $bode-Grosor; }
-.borde-Ambar{ -fx-border-color: $cAmbar; -fx-border-width: $bode-Grosor; }
-.borde-Naranja{ -fx-border-color: $cNaranja; -fx-border-width: $bode-Grosor; }
-.borde-Cafes{ -fx-border-color: $cCafes; -fx-border-width: $bode-Grosor; }
-.borde-Gris{ -fx-border-color: $cGris; -fx-border-width: $bode-Grosor; }
+.black-shadow1 { -fx-border-radius: $borde-radio; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5, 0.0, 0, 1); }
+.black-shadow2 { -fx-border-radius: $borde-radio; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5, 0.0, 0, 2); }
+.black-shadow3 { -fx-border-radius: $borde-radio; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5, 0.0, 0, 3); }
+
+.light-shadow1 { -fx-border-radius: $borde-radio; -fx-effect: dropshadow(three-pass-box, rgba(255,255,255,0.4), 5, 0.0, 0, 1); }
+.light-shadow2 { -fx-border-radius: $borde-radio; -fx-effect: dropshadow(three-pass-box, rgba(255,255,255,0.4), 5, 0.0, 0, 2); }
+.light-shadow3 { -fx-border-radius: $borde-radio; -fx-effect: dropshadow(three-pass-box, rgba(255,255,255,0.4), 5, 0.0, 0, 3); }
+
+
+.borde-Rojo { -fx-border-radius: $borde-radio; -fx-border-color: $cRojo; -fx-text-fill: $cRojo; 
+             -fx-background-radius: $background-Radio; -fx-background-insets: $background-Insets; }
+
+.borde-Rosado { -fx-border-radius: $borde-radio; -fx-border-color: $cRosado; -fx-text-fill: $cRosado; 
+               -fx-background-radius: $background-Radio; -fx-background-insets: $background-Insets; }
+
+.borde-Purpura{ -fx-border-radius: $borde-radio; -fx-border-color: $cPurpura; -fx-text-fill: $cPurpura; 
+               -fx-background-radius: $background-Radio; -fx-background-insets: $background-Insets; }
+
+.borde-Purpura2{ -fx-border-radius: $borde-radio; -fx-border-color: $cPurpura2;   -fx-text-fill: $cPurpura2; 
+                -fx-background-radius: $background-Radio; -fx-background-insets: $background-Insets;}
+
+.borde-Indigo{ -fx-border-radius: $borde-radio; -fx-border-color: $cIndigo; -fx-text-fill: $cIndigo;
+              -fx-background-radius: $background-Radio; -fx-background-insets: $background-Insets; }
+
+.borde-Indigo2{ -fx-border-radius: $borde-radio; -fx-border-color: $cIndigo2; -fx-text-fill: $cIndigo2;
+               -fx-background-radius: $background-Radio; -fx-background-insets: $background-Insets; }
+
+.borde-Azul{ -fx-border-radius: $borde-radio; -fx-border-color: $cAzul;  -fx-text-fill: $cAzul;
+            -fx-background-radius: $background-Radio; -fx-background-insets: $background-Insets; }
+
+.borde-Azul2{ -fx-border-radius: $borde-radio; -fx-border-color: $cAzul2;  -fx-text-fill: $cAzul2;
+             -fx-background-radius: $background-Radio; -fx-background-insets: $background-Insets; }
+
+.borde-Celeste{ -fx-border-radius: $borde-radio; -fx-border-color: $cCeleste; -fx-text-fill: $cCeleste;
+               -fx-background-radius: $background-Radio; -fx-background-insets: $background-Insets; }
+
+.borde-Cian{ -fx-border-radius: $borde-radio; -fx-border-color: $cCian; -fx-text-fill: $cCian;
+            -fx-background-radius: $background-Radio; -fx-background-insets: $background-Insets; }
+
+.borde-Turquesa{ -fx-border-radius: $borde-radio; -fx-border-color: $cTurquesa;  -fx-text-fill: $cTurquesa;
+                -fx-background-radius: $background-Radio; -fx-background-insets: $background-Insets; }
+
+.borde-Verde{ -fx-border-radius: $borde-radio; -fx-border-color: $cVerde;  -fx-text-fill: $cVerde;
+             -fx-background-radius: $background-Radio; -fx-background-insets: $background-Insets; }
+
+.borde-Lima{ -fx-border-radius: $borde-radio; -fx-border-color: $cLima;  -fx-text-fill: $cLima;
+            -fx-background-radius: $background-Radio; -fx-background-insets: $background-Insets; }
+
+.borde-Amarillo{ -fx-border-radius: $borde-radio; -fx-border-color: $cAmarillo; -fx-text-fill: $cRojo;
+                -fx-background-radius: $background-Radio; -fx-background-insets: $background-Insets; }
+
+.borde-Ambar{ -fx-border-radius: $borde-radio; -fx-border-color: $cAmbar;  -fx-text-fill: $cAmbar; 
+             -fx-background-radius: $background-Radio; -fx-background-insets: $background-Insets; }
+
+.borde-Naranja{ -fx-border-radius: $borde-radio; -fx-border-color: $cNaranja;  -fx-text-fill: $cNaranja;
+               -fx-background-radius: $background-Radio; -fx-background-insets: $background-Insets; }
+
+.borde-Cafes{ -fx-border-radius: $borde-radio; -fx-border-color: $cCafes;  -fx-text-fill: $cCafes;
+             -fx-background-radius: $background-Radio; -fx-background-insets: $background-Insets; }
+
+.borde-Gris{ -fx-border-radius: $borde-radio; -fx-border-color: $cGris;  -fx-text-fill: $cGris;
+            -fx-background-radius: $background-Radio; -fx-background-insets: $background-Insets; }
+
 
 .btn-rojo {
     -fx-background-color: linear-gradient($cRojo, $cRojo2);
@@ -286,83 +334,83 @@ $bode-Grosor: 2px;
 
 /**************************** BOTONES HOVER ***********************************/
 .btn-rojo:hover {
-    -fx-background-color: linear-gradient($cRojo + $cBlanco, $cRojo2 + $cBlanco);
+    -fx-background-color: linear-gradient($cRojo + $cIluminar, $cRojo2 + $cIluminar);
 }
 
 .btn-rosado:hover {
-    -fx-background-color: linear-gradient($cRosado + $cBlanco, $cRosado2 + $cBlanco);
+    -fx-background-color: linear-gradient($cRosado + $cIluminar, $cRosado2 + $cIluminar);
 }
 
 .btn-purpura:hover {
-    -fx-background-color: linear-gradient($cPurpura + $cBlanco, $cPurpura2 + $cBlanco);
+    -fx-background-color: linear-gradient($cPurpura + $cIluminar, $cPurpura2 + $cIluminar);
 }
 
 .btn-purpura2:hover {
-    -fx-background-color: linear-gradient($cPurpura3 + $cBlanco, $cPurpura4 + $cBlanco);
+    -fx-background-color: linear-gradient($cPurpura3 + $cIluminar, $cPurpura4 + $cIluminar);
 }
 
 .btn-indigo:hover {
-    -fx-background-color: linear-gradient($cIndigo + $cBlanco, $cIndigo2 + $cBlanco);
+    -fx-background-color: linear-gradient($cIndigo + $cIluminar, $cIndigo2 + $cIluminar);
 }
 
 .btn-azul:hover {
-    -fx-background-color: linear-gradient($cAzul + $cBlanco, $cAzul2 + $cBlanco);
+    -fx-background-color: linear-gradient($cAzul + $cIluminar, $cAzul2 + $cIluminar);
 }
 
 .btn-celeste:hover {
-    -fx-background-color: linear-gradient($cCeleste + $cBlanco, $cCeleste2 + $cBlanco);
+    -fx-background-color: linear-gradient($cCeleste + $cIluminar, $cCeleste2 + $cIluminar);
 }
 
 .btn-cyan:hover{
-    -fx-background-color: linear-gradient($cCian + $cBlanco, $cCian2 + $cBlanco);
+    -fx-background-color: linear-gradient($cCian + $cIluminar, $cCian2 + $cIluminar);
 }
 
 .btn-turquesa:hover {
-    -fx-background-color: linear-gradient($cTurquesa + $cBlanco, $cTurquesa2 + $cBlanco);
+    -fx-background-color: linear-gradient($cTurquesa + $cIluminar, $cTurquesa2 + $cIluminar);
 }
 
 .btn-verde:hover {
-    -fx-background-color: linear-gradient($cVerde + $cBlanco, $cVerde2 + $cBlanco);
+    -fx-background-color: linear-gradient($cVerde + $cIluminar, $cVerde2 + $cIluminar);
 }
 
 .btn-lima:hover {
-    -fx-background-color: linear-gradient($cLima + $cBlanco, $cLima2 + $cBlanco);
+    -fx-background-color: linear-gradient($cLima + $cIluminar, $cLima2 + $cIluminar);
 }
 
 .btn-lima2:hover {
-    -fx-background-color: linear-gradient($cLima3 + $cBlanco, $cLima4 + $cBlanco);
+    -fx-background-color: linear-gradient($cLima3 + $cIluminar, $cLima4 + $cIluminar);
 }
 
 .btn-amarillo:hover {
-    -fx-background-color: linear-gradient($cAmarillo + $cBlanco, $cAmarillo2 + $cBlanco);
+    -fx-background-color: linear-gradient($cAmarillo + $cIluminar, $cAmarillo2 + $cIluminar);
 }
 
 .btn-ambar:hover {
-    -fx-background-color: linear-gradient($cAmbar + $cBlanco, $cAmbar2 + $cBlanco);
+    -fx-background-color: linear-gradient($cAmbar + $cIluminar, $cAmbar2 + $cIluminar);
 }
 
 .btn-naranja:hover{
-    -fx-background-color: linear-gradient($cNaranja + $cBlanco, $cNaranja2 + $cBlanco);
+    -fx-background-color: linear-gradient($cNaranja + $cIluminar, $cNaranja2 + $cIluminar);
 }
 
 .btn-naranja2:hover{
-    -fx-background-color: linear-gradient($cNaranja3 + $cBlanco, $cNaranja4 + $cBlanco);
+    -fx-background-color: linear-gradient($cNaranja3 + $cIluminar, $cNaranja4 + $cIluminar);
 }
 
 .btn-cafes:hover{
-    -fx-background-color: linear-gradient($cCafes + $cBlanco, $cCafes2 + $cBlanco);
+    -fx-background-color: linear-gradient($cCafes + $cIluminar, $cCafes2 + $cIluminar);
 }
 
 .btn-gris:hover{
-    -fx-background-color: linear-gradient($cGris + $cBlanco, $cGris2 + $cBlanco);
+    -fx-background-color: linear-gradient($cGris + $cIluminar, $cGris2 + $cIluminar);
 }
 
 .btn-gris-claro:hover{
-    -fx-background-color: linear-gradient($cGris-Claro + $cBlanco, $cGris-Claro2 + $cBlanco);
+    -fx-background-color: linear-gradient($cGris-Claro + $cIluminar, $cGris-Claro2 + $cIluminar);
 }
 
 .btn-gris-azul:hover{
-    -fx-background-color: linear-gradient($cGris-Azul + $cBlanco, $cGris-Azul2 + $cBlanco);
+    -fx-background-color: linear-gradient($cGris-Azul + $cIluminar, $cGris-Azul2 + $cIluminar);
 }
 
 
@@ -380,15 +428,15 @@ $bode-Grosor: 2px;
 }
 
 .btn-dg-azul-turquesa:hover {
-    -fx-background-color: linear-gradient(to top right, $cAzul3, $cCian3 + $cBlanco);
+    -fx-background-color: linear-gradient(to top right, $cAzul3, $cCian3 + $cIluminar);
 } 
  
 .btn-dg-cian-purpura:hover{
-    -fx-background-color: linear-gradient(to top right, $cCian3, $cFusia + $cBlanco);
+    -fx-background-color: linear-gradient(to top right, $cCian3, $cFusia + $cIluminar);
 }
 
 .btn-dg-rojo-rosado:hover{
-    -fx-background-color: linear-gradient(to top right, $cRojo, $cRosado3 + $cBlanco);
+    -fx-background-color: linear-gradient(to top right, $cRojo, $cRosado3 + $cIluminar);
 }
 /* *********************************** TEXTOS ****************************/
 .txt {
@@ -415,8 +463,24 @@ $bode-Grosor: 2px;
     -fx-text-fill: $cVerde;
 }
 
+.txt-verde2 {
+    -fx-text-fill: $cVerde2;
+}
+
+.txt-verde3 {
+    -fx-text-fill: $cVerde3;
+}
+
 .txt-lima {
     -fx-text-fill: $cLima;
+}
+
+.txt-lima2 {
+    -fx-text-fill: $cLima2;
+}
+
+.txt-lima3 {
+    -fx-text-fill: $cLima3;
 }
 
 .txt-cafes {
@@ -431,18 +495,222 @@ $bode-Grosor: 2px;
     -fx-text-fill: $cGris2;
 }
 
-.txt-gris-claro {
-    -fx-text-fill: $cGris-Claro;
+.txt-gris1 {
+    -fx-text-fill: $cGris60;
 }
 
-.txt-gris-claro2 {
-    -fx-text-fill: $cGris-Claro2;
+.txt-gri2 {
+    -fx-text-fill: $cGris70;
+}
+
+.txt-gri3 {
+    -fx-text-fill: $cGris80;
+}
+
+.txt-gri4 {
+    -fx-text-fill: $cGris90;
 }
 
 .txt-turquesa {
     -fx-text-fill: $cTurquesa;
 }
 
+.txt-turquesa2 {
+    -fx-text-fill: $cTurquesa2;
+}
+
 .txt-celeste {
     -fx-text-fill: $cCeleste;
+}
+
+/************************* TEXTOS CLAROS ****************************/
+.txt-rojo-claro {
+    -fx-text-fill: $cRojo-claro;
+}
+
+.txt-rosado-claro {
+    -fx-text-fill: $cRosado-claro;
+}
+
+.txt-purpura-claro {
+    -fx-text-fill: $cPurpura-claro;
+}
+
+.txt-indigo-claro {
+    -fx-text-fill: $cIndigo-claro;
+}
+
+.txt-azul-claro {
+    -fx-text-fill: $cAzul-claro;
+}
+
+.txt-celeste-claro {
+    -fx-text-fill: $cCeleste-claro;
+}
+
+.txt-cian-claro{
+    -fx-text-fill: $cCian-claro;
+}
+
+.txt-turquesa-claro {
+    -fx-text-fill: $cTurquesa-claro;
+}
+
+.txt-verde-claro {
+    -fx-text-fill: $cVerde;
+}
+
+.txt-lima-claro {
+    -fx-text-fill: $cLima-claro;
+}
+
+.txt-amarillo-claro {
+    -fx-text-fill: $cAmarillo-claro;
+}
+
+.txt-ambar-claro {
+    -fx-text-fill: $cAmbar-claro;
+}
+
+.txt-naranja-claro{
+    -fx-text-fill: $cNaranja-claro;
+}
+
+
+.txt-cafes-claro{
+    -fx-text-fill: $cCafes-claro;
+}
+
+.txt-gris-claro1{
+    -fx-text-fill: $cGris10;
+}
+
+.txt-gris-claro2{
+    -fx-text-fill: $cGris20;
+}
+
+.txt-gris-claro3{
+    -fx-text-fill: $cGris30;
+}
+
+.txt-gris-claro4{
+    -fx-text-fill: $cGris40;
+}
+
+.txt-gris-claro5{
+    -fx-text-fill: $cGris50;
+}
+
+/***************************** FONDOS ****************************************/
+.fondo-gris1{
+    -fx-background-color: linear-gradient(to top right, $cGris10, $cGris20 );
+}
+
+.fondo-gris2{
+    -fx-background-color: linear-gradient(to top right, $cGris20, $cGris30 );
+}
+
+.fondo-gris3{
+    -fx-background-color: linear-gradient(to top right, $cGris30, $cGris40 );
+}
+
+.fondo-gris4{
+    -fx-background-color: linear-gradient(to top right, $cGris40, $cGris50 );
+}
+
+.fondo-foco-gris1 {
+    -fx-background-color: radial-gradient(focus-angle 254deg , focus-distance 74% , center 50% 50% , radius 55% , $cGris10, $cGris20);
+}
+
+.fondo-foco-gris2 {
+    -fx-background-color: radial-gradient(focus-angle 254deg , focus-distance 74% , center 50% 50% , radius 55% , $cGris20, $cGris40);
+}
+
+.fondo-foco-gris3 {
+    -fx-background-color: radial-gradient(focus-angle 254deg , focus-distance 74% , center 50% 50% , radius 55% , $cGris30, $cGris60);
+}
+
+.fondo-foco-gris4 {
+    -fx-background-color: radial-gradient(focus-angle 254deg , focus-distance 74% , center 50% 50% , radius 55% , $cGris40, $cGris80);
+}
+
+.fondo-rojo {
+    -fx-background-color: linear-gradient($cRojo, $cRojo2);
+}
+
+.fondo-rosado {
+    -fx-background-color: linear-gradient($cRosado, $cRosado2);
+}
+
+.fondo-purpura {
+    -fx-background-color: linear-gradient($cPurpura, $cPurpura2);
+}
+
+.fondo-purpura2 {
+    -fx-background-color: linear-gradient($cPurpura3, $cPurpura4);
+}
+
+.fondo-indigo {
+    -fx-background-color: linear-gradient($cIndigo, $cIndigo2);
+}
+
+.fondo-indigo2 {
+    -fx-background-color: linear-gradient($cIndigo , $cIndigo2 + $cIluminar);
+}
+
+.fondo-azul {
+    -fx-background-color: linear-gradient($cAzul, $cAzul2);
+}
+
+.fondo-celeste {
+    -fx-background-color: linear-gradient($cCeleste, $cCeleste2);
+}
+
+.fondo-cyan{
+    -fx-background-color: linear-gradient($cCian, $cCian2);
+}
+
+.fondo-turquesa {
+    -fx-background-color: linear-gradient($cTurquesa, $cTurquesa2);
+}
+
+.fondo-verde {
+    -fx-background-color: linear-gradient($cVerde, $cVerde2);
+}
+
+.fondo-lima {
+    -fx-background-color: linear-gradient($cLima, $cLima2);
+}
+
+.fondo-lima2 {
+    -fx-background-color: linear-gradient($cLima3, $cLima4);
+}
+
+.fondo-amarillo {
+    -fx-background-color: linear-gradient($cAmarillo, $cAmarillo2);
+}
+
+.fondo-ambar {
+    -fx-background-color: linear-gradient($cAmbar, $cAmbar2);
+}
+
+.fondo-naranja{
+    -fx-background-color: linear-gradient($cNaranja, $cNaranja2);
+}
+
+.fondo-naranja2{
+    -fx-background-color: linear-gradient($cNaranja3, $cNaranja4);
+}
+
+.fondo-cafes{
+    -fx-background-color: linear-gradient($cCafes, $cCafes2);
+}
+
+
+.fondo-gris-claro{
+    -fx-background-color: linear-gradient($cGris-Claro, $cGris-Claro2);
+}
+
+.fondo-gris-azul{
+    -fx-background-color: linear-gradient($cGris-Azul, $cGris-Azul2);
 }

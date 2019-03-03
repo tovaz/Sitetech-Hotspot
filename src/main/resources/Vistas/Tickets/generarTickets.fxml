@@ -2,206 +2,205 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXSpinner?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="483.0" prefWidth="734.0" styleClass="fondoApp" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="522.0" prefWidth="779.0" styleClass="fondoApp" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ToolBar>
-               <items>
-                  <HBox>
-                     <children>
-                        <Label prefHeight="23.0" prefWidth="44.0" text="Paquete" />
-                        <ComboBox fx:id="cbpaquetes" prefHeight="25.0" prefWidth="164.0" promptText="Selecciona un Paquete">
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                        <Label prefHeight="24.0" prefWidth="36.0" text="Router">
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                        </Label>
-                        <ComboBox fx:id="cbrouters" prefHeight="25.0" prefWidth="164.0" promptText="Selecciona un Router">
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                        <JFXCheckBox fx:id="checkNumeros" text="Usar solo numeros en la contraseña">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </JFXCheckBox>
-                     </children>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </HBox>
-               </items>
-            </ToolBar>
-            <HBox layoutX="10.0" layoutY="10.0" styleClass="btn-gris-30">
+            <HBox styleClass="fondo-indigo">
                <children>
                   <VBox>
                      <children>
-                        <HBox VBox.vgrow="NEVER">
-                           <children>
-                              <Label prefHeight="25.0" prefWidth="90.0" text="Longitud Carac" />
-                              <ComboBox fx:id="cbusuario">
-                                  <items>
-                                      <FXCollections fx:factory="observableArrayList">
-                                      <String fx:value="1" />
-                                      <String fx:value="2" />
-                                      <String fx:value="3" />
-                                      <String fx:value="4" />
-                                      <String fx:value="5" />
-                                      <String fx:value="6" />
-                                      <String fx:value="7" />
-                                      <String fx:value="8" />
-                                      <String fx:value="9" />
-                                      <String fx:value="10" />
-                                      <String fx:value="11" />
-                                      <String fx:value="12" />
-                                      <String fx:value="13" />
-                                      <String fx:value="14" />
-                                      <String fx:value="15" />
-                                      </FXCollections>
-                                  </items>
-                                 <HBox.margin>
-                                    <Insets left="29.0" />
-                                 </HBox.margin>
-                              </ComboBox>
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <padding>
-                              <Insets bottom="5.0" />
-                           </padding>
-                        </HBox>
-                        <HBox>
-                           <children>
-                              <Label prefHeight="25.0" prefWidth="109.0" text="Longitud contraseña" />
-                              <ComboBox fx:id="cbcontraseña">
-                                  <items>
-                                      <FXCollections fx:factory="observableArrayList">
-                                      <String fx:value="1" />
-                                      <String fx:value="2" />
-                                      <String fx:value="3" />
-                                      <String fx:value="4" />
-                                      <String fx:value="5" />
-                                      <String fx:value="6" />
-                                      <String fx:value="7" />
-                                      <String fx:value="8" />
-                                      <String fx:value="9" />
-                                      <String fx:value="10" />
-                                      <String fx:value="11" />
-                                      <String fx:value="12" />
-                                      <String fx:value="13" />
-                                      <String fx:value="14" />
-                                      <String fx:value="15" />
-                                      </FXCollections>
-                                  </items>
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                              </ComboBox>
-                           </children>
-                        </HBox>
+                        <Label prefHeight="23.0" prefWidth="44.0" styleClass="txt-gris-claro2" text="Paquete" />
+                        <JFXComboBox fx:id="cbpaquetes" prefHeight="25.0" prefWidth="226.0" promptText="Selecciona un Paquete" styleClass="backgroundLineal-boton" />
                      </children>
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox prefHeight="55.0" prefWidth="121.0">
+                  <VBox>
                      <children>
-                        <Label text="Cantidad de tickets" VBox.vgrow="NEVER" />
-                        <TextField fx:id="tcantidad" />
+                        <Label prefHeight="24.0" prefWidth="36.0" styleClass="txt-gris-claro2" text="Router" />
+                        <JFXComboBox fx:id="cbrouters" prefHeight="25.0" prefWidth="210.0" promptText="Selecciona un Router" styleClass="backgroundLineal-boton" />
                      </children>
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox HBox.hgrow="ALWAYS">
-                     <HBox.margin>
-                        <Insets left="30.0" />
-                     </HBox.margin>
+                  <VBox prefHeight="50.0" prefWidth="171.0" HBox.hgrow="NEVER">
                      <children>
-                        <HBox fx:id="pbotones">
+                        <Label prefHeight="25.0" prefWidth="174.0" styleClass="txt-gris-claro2" text="Longitud usuario y contraseña" />
+                        <HBox prefHeight="25.0" prefWidth="154.0">
                            <children>
-                              <JFXButton minHeight="30.0" onAction="#generarAction" prefHeight="30.0" styleClass="btn-azul" text="Generar tickets" textFill="#f8f8f8">
-                                 <graphic>
-                                    <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../Imagenes/ticketadd.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton minHeight="30.0" onAction="#guardarAction" prefHeight="30.0" ripplerFill="#f2f2f2" styleClass="btn-dg-azul-turquesa" text="Guardar">
-                                 <graphic>
-                                    <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../Imagenes/save.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
+                              <JFXComboBox fx:id="cbusuario" styleClass="backgroundLineal-boton">
+                                  <items>
+                                      <FXCollections fx:factory="observableArrayList">
+                                      <String fx:value="1" />
+                                      <String fx:value="2" />
+                                      <String fx:value="3" />
+                                      <String fx:value="4" />
+                                      <String fx:value="5" />
+                                      <String fx:value="6" />
+                                      <String fx:value="7" />
+                                      <String fx:value="8" />
+                                      <String fx:value="9" />
+                                      <String fx:value="10" />
+                                      <String fx:value="11" />
+                                      <String fx:value="12" />
+                                      <String fx:value="13" />
+                                      <String fx:value="14" />
+                                      <String fx:value="15" />
+                                      </FXCollections>
+                                  </items>
+                              </JFXComboBox>
+                              <JFXComboBox fx:id="cbcontraseña" styleClass="backgroundLineal-boton">
+                                  <items>
+                                      <FXCollections fx:factory="observableArrayList">
+                                      <String fx:value="1" />
+                                      <String fx:value="2" />
+                                      <String fx:value="3" />
+                                      <String fx:value="4" />
+                                      <String fx:value="5" />
+                                      <String fx:value="6" />
+                                      <String fx:value="7" />
+                                      <String fx:value="8" />
+                                      <String fx:value="9" />
+                                      <String fx:value="10" />
+                                      <String fx:value="11" />
+                                      <String fx:value="12" />
+                                      <String fx:value="13" />
+                                      <String fx:value="14" />
+                                      <String fx:value="15" />
+                                      </FXCollections>
+                                  </items>
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
-                              </JFXButton>
-                              <JFXButton minHeight="30.0" onAction="#imprimirAction" prefHeight="30.0" styleClass="txt-azul" text="Imprimir" textFill="WHITE">
-                                 <graphic>
-                                    <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../Imagenes/print.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                              </JFXButton>
+                              </JFXComboBox>
                            </children>
-                        </HBox>
-                        <HBox>
-                           <children>
-                              <Label fx:id="ltrabajando" prefHeight="25.0" prefWidth="318.0" HBox.hgrow="ALWAYS" />
-                              <JFXSpinner fx:id="sptrabajando" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" prefHeight="25.0" prefWidth="25.0" visible="false">
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                              </JFXSpinner>
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
                         </HBox>
                      </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="55.0" prefWidth="127.0">
+                     <children>
+                        <Label styleClass="txt-gris-claro2" text="Cantidad de tickets" VBox.vgrow="NEVER" />
+                        <TextField fx:id="tcantidad" prefHeight="25.0" prefWidth="95.0" />
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
                   </VBox>
                </children>
                <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
                </padding>
             </HBox>
+            <VBox>
+               <children>
+                  <HBox fx:id="pbotones">
+                     <children>
+                        <JFXButton fx:id="bgenerar" minHeight="35.0" onAction="#generarAction" prefHeight="35.0" text="Generar tickets" textFill="#f8f8f8">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Imagenes/ticketadd.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <styleClass>
+                              <String fx:value="btn-indigo" />
+                              <String fx:value="btn-borde" />
+                              <String fx:value="txt-gris-claro1" />
+                           </styleClass>
+                        </JFXButton>
+                        <JFXButton fx:id="bguardar" minHeight="35.0" onAction="#guardarAction" prefHeight="35.0" prefWidth="108.0" ripplerFill="#f2f2f2" text="Guardar">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Imagenes/save.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="btn-indigo" />
+                              <String fx:value="btn-borde" />
+                              <String fx:value="txt-gris-claro1" />
+                           </styleClass>
+                        </JFXButton>
+                        <JFXButton fx:id="bimprimir" minHeight="35.0" onAction="#imprimirAction" prefHeight="35.0" prefWidth="97.0" styleClass="borde-Azul" text="Imprimir" textFill="WHITE">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Imagenes/print.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXCheckBox fx:id="checkNumeros" text="Usar solo numeros en la contraseña">
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </JFXCheckBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label fx:id="ltrabajando" prefHeight="25.0" prefWidth="318.0" HBox.hgrow="ALWAYS" />
+                        <JFXSpinner fx:id="sptrabajando" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" prefHeight="25.0" prefWidth="25.0" visible="false">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </JFXSpinner>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets left="5.0" />
+               </VBox.margin>
+            </VBox>
             <AnchorPane VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets top="10.0" />

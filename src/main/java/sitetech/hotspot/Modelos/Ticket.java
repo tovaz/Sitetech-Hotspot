@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -326,4 +327,36 @@ public class Ticket {
     }
     
     
+    
+    
+    
+    //************** FUNCIONES ADICIONALES ***************************
+    @Transient public String Duracion;
+    @Transient public String LimiteInternetDown;
+    @Transient public String LimiteInternetUp;
+    
+    
+    public Double getPorcentaje(double consumido, double limite){
+        return consumido / limite;
+    }
+    
+    public Double getmegasConsumidoDown(){
+        return (gigasConsumidosDown*1024) + megasConsumidosDown;
+    }
+    
+    public Double getmegasConsumidoUp(){
+        return (gigasConsumidosUp*1024) + megasConsumidosUp;
+    }
+    
+    public String getLimiteInternetDown(){
+        return limiteGigasDown + " Gb + " + limiteMegasDown + " Mb";
+    }
+    
+    public String getLimiteInternetUp(){
+        return limiteGigasUp + " Gb + " + limiteMegasUp + " Mb";
+    }
+    
+    public String getDuracion() {
+        return String.valueOf(diasConsumidos) + " dias y " + String.valueOf(horasConsumidas) + "hr " + String.valueOf(minutosConsumidos) + " min";
+    }
 }

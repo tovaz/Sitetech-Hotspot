@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXSpinner?>
 <?import com.jfoenix.controls.JFXToolbar?>
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -16,10 +17,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ticketsPanel" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="ticketsPanel" styleClass="fondoApp" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <JFXToolbar prefHeight="580.0" prefWidth="808.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <center>
@@ -32,7 +36,7 @@
                                         <VBox>
                                             <children>
                                                 <Label text="Usuario" />
-                                                <TextField fx:id="tnombre" />
+                                                <TextField fx:id="tnombre" prefHeight="25.0" prefWidth="105.0" />
                                             </children>
                                             <padding>
                                                 <Insets left="10.0" />
@@ -50,16 +54,20 @@
                                         <VBox>
                                             <children>
                                                 <Label text="Paquete del ticket" />
-                                                <JFXComboBox fx:id="cbpaquetes" prefHeight="25.0" prefWidth="145.0" />
+                                                <JFXComboBox fx:id="cbpaquetes" prefHeight="25.0" prefWidth="145.0" styleClass="txt-azul" />
                                             </children>
                                  <padding>
                                     <Insets left="10.0" right="10.0" />
                                  </padding>
                                         </VBox>
-                                        <JFXButton onAction="#onBuscarAction" prefWidth="96.0" styleClass="btn-azul" text="Buscar" textFill="WHITE">
+                                        <JFXButton onAction="#onBuscarAction" prefWidth="96.0" text="Buscar" textFill="WHITE">
                                             <font>
                                                 <Font size="15.0" />
                                             </font>
+                                 <styleClass>
+                                    <String fx:value="btn-azul" />
+                                    <String fx:value="btn-borde" />
+                                 </styleClass>
                                         </JFXButton>
                                     </items>
                                     <VBox.margin>
@@ -72,10 +80,13 @@
                                 <TableView fx:id="tvtickets" VBox.vgrow="ALWAYS">
                                     <columns>
                                         <TableColumn id="tcno" editable="false" prefWidth="48.0" resizable="false" text="No." />
-                                        <TableColumn id="tcusuario" editable="false" prefWidth="139.0" text="Usuario" />
-                                        <TableColumn id="tcprivilegios" editable="false" prefWidth="125.0" resizable="false" text="Contraseña" />
-                                        <TableColumn id="tcdeshabilitado" editable="false" prefWidth="115.0" resizable="false" text="Paquete" />
-                                        <TableColumn id="tcdeshabilitado" editable="false" prefWidth="115.0" resizable="false" text="Estado" />
+                                        <TableColumn id="tcusuario" editable="false" prefWidth="100.0" text="Usuario" />
+                                        <TableColumn id="tcdeshabilitado" editable="false" prefWidth="120.0" resizable="false" text="Paquete" />
+                                        <TableColumn id="tcdeshabilitado" editable="false" prefWidth="90.0" resizable="false" text="Estado" />
+                                        <TableColumn id="tcprivilegios" editable="false" prefWidth="125.0" resizable="false" text="Creado" />
+                                        <TableColumn id="tcprivilegios" editable="false" prefWidth="125.0" resizable="false" text="Duracion" />
+                                        <TableColumn id="tcprivilegios" editable="false" prefWidth="115.0" resizable="false" text="L. Descarga" />
+                                        <TableColumn id="tcprivilegios" editable="false" prefWidth="115.0" resizable="false" text="L. Subida" />
                                     </columns>
                                     <VBox.margin>
                                         <Insets />
@@ -84,22 +95,29 @@
                             </children>
                         </VBox>
                     </children>
+               <padding>
+                  <Insets top="2.0" />
+               </padding>
                 </AnchorPane>
             </center>
             <top>
                 <AnchorPane fx:id="panelTicket" BorderPane.alignment="CENTER">
                     <children>
-                        <VBox prefHeight="77.0" prefWidth="808.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox prefWidth="808.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                                 <ToolBar prefWidth="757.0" styleClass="ticket-toolbar">
                                     <items>
-                                        <Label styleClass="txt-gris2" text="Tickets">
+                                        <Label text="Tickets">
                                             <font>
                                                 <Font size="18.0" />
                                             </font>
                                             <padding>
                                                 <Insets right="50.0" />
                                             </padding>
+                                 <styleClass>
+                                    <String fx:value="txt-gris2" />
+                                    <String fx:value="light-shadow3" />
+                                 </styleClass>
                                         </Label>
                                         <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGenerarAction" prefHeight="55.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
                                             <graphic>
@@ -171,18 +189,174 @@
                     </children>
                 </AnchorPane>
             </top>
-            <right>
-                <VBox prefHeight="444.0" prefWidth="190.0" styleClass="btn-gris-30" BorderPane.alignment="CENTER">
-                    <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="193.0" styleClass="txt-azul" text="Informacion del ticket" textAlignment="CENTER" textFill="#004db2">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
+         <right>
+                  <VBox prefHeight="515.0" prefWidth="220.0" BorderPane.alignment="CENTER">
+                     <children>
+                  <VBox styleClass="fondo-foco-gris1" VBox.vgrow="ALWAYS">
+                     <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="193.0" styleClass="txt-indigo" text="Informacion del ticket" textAlignment="CENTER" textFill="#004db2">
+                                        <font>
+                                            <Font size="17.0" />
+                                        </font>
+                                    </Label>
+                              <GridPane hgap="2.0" vgap="2.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="70.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="98.0" minWidth="10.0" prefWidth="98.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="Usuario:" />
+                                    <Label fx:id="lusuario" styleClass="txt-indigo" text="6dad34" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Contraseña:" GridPane.rowIndex="1" />
+                                    <Label fx:id="lcontraseña" styleClass="txt-gris2" text="123456" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label layoutX="10.0" layoutY="34.0" text="Ip:" GridPane.rowIndex="2" />
+                                    <Label layoutX="10.0" layoutY="56.0" text="Mac:" GridPane.rowIndex="3" />
+                                    <Label layoutX="10.0" layoutY="78.0" text="Estado:" GridPane.rowIndex="4" />
+                                    <Label fx:id="lip" layoutX="96.0" layoutY="32.0" styleClass="txt-gris2" text="192.168.1.6" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="lmac" layoutX="96.0" layoutY="54.0" styleClass="txt-gris2" text="23:cd:5a:c2:d3" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label fx:id="lestado" layoutX="96.0" layoutY="76.0" styleClass="txt-indigo" text="Activo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                 </children>
+                              </GridPane>
+                              <Label text="Tiempo Consumido">
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
                         </Label>
-                        <JFXSpinner progress="0.35" />
-                    </children>
-                </VBox>
-            </right>
+                              <Label fx:id="ltiempoConsumido" styleClass="txt-gris2" text="1 dia + 3hr y 20 min" />
+                        <Label layoutX="20.0" layoutY="170.0" text="Internet consumido">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </Label>
+                              <GridPane>
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="103.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="67.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label fx:id="lconsumidoDown" styleClass="txt-verde3" text="0 Mb" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                    </Label>
+                                          <JFXSpinner fx:id="spConsumidoDown" progress="0.5" GridPane.columnIndex="1" GridPane.rowSpan="2" />
+                              <Label fx:id="ltiempoConsumido1" styleClass="txt-gris2" text="Descarga" />
+                                 </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                              </GridPane>
+                              <GridPane>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="103.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="67.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label fx:id="lconsumidoUp" styleClass="txt-verde3" text="600 Mb" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                    </Label>
+                                    <JFXSpinner fx:id="spConsumidoUp" progress="0.5" GridPane.columnIndex="1" GridPane.rowSpan="2" />
+                              <Label fx:id="ltiempoConsumido11" styleClass="txt-gris2" text="Subida" />
+                                 </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                              </GridPane>
+                              <Separator prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Separator>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                  </VBox>
+                        <VBox styleClass="fondo-turquesa" VBox.vgrow="NEVER">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="193.0" styleClass="txt-indigo" text="Info del paquete" textAlignment="CENTER" textFill="#004db2">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lpaquete" contentDisplay="CENTER" prefHeight="26.0" prefWidth="207.0" styleClass="txt-gris2" text="2Gb + 3 horas">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                           <padding>
+                              <Insets bottom="5.0" />
+                           </padding>
+                              </Label>
+                              <GridPane hgap="2.0" vgap="2.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.0" minWidth="10.0" prefWidth="99.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="99.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label text="Limite de tiempo:" GridPane.rowIndex="1" />
+                                    <Label text="Limite de Internet:" GridPane.rowIndex="2" />
+                                    <Label fx:id="llimiteDescarga" prefHeight="17.0" prefWidth="104.0" text="1Gb + 300 Mb" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="llimiteTiempo" layoutX="105.0" layoutY="32.0" prefHeight="17.0" prefWidth="98.0" styleClass="txt-gris2" text="3hr + 0 min" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label layoutX="10.0" layoutY="34.0" text="Precio:" />
+                                    <Label fx:id="lprecio" layoutX="106.0" layoutY="32.0" styleClass="txt-indigo" text="Q 6.00" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </GridPane>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                     <padding>
+                        <Insets bottom="20.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                        </VBox>
+                     </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets top="2.0" />
+               </padding>
+                  </VBox>
+         </right>
         </JFXToolbar>
     </children>
     <stylesheets>

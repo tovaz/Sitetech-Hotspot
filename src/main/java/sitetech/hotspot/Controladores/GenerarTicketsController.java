@@ -8,14 +8,12 @@ package sitetech.hotspot.Controladores;
 import Util.Dialogo;
 import Util.Mikrotik;
 import Util.cadenaAletoria;
-import Util.claseRetorno;
-import Util.util;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSpinner;
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import static javafx.collections.FXCollections.observableArrayList;
@@ -24,7 +22,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -32,15 +29,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
 import sitetech.Helpers.reporteHelper;
 import sitetech.hotspot.Modelos.Paquete;
 import sitetech.hotspot.Modelos.PaqueteManager;
@@ -57,13 +47,13 @@ import sitetech.hotspot.Modelos.TicketManager;
 public class GenerarTicketsController implements Initializable {
 
     @FXML
-    private ComboBox<Paquete> cbpaquetes;
+    private JFXComboBox<Paquete> cbpaquetes;
     @FXML
-    private ComboBox<Router> cbrouters;
+    private JFXComboBox<Router> cbrouters;
     @FXML
-    private ComboBox<String> cbusuario;
+    private JFXComboBox<String> cbusuario;
     @FXML
-    private ComboBox<String> cbcontraseña;
+    private JFXComboBox<String> cbcontraseña;
     @FXML
     private TableView<Ticket> tvtickets;
     @FXML
@@ -77,6 +67,15 @@ public class GenerarTicketsController implements Initializable {
     @FXML
     private HBox pbotones;
 
+    @FXML
+    private JFXButton bgenerar;
+
+    @FXML
+    private JFXButton bguardar;
+
+    @FXML
+    private JFXButton bimprimir;
+    
     private final Stage thisStage;
 
     /**
@@ -87,7 +86,9 @@ public class GenerarTicketsController implements Initializable {
         // TODO
     }
 
-    public GenerarTicketsController() {
+    private TicketsController tc;
+    public GenerarTicketsController(TicketsController _tc) {
+        tc = _tc;
         thisStage = new Stage();
         Util.util.cargarStage("/Vistas/Tickets/generarTickets.fxml", "Generador de tickets", thisStage, this, Modality.NONE);
     }
@@ -106,6 +107,8 @@ public class GenerarTicketsController implements Initializable {
         cbpaquetes.getItems().addAll(pm.listaPaquetes);
         cbrouters.getItems().addAll(rm.listaRouters);
 
+        bguardar.setDisable(true);
+        bimprimir.setDisable(true);
         this.actualizarTabla();
     }
 
@@ -115,7 +118,13 @@ public class GenerarTicketsController implements Initializable {
         int longcontraseña = Integer.valueOf(cbcontraseña.getSelectionModel().getSelectedItem().toString());
         int cantidad = Integer.valueOf(tcantidad.getText());
 
-        this.generarTickets(longusuario, longcontraseña, cantidad);
+        if (listaTickets == null ) {
+            this.generarTickets(longusuario, longcontraseña, cantidad);
+        }
+        else{
+            if (Dialogo.mostrarConfirmacion("Se perderan los tickets que actualmente se generaron y no se guardaron.", "¿Desea generar mas Tickets?", ButtonType.YES, ButtonType.NO) == ButtonType.YES)
+                this.generarTickets(longusuario, longcontraseña, cantidad);
+        }
     }
 
     private ObservableList<Ticket> listaTickets;
@@ -134,7 +143,11 @@ public class GenerarTicketsController implements Initializable {
             Ticket tx = new Ticket(i, usuario, contraseña, Ticket.EstadosType.Generado, cbpaquetes.getValue(), cbrouters.getValue());
             listaTickets.add(tx);
         }
+        
+        
         tvtickets.setItems(listaTickets);
+        bguardar.setDisable(false);
+        bimprimir.setDisable(true);
     }
 
     public String crearUsuario(int longusuario, ObservableList<Ticket> lista1, ObservableList<Ticket> lista2) {
@@ -209,8 +222,12 @@ public class GenerarTicketsController implements Initializable {
             Dialogo.mostrarError("Se guardaron solamente " + ctickets + " tickets correctamente.", "No se guardaron todos los tickets.", ButtonType.OK);
         }
 
+        
+        if (ctickets > 0) { bimprimir.setDisable(false); }
+        
         tvtickets.getItems().removeAll();
         tvtickets.setItems(listaTickets);
+        tc.listaTickets.addAll(listaTickets);
     }
 
     @FXML

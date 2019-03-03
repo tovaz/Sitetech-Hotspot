@@ -99,7 +99,7 @@ public class Mikrotik {
     }
     
     public boolean eliminarHotspotUsuario(String usuario){
-        String comando = "/ip/hotspot/user/remove \"" + usuario + "\"";
+        String comando = "/ip/hotspot/user/remove .id=" + usuario;
         
         if (this.enviarComando(comando)) 
             return true;
