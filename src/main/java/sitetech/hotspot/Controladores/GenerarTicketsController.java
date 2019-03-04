@@ -176,13 +176,14 @@ public class GenerarTicketsController implements Initializable {
         tvtickets.getColumns().get(4).setCellValueFactory(new PropertyValueFactory("Estado"));
     }
 
+    Thread th;
     @FXML
     private void guardarAction(ActionEvent event) throws InterruptedException {
         ltrabajando.setText("Espere mientras se crean los tickets en el router.");
         sptrabajando.setVisible(true);
         pbotones.setDisable(true);
 
-        Thread th = new Thread(() -> guardarTickets());
+        th = new Thread(() -> guardarTickets());
 
         th.start();
     }
@@ -192,8 +193,13 @@ public class GenerarTicketsController implements Initializable {
         Router rx = cbrouters.getValue();
         Mikrotik mk = new Mikrotik(rx.getIp(), rx.getUsuario(), rx.getPassword());
         int ctickets = 0;
-
+        int errores = 0;
         for (int i = 0; i < listaTickets.size(); i++) {
+            if (errores == 3){
+                th.interrupt();
+                break;
+            }
+            
             Ticket tc = listaTickets.get(i);
             tc.setEstado(Ticket.EstadosType.Activo);
             boolean agreagadoExitoso = mk.agregarHotspotUsuario(tc.getUsuario(), tc.getContraseña(), tc.getPaquete());
@@ -203,6 +209,7 @@ public class GenerarTicketsController implements Initializable {
                 listaTickets.set(i, tc);
             } else {
                 tc.setEstado(Ticket.EstadosType.Generado);
+                errores ++;
             }
         }
 
