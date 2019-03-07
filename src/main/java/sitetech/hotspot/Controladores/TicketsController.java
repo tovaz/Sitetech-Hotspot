@@ -160,6 +160,7 @@ public class TicketsController implements Initializable, ArrastrarScene {
         tvtickets.setItems(listaTickets);
     }
 
+    Thread th;
     // ACCIONES AL ELIMINAR UN TICKET
     @FXML
     void onEliminarAction(ActionEvent event) {
@@ -186,13 +187,15 @@ public class TicketsController implements Initializable, ArrastrarScene {
                             Dialogo.mostrarError("Error al eliminar el ticket \"" + ticketsSeleccionados.get(0).getUsuario()+"\".", "Error al eliminar el ticket", ButtonType.OK);
                             
                     }
-                    else
-                        Util.util.mostrarAlerta("Error al eliminar el ticket en el router, verifica la coneccion y vuelve a intentar.", "Error al eliminar ticket", ButtonType.OK);
+                    else{
+                        th.interrupt();
+                        Dialogo.mostrarError("Error al eliminar el ticket en el router, verifica la coneccion y vuelve a intentar.", "Error al eliminar ticket", ButtonType.OK);
+                        }
                 }else {
                     ptrabajando.setVisible(true);
                     beliminar.setDisable(true);
                     ltrabajando.setText("Espere mientras se eliminan los tickets.");
-                    Thread th = new Thread(() -> eliminarVariosTickets(ticketsSeleccionados, mk));
+                    th = new Thread(() -> eliminarVariosTickets(ticketsSeleccionados, mk));
                     th.start();
                 }
             }
@@ -203,13 +206,17 @@ public class TicketsController implements Initializable, ArrastrarScene {
     
     private void eliminarVariosTickets(ObservableList<Ticket> ticketsSeleccinados, Mikrotik mk){
         int ticketsEliminados = 0;
+        int errores=0;
         for (int i = 0; i < ticketsSeleccinados.size(); i++) {
+            if (errores == 3) { th.interrupt(); break; }
+            
             Ticket tc = ticketsSeleccinados.get(i);
             if (mk.eliminarHotspotUsuario(tc.getUsuario())){
                 tm.EliminarTicket(tc);
                 listaTickets.remove(tc);
                 ticketsEliminados ++;
             }
+            else errores++;
         }
         
         final int tickets = ticketsEliminados;
