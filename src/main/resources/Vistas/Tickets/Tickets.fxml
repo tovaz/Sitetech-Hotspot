@@ -108,7 +108,7 @@
                     <children>
                         <VBox prefWidth="808.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <ToolBar prefWidth="757.0" styleClass="ticket-toolbar">
+                                <ToolBar blendMode="SRC_ATOP" prefWidth="757.0" styleClass="ticket-toolbar">
                                     <items>
                                         <Label text="Tickets">
                                             <font>
