@@ -175,29 +175,17 @@ public class TicketsController implements Initializable, ArrastrarScene {
                 btn = Util.util.mostrarAlerta("¿Desea realmente eliminar el ticket con usuario = \" " + ticketsSeleccionados.get(0).getUsuario()  + " \" ?, se eliminara del router tambien.", "Eliminar Ticket", ButtonType.YES, ButtonType.NO);
             else 
                 btn = Util.util.mostrarAlerta("¿Desea realmente eliminar " + ticketsSeleccionados.size() + " ? tickets, se eliminaran del router tambien.", "Eliminar Tickets", ButtonType.YES, ButtonType.NO);
+            
             if ( btn == ButtonType.YES) {
-                if (ticketsSeleccionados.size() == 1){
-                    if (mk.Conectar()){
-                        if (mk.eliminarHotspotUsuario(ticketsSeleccionados.get(0).getUsuario())){
-                            tm.EliminarTicket(ticketsSeleccionados.get(0));
-                            listaTickets.remove(ticketsSeleccionados.get(0));
-                            Dialogo.mostrarInformacion("Ticket eliminado correctamente. ", "Eliminado correctamente", ButtonType.OK);
-                        }
-                        else
-                            Dialogo.mostrarError("Error al eliminar el ticket \"" + ticketsSeleccionados.get(0).getUsuario()+"\".", "Error al eliminar el ticket", ButtonType.OK);
-                            
-                    }
-                    else{
-                        th.interrupt();
-                        Dialogo.mostrarError("Error al eliminar el ticket en el router, verifica la coneccion y vuelve a intentar.", "Error al eliminar ticket", ButtonType.OK);
-                        }
-                }else {
-                    ptrabajando.setVisible(true);
-                    beliminar.setDisable(true);
+                if (ticketsSeleccionados.size() == 1)
+                    ltrabajando.setText("Espere mientras se eliminan el ticket \"" + ticketsSeleccionados.get(0).getUsuario()  + "\" .");
+                else
                     ltrabajando.setText("Espere mientras se eliminan los tickets.");
-                    th = new Thread(() -> eliminarVariosTickets(ticketsSeleccionados, mk));
-                    th.start();
-                }
+                
+                ptrabajando.setVisible(true);
+                beliminar.setDisable(true);
+                th = new Thread(() -> eliminarVariosTickets(ticketsSeleccionados, mk));
+                th.start();
             }
         }
         else
