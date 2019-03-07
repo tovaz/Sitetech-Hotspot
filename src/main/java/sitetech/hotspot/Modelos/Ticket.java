@@ -63,10 +63,10 @@ public class Ticket {
     private int minutosConsumidos;
 
     private Date fechaCreacion;
+    private Date fechaVenta;
     private Date fechaActualizacion;
 
     private boolean eliminado = false;
-    private boolean eliminadoenRouter = false;
 
     public static enum EstadosType {
         Todos, Activo, Desactivado, En_Uso, Eliminado, Consumido, Generado, Error
@@ -74,7 +74,6 @@ public class Ticket {
     
     private EstadosType estado;
 
-    //private boolean imprimir;
     @PrePersist
     protected void onCreate() {
         this.fechaCreacion = new Date();
@@ -96,7 +95,6 @@ public class Ticket {
         this.eliminado = false;
         this.estado = estado;
         this.router = _router;
-        this.eliminadoenRouter = false;
         
         // limites
         this.limiteMegasDown = paquete.getMegasDescarga();
@@ -300,16 +298,6 @@ public class Ticket {
         this.estado = estado;
     }
 
-    
-    /*public boolean isImprimir() {
-        return imprimir;
-    }
-
-    public void setImprimir(boolean imprimir) {
-        this.imprimir = imprimir;
-    }
-     */
-
     public Router getRouter() {
         return router;
     }
@@ -318,16 +306,13 @@ public class Ticket {
         this.router = router;
     }
 
-    public boolean isEliminadoenRouter() {
-        return eliminadoenRouter;
+    public Date getFechaVenta() {
+        return fechaVenta;
     }
 
-    public void setEliminadoenRouter(boolean eliminadoenRouter) {
-        this.eliminadoenRouter = eliminadoenRouter;
+    public void setFechaVenta(Date fechaVenta) {
+        this.fechaVenta = fechaVenta;
     }
-    
-    
-    
     
     
     //************** FUNCIONES ADICIONALES ***************************
@@ -359,4 +344,8 @@ public class Ticket {
     public String getDuracion() {
         return String.valueOf(diasConsumidos) + " dias y " + String.valueOf(horasConsumidas) + "hr " + String.valueOf(minutosConsumidos) + " min";
     }
+
+    
+    
+    
 }

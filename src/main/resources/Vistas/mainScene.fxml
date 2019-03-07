@@ -18,7 +18,7 @@
     <children>
         <VBox prefHeight="600.0" prefWidth="1031.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <MenuBar styleClass="btn-gris-30" VBox.vgrow="ALWAYS">
+                <MenuBar styleClass="menubar" VBox.vgrow="ALWAYS">
                     <menus>
                         <Menu mnemonicParsing="false" text="Caja">
                             <items>
@@ -31,11 +31,39 @@
                         </Menu>
                         <Menu mnemonicParsing="false" text="Tickets">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Generar tickets" />
-                                <MenuItem mnemonicParsing="false" text="Vender Ticket" />
-                                <MenuItem mnemonicParsing="false" text="Imprimir tickets" />
+                                <MenuItem mnemonicParsing="false" text="Generar tickets">
+                           <graphic>
+                              <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Imagenes/ticketadd.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem>
+                                <MenuItem mnemonicParsing="false" text="Vender Ticket">
+                           <graphic>
+                              <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Imagenes/ticketsell.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem>
+                                <MenuItem mnemonicParsing="false" text="Imprimir tickets">
+                           <graphic>
+                              <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Imagenes/ticketprint.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem>
                                 <SeparatorMenuItem mnemonicParsing="false" text="separadormenu" />
-                                <MenuItem mnemonicParsing="false" text="Eliminar ticket" />
+                                <MenuItem mnemonicParsing="false" text="Eliminar ticket">
+                           <graphic>
+                              <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Imagenes/ticketdel.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem>
                                 <MenuItem mnemonicParsing="false" text="Modificar Ticket" />
                             </items>
                         </Menu>
@@ -43,7 +71,7 @@
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Usuarios">
                                     <graphic>
-                                        <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fitHeight="150.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../Imagenes/users.fw.png" />
                                             </image>
@@ -52,7 +80,7 @@
                                 </MenuItem>
                                 <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Routers">
                                     <graphic>
-                                        <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fitHeight="150.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../Imagenes/router3.png" />
                                             </image>
@@ -61,7 +89,7 @@
                                 </MenuItem>
                                 <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Paquetes de Internet">
                                     <graphic>
-                                        <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fitHeight="150.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../Imagenes/paquete.png" />
                                             </image>

@@ -7,6 +7,7 @@ package sitetech.hotspot.Controladores;
 
 import Util.Dialogo;
 import Util.Mikrotik;
+import Util.Validar;
 import Util.cadenaAletoria;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
@@ -14,6 +15,8 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSpinner;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import static javafx.collections.FXCollections.observableArrayList;
@@ -45,39 +48,28 @@ import sitetech.hotspot.Modelos.TicketManager;
  * @author megan
  */
 public class GenerarTicketsController implements Initializable {
+    @FXML private JFXComboBox<Paquete> cbpaquetes;
+    @FXML private JFXComboBox<Router> cbrouters;
+    @FXML private JFXComboBox<String> cbusuario;
+    @FXML private JFXComboBox<String> cbcontraseña;
+    @FXML private TableView<Ticket> tvtickets;
+    @FXML private JFXCheckBox checkNumeros;
+    @FXML private TextField tcantidad;
+    @FXML private Label ltrabajando;
+    @FXML private JFXSpinner sptrabajando;
+    @FXML private HBox pbotones;
 
-    @FXML
-    private JFXComboBox<Paquete> cbpaquetes;
-    @FXML
-    private JFXComboBox<Router> cbrouters;
-    @FXML
-    private JFXComboBox<String> cbusuario;
-    @FXML
-    private JFXComboBox<String> cbcontraseña;
-    @FXML
-    private TableView<Ticket> tvtickets;
-    @FXML
-    private JFXCheckBox checkNumeros;
-    @FXML
-    private TextField tcantidad;
-    @FXML
-    private Label ltrabajando;
-    @FXML
-    private JFXSpinner sptrabajando;
-    @FXML
-    private HBox pbotones;
+    @FXML private JFXButton bgenerar;
+    @FXML private JFXButton bguardar;
+    @FXML private JFXButton bimprimir;
 
-    @FXML
-    private JFXButton bgenerar;
-
-    @FXML
-    private JFXButton bguardar;
-
-    @FXML
-    private JFXButton bimprimir;
+    @FXML private Label lecantidad;
+    @FXML private Label lepaquete;
+    @FXML private Label lerouter;
     
     private final Stage thisStage;
-
+    private TicketManager tm;
+    
     /**
      * Initializes the controller class.
      */
@@ -99,6 +91,7 @@ public class GenerarTicketsController implements Initializable {
     }
 
     public void cargarDatos() {
+        tm = new TicketManager();
         cbusuario.getSelectionModel().select(5);
         cbcontraseña.getSelectionModel().select(4);
 
@@ -114,53 +107,76 @@ public class GenerarTicketsController implements Initializable {
 
     @FXML
     private void generarAction(ActionEvent event) {
-        int longusuario = Integer.valueOf(cbusuario.getSelectionModel().getSelectedItem().toString());
-        int longcontraseña = Integer.valueOf(cbcontraseña.getSelectionModel().getSelectedItem().toString());
-        int cantidad = Integer.valueOf(tcantidad.getText());
+        if ( validarCampos() ){
+            int longusuario = Integer.valueOf(cbusuario.getSelectionModel().getSelectedItem().toString());
+            int longcontraseña = Integer.valueOf(cbcontraseña.getSelectionModel().getSelectedItem().toString());
+            int cantidad = Integer.valueOf(tcantidad.getText());
 
-        if (listaTickets == null ) {
-            this.generarTickets(longusuario, longcontraseña, cantidad);
-        }
-        else{
-            if (Dialogo.mostrarConfirmacion("Se perderan los tickets que actualmente se generaron y no se guardaron.", "¿Desea generar mas Tickets?", ButtonType.YES, ButtonType.NO) == ButtonType.YES)
+        
+            if (listaTickets == null )
                 this.generarTickets(longusuario, longcontraseña, cantidad);
+            else{
+                if (Dialogo.mostrarConfirmacion("Se perderan los tickets que actualmente se generaron y no se guardaron.", "¿Desea generar mas Tickets?", ButtonType.YES, ButtonType.NO) == ButtonType.YES)
+                    this.generarTickets(longusuario, longcontraseña, cantidad);
+            }
         }
+    }
+    
+    private boolean validarCampos()
+    {
+        return !Validar.esTextfieldVacio(tcantidad, lecantidad, "Escriba un numero.") &&
+        Validar.esComboboxCorrecto(cbpaquetes, lepaquete, "Debe seleccionar un paquete.") &&
+        Validar.esComboboxCorrecto(cbrouters, lerouter, "Debe seleccionar un router.");
     }
 
     private ObservableList<Ticket> listaTickets;
-
     public void generarTickets(int longusuario, int longcontraseña, int cantidad) {
         listaTickets = observableArrayList();
+        ObservableList<Ticket> listaTicketsRt = tm.getticketsRouter(cbrouters.getValue()); // Obtener lista de usuarios del router
+        bguardar.setDisable(true);
+        
         for (int i = 1; i <= cantidad; i++) {
+            if (listaTicketsRt == null) {
+                Dialogo.mostrarError("Porfavor verifica la coneccion con el router y vuelve a intentar.", "Error al comunicarse con el router.", ButtonType.OK); 
+                break; 
+            }
+            
             String contraseña;
             if (checkNumeros.isSelected()) {
                 contraseña = cadenaAletoria.generarNumeros(longcontraseña);
             } else {
                 contraseña = cadenaAletoria.generarCadena(longcontraseña);
             }
-
-            String usuario = crearUsuario(longusuario, listaTickets, listaTickets);
+            
+            String usuario = crearUsuario(longusuario, listaTicketsRt, listaTickets);
             Ticket tx = new Ticket(i, usuario, contraseña, Ticket.EstadosType.Generado, cbpaquetes.getValue(), cbrouters.getValue());
             listaTickets.add(tx);
         }
         
         
         tvtickets.setItems(listaTickets);
-        bguardar.setDisable(false);
         bimprimir.setDisable(true);
+        
+        if (listaTickets.size() == Integer.valueOf(tcantidad.getText()) )
+            bguardar.setDisable(false);
+        else 
+            bguardar.setDisable(true);
     }
 
     public String crearUsuario(int longusuario, ObservableList<Ticket> lista1, ObservableList<Ticket> lista2) {
         String usuario = cadenaAletoria.generarCadena(longusuario);
+        
         for (Ticket tx : lista1) {
             if (tx.getUsuario().equals(usuario)) {
                 crearUsuario(longusuario, lista1, lista2);
+                System.err.println("Usuario repetido: " + usuario);
             }
         }
 
         for (Ticket tx : lista2) {
             if (tx.getUsuario().equals(usuario)) {
                 crearUsuario(longusuario, lista1, lista2);
+                System.err.println("Usuario repetido: " + usuario);
             }
         }
 
@@ -189,7 +205,7 @@ public class GenerarTicketsController implements Initializable {
     }
 
     private void guardarTickets() {
-        TicketManager tm = new TicketManager();
+        
         Router rx = cbrouters.getValue();
         Mikrotik mk = new Mikrotik(rx.getIp(), rx.getUsuario(), rx.getPassword());
         int ctickets = 0;

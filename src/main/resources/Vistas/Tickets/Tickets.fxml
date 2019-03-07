@@ -36,7 +36,10 @@
                                         <VBox>
                                             <children>
                                                 <Label text="Usuario" />
-                                                <TextField fx:id="tnombre" prefHeight="25.0" prefWidth="105.0" />
+                                                <TextField fx:id="tnombre" prefHeight="25.0" prefWidth="105.0" styleClass="btn-redondo">
+                                       <VBox.margin>
+                                          <Insets top="2.0" />
+                                       </VBox.margin></TextField>
                                             </children>
                                             <padding>
                                                 <Insets left="10.0" />
@@ -228,6 +231,11 @@
                                     <Label fx:id="lestado" layoutX="96.0" layoutY="76.0" styleClass="txt-indigo" text="Activo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                  </children>
                               </GridPane>
+                              <Separator prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Separator>
                               <Label text="Tiempo Consumido">
                            <VBox.margin>
                               <Insets top="15.0" />
@@ -289,11 +297,6 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                               </GridPane>
-                              <Separator prefWidth="200.0">
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" top="5.0" />
-                                 </VBox.margin>
-                              </Separator>
                      </children>
                      <VBox.margin>
                         <Insets />
@@ -333,7 +336,7 @@
                                     <Label fx:id="llimiteDescarga" prefHeight="17.0" prefWidth="104.0" text="1Gb + 300 Mb" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <Label fx:id="llimiteTiempo" layoutX="105.0" layoutY="32.0" prefHeight="17.0" prefWidth="98.0" styleClass="txt-gris2" text="3hr + 0 min" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <Label layoutX="10.0" layoutY="34.0" text="Precio:" />
-                                    <Label fx:id="lprecio" layoutX="106.0" layoutY="32.0" styleClass="txt-indigo" text="Q 6.00" GridPane.columnIndex="1">
+                                    <Label fx:id="lprecio" layoutX="106.0" layoutY="32.0" styleClass="txt-gris2" text="Q 6.00" GridPane.columnIndex="1">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -345,7 +348,7 @@
                               <Insets />
                            </VBox.margin>
                      <padding>
-                        <Insets bottom="20.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="20.0" left="10.0" right="10.0" top="5.0" />
                      </padding>
                         </VBox>
                      </children>

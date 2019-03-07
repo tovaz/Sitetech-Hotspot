@@ -28,6 +28,10 @@
     -fx-background-color: linear-gradient(#00BCD4, #03A9F4);
 }
 
+.menubar {
+    -fx-background-color: linear-gradient(#03A9F4, #00BCD4);
+}
+
 .main-menu {
     -fx-background-color: linear-gradient(#03A9F4, #00BCD4);
 }

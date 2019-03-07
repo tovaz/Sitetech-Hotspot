@@ -1,4 +1,6 @@
 package sitetech.hotspot.Modelos;
+import Util.Moneda;
+import java.math.BigDecimal;
 import java.util.Date;
 import javafx.beans.property.StringProperty;
 import javax.persistence.Entity;
@@ -18,7 +20,7 @@ public class Paquete {
     private int id;
     
     private String nombre;
-    private Double precio;
+    private BigDecimal precio;
     private boolean eliminado;
     private int cantidadTickets;
     
@@ -53,7 +55,7 @@ public class Paquete {
         Combobox_default = _cb;
     }
     
-    public Paquete(int id, String nombre, Double precio, boolean eliminado, int cantidadTickets, int dias, int horas, int minutos, double megasDescarga, double gigasDescarga, double megasSubida, double gigasSubida) {
+    public Paquete(int id, String nombre, BigDecimal precio, boolean eliminado, int cantidadTickets, int dias, int horas, int minutos, double megasDescarga, double gigasDescarga, double megasSubida, double gigasSubida) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
@@ -84,11 +86,11 @@ public class Paquete {
         this.nombre = nombre;
     }
 
-    public Double getPrecio() {
+    public BigDecimal getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Double precio) {
+    public void setPrecio(BigDecimal precio) {
         this.precio = precio;
     }
 
@@ -195,7 +197,7 @@ public class Paquete {
 
     public String getLimiteInternet() {
         return "Megas D/U " + String.valueOf(megasDescarga) + " / " + String.valueOf(megasSubida) +
-                "Gigas D/U " + String.valueOf(gigasDescarga) + " / " + String.valueOf(gigasSubida);
+                " | Gigas D/U " + String.valueOf(gigasDescarga) + " / " + String.valueOf(gigasSubida);
     }
 
     public void setLimiteInternet(String LimiteInternet) {
@@ -205,8 +207,8 @@ public class Paquete {
     @Override
     public String toString() { 
         if (!Combobox_default)
-            return nombre + " - Q. " + precio + "  Limite: " + dias + "d " + horas + ":" + minutos + " * " + megasDescarga + " Mb + " + gigasDescarga + " Gb"; 
+            return nombre + " | " + Moneda.Formatear(precio) + " | Limite: " + dias + "d " + horas + ":" + minutos + " | ( " + megasDescarga + " Mb + " + gigasDescarga + " Gb )"; 
         else
             return "Todos";
-    } 
+    }
 }

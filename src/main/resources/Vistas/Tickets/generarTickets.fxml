@@ -28,7 +28,8 @@
                   <VBox>
                      <children>
                         <Label prefHeight="23.0" prefWidth="44.0" styleClass="txt-gris-claro2" text="Paquete" />
-                        <JFXComboBox fx:id="cbpaquetes" prefHeight="25.0" prefWidth="226.0" promptText="Selecciona un Paquete" styleClass="backgroundLineal-boton" />
+                        <JFXComboBox fx:id="cbpaquetes" prefHeight="25.0" prefWidth="226.0" promptText="Selecciona un Paquete" styleClass="btn-gris-30" />
+                        <Label fx:id="lepaquete" layoutX="10.0" layoutY="10.0" prefHeight="23.0" styleClass="txt-gris-claro2" VBox.vgrow="ALWAYS" />
                      </children>
                      <HBox.margin>
                         <Insets left="5.0" />
@@ -37,7 +38,8 @@
                   <VBox>
                      <children>
                         <Label prefHeight="24.0" prefWidth="36.0" styleClass="txt-gris-claro2" text="Router" />
-                        <JFXComboBox fx:id="cbrouters" prefHeight="25.0" prefWidth="210.0" promptText="Selecciona un Router" styleClass="backgroundLineal-boton" />
+                        <JFXComboBox fx:id="cbrouters" prefHeight="25.0" prefWidth="210.0" promptText="Selecciona un Router" styleClass="btn-gris-30" />
+                        <Label fx:id="lerouter" layoutX="10.0" layoutY="10.0" prefHeight="24.0" styleClass="txt-gris-claro2" VBox.vgrow="ALWAYS" />
                      </children>
                      <HBox.margin>
                         <Insets left="10.0" />
@@ -48,7 +50,7 @@
                         <Label prefHeight="25.0" prefWidth="174.0" styleClass="txt-gris-claro2" text="Longitud usuario y contraseña" />
                         <HBox prefHeight="25.0" prefWidth="154.0">
                            <children>
-                              <JFXComboBox fx:id="cbusuario" styleClass="backgroundLineal-boton">
+                              <JFXComboBox fx:id="cbusuario" styleClass="btn-gris-30">
                                   <items>
                                       <FXCollections fx:factory="observableArrayList">
                                       <String fx:value="1" />
@@ -69,7 +71,7 @@
                                       </FXCollections>
                                   </items>
                               </JFXComboBox>
-                              <JFXComboBox fx:id="cbcontraseña" styleClass="backgroundLineal-boton">
+                              <JFXComboBox fx:id="cbcontraseña" styleClass="btn-gris-30">
                                   <items>
                                       <FXCollections fx:factory="observableArrayList">
                                       <String fx:value="1" />
@@ -102,8 +104,15 @@
                   </VBox>
                   <VBox prefHeight="55.0" prefWidth="127.0">
                      <children>
-                        <Label styleClass="txt-gris-claro2" text="Cantidad de tickets" VBox.vgrow="NEVER" />
-                        <TextField fx:id="tcantidad" prefHeight="25.0" prefWidth="95.0" />
+                        <Label styleClass="txt-gris-claro2" text="Cantida de tickets" VBox.vgrow="NEVER">
+                           <VBox.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="5.0" />
+                           </VBox.margin></Label>
+                        <TextField fx:id="tcantidad" prefHeight="25.0" prefWidth="95.0" styleClass="btn-gris-30" text="5">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></TextField>
+                        <Label fx:id="lecantidad" layoutX="23.0" layoutY="15.0" styleClass="txt-gris-claro2" />
                      </children>
                      <HBox.margin>
                         <Insets />
@@ -114,7 +123,7 @@
                   </VBox>
                </children>
                <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                  <Insets left="5.0" right="5.0" top="10.0" />
                </padding>
             </HBox>
             <VBox>
@@ -167,7 +176,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </JFXButton>
-                        <JFXCheckBox fx:id="checkNumeros" text="Usar solo numeros en la contraseña">
+                        <JFXCheckBox fx:id="checkNumeros" checkedColor="#304ffe" text="Usar solo numeros en la contraseña">
                            <HBox.margin>
                               <Insets left="30.0" />
                            </HBox.margin>
@@ -176,13 +185,13 @@
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
                   </HBox>
                   <HBox>
                      <children>
-                        <Label fx:id="ltrabajando" prefHeight="25.0" prefWidth="318.0" HBox.hgrow="ALWAYS" />
+                        <Label fx:id="ltrabajando" prefHeight="25.0" prefWidth="318.0" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
                         <JFXSpinner fx:id="sptrabajando" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" prefHeight="25.0" prefWidth="25.0" visible="false">
                            <HBox.margin>
                               <Insets left="10.0" />
@@ -195,7 +204,7 @@
                   </HBox>
                </children>
                <padding>
-                  <Insets top="5.0" />
+                  <Insets top="10.0" />
                </padding>
                <VBox.margin>
                   <Insets left="5.0" />
@@ -223,5 +232,6 @@
    <stylesheets>
       <URL value="@../../styles/botones.css" />
       <URL value="@../../styles/Styles.css" />
+      <URL value="@../../styles/validation.css" />
    </stylesheets>
 </AnchorPane>

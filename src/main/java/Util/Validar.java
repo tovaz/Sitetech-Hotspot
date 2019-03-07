@@ -5,6 +5,7 @@
  */
 package Util;
 
+import com.jfoenix.controls.JFXComboBox;
 import java.util.regex.Pattern;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -99,6 +100,25 @@ public class Validar {
     }
     
     public static boolean esComboboxCorrecto(ComboBox cb, Label lb, String mensaje){
+        boolean b = true;
+        String msg = null;
+        cb.getStyleClass().remove("customControlError");
+        lb.getStyleClass().remove("labelError");
+        if (!esComboboxCorrecto(cb)){
+            b = false;
+            msg = mensaje;
+            cb.getStyleClass().add("customControlError");
+            lb.getStyleClass().add("labelError");
+        }
+        lb.setText(msg);
+        return b;
+    }
+    
+    public static boolean esComboboxCorrecto(JFXComboBox cb){
+        return !(cb.getValue() == null);
+    }
+    
+    public static boolean esComboboxCorrecto(JFXComboBox cb, Label lb, String mensaje){
         boolean b = true;
         String msg = null;
         cb.getStyleClass().remove("customControlError");

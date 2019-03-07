@@ -68,7 +68,7 @@ public class Mikrotik {
     
     public List<Map<String, String>> leerDatos(String comando){
         try {
-            if ((boolean)this.conectar().getDato()){
+            if (this.Conectar()){
                 List<Map<String, String>> rs = conexion.execute(comando);
                 for (Map<String,String> r : rs) {
                   System.out.println(r);

@@ -4,6 +4,7 @@ import Util.Validar;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXTextField;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -130,7 +131,7 @@ public class adePaqueteController implements Initializable {
         if (camposValidos()){
             PaqueteManager pM = new PaqueteManager();
             if (bAgregar.getText().equals("Agregar Paquete")) {
-                Paquete px = new Paquete(0, tnombre.getText(), Double.valueOf(tprecio.getText()), false, 0, (int)sldias.getValue()+0,
+                Paquete px = new Paquete(0, tnombre.getText(), BigDecimal.valueOf( Double.valueOf(tprecio.getText()) ), false, 0, (int)sldias.getValue()+0,
                 (int)slhoras.getValue()+0, (int)slminutos.getValue()+0, slmegasDown.getValue()+0, slgigasDown.getValue()+0, slmegasUp.getValue()+0, 
                 slgigasUp.getValue()+0);
 
@@ -148,7 +149,7 @@ public class adePaqueteController implements Initializable {
     {
         if (camposValidos()){
             Pseleccionado.setNombre(tnombre.getText());
-            Pseleccionado.setPrecio(Double.valueOf( tprecio.getText()) );
+            Pseleccionado.setPrecio( BigDecimal.valueOf( Double.valueOf( tprecio.getText())  ) );
             Pseleccionado.setDias((int)sldias.getValue()+0);
             Pseleccionado.setHoras((int)slhoras.getValue()+0);
             Pseleccionado.setMinutos((int)slminutos.getValue()+0);
