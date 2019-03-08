@@ -9,9 +9,12 @@ import Util.MiLocale;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.Currency;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -74,6 +77,8 @@ public class ConfiguracionController implements Initializable {
         timagen.setText(conf.getImagenTicket());
         tdominio.setText(conf.getDominio());
         cbmoneda.setValue(conf.getMoneda());
+        
+        conf.setRegionLocal(new MiLocale(conf.getrLocale(), conf.getrLocale().getDisplayCountry()));
         cbpais2.setValue(conf.getRegionLocal());
         
         
@@ -94,6 +99,13 @@ public class ConfiguracionController implements Initializable {
         
         cbpais2.setItems(locales);
         cbmoneda.setItems(monedas);
+        cbpais2.valueProperty().addListener(new ChangeListener<MiLocale>() {
+            @Override
+            public void changed(ObservableValue<? extends MiLocale> observable, MiLocale oldValue, MiLocale newValue) {
+                NumberFormat nf = NumberFormat.getCurrencyInstance(newValue.getLocale());
+                lemoneda.setText(nf.format(100.50));
+            }
+        });
     }
     
     public void showStage() {
@@ -119,7 +131,7 @@ public class ConfiguracionController implements Initializable {
         conf.setDominio(tdominio.getText());
 
         conf.setMoneda(cbmoneda.getValue());
-        conf.setRegionLocal(cbpais2.getValue());
+        conf.setrLocale(cbpais2.getValue().getLocale());
 
         if (nueva)
             cm.Agregar(conf);
