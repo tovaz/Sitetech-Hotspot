@@ -26,7 +26,19 @@
         </repository>
     </repositories>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.0.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+                
         <dependency>
             <groupId>WilliamValdez</groupId>
             <artifactId>JavaFxController</artifactId>
@@ -38,6 +50,7 @@
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy</artifactId>
             <version>2.5.6</version>
+            <optional>false</optional>
         </dependency>
 
         <!-- Reportes Jasper  -->
@@ -45,6 +58,7 @@
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports</artifactId>
             <version>6.7.0</version>
+            <optional>false</optional>
         </dependency>
 
         <!-- JFXtras  -->
@@ -66,6 +80,7 @@
             <groupId>com.jfoenix</groupId>
             <artifactId>jfoenix</artifactId>
             <version>8.0.8</version>
+            <optional>false</optional>
         </dependency>
 
         <!-- hibernate -->
@@ -88,6 +103,7 @@
             <artifactId>junit</artifactId>
             <version>3.8.1</version>
             <scope>test</scope>
+            <optional>false</optional>
         </dependency>
 
     </dependencies>
@@ -95,104 +111,60 @@
     <build>
         <plugins>
             <plugin>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>2.4.1</version>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.1.1</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                
                 <executions>
                     <execution>
-                        <id>unpack-dependencies</id>
-                        <phase>package</phase>
                         <goals>
-                            <goal>unpack-dependencies</goal>
+                            <goal>repackage</goal>
                         </goals>
                         <configuration>
-                            <excludeScope>system</excludeScope>
-                            <excludeGroupIds>junit,org.mockito,org.hamcrest</excludeGroupIds>
-                            <outputDirectory>${project.build.directory}/classes</outputDirectory>
-                            <failOnError>false</failOnError>
+                            <attach>false</attach>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
+            
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.6.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <version>1.2.1</version>
                 <configuration>
                     <mainClass>sitetech.hotspot.MainApp</mainClass>
                 </configuration>
             </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <compilerArguments>
-                        <bootclasspath>${sun.boot.class.path}${path.separator}${java.home}/lib/jfxrt.jar</bootclasspath>
-                    </compilerArguments>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>appassembler-maven-plugin</artifactId>
-                <version>1.0</version>
-                <executions>
-                  <execution>
-                    <id>generate-jsw-scripts</id>
-                    <phase>package</phase>
-                    <goals>
-                      <goal>generate-daemons</goal>
-                    </goals>
-                  </execution>
-                </executions>
-                <configuration>
-                  <daemons>
-                    <daemon>
-                      <id>Hotspot</id>
-                      <mainClass>sitetech.hotspot.MainApp</mainClass>
-                      <commandLineArguments>
-                        <commandLineArgument>start</commandLineArgument>
-                      </commandLineArguments>
-                      <platforms>
-                        <platform>jsw</platform>
-                      </platforms>              
-                    </daemon>
-                  </daemons>
-                  <target>${project.build.directory}/appassembler</target>
-                </configuration>
-            </plugin>
-              
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.1</version>
-                <configuration>
-                    <additionalClasspathElements>
-                        <additionalClasspathElement>${java.home}/lib/jfxrt.jar</additionalClasspathElement>
-                    </additionalClasspathElements>
-                </configuration>
-            </plugin>
         </plugins>
+        
+        <resources>
+            <!-- copy fxml and css resources -->
+            <resource>
+                    <directory>src/main/java</directory>
+                    <includes>
+                        <include>**/*.fxml</include>
+                        <include>**/*.css</include>
+                        <include>**/*.properties</include>
+                    </includes>
+            </resource>
+            <resource>
+                    <directory>src/test/java</directory>
+                    <includes>
+                        <include>**/*.fxml</include>
+                        <include>**/*.css</include>
+                        <include>**/*.properties</include>
+                    </includes>
+            </resource>
+            <resource>
+                    <directory>src/main/resources</directory>
+                    <includes>
+                        <include>**/*.*</include>
+                    </includes>
+            </resource>
+        </resources>
+
+        <finalName>Hotspot</finalName>
+                
+        
     </build>
 
 </project>

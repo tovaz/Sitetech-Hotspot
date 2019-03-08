@@ -5,6 +5,7 @@
  */
 package sitetech.hotspot.Modelos;
 
+import Util.MiLocale;
 import java.util.Currency;
 import java.util.Locale;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -21,7 +23,7 @@ import javax.persistence.Table;
 @Table(name = "Configuracion")
 public class Configuracion {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     
     private String Dominio="http://st.cklogin/";
@@ -31,10 +33,23 @@ public class Configuracion {
     private String Pais = "Guatemala";
     private String Estado = "Guatemala";
     private String Ciudad = "Guatemala";
-    private Locale RegionLocal = new Locale("es", "GT");
-    private Currency Moneda = Currency.getInstance("QGT");
+    
+    
+    private Locale rLocale; 
+    private String LocalMin = "GT";
+    private Currency Moneda;
+
+    @Transient
+    private MiLocale RegionLocal; 
 
     public Configuracion() {
+    }
+    
+    
+    public Configuracion(boolean x) {
+        rLocale = new Locale("Gt", "Gt");
+        RegionLocal = new MiLocale(rLocale, rLocale.getDisplayCountry());
+        this.Moneda = Currency.getInstance(RegionLocal.getLocale());
     }
 
     public int getId() {
@@ -101,11 +116,11 @@ public class Configuracion {
         this.Ciudad = Ciudad;
     }
 
-    public Locale getRegionLocal() {
+    public MiLocale getRegionLocal() {
         return RegionLocal;
     }
 
-    public void setRegionLocal(Locale RegionLocal) {
+    public void setRegionLocal(MiLocale RegionLocal) {
         this.RegionLocal = RegionLocal;
     }
 
@@ -115,6 +130,22 @@ public class Configuracion {
 
     public void setMoneda(Currency Moneda) {
         this.Moneda = Moneda;
+    }
+
+    public String getLocalMin() {
+        return LocalMin;
+    }
+
+    public void setLocalMin(String LocalMin) {
+        this.LocalMin = LocalMin;
+    }
+
+    public Locale getrLocale() {
+        return rLocale;
+    }
+
+    public void setrLocale(Locale rLocale) {
+        this.rLocale = rLocale;
     }
     
     

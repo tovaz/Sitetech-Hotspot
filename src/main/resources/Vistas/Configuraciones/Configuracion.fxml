@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="fondo-gris2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vistas.Configuraciones.ConfiguracionController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="fondo-gris2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox styleClass="fondo-indigo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -107,6 +107,16 @@
                            <children>
                               <JFXComboBox fx:id="cbpais2" focusColor="#304ffe" labelFloat="true" layoutX="28.0" layoutY="34.0" prefHeight="25.0" prefWidth="181.0" promptText="Pais o Region" AnchorPane.leftAnchor="20.0" />
                               <JFXComboBox fx:id="cbmoneda" focusColor="#304ffe" labelFloat="true" layoutX="28.0" layoutY="81.0" prefHeight="25.0" prefWidth="181.0" promptText="Moneda" AnchorPane.leftAnchor="20.0" />
+                              <Label layoutX="207.0" layoutY="85.0" text="Ejemplo:">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lemoneda" layoutX="269.0" layoutY="85.0" text="Q. 100.00">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </content>
