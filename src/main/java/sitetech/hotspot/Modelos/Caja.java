@@ -72,6 +72,9 @@ public class Caja {
         this.total.add(totalEgreso);
     }
 
+    public Caja() {
+    }
+
     public int getId() {
         return id;
     }

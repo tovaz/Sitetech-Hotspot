@@ -1,3 +1,10 @@
+/***************+ PRINCIPALES ****************/
+.root {
+    -fx-base: #eee;
+    -fx-color: -fx-base;
+    -fx-accent: #304FFE;
+}
+
 .backgroundLineal-boton {
     -fx-background-color: linear-gradient(to top right, #69F0AE, #40C4FF);
 }
@@ -52,6 +59,13 @@
     -fx-text-fill: #ccc;
 }
 
+.jfx-tab-pane .headers-region {
+    -fx-background-color: #304FFE;
+}
+
+.jfx-tab-pane .tab-header-background {
+    -fx-background-color: #304FFE;
+}
 /********************** PROBAR **************/
 .fondo-azul{
     -fx-background-color: radial-gradient(center 50% -40%, radius 200%, #00FFFF 45%, #00BFFF 50%);

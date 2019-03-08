@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="fondo-gris2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vistas.Configuraciones.ConfiguracionController">
+   <children>
+      <VBox styleClass="fondo-indigo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label styleClass="txt-gris-claro3" text="Configuracion" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="10.0" top="5.0" />
+               </padding>
+            </Label>
+            <JFXTabPane styleClass="fondo-foco-gris1" tabMinWidth="100.0" VBox.vgrow="ALWAYS">
+               <tabs>
+                <Tab text="Negocio">
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <VBox layoutX="23.0" layoutY="25.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="271.0" prefWidth="370.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <JFXTextField fx:id="tempresa" focusColor="#304ffe" labelFloat="true" promptText="Nombre del negocio">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </JFXTextField>
+                                    <HBox>
+                                       <children>
+                                          <JFXComboBox fx:id="cbpais" focusColor="#304ffe" labelFloat="true" prefHeight="25.0" prefWidth="160.0" promptText="Pais" />
+                                          <JFXTextField fx:id="testado" focusColor="#304ffe" labelFloat="true" prefHeight="25.0" prefWidth="160.0" promptText="Region o Estado">
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </JFXTextField>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <JFXTextField fx:id="tciudad" focusColor="#304ffe" labelFloat="true" layoutX="10.0" layoutY="60.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="160.0" promptText="Ciudad o Comuna">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="tdireccion" focusColor="#304ffe" labelFloat="true" layoutX="20.0" layoutY="165.0" promptText="Direccion">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </JFXTextField>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="20.0" right="10.0" top="20.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Tickets">
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <JFXTextField fx:id="timagen" focusColor="#304ffe" labelFloat="true" layoutX="20.0" layoutY="26.0" prefHeight="25.0" prefWidth="282.0" promptText="Imagen a mostrar en el ticket" AnchorPane.leftAnchor="20.0" />
+                              <JFXButton layoutX="302.0" layoutY="27.0" styleClass="btn-gris-30" text="Examinar" />
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="373.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" styleClass="borde-Indigo">
+                                 <image>
+                                    <Image url="@../../Imagenes/icon.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Router">
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <JFXTextField fx:id="tdominio" focusColor="#304ffe" labelFloat="true" layoutX="26.0" layoutY="32.0" prefHeight="25.0" prefWidth="200.0" promptText="Dominio para el codigo de barras" text="sitetech.com/checkticket" AnchorPane.leftAnchor="20.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="General">
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <JFXComboBox fx:id="cbpais2" focusColor="#304ffe" labelFloat="true" layoutX="28.0" layoutY="34.0" prefHeight="25.0" prefWidth="181.0" promptText="Pais o Region" AnchorPane.leftAnchor="20.0" />
+                              <JFXComboBox fx:id="cbmoneda" focusColor="#304ffe" labelFloat="true" layoutX="28.0" layoutY="81.0" prefHeight="25.0" prefWidth="181.0" promptText="Moneda" AnchorPane.leftAnchor="20.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
+            <ButtonBar buttonMinWidth="100.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="55.0" prefWidth="200.0" styleClass="fondo-gris2">
+               <buttons>
+                  <JFXButton defaultButton="true" onAction="#guardarAction" prefHeight="40.0" text="Guardar">
+                     <styleClass>
+                        <String fx:value="btn-indigo" />
+                        <String fx:value="txt-gris-claro2" />
+                        <String fx:value="btn-redondo" />
+                     </styleClass>
+                  </JFXButton>
+                  <JFXButton cancelButton="true" layoutX="515.0" layoutY="18.0" onAction="#cancelarAction" prefHeight="40.0" text="Cancelar">
+                     <styleClass>
+                        <String fx:value="fondo-gris1" />
+                        <String fx:value="btn-redondo" />
+                     </styleClass>
+                  </JFXButton>
+               </buttons>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets right="25.0" />
+               </padding>
+            </ButtonBar>
+         </children>
+      </VBox>
+   </children>
+   <stylesheets>
+      <URL value="@../../styles/botones.css" />
+      <URL value="@../../styles/Styles.css" />
+      <URL value="@../../styles/validation.css" />
+   </stylesheets>
+</AnchorPane>

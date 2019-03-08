@@ -5,6 +5,7 @@
  */
 package sitetech.hotspot.Modelos;
 
+import java.util.Currency;
 import java.util.Locale;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,11 +27,12 @@ public class Configuracion {
     private String Dominio="http://st.cklogin/";
     private String imagenTicket="";
     private String Empresa="Sitetech";
-    private String direccionEmpresa="0 Calle D11B";
+    private String direccion="0 Calle D11B";
     private String Pais = "Guatemala";
-    private String Departamento = "Guatemala";
+    private String Estado = "Guatemala";
     private String Ciudad = "Guatemala";
     private Locale RegionLocal = new Locale("es", "GT");
+    private Currency Moneda = Currency.getInstance("QGT");
 
     public Configuracion() {
     }
@@ -67,12 +69,12 @@ public class Configuracion {
         this.Empresa = Empresa;
     }
 
-    public String getDireccionEmpresa() {
-        return direccionEmpresa;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setDireccionEmpresa(String direccionEmpresa) {
-        this.direccionEmpresa = direccionEmpresa;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     public String getPais() {
@@ -83,12 +85,12 @@ public class Configuracion {
         this.Pais = Pais;
     }
 
-    public String getDepartamento() {
-        return Departamento;
+    public String getEstado() {
+        return Estado;
     }
 
-    public void setDepartamento(String Departamento) {
-        this.Departamento = Departamento;
+    public void setEstado(String estado) {
+        this.Estado = estado;
     }
 
     public String getCiudad() {
@@ -105,6 +107,14 @@ public class Configuracion {
 
     public void setRegionLocal(Locale RegionLocal) {
         this.RegionLocal = RegionLocal;
+    }
+
+    public Currency getMoneda() {
+        return Moneda;
+    }
+
+    public void setMoneda(Currency Moneda) {
+        this.Moneda = Moneda;
     }
     
     

@@ -104,6 +104,11 @@ public class MainController implements Initializable, ArrastrarScene {
                 PaquetesController pController = new PaquetesController();
                 pController.showStage();
                 break;
+            
+            case "Configuracion":
+                ConfiguracionController pConfiguracion = new ConfiguracionController();
+                pConfiguracion.showStage();
+                break;
 
         }
 

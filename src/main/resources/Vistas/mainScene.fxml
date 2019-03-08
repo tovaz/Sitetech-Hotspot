@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1031.0" styleClass="fondoApp" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1031.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <VBox prefHeight="600.0" prefWidth="1031.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -96,11 +96,20 @@
                                         </ImageView>
                                     </graphic>
                                 </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Configuracion">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Imagenes/paquete.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
                             </items>
                         </Menu>
                     </menus>
                 </MenuBar>
-                    <AnchorPane fx:id="panelPrincipal" styleClass="fondoApp" VBox.vgrow="ALWAYS">
+                    <AnchorPane fx:id="panelPrincipal" VBox.vgrow="ALWAYS">
                         <children>
                             <Label alignment="CENTER" layoutX="413.0" layoutY="274.0" style="&#10;" text="Panel principal" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false" AnchorPane.bottomAnchor="274.0" AnchorPane.leftAnchor="413.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="274.0">
                                 <font>
