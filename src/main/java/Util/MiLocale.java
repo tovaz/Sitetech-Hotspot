@@ -5,6 +5,7 @@
  */
 package Util;
 
+import java.text.NumberFormat;
 import java.util.Locale;
 
 /**
@@ -38,7 +39,7 @@ public class MiLocale{
 
     @Override
     public String toString() {
-        return nombre;
+        return nombre + " - " + NumberFormat.getCurrencyInstance(locale).getCurrency();
     }
     
     

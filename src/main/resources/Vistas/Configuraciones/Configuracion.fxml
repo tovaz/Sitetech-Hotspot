@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXColorPicker?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
@@ -21,7 +24,7 @@
    <children>
       <VBox styleClass="fondo-indigo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label styleClass="txt-gris-claro3" text="Configuracion" VBox.vgrow="ALWAYS">
+            <Label styleClass="txt-gris-claro1" text="Configuracion" VBox.vgrow="ALWAYS">
                <font>
                   <Font size="18.0" />
                </font>
@@ -42,31 +45,43 @@
                                  <children>
                                     <JFXTextField fx:id="tempresa" focusColor="#304ffe" labelFloat="true" promptText="Nombre del negocio">
                                        <VBox.margin>
-                                          <Insets bottom="10.0" top="10.0" />
+                                          <Insets bottom="15.0" top="10.0" />
                                        </VBox.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
                                     </JFXTextField>
                                     <HBox>
                                        <children>
-                                          <JFXComboBox fx:id="cbpais" focusColor="#304ffe" labelFloat="true" prefHeight="25.0" prefWidth="160.0" promptText="Pais" />
+                                          <JFXComboBox fx:id="cbpais" focusColor="#304ffe" labelFloat="true" prefHeight="25.0" prefWidth="160.0" promptText="Pais" style="-fx-font-size: 14px;" />
                                           <JFXTextField fx:id="testado" focusColor="#304ffe" labelFloat="true" prefHeight="25.0" prefWidth="160.0" promptText="Region o Estado">
                                              <HBox.margin>
                                                 <Insets left="20.0" />
                                              </HBox.margin>
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
                                           </JFXTextField>
                                        </children>
                                        <VBox.margin>
-                                          <Insets bottom="10.0" top="10.0" />
+                                          <Insets bottom="15.0" top="10.0" />
                                        </VBox.margin>
                                     </HBox>
                                     <JFXTextField fx:id="tciudad" focusColor="#304ffe" labelFloat="true" layoutX="10.0" layoutY="60.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="160.0" promptText="Ciudad o Comuna">
                                        <VBox.margin>
-                                          <Insets bottom="10.0" top="10.0" />
+                                          <Insets bottom="15.0" top="10.0" />
                                        </VBox.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
                                     </JFXTextField>
                                     <JFXTextField fx:id="tdireccion" focusColor="#304ffe" labelFloat="true" layoutX="20.0" layoutY="165.0" promptText="Direccion">
                                        <VBox.margin>
                                           <Insets top="10.0" />
                                        </VBox.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
                                     </JFXTextField>
                                  </children>
                                  <padding>
@@ -76,43 +91,49 @@
                            </children>
                         </AnchorPane>
                      </content>
+                     <graphic>
+                        <FontAwesomeIcon fill="#ebebeb" iconName="BUILDING" size="25px" />
+                     </graphic>
                   </Tab>
                   <Tab text="Tickets">
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <JFXTextField fx:id="timagen" focusColor="#304ffe" labelFloat="true" layoutX="20.0" layoutY="26.0" prefHeight="25.0" prefWidth="282.0" promptText="Imagen a mostrar en el ticket" AnchorPane.leftAnchor="20.0" />
-                              <JFXButton layoutX="302.0" layoutY="27.0" styleClass="btn-gris-30" text="Examinar" />
-                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="373.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" styleClass="borde-Indigo">
+                              <JFXTextField fx:id="timagen" focusColor="#304ffe" labelFloat="true" layoutX="20.0" layoutY="26.0" prefHeight="25.0" prefWidth="282.0" promptText="Imagen a mostrar en el ticket" AnchorPane.leftAnchor="20.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></JFXTextField>
+                              <JFXButton layoutX="300.0" layoutY="29.0" onAction="#examinarAction" styleClass="btn-gris-30" text="Examinar" />
+                              <ImageView fx:id="iticket" fitHeight="50.0" fitWidth="50.0" layoutX="373.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" styleClass="borde-Indigo">
                                  <image>
                                     <Image url="@../../Imagenes/icon.png" />
                                  </image>
                               </ImageView>
+                              <JFXToggleButton fx:id="tgmostrarBarras" layoutX="20.0" layoutY="117.0" style="-jfx-toggle-color: -fx-accent;" text="Mostrar codigo de barras" AnchorPane.leftAnchor="20.0" />
+                              <JFXTextField fx:id="tdominio" focusColor="#304ffe" labelFloat="true" layoutX="22.0" layoutY="81.0" prefHeight="25.0" prefWidth="200.0" promptText="Dominio para el codigo de barras" text="sitetech.com/checkticket" AnchorPane.leftAnchor="22.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXToggleButton layoutX="22.0" layoutY="163.0" style="-jfx-toggle-color: -fx-accent;" text="Mostrar codigo de barras" AnchorPane.leftAnchor="20.0" />
                            </children>
                         </AnchorPane>
                      </content>
+                     <graphic>
+                        <FontAwesomeIcon fill="#f2f2f2" iconName="TICKET" size="25px" />
+                     </graphic>
                   </Tab>
-                  <Tab text="Router">
+                  <Tab text="Formatos">
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <JFXTextField fx:id="tdominio" focusColor="#304ffe" labelFloat="true" layoutX="26.0" layoutY="32.0" prefHeight="25.0" prefWidth="200.0" promptText="Dominio para el codigo de barras" text="sitetech.com/checkticket" AnchorPane.leftAnchor="20.0" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
-                  <Tab text="General">
-                     <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <JFXComboBox fx:id="cbpais2" focusColor="#304ffe" labelFloat="true" layoutX="28.0" layoutY="34.0" prefHeight="25.0" prefWidth="181.0" promptText="Pais o Region" AnchorPane.leftAnchor="20.0" />
-                              <JFXComboBox fx:id="cbmoneda" focusColor="#304ffe" labelFloat="true" layoutX="28.0" layoutY="81.0" prefHeight="25.0" prefWidth="181.0" promptText="Moneda" AnchorPane.leftAnchor="20.0" />
-                              <Label layoutX="207.0" layoutY="85.0" text="Ejemplo:">
+                              <JFXComboBox fx:id="cbmoneda" focusColor="#304ffe" labelFloat="true" layoutX="14.0" layoutY="25.0" prefHeight="25.0" prefWidth="181.0" promptText="Moneda" style="-fx-font-size: 14px;" AnchorPane.leftAnchor="20.0" />
+                              <Label layoutX="204.0" layoutY="31.0" text="Ejemplo:">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lemoneda" layoutX="269.0" layoutY="85.0" text="Q. 100.00">
+                              <Label fx:id="lemoneda" layoutX="260.0" layoutY="31.0" text="Q. 100.00">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -120,14 +141,29 @@
                            </children>
                         </AnchorPane>
                      </content>
+                     <graphic>
+                        <FontAwesomeIcon fill="#dadada" iconName="USD" size="25PX" />
+                     </graphic>
+                  </Tab>
+                  <Tab text="Apariencia">
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <JFXColorPicker fx:id="cpenfasis" layoutX="155.0" layoutY="23.0" onAction="#enfasisAction" />
+                              <Label layoutX="53.0" layoutY="27.0" text="Color de enfasis" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                     <graphic>
+                        <FontAwesomeIcon fill="#e4e4e4" iconName="IMAGE" size="25PX" />
+                     </graphic>
                   </Tab>
                </tabs>
             </JFXTabPane>
             <ButtonBar buttonMinWidth="100.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="55.0" prefWidth="200.0" styleClass="fondo-gris2">
                <buttons>
-                  <JFXButton defaultButton="true" onAction="#guardarAction" prefHeight="40.0" text="Guardar">
+                  <JFXButton defaultButton="true" onAction="#guardarAction" prefHeight="40.0" style="-fx-background-color: -fx-accent;" text="Guardar">
                      <styleClass>
-                        <String fx:value="btn-indigo" />
                         <String fx:value="txt-gris-claro2" />
                         <String fx:value="btn-redondo" />
                      </styleClass>

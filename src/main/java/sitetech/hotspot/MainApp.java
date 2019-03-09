@@ -67,7 +67,6 @@ public class MainApp extends Application {
     }
 
     public void mainScene() {
-
         MainController mainControlador = new MainController();
         mainControlador.showStage();
     }

@@ -23,7 +23,7 @@ import sitetech.hotspot.MainApp;
 public class MainController implements Initializable, ArrastrarScene {
 
     private MainApp App;
-    private Stage thisStage;
+    public Stage thisStage;
 
     @FXML
     private AnchorPane panelPrincipal;
@@ -107,7 +107,9 @@ public class MainController implements Initializable, ArrastrarScene {
             
             case "Configuracion":
                 ConfiguracionController pConfiguracion = new ConfiguracionController();
+                pConfiguracion.thisStage.setUserData(thisStage);
                 pConfiguracion.showStage();
+                
                 break;
 
         }

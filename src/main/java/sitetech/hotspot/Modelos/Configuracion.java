@@ -33,7 +33,7 @@ public class Configuracion {
     private String Pais = "Guatemala";
     private String Estado = "Guatemala";
     private String Ciudad = "Guatemala";
-    
+    private boolean codigoBarraVisible = false;
     
     private Locale rLocale; 
     private String LocalMin = "GT";
@@ -146,6 +146,14 @@ public class Configuracion {
 
     public void setrLocale(Locale rLocale) {
         this.rLocale = rLocale;
+    }
+
+    public boolean isCodigoBarraVisible() {
+        return codigoBarraVisible;
+    }
+
+    public void setCodigoBarraVisible(boolean codigoBarraVisible) {
+        this.codigoBarraVisible = codigoBarraVisible;
     }
     
     
