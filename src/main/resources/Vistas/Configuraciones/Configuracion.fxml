@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXColorPicker?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -22,7 +21,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="fondo-gris2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox styleClass="fondo-indigo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox style="-fx-background-color: -fx-accent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label styleClass="txt-gris-claro1" text="Configuracion" VBox.vgrow="ALWAYS">
                <font>
@@ -92,7 +91,7 @@
                         </AnchorPane>
                      </content>
                      <graphic>
-                        <FontAwesomeIcon fill="#ebebeb" iconName="BUILDING" size="25px" />
+                        <FontAwesomeIcon fill="#eeeeee" iconName="BUILDING" size="25px" />
                      </graphic>
                   </Tab>
                   <Tab text="Tickets">
@@ -109,13 +108,13 @@
                                     <Image url="@../../Imagenes/icon.png" />
                                  </image>
                               </ImageView>
-                              <JFXToggleButton fx:id="tgmostrarBarras" layoutX="20.0" layoutY="117.0" style="-jfx-toggle-color: -fx-accent;" text="Mostrar codigo de barras" AnchorPane.leftAnchor="20.0" />
+                              <JFXToggleButton fx:id="tgmostrarBarras" layoutX="20.0" layoutY="117.0" text="Mostrar codigo de barras" AnchorPane.leftAnchor="20.0" />
                               <JFXTextField fx:id="tdominio" focusColor="#304ffe" labelFloat="true" layoutX="22.0" layoutY="81.0" prefHeight="25.0" prefWidth="200.0" promptText="Dominio para el codigo de barras" text="sitetech.com/checkticket" AnchorPane.leftAnchor="22.0">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXToggleButton layoutX="22.0" layoutY="163.0" style="-jfx-toggle-color: -fx-accent;" text="Mostrar codigo de barras" AnchorPane.leftAnchor="20.0" />
+                              <JFXToggleButton layoutX="22.0" layoutY="163.0" text="Mostrar codigo de barras" AnchorPane.leftAnchor="20.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -127,13 +126,13 @@
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <JFXComboBox fx:id="cbmoneda" focusColor="#304ffe" labelFloat="true" layoutX="14.0" layoutY="25.0" prefHeight="25.0" prefWidth="181.0" promptText="Moneda" style="-fx-font-size: 14px;" AnchorPane.leftAnchor="20.0" />
-                              <Label layoutX="204.0" layoutY="31.0" text="Ejemplo:">
+                              <JFXComboBox fx:id="cbmoneda" focusColor="#304ffe" labelFloat="true" layoutX="14.0" layoutY="25.0" prefHeight="25.0" prefWidth="181.0" promptText="Moneda" style="-fx-font-size: 14px;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="30.0" />
+                              <Label layoutX="204.0" layoutY="31.0" text="Ejemplo:" AnchorPane.topAnchor="40.0">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lemoneda" layoutX="260.0" layoutY="31.0" text="Q. 100.00">
+                              <Label fx:id="lemoneda" layoutX="260.0" layoutY="31.0" text="Q. 100.00" AnchorPane.topAnchor="40.0">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -142,15 +141,15 @@
                         </AnchorPane>
                      </content>
                      <graphic>
-                        <FontAwesomeIcon fill="#dadada" iconName="USD" size="25PX" />
+                        <FontAwesomeIcon fill="#eeeeee" iconName="USD" size="25PX" />
                      </graphic>
                   </Tab>
                   <Tab text="Apariencia">
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <JFXColorPicker fx:id="cpenfasis" layoutX="155.0" layoutY="23.0" onAction="#enfasisAction" />
-                              <Label layoutX="53.0" layoutY="27.0" text="Color de enfasis" />
+                           <children>    
+                              <Label layoutX="53.0" layoutY="27.0" text="Color de enfasis" AnchorPane.topAnchor="35.0" />
+                              <JFXComboBox fx:id="cbenfasis" layoutX="151.0" layoutY="23.0" onAction="#enfasisAction" prefHeight="25.0" prefWidth="155.0" AnchorPane.topAnchor="30.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -168,12 +167,7 @@
                         <String fx:value="btn-redondo" />
                      </styleClass>
                   </JFXButton>
-                  <JFXButton cancelButton="true" layoutX="515.0" layoutY="18.0" onAction="#cancelarAction" prefHeight="40.0" text="Cancelar">
-                     <styleClass>
-                        <String fx:value="fondo-gris1" />
-                        <String fx:value="btn-redondo" />
-                     </styleClass>
-                  </JFXButton>
+                  <JFXButton cancelButton="true" layoutX="515.0" layoutY="18.0" onAction="#cancelarAction" prefHeight="40.0" styleClass="btn-redondo" text="Cancelar" />
                </buttons>
                <VBox.margin>
                   <Insets />
