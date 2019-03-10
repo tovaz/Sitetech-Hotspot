@@ -191,9 +191,9 @@
          <right>
                   <VBox prefHeight="515.0" prefWidth="220.0" BorderPane.alignment="CENTER">
                      <children>
-                  <VBox styleClass="fondo-foco-gris1" VBox.vgrow="ALWAYS">
+                  <VBox style="-fx-background-color: -fx-base;" VBox.vgrow="ALWAYS">
                      <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="193.0" styleClass="txt-indigo" text="Informacion del ticket" textAlignment="CENTER" textFill="#004db2">
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="193.0" style="-fx-text-fill: -fx-accent;" text="Informacion del ticket" textAlignment="CENTER" textFill="#004db2">
                                         <font>
                                             <Font size="17.0" />
                                         </font>
@@ -212,7 +212,7 @@
                                 </rowConstraints>
                                  <children>
                                     <Label text="Usuario:" />
-                                    <Label fx:id="lusuario" styleClass="txt-indigo" text="6dad34" GridPane.columnIndex="1">
+                                    <Label fx:id="lusuario" style="-fx-text-fill: -fx-accent;" text="6dad34" GridPane.columnIndex="1">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -224,7 +224,7 @@
                                     <Label layoutX="10.0" layoutY="78.0" text="Estado:" GridPane.rowIndex="4" />
                                     <Label fx:id="lip" layoutX="96.0" layoutY="32.0" styleClass="txt-gris2" text="192.168.1.6" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <Label fx:id="lmac" layoutX="96.0" layoutY="54.0" styleClass="txt-gris2" text="23:cd:5a:c2:d3" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <Label fx:id="lestado" layoutX="96.0" layoutY="76.0" styleClass="txt-indigo" text="Activo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label fx:id="lestado" layoutX="96.0" layoutY="76.0" style="-fx-text-fill: -fx-accent;" text="Activo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                  </children>
                               </GridPane>
                               <Separator prefWidth="200.0">
@@ -259,7 +259,7 @@
                                   <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Label fx:id="lconsumidoDown" styleClass="txt-verde3" text="0 Mb" GridPane.rowIndex="1">
+                                    <Label fx:id="lconsumidoDown" style="-fx-text-fill: -fx-accent;" text="0 Mb" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
@@ -281,7 +281,7 @@
                                     <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Label fx:id="lconsumidoUp" styleClass="txt-verde3" text="600 Mb" GridPane.rowIndex="1">
+                                    <Label fx:id="lconsumidoUp" style="-fx-text-fill: -fx-accent;" text="600 Mb" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
@@ -303,12 +303,12 @@
                   </VBox>
                         <VBox styleClass="fondo-gris2" VBox.vgrow="NEVER">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="193.0" styleClass="txt-indigo" text="Info del paquete" textAlignment="CENTER" textFill="#004db2">
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="193.0" style="-fx-text-fill: -fx-accent;" text="Info del paquete" textAlignment="CENTER" textFill="#004db2">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lpaquete" contentDisplay="CENTER" prefHeight="26.0" prefWidth="207.0" styleClass="txt-gris2" text="2Gb + 3 horas">
+                              <Label fx:id="lpaquete" contentDisplay="CENTER" prefHeight="26.0" prefWidth="207.0" style="-fx-text-fill: -fx-mid-text-color;" text="2Gb + 3 horas">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
@@ -361,5 +361,6 @@
     <stylesheets>
         <URL value="@../../styles/Styles.css" />
         <URL value="@../../styles/botones.css" />
+      <URL value="@../../styles/Temas/Tema-Indigo.css" />
     </stylesheets>
 </AnchorPane>

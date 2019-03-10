@@ -24,7 +24,7 @@ import javax.persistence.Transient;
 public class Configuracion {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int id;
+    private int id=777;
     
     private String Dominio="http://st.cklogin/";
     private String imagenTicket="";
@@ -39,12 +39,13 @@ public class Configuracion {
     private String LocalMin = "GT";
     private Currency Moneda;
 
+    private String colorEnfasis="Indigo";
+    
     @Transient
     private MiLocale RegionLocal; 
 
     public Configuracion() {
     }
-    
     
     public Configuracion(boolean x) {
         rLocale = new Locale("Gt", "Gt");
@@ -154,6 +155,14 @@ public class Configuracion {
 
     public void setCodigoBarraVisible(boolean codigoBarraVisible) {
         this.codigoBarraVisible = codigoBarraVisible;
+    }
+
+    public String getColorEnfasis() {
+        return colorEnfasis;
+    }
+
+    public void setColorEnfasis(String colorEnfasis) {
+        this.colorEnfasis = colorEnfasis;
     }
     
     

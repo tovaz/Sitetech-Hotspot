@@ -18,7 +18,7 @@ import sitetech.hotspot.Modelos.Usuario;
 public class MainApp extends Application {
 
     public Usuario usuarioLogeado = null;
-    private Stage primaryStage;
+    public static Stage primaryStage;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -71,4 +71,9 @@ public class MainApp extends Application {
         mainControlador.showStage();
     }
 
+    public void cambiarTema(ThemeColor tm){
+        primaryStage.getScene().getRoot().getStylesheets().addAll(tm.getCssList());
+    }
+    
+    public static Stage getStage(){ return primaryStage; }
 }

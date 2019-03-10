@@ -80,14 +80,6 @@
     -fx-text-fill: #ccc;
 }
 
-.jfx-tab-pane .headers-region {
-    -fx-background-color: #304FFE;
-}
-
-.jfx-tab-pane .tab-header-background {
-    -fx-background-color: #304FFE;
-}
-
 /******************************* DIALOGO ALERTA ***************************/
 .dialog-pane{
   -fx-border-color: #cecece;

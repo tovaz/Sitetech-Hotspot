@@ -23,11 +23,11 @@
    <children>
       <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox styleClass="fondo-indigo">
+            <HBox style="-fx-background-color: -fx-accent;">
                <children>
                   <VBox>
                      <children>
-                        <Label prefHeight="23.0" prefWidth="44.0" styleClass="txt-gris-claro2" text="Paquete" />
+                        <Label prefHeight="23.0" prefWidth="44.0" style="-fx-text-fill: -fx-light-text-color;" text="Paquete" />
                         <JFXComboBox fx:id="cbpaquetes" prefHeight="25.0" prefWidth="226.0" promptText="Selecciona un Paquete" styleClass="btn-gris-30" />
                         <Label fx:id="lepaquete" layoutX="10.0" layoutY="10.0" prefHeight="23.0" styleClass="txt-gris-claro2" VBox.vgrow="ALWAYS" />
                      </children>
@@ -37,7 +37,7 @@
                   </VBox>
                   <VBox>
                      <children>
-                        <Label prefHeight="24.0" prefWidth="36.0" styleClass="txt-gris-claro2" text="Router" />
+                        <Label prefHeight="24.0" prefWidth="36.0" style="-fx-text-fill: -fx-light-text-color;" text="Router" />
                         <JFXComboBox fx:id="cbrouters" prefHeight="25.0" prefWidth="210.0" promptText="Selecciona un Router" styleClass="btn-gris-30" />
                         <Label fx:id="lerouter" layoutX="10.0" layoutY="10.0" prefHeight="24.0" styleClass="txt-gris-claro2" VBox.vgrow="ALWAYS" />
                      </children>
@@ -47,7 +47,7 @@
                   </VBox>
                   <VBox prefHeight="50.0" prefWidth="171.0" HBox.hgrow="NEVER">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="174.0" styleClass="txt-gris-claro2" text="Longitud usuario y contraseña" />
+                        <Label prefHeight="25.0" prefWidth="174.0" style="-fx-text-fill: -fx-light-text-color;" text="Longitud usuario y contraseña" />
                         <HBox prefHeight="25.0" prefWidth="154.0">
                            <children>
                               <JFXComboBox fx:id="cbusuario" styleClass="btn-gris-30">
@@ -104,7 +104,7 @@
                   </VBox>
                   <VBox prefHeight="55.0" prefWidth="127.0">
                      <children>
-                        <Label styleClass="txt-gris-claro2" text="Cantida de tickets" VBox.vgrow="NEVER">
+                        <Label style="-fx-text-fill: -fx-light-text-color;" styleClass="txt-gris-claro2" text="Cantida de tickets" VBox.vgrow="NEVER">
                            <VBox.margin>
                               <Insets bottom="3.0" left="3.0" right="3.0" top="5.0" />
                            </VBox.margin></Label>
@@ -130,7 +130,7 @@
                <children>
                   <HBox fx:id="pbotones">
                      <children>
-                        <JFXButton fx:id="bgenerar" minHeight="35.0" onAction="#generarAction" prefHeight="35.0" text="Generar tickets" textFill="#f8f8f8">
+                        <JFXButton fx:id="bgenerar" minHeight="35.0" onAction="#generarAction" prefHeight="35.0" styleClass="btn-borde" text="Generar tickets" textFill="#f8f8f8">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -138,11 +138,6 @@
                                  </image>
                               </ImageView>
                            </graphic>
-                           <styleClass>
-                              <String fx:value="btn-indigo" />
-                              <String fx:value="btn-borde" />
-                              <String fx:value="txt-gris-claro1" />
-                           </styleClass>
                         </JFXButton>
                         <JFXButton fx:id="bguardar" minHeight="35.0" onAction="#guardarAction" prefHeight="35.0" prefWidth="108.0" ripplerFill="#f2f2f2" text="Guardar">
                            <graphic>
@@ -155,13 +150,8 @@
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
-                           <styleClass>
-                              <String fx:value="btn-indigo" />
-                              <String fx:value="btn-borde" />
-                              <String fx:value="txt-gris-claro1" />
-                           </styleClass>
                         </JFXButton>
-                        <JFXButton fx:id="bimprimir" minHeight="35.0" onAction="#imprimirAction" prefHeight="35.0" prefWidth="97.0" styleClass="borde-Azul" text="Imprimir" textFill="WHITE">
+                        <JFXButton fx:id="bimprimir" minHeight="35.0" onAction="#imprimirAction" prefHeight="35.0" prefWidth="97.0" style="-fx-background-color: transparent;" styleClass="borde-Azul" text="Imprimir" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -176,7 +166,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </JFXButton>
-                        <JFXCheckBox fx:id="checkNumeros" checkedColor="#304ffe" text="Usar solo numeros en la contraseña">
+                        <JFXCheckBox fx:id="checkNumeros" checkedColor="#304ffe" style="-fx-text-fill: -fx-mid-text-color;" text="Usar solo numeros en la contraseña">
                            <HBox.margin>
                               <Insets left="30.0" />
                            </HBox.margin>
@@ -188,7 +178,7 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <Label fx:id="ltrabajando" prefHeight="25.0" prefWidth="318.0" HBox.hgrow="ALWAYS">
+                        <Label fx:id="ltrabajando" prefHeight="25.0" prefWidth="318.0" style="-fx-text-fill: -fx-mid-text-color;" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
@@ -230,8 +220,9 @@
       </VBox>
    </children>
    <stylesheets>
+      <URL value="@../../styles/Temas/Tema-Indigo.css" />
+      <URL value="@../../styles/validation.css" />
       <URL value="@../../styles/botones.css" />
       <URL value="@../../styles/Styles.css" />
-      <URL value="@../../styles/validation.css" />
    </stylesheets>
 </AnchorPane>
