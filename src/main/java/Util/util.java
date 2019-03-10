@@ -5,7 +5,6 @@
  */
 package Util;
 
-import sitetech.hotspot.Temas;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -66,8 +65,7 @@ public class util {
 
             nuevaStage.initModality(modalidad);
             Scene thisScene = new Scene((Parent)loader.load());
-            
-            Temas.aplicarTema(thisScene);
+            //thisScene.getStylesheets().add("../../resources/styles/Styles.css");
             nuevaStage.setScene(thisScene);
             nuevaStage.setTitle(titulo);
             
@@ -91,8 +89,7 @@ public class util {
 
             main.initModality(modalidad);
             Scene thisScene = new Scene((Parent)loader.load());
-            
-            Temas.aplicarTema(thisScene);
+            //thisScene.getStylesheets().add("../../resources/styles/Styles.css");
             main.setScene(thisScene);
             main.setTitle(titulo);
             return Controlador;

@@ -1,7 +1,6 @@
 package sitetech.hotspot.Controladores;
 
 import Util.ArrastrarScene;
-import sitetech.hotspot.Temas;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -63,11 +62,10 @@ public class MainController implements Initializable, ArrastrarScene {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/Vistas/mainScene.fxml"));
             loader.setController(this);
-            
+
             thisStage.initStyle(StageStyle.DECORATED);
             Scene scene = new Scene((Parent) loader.load());
 
-            Temas.aplicarTema(scene);
             thisStage.setScene(scene);
             thisStage.setTitle("Hotspot 1.0");
         } catch (IOException e) {
