@@ -28,7 +28,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import sitetech.hotspot.Modelos.Configuracion;
-import sitetech.hotspot.Modelos.ConfiguracionManager;
+import sitetech.hotspot.Modelos.ConfiguracionManager2;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -61,7 +61,7 @@ public class ConfiguracionController implements Initializable {
     @FXML private JFXComboBox<ThemeColor> cbenfasis;
     @FXML private JFXComboBox<ThemeColor> cbtema;
     
-    private ConfiguracionManager cm;
+    private ConfiguracionManager2 cm;
     public final Stage thisStage;
     
     @Override
@@ -74,7 +74,7 @@ public class ConfiguracionController implements Initializable {
         Util.util.cargarStage("/Vistas/Configuraciones/Configuracion.fxml", "Configuracion de hotspot", thisStage, this, Modality.APPLICATION_MODAL);
         
         
-        cm = new ConfiguracionManager();
+        cm = new ConfiguracionManager2();
         cargarDatos();
     }
     
@@ -198,9 +198,9 @@ public class ConfiguracionController implements Initializable {
     private void cargarColores(JFXComboBox<ThemeColor> cb, ObservableList<ThemeColor> colores, boolean enfasis){
         cb.setItems(colores);
         for (ThemeColor tc : cb.getItems()){
-            if ( tc.getNombre().equals(ConfiguracionManager.getConfiguracion(new dbHelper()).getColorEnfasis() ) && enfasis )
+            if ( tc.getNombre().equals(ConfiguracionManager2.getConfiguracion(new dbHelper()).getColorEnfasis() ) && enfasis )
                 cb.getSelectionModel().select(tc);
-            else if ( tc.getNombre().equals(ConfiguracionManager.getConfiguracion(new dbHelper()).getColorTema()) && !enfasis )
+            else if ( tc.getNombre().equals(ConfiguracionManager2.getConfiguracion(new dbHelper()).getColorTema()) && !enfasis )
                 cb.getSelectionModel().select(tc);
         }
         

@@ -5,7 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import sitetech.Helpers.dbHelper;
 import sitetech.hotspot.Modelos.Configuracion;
-import sitetech.hotspot.Modelos.ConfiguracionManager;
+import sitetech.hotspot.Modelos.ConfiguracionManager2;
 
 /**
  *
@@ -54,7 +54,7 @@ public class Temas {
     }
     
     public static void aplicarTema(ThemeColor enfasis, ThemeColor tema, Scene escena){
-        Configuracion conf = ConfiguracionManager.getConfiguracion(new dbHelper());
+        Configuracion conf = ConfiguracionManager2.getConfiguracion(new dbHelper());
         
         escena.getRoot().getStylesheets().removeAll(Temas.getStringColors(getEnfasis()));
         escena.getRoot().getStylesheets().removeAll(Temas.getStringColors(getTemas()));
@@ -64,7 +64,7 @@ public class Temas {
     }
     
     public static void aplicarTema(Scene escena){
-        Configuracion conf = ConfiguracionManager.getConfiguracion(new dbHelper());
+        Configuracion conf = ConfiguracionManager2.getConfiguracion(new dbHelper());
         ThemeColor enfasis = getCssporNombre(conf.getColorEnfasis(), Temas.getEnfasis());
         ThemeColor tema = getCssporNombre(conf.getColorTema(), Temas.getTemas());
         
