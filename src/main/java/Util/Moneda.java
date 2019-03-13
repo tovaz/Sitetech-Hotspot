@@ -17,7 +17,7 @@ import sitetech.hotspot.Modelos.Configuracion;
 public class Moneda {
     public static String Formatear(BigDecimal bd) {
         Configuracion conf = new Configuracion();
-        DecimalFormatSymbols symbols = new DecimalFormatSymbols(conf.getRegionLocal().getLocale());
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(conf.getrLocale());
         //symbols.setDecimalSeparator(',');
         DecimalFormat df = new DecimalFormat("##.00", symbols);
         

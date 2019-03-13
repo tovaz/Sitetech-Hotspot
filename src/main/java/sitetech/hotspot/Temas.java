@@ -1,13 +1,9 @@
 package sitetech.hotspot;
 
-
-import sitetech.hotspot.ThemeColor;
-import java.net.URL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import sitetech.Helpers.dbHelper;
-import sitetech.hotspot.MainApp;
 import sitetech.hotspot.Modelos.Configuracion;
 import sitetech.hotspot.Modelos.ConfiguracionManager;
 
@@ -16,12 +12,11 @@ import sitetech.hotspot.Modelos.ConfiguracionManager;
  * @author willi
  */
 public class Temas {
-    public static ObservableList<ThemeColor> getTemas(Object obj){
-        
-        ObservableList<String> indigo = FXCollections.observableArrayList( "/styles/Temas/Tema-Indigo.css", "/styles/botones.css", "/styles/Styles.css"  );
-        ObservableList<String> turquesa = FXCollections.observableArrayList(  "/styles/Temas/Tema-Turquesa.css", "/styles/botones.css", "/styles/Styles.css"  );
-        ObservableList<String> rosado = FXCollections.observableArrayList(  "/styles/Temas/Tema-Rosado.css", "/styles/botones.css", "/styles/Styles.css"  );
-        ObservableList<String> verde = FXCollections.observableArrayList( "/styles/Temas/Tema-Verde.css", "/styles/botones.css", "/styles/Styles.css" );
+    public static ObservableList<ThemeColor> getEnfasis(){
+        ObservableList<String> indigo = FXCollections.observableArrayList( "/styles/Temas/Tema-Indigo.css", "/styles/botones.css", "/styles/Styles.css", "/styles/validation.css"  );
+        ObservableList<String> turquesa = FXCollections.observableArrayList(  "/styles/Temas/Tema-Turquesa.css", "/styles/botones.css", "/styles/Styles.css", "/styles/validation.css"  );
+        ObservableList<String> rosado = FXCollections.observableArrayList(  "/styles/Temas/Tema-Rosado.css", "/styles/botones.css", "/styles/Styles.css", "/styles/validation.css"  );
+        ObservableList<String> verde = FXCollections.observableArrayList( "/styles/Temas/Tema-Verde.css", "/styles/botones.css", "/styles/Styles.css", "/styles/validation.css" );
         
         ThemeColor tci = new ThemeColor("Indigo", "304FFE", indigo);
         ThemeColor tct = new ThemeColor("Turquesa", "00BFA5", turquesa);
@@ -30,26 +25,53 @@ public class Temas {
         return FXCollections.observableArrayList(tci, tct, tcr, tcv);
     }
     
-    public static ThemeColor getThemebyName(String nombre, Object obj){
-        ObservableList<ThemeColor> temas = getTemas(obj);
-        for (ThemeColor tc : temas){
+    public static ObservableList<ThemeColor> getTemas(){
+        ObservableList<String> claro = FXCollections.observableArrayList( "/styles/Temas/Tema-Claro.css" );
+        ObservableList<String> obscuro = FXCollections.observableArrayList(  "/styles/Temas/Tema-Obscuro.css" );
+        
+        ThemeColor tc = new ThemeColor("Claro", "ccc", claro);
+        ThemeColor to = new ThemeColor("Obscuro", "555", obscuro);
+        return FXCollections.observableArrayList(tc, to);
+    }
+    
+    public static ObservableList<String> getStringColors(ObservableList<ThemeColor> colores){
+        ObservableList<String> temasString = FXCollections.observableArrayList();
+        for (ThemeColor tc : colores){
+            for (String st : tc.getCssList()){
+                if (!temasString.contains(st))
+                    temasString.add(st);
+            }
+        }
+        return temasString;
+    }
+    
+    public static ThemeColor getCssporNombre(String nombre, ObservableList<ThemeColor> colores){
+        for (ThemeColor tc : colores){
             if (tc.getNombre().equals(nombre))
                 return tc;
         }
         return null;
     }
     
-    public static void aplicarTema(String tema, Scene escena){
+    public static void aplicarTema(ThemeColor enfasis, ThemeColor tema, Scene escena){
         Configuracion conf = ConfiguracionManager.getConfiguracion(new dbHelper());
-        ThemeColor tc = getThemebyName(tema, escena);
-        escena.getStylesheets().setAll(tc.getCssList());
+        
+        escena.getRoot().getStylesheets().removeAll(Temas.getStringColors(getEnfasis()));
+        escena.getRoot().getStylesheets().removeAll(Temas.getStringColors(getTemas()));
+        escena.getRoot().getStylesheets().addAll(enfasis.getCssList());
+        escena.getRoot().getStylesheets().addAll(tema.getCssList());
+        System.out.println("ENFASIS : #" + enfasis.getCssList());
     }
     
     public static void aplicarTema(Scene escena){
         Configuracion conf = ConfiguracionManager.getConfiguracion(new dbHelper());
-        ThemeColor tc = getThemebyName(conf.getColorEnfasis(), escena);
+        ThemeColor enfasis = getCssporNombre(conf.getColorEnfasis(), Temas.getEnfasis());
+        ThemeColor tema = getCssporNombre(conf.getColorTema(), Temas.getTemas());
         
-        System.out.println(tc.getCssList());
-        escena.getRoot().getStylesheets().setAll(tc.getCssList());
+        escena.getRoot().getStylesheets().removeAll(Temas.getStringColors(getEnfasis()));
+        escena.getRoot().getStylesheets().removeAll(Temas.getStringColors(getTemas()));
+        escena.getRoot().getStylesheets().addAll(enfasis.getCssList());
+        escena.getRoot().getStylesheets().addAll(tema.getCssList());
+        System.out.println("ENFASIS : #" + enfasis.getCssList());
     }
 }

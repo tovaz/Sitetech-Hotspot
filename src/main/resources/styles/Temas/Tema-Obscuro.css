@@ -1,0 +1,67 @@
+/***************+ PRINCIPALES ****************/
+.root {
+    -jfx-rippler-fill: #111;
+    -colorFondo: #444;
+    -colorFondo2: #333;
+    -colorFondo3: #222;
+    -colorFondo4: #111;
+    -colorFondo5: #000;
+    
+    -colorTexto: #ccc;
+    -colorTexto2: #cecece;
+    -colorTexto3: #eee;
+    -colorTexto4: #ececec;
+    -colorTexto5: #eee;
+    
+    -fx-dark-text-color: #eee;
+    -fx-mid-text-color: #ccc;
+    -fx-light-text-color: #333;
+}
+
+/*************** SOMBRAS *************/
+.sombra1 {
+  -fx-border-radius: 25px;
+  -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.4), 5, 0, 0, 1); }
+
+.sombra2 {
+  -fx-border-radius: 25px;
+  -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.4), 5, 0, 0, 2); }
+
+.sombra3 {
+  -fx-border-radius: 25px;
+  -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.4), 5, 0, 0, 3); 
+}
+
+
+/**************** BOTONES ********************/
+.btn-default{ 
+    -fx-background-color: -colorFondo; 
+    -fx-text-fill: -colorTexto;
+}
+
+.btn-default2{ 
+    -fx-background-color: -colorfondo2; 
+    -fx-text-fill: -colorTexto2;
+}
+
+.btn-primario{ 
+    -fx-background-color: -fx-accent; 
+    -fx-text-fill: #eee;
+}
+
+.btn-secundario{ 
+    -fx-background-color: -fx-secundary; 
+    -fx-text-fill: #eee;
+}
+
+.fondo-degradado1 {
+  -fx-background-color: radial-gradient(focus-angle 254deg, focus-distance 74%, center 50% 50%, radius 55%, -colorFondo, -colorFondo2); }
+
+.fondo-degradado2 {
+  -fx-background-color: radial-gradient(focus-angle 254deg, focus-distance 74%, center 50% 50%, radius 55%, -colorFondo2, -colorFondo3); }
+
+.fondo-degradado3 {
+  -fx-background-color: radial-gradient(focus-angle 254deg, focus-distance 74%, center 50% 50%, radius 55%, -colorfondo3, -colorFondo4); }
+
+.fondo-degradado4 {
+  -fx-background-color: radial-gradient(focus-angle 254deg, focus-distance 74%, center 50% 50%, radius 55%, -colorFondo4, -colorFondo5); }

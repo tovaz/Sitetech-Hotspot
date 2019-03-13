@@ -40,6 +40,7 @@ public class Configuracion {
     private Currency Moneda;
 
     private String colorEnfasis="Indigo";
+    private String colorTema="Claro";
     
     @Transient
     private MiLocale RegionLocal; 
@@ -163,6 +164,14 @@ public class Configuracion {
 
     public void setColorEnfasis(String colorEnfasis) {
         this.colorEnfasis = colorEnfasis;
+    }
+
+    public String getColorTema() {
+        return colorTema;
+    }
+
+    public void setColorTema(String colorTema) {
+        this.colorTema = colorTema;
     }
     
     

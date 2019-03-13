@@ -23,22 +23,26 @@
    <children>
       <VBox style="-fx-background-color: -fx-accent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label styleClass="txt-gris-claro1" text="Configuracion" VBox.vgrow="ALWAYS">
-               <font>
-                  <Font size="18.0" />
-               </font>
+            <AnchorPane maxHeight="32.0" minHeight="32.0" prefHeight="32.0" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
-               <padding>
-                  <Insets bottom="5.0" left="10.0" top="5.0" />
-               </padding>
-            </Label>
+               <children>
+                  <Label alignment="CENTER" prefHeight="20.0" prefWidth="600.0" styleClass="txt-gris-claro1" text="Configuraciones" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </AnchorPane>
             <JFXTabPane styleClass="fondo-foco-gris1" tabMinWidth="100.0" VBox.vgrow="ALWAYS">
                <tabs>
                 <Tab text="Negocio">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: -colorFondo;">
                            <children>
                               <VBox layoutX="23.0" layoutY="25.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="271.0" prefWidth="370.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
@@ -96,13 +100,13 @@
                   </Tab>
                   <Tab text="Tickets">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: -colorFondo;">
                            <children>
                               <JFXTextField fx:id="timagen" focusColor="#304ffe" labelFloat="true" layoutX="20.0" layoutY="26.0" prefHeight="25.0" prefWidth="282.0" promptText="Imagen a mostrar en el ticket" AnchorPane.leftAnchor="20.0">
                                  <font>
                                     <Font size="14.0" />
                                  </font></JFXTextField>
-                              <JFXButton layoutX="300.0" layoutY="29.0" onAction="#examinarAction" styleClass="btn-gris-30" text="Examinar" />
+                              <JFXButton layoutX="300.0" layoutY="29.0" onAction="#examinarAction" styleClass="btn-default2" text="Examinar" />
                               <ImageView fx:id="iticket" fitHeight="50.0" fitWidth="50.0" layoutX="373.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" styleClass="borde-Indigo">
                                  <image>
                                     <Image url="@../../Imagenes/icon.png" />
@@ -123,16 +127,19 @@
                      </graphic>
                   </Tab>
                   <Tab text="Formatos">
+                     <graphic>
+                        <FontAwesomeIcon fill="#eeeeee" iconName="USD" size="25PX" />
+                     </graphic>
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: -colorFondo;">
                            <children>
-                              <JFXComboBox fx:id="cbmoneda" focusColor="#304ffe" labelFloat="true" layoutX="14.0" layoutY="25.0" prefHeight="25.0" prefWidth="181.0" promptText="Moneda" style="-fx-font-size: 14px;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="30.0" />
-                              <Label layoutX="204.0" layoutY="31.0" text="Ejemplo:" AnchorPane.topAnchor="40.0">
+                              <JFXComboBox fx:id="cbmoneda" focusColor="#304ffe" labelFloat="true" layoutX="14.0" layoutY="25.0" prefHeight="25.0" prefWidth="200.0" promptText="Moneda" style="-fx-font-size: 14px;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="30.0" />
+                              <Label layoutX="228.0" layoutY="37.0" text="Ejemplo:" AnchorPane.topAnchor="37.0">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lemoneda" layoutX="260.0" layoutY="31.0" text="Q. 100.00" AnchorPane.topAnchor="40.0">
+                              <Label fx:id="lemoneda" layoutX="284.0" layoutY="37.0" text="Q. 100.00" AnchorPane.topAnchor="37.0">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -140,16 +147,15 @@
                            </children>
                         </AnchorPane>
                      </content>
-                     <graphic>
-                        <FontAwesomeIcon fill="#eeeeee" iconName="USD" size="25PX" />
-                     </graphic>
                   </Tab>
                   <Tab text="Apariencia">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: -colorFondo;">
                            <children>    
                               <Label layoutX="53.0" layoutY="27.0" text="Color de enfasis" AnchorPane.topAnchor="35.0" />
                               <JFXComboBox fx:id="cbenfasis" layoutX="151.0" layoutY="23.0" onAction="#enfasisAction" prefHeight="25.0" prefWidth="155.0" AnchorPane.topAnchor="30.0" />
+                              <Label layoutX="53.0" layoutY="73.0" text="Tema" />
+                              <JFXComboBox fx:id="cbtema" layoutX="151.0" layoutY="68.0" onAction="#enfasisAction" prefHeight="25.0" prefWidth="155.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -159,15 +165,14 @@
                   </Tab>
                </tabs>
             </JFXTabPane>
-            <ButtonBar buttonMinWidth="100.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="55.0" prefWidth="200.0" styleClass="fondo-gris2">
+            <ButtonBar buttonMinWidth="100.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="55.0" prefWidth="200.0" style="-fx-background-color: -colorFondo2;" styleClass="sombra1">
                <buttons>
-                  <JFXButton defaultButton="true" onAction="#guardarAction" prefHeight="40.0" style="-fx-background-color: -fx-accent;" text="Guardar">
+                  <JFXButton defaultButton="true" onAction="#guardarAction" prefHeight="40.0" styleClass="btn-primario" text="Guardar" />
+                  <JFXButton cancelButton="true" layoutX="515.0" layoutY="18.0" onAction="#cancelarAction" prefHeight="40.0" text="Cancelar">
                      <styleClass>
-                        <String fx:value="txt-gris-claro2" />
                         <String fx:value="btn-redondo" />
-                     </styleClass>
-                  </JFXButton>
-                  <JFXButton cancelButton="true" layoutX="515.0" layoutY="18.0" onAction="#cancelarAction" prefHeight="40.0" styleClass="btn-redondo" text="Cancelar" />
+                        <String fx:value="btn-default" />
+                     </styleClass></JFXButton>
                </buttons>
                <VBox.margin>
                   <Insets />
@@ -180,8 +185,10 @@
       </VBox>
    </children>
    <stylesheets>
+      <URL value="@../../styles/Temas/Tema-Indigo.css" />
       <URL value="@../../styles/botones.css" />
       <URL value="@../../styles/Styles.css" />
       <URL value="@../../styles/validation.css" />
+      <URL value="@../../styles/Temas/Tema-Claro.css" />
    </stylesheets>
 </AnchorPane>

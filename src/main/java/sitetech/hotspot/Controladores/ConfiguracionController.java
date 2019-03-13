@@ -59,6 +59,7 @@ public class ConfiguracionController implements Initializable {
     @FXML private JFXToggleButton tgmostrarBarras;
     @FXML private ImageView iticket;
     @FXML private JFXComboBox<ThemeColor> cbenfasis;
+    @FXML private JFXComboBox<ThemeColor> cbtema;
     
     private ConfiguracionManager cm;
     public final Stage thisStage;
@@ -77,13 +78,15 @@ public class ConfiguracionController implements Initializable {
         cargarDatos();
     }
     
+    private Configuracion conf;
     private  void cargarDatos(){
-        cargarPaises();
-        cargarColores();
-        
-        Configuracion conf = cm.getConfiguracion();
+        conf = cm.getConfiguracion();
         if (conf == null)
             conf = new Configuracion(true);
+        
+        cargarPaises();
+        cargarColores(cbenfasis, Temas.getEnfasis(), true);
+        cargarColores(cbtema, Temas.getTemas(), false);
         
         System.out.println("****************** EMPRESA: " + conf.getEmpresa());
         tempresa.setText(conf.getEmpresa());
@@ -98,22 +101,27 @@ public class ConfiguracionController implements Initializable {
         File fimg = new File(conf.getImagenTicket());
         iticket.setImage(new Image( fimg.toURI().toString()) );
         
-        cbmoneda.setValue(new MiLocale(conf.getrLocale(), conf.getrLocale().getDisplayCountry()));
+        //cbmoneda.setValue();
         conf.setRegionLocal(new MiLocale(conf.getrLocale(), conf.getrLocale().getDisplayCountry()));
+        cbmoneda.getSelectionModel().select(new MiLocale(conf.getrLocale(), conf.getrLocale().getDisplayCountry()));
     }
     
     private void cargarPaises(){
         String[] paises = Locale.getISOCountries();
         ObservableList<MiLocale> locales = FXCollections.observableArrayList();
+        int index=0;
         for (String countryCode : paises) {
             Locale obj = new Locale("", countryCode);
             cbpais.getItems().add(obj.getDisplayCountry());
             
             locales.add(new MiLocale(obj, obj.getDisplayCountry()));
+            if ( !(obj == conf.getrLocale()) ) index ++;
 	}
         
         
         cbmoneda.setItems(locales);
+        System.out.println ( "index: " + index + " Locale: " + cbmoneda.getSelectionModel().select(index));
+        cbmoneda.getSelectionModel().select(index);
         cbmoneda.valueProperty().addListener(new ChangeListener<MiLocale>() {
             @Override
             public void changed(ObservableValue<? extends MiLocale> observable, MiLocale oldValue, MiLocale newValue) {
@@ -140,6 +148,7 @@ public class ConfiguracionController implements Initializable {
         conf.setDominio(tdominio.getText());
         conf.setCodigoBarraVisible(tgmostrarBarras.isSelected());
         conf.setColorEnfasis(cbenfasis.getValue().getNombre());
+        conf.setColorTema(cbtema.getValue().getNombre());
         
         NumberFormat nf = NumberFormat.getCurrencyInstance(cbmoneda.getValue().getLocale());
         conf.setMoneda(nf.getCurrency());
@@ -178,51 +187,32 @@ public class ConfiguracionController implements Initializable {
     
     @FXML
     void enfasisAction(ActionEvent event) {
-        ObservableList<String> enfasis = cbenfasis.getValue().getCssList();
+        ThemeColor enfasisSeleccionado = cbenfasis.getValue();
+        ThemeColor temaSeleccionado = cbtema.getValue();
         Stage primaryStage = (Stage)thisStage.getUserData();
-        thisStage.getScene().getRoot().getStylesheets().setAll(enfasis);
         
-        primaryStage.getScene().getRoot().getStylesheets().setAll(enfasis);
-        System.out.println("ENFASIS: #" + enfasis.get(0));
+        Temas.aplicarTema(enfasisSeleccionado, temaSeleccionado, thisStage.getScene());
+        Temas.aplicarTema(enfasisSeleccionado, temaSeleccionado, primaryStage.getScene());
     }
     
-    private void cargarColores(){
-        ObservableList<ThemeColor> colores = Temas.getTemas(this);
-        cbenfasis.setItems(colores);
-        for (ThemeColor tc : cbenfasis.getItems()){
-            if ( tc.getNombre().equals(ConfiguracionManager.getConfiguracion(new dbHelper()).getColorEnfasis() ) )
-                cbenfasis.getSelectionModel().select(tc);
+    private void cargarColores(JFXComboBox<ThemeColor> cb, ObservableList<ThemeColor> colores, boolean enfasis){
+        cb.setItems(colores);
+        for (ThemeColor tc : cb.getItems()){
+            if ( tc.getNombre().equals(ConfiguracionManager.getConfiguracion(new dbHelper()).getColorEnfasis() ) && enfasis )
+                cb.getSelectionModel().select(tc);
+            else if ( tc.getNombre().equals(ConfiguracionManager.getConfiguracion(new dbHelper()).getColorTema()) && !enfasis )
+                cb.getSelectionModel().select(tc);
         }
+        
         javafx.util.Callback<ListView<ThemeColor>, ListCell<ThemeColor>> factory = new javafx.util.Callback<ListView<ThemeColor>, ListCell<ThemeColor>>() {
             @Override
             public ListCell<ThemeColor> call(ListView<ThemeColor> list) {
-                return new ColorRectCell();
+                return new Util.PanelColor();
             }
         };
-
-        cbenfasis.setCellFactory(factory);
-        cbenfasis.setButtonCell(factory.call(null));
-    }
-    
-    static class ColorRectCell extends ListCell<ThemeColor>{
-      @Override
-      public void updateItem(ThemeColor item, boolean empty){
-          super.updateItem(item, empty);
-          AnchorPane panel = new AnchorPane();
-          panel.setPrefSize(150, 35);
-          Label lb = new Label();
-          lb.setPadding(new Insets(10,10,10,10));
-          
-          lb.textAlignmentProperty().setValue(TextAlignment.CENTER);
-          
-          Rectangle rect = new Rectangle(120,18);
-          if(item != null){
-            lb.setText(item.getNombre());
-            panel.setStyle("-fx-background-color: #" + item.getColor() + "");
-            panel.getChildren().addAll(lb);
-              setGraphic(panel);
-          }
-    }
-    }   
+        
+        cb.setCellFactory(factory);
+        cb.setButtonCell(factory.call(null));
+   }   
     
 }

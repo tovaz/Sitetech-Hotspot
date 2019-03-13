@@ -4,10 +4,6 @@
     -fx-secundary: #1DE9B6;
     -fx-cancel-button: #ddd;
     
-    -fx-dark-text-color: #222;
-    -fx-mid-text-color: #565656;
-    -fx-light-text-color: #efefef;
-    
     -jfx-primary-color: -fx-accent;
     -jfx-secondary-color: -fx-secundary;
     -jfx-checked-color: -fx-accent;

@@ -1,24 +1,4 @@
 /***************+ PRINCIPALES ****************/
-.root {
-    -fx-base: #eee;
-    -fx-color: -fx-base;
-    -fx-accent: #304FFE;
-    -fx-secundary: #526FFf;
-    
-    -jfx-primary-color: -fx-accent;
-    -jfx-secondary-color: -fx-secundary;
-}
-
-.rootRosado {
-    -fx-base: #888;
-    -fx-color: -fx-base;
-    -fx-accent: #ff3333;
-    -fx-secundary: #526FFf;
-    
-    -jfx-primary-color: -fx-accent;
-    -jfx-secondary-color: -fx-secundary;
-}
-
 .menu-bar .label {
     -fx-font-size: 15 pt;
     -fx-text-fill: #eee;
