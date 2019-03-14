@@ -8,6 +8,7 @@ package Util;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import javafx.scene.layout.Region;
 import sitetech.hotspot.Modelos.Configuracion;
 
 /**
@@ -17,7 +18,7 @@ import sitetech.hotspot.Modelos.Configuracion;
 public class Moneda {
     public static String Formatear(BigDecimal bd) {
         Configuracion conf = new Configuracion();
-        DecimalFormatSymbols symbols = new DecimalFormatSymbols(conf.getrLocale());
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(conf.getRegionLocal().getLocale());
         //symbols.setDecimalSeparator(',');
         DecimalFormat df = new DecimalFormat("##.00", symbols);
         

@@ -35,8 +35,10 @@ public class Configuracion {
     private String Ciudad = "Guatemala";
     private boolean codigoBarraVisible = false;
     
-    private Locale rLocale; 
-    private String LocalMin = "GT";
+    private String FormatoMoneda = "GT";
+    private String Idioma = "es";
+    
+    @Transient
     private Currency Moneda;
 
     private String colorEnfasis="Indigo";
@@ -49,8 +51,9 @@ public class Configuracion {
     }
     
     public Configuracion(boolean x) {
-        rLocale = new Locale("Gt", "Gt");
-        RegionLocal = new MiLocale(rLocale, rLocale.getDisplayCountry());
+        FormatoMoneda = "GT";
+        Idioma = "es";
+        RegionLocal = new MiLocale(new Locale(Idioma, FormatoMoneda), FormatoMoneda);
         this.Moneda = Currency.getInstance(RegionLocal.getLocale());
     }
 
@@ -119,37 +122,17 @@ public class Configuracion {
     }
 
     public MiLocale getRegionLocal() {
-        return RegionLocal;
+        return new MiLocale(new Locale(Idioma, FormatoMoneda), FormatoMoneda);
     }
 
-    public void setRegionLocal(MiLocale RegionLocal) {
-        this.RegionLocal = RegionLocal;
-    }
+    //public void setRegionLocal(MiLocale RegionLocal) {
+    //    this.RegionLocal = RegionLocal;
+    //}
 
     public Currency getMoneda() {
-        return Moneda;
+        return Currency.getInstance(new Locale(Idioma, FormatoMoneda));
     }
-
-    public void setMoneda(Currency Moneda) {
-        this.Moneda = Moneda;
-    }
-
-    public String getLocalMin() {
-        return LocalMin;
-    }
-
-    public void setLocalMin(String LocalMin) {
-        this.LocalMin = LocalMin;
-    }
-
-    public Locale getrLocale() {
-        return rLocale;
-    }
-
-    public void setrLocale(Locale rLocale) {
-        this.rLocale = rLocale;
-    }
-
+    
     public boolean isCodigoBarraVisible() {
         return codigoBarraVisible;
     }
@@ -173,6 +156,23 @@ public class Configuracion {
     public void setColorTema(String colorTema) {
         this.colorTema = colorTema;
     }
+
+    public String getFormatoMoneda() {
+        return FormatoMoneda;
+    }
+
+    public void setFormatoMoneda(String FormatoMoneda) {
+        this.FormatoMoneda = FormatoMoneda;
+    }
+
+    public String getIdioma() {
+        return Idioma;
+    }
+
+    public void setIdioma(String Idioma) {
+        this.Idioma = Idioma;
+    }
+
     
     
     

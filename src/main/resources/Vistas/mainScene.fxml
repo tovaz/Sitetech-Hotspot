@@ -18,9 +18,9 @@
     <children>
         <VBox prefHeight="600.0" prefWidth="1031.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <MenuBar style="-fx-background-color: -fx-accent;" styleClass="txt-gris-claro1" VBox.vgrow="ALWAYS">
+                <MenuBar style="-fx-background-color: -fx-accent;" styleClass="menubar" VBox.vgrow="ALWAYS">
                     <menus>
-                        <Menu mnemonicParsing="false" styleClass="txt-gris-claro1" text="Caja">
+                        <Menu mnemonicParsing="false" text="Caja">
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Consultar caja" />
                                 <SeparatorMenuItem mnemonicParsing="false" onAction="#onMenuAction" />
@@ -29,7 +29,7 @@
                                 <Menu mnemonicParsing="false" onAction="#onMenuAction" text="Cerrar caja" />
                             </items>
                         </Menu>
-                        <Menu mnemonicParsing="false" styleClass="txt-gris-claro2" text="Tickets">
+                        <Menu mnemonicParsing="false" text="Tickets">
                             <items>
                                 <MenuItem mnemonicParsing="false" text="Generar tickets">
                            <graphic>
@@ -159,5 +159,7 @@
     <stylesheets>
         <URL value="@../styles/Styles.css" />
         <URL value="@../styles/botones.css" />
+      <URL value="@../styles/Temas/Tema-Indigo.css" />
+      <URL value="@../styles/Temas/Tema-Claro.css" />
     </stylesheets>
 </AnchorPane>

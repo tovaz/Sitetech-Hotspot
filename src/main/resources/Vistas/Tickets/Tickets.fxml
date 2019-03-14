@@ -4,7 +4,6 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXSpinner?>
 <?import com.jfoenix.controls.JFXToolbar?>
-<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -31,7 +30,7 @@
                     <children>
                         <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <ToolBar prefHeight="73.0" prefWidth="567.0" styleClass="fondo-gris1">
+                                <ToolBar prefHeight="73.0" prefWidth="567.0" style="-fx-background-color: -colorFondo;">
                                     <items>
                                         <VBox>
                                             <children>
@@ -104,21 +103,17 @@
                     <children>
                         <VBox prefWidth="808.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <ToolBar blendMode="SRC_ATOP" prefWidth="757.0" style="-fx-background-color: -fx-accent;">
+                                <ToolBar blendMode="SRC_ATOP" prefWidth="757.0" style="-fx-background-color: -fx-accent;" styleClass="ticket-toolbar">
                                     <items>
-                                        <Label text="Tickets">
+                                        <Label style="-fx-text-fill: -colorTexto4;" styleClass="sombra3" text="Tickets">
                                             <font>
                                                 <Font size="18.0" />
                                             </font>
                                             <padding>
-                                                <Insets right="50.0" />
+                                                <Insets left="10.0" right="50.0" />
                                             </padding>
-                                 <styleClass>
-                                    <String fx:value="txt-gris2" />
-                                    <String fx:value="light-shadow3" />
-                                 </styleClass>
                                         </Label>
-                                        <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGenerarAction" prefHeight="55.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
+                                        <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGenerarAction" prefHeight="55.0" prefWidth="117.0" text=" ">
                                             <graphic>
                                                 <VBox alignment="CENTER" prefHeight="55.0" prefWidth="90.0">
                                                     <children>
@@ -132,7 +127,7 @@
                                                 </VBox>
                                             </graphic>
                                         </JFXButton>
-                                        <JFXButton alignment="CENTER" contentDisplay="CENTER" maxHeight="55.0" minHeight="55.0" mnemonicParsing="false" onAction="#onImprimirAction" prefHeight="55.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
+                                        <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" maxHeight="55.0" minHeight="55.0" mnemonicParsing="false" onAction="#onImprimirAction" prefHeight="55.0" prefWidth="117.0" text=" ">
                                             <graphic>
                                                 <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
                                                     <children>
@@ -146,7 +141,7 @@
                                                 </VBox>
                                             </graphic>
                                         </JFXButton>
-                                        <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onVenderAction" prefHeight="55.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
+                                        <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onVenderAction" prefHeight="55.0" prefWidth="117.0" text=" ">
                                             <graphic>
                                                 <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
                                                     <children>
@@ -161,7 +156,7 @@
                                             </graphic>
                                         </JFXButton>
                                         <Separator orientation="VERTICAL" />
-                                        <JFXButton fx:id="beliminar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onEliminarAction" prefHeight="55.0" prefWidth="117.0" styleClass="ticket-button-toolbar" text=" ">
+                                        <JFXButton fx:id="beliminar" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onEliminarAction" prefHeight="55.0" prefWidth="117.0" text=" ">
                                             <graphic>
                                                 <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
                                                     <children>
@@ -191,7 +186,7 @@
          <right>
                   <VBox prefHeight="515.0" prefWidth="220.0" BorderPane.alignment="CENTER">
                      <children>
-                  <VBox style="-fx-background-color: -fx-base;" VBox.vgrow="ALWAYS">
+                  <VBox style="-fx-background-color: -colorFondo;" VBox.vgrow="ALWAYS">
                      <children>
                                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="193.0" style="-fx-text-fill: -fx-accent;" text="Informacion del ticket" textAlignment="CENTER" textFill="#004db2">
                                         <font>
@@ -218,12 +213,12 @@
                                        </font>
                                     </Label>
                                     <Label text="Contraseña:" GridPane.rowIndex="1" />
-                                    <Label fx:id="lcontraseña" styleClass="txt-gris2" text="123456" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="lcontraseña" text="123456" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <Label layoutX="10.0" layoutY="34.0" text="Ip:" GridPane.rowIndex="2" />
                                     <Label layoutX="10.0" layoutY="56.0" text="Mac:" GridPane.rowIndex="3" />
                                     <Label layoutX="10.0" layoutY="78.0" text="Estado:" GridPane.rowIndex="4" />
-                                    <Label fx:id="lip" layoutX="96.0" layoutY="32.0" styleClass="txt-gris2" text="192.168.1.6" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Label fx:id="lmac" layoutX="96.0" layoutY="54.0" styleClass="txt-gris2" text="23:cd:5a:c2:d3" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label fx:id="lip" layoutX="96.0" layoutY="32.0" text="192.168.1.6" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="lmac" layoutX="96.0" layoutY="54.0" text="23:cd:5a:c2:d3" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <Label fx:id="lestado" layoutX="96.0" layoutY="76.0" style="-fx-text-fill: -fx-accent;" text="Activo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                  </children>
                               </GridPane>
@@ -240,7 +235,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                              <Label fx:id="ltiempoConsumido" styleClass="txt-gris2" text="1 dia + 3hr y 20 min" />
+                              <Label fx:id="ltiempoConsumido" text="1 dia + 3hr y 20 min" />
                         <Label layoutX="20.0" layoutY="170.0" text="Internet consumido">
                            <font>
                               <Font name="System Bold" size="12.0" />
@@ -265,7 +260,7 @@
                                  </font>
                                     </Label>
                                           <JFXSpinner fx:id="spConsumidoDown" progress="0.5" GridPane.columnIndex="1" GridPane.rowSpan="2" />
-                              <Label fx:id="ltiempoConsumido1" styleClass="txt-gris2" text="Descarga" />
+                              <Label fx:id="ltiempoConsumido1" text="Descarga" />
                                  </children>
                            <VBox.margin>
                               <Insets />
@@ -287,7 +282,7 @@
                                  </font>
                                     </Label>
                                     <JFXSpinner fx:id="spConsumidoUp" progress="0.5" GridPane.columnIndex="1" GridPane.rowSpan="2" />
-                              <Label fx:id="ltiempoConsumido11" styleClass="txt-gris2" text="Subida" />
+                              <Label fx:id="ltiempoConsumido11" text="Subida" />
                                  </children>
                            <VBox.margin>
                               <Insets top="10.0" />
@@ -301,7 +296,7 @@
                         <Insets left="10.0" right="10.0" />
                      </padding>
                   </VBox>
-                        <VBox styleClass="fondo-gris2" VBox.vgrow="NEVER">
+                        <VBox style="-fx-background-color: -colorFondo2;" VBox.vgrow="NEVER">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="193.0" style="-fx-text-fill: -fx-accent;" text="Info del paquete" textAlignment="CENTER" textFill="#004db2">
                                  <font>
@@ -330,9 +325,9 @@
                                     <Label text="Limite de tiempo:" GridPane.rowIndex="1" />
                                     <Label text="Limite de Internet:" GridPane.rowIndex="2" />
                                     <Label fx:id="llimiteDescarga" prefHeight="17.0" prefWidth="104.0" text="1Gb + 300 Mb" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Label fx:id="llimiteTiempo" layoutX="105.0" layoutY="32.0" prefHeight="17.0" prefWidth="98.0" styleClass="txt-gris2" text="3hr + 0 min" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="llimiteTiempo" layoutX="105.0" layoutY="32.0" prefHeight="17.0" prefWidth="98.0" text="3hr + 0 min" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <Label layoutX="10.0" layoutY="34.0" text="Precio:" />
-                                    <Label fx:id="lprecio" layoutX="106.0" layoutY="32.0" styleClass="txt-gris2" text="Q 6.00" GridPane.columnIndex="1">
+                                    <Label fx:id="lprecio" layoutX="106.0" layoutY="32.0" text="Q 6.00" GridPane.columnIndex="1">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -359,8 +354,9 @@
         </JFXToolbar>
     </children>
     <stylesheets>
-        <URL value="@../../styles/Styles.css" />
         <URL value="@../../styles/botones.css" />
-      <URL value="@../../styles/Temas/Tema-Indigo.css" />
+        <URL value="@../../styles/Temas/Tema-Indigo.css" />
+      <URL value="@../../styles/Temas/Tema-Obscuro.css" />
+      <URL value="@../../styles/Styles.css" />
     </stylesheets>
 </AnchorPane>

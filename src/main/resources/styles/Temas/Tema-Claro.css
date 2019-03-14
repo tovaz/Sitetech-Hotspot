@@ -36,12 +36,12 @@
 /**************** BOTONES ********************/
 .btn-default{ 
     -fx-background-color: -colorFondo; 
-    -fx-text-fill: -colorTexto;
+    -fx-text-fill: -colorTexto3;
 }
 
 .btn-default2{ 
     -fx-background-color: -colorfondo2; 
-    -fx-text-fill: -colorTexto2;
+    -fx-text-fill: -colorTexto3;
 }
 
 .btn-primario{ 
@@ -65,3 +65,15 @@
 
 .fondo-degradado4 {
   -fx-background-color: radial-gradient(focus-angle 254deg, focus-distance 74%, center 50% 50%, radius 55%, -colorFondo4, -colorFondo5); }
+
+.menubar {
+    -fx-text-fill: -colorTexto3;
+}
+
+.menubar .menu:hover {
+    -fx-background-color: -fx-secundary;
+}
+
+.menubar .menu-item:hover {
+    -fx-background-color: -fx-secundary;
+}

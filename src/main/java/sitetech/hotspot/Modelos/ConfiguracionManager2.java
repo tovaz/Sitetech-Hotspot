@@ -20,7 +20,7 @@ public class ConfiguracionManager2 {
     }
     
     public Configuracion getConfiguracion(){
-        ObservableList<Configuracion> lista =   (ObservableList<Configuracion>)DbHelper.Select("FROM Configuracion WHERE id=1");
+        ObservableList<Configuracion> lista =   (ObservableList<Configuracion>)DbHelper.Select("FROM Configuracion");
         if (lista.size() == 0)
             return new Configuracion(true);
         else
@@ -28,7 +28,7 @@ public class ConfiguracionManager2 {
     }
     
     public static Configuracion getConfiguracion(dbHelper db){
-        ObservableList<Configuracion> lista =   (ObservableList<Configuracion>)db.Select("FROM Configuracion WHERE id=1");
+        ObservableList<Configuracion> lista =   (ObservableList<Configuracion>)db.Select("FROM Configuracion");
         if (lista.size() == 0)
             return new Configuracion(true);
         else

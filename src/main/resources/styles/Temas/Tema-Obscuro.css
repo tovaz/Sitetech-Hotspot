@@ -1,5 +1,6 @@
 /***************+ PRINCIPALES ****************/
 .root {
+    -fx-base: #222  ;
     -jfx-rippler-fill: #111;
     -colorFondo: #444;
     -colorFondo2: #333;
@@ -14,8 +15,8 @@
     -colorTexto5: #eee;
     
     -fx-dark-text-color: #eee;
-    -fx-mid-text-color: #ccc;
-    -fx-light-text-color: #333;
+    -fx-mid-text-color: #bbb;
+    -fx-light-text-color: #eee;
 }
 
 /*************** SOMBRAS *************/
@@ -65,3 +66,15 @@
 
 .fondo-degradado4 {
   -fx-background-color: radial-gradient(focus-angle 254deg, focus-distance 74%, center 50% 50%, radius 55%, -colorFondo4, -colorFondo5); }
+
+.menubar {
+    -fx-text-fill: -colorTexto3;
+}
+
+.menubar .menu:hover {
+    -fx-background-color: -fx-secundary;
+}
+
+.menubar .menu-item:hover {
+    -fx-background-color: -fx-secundary;
+}

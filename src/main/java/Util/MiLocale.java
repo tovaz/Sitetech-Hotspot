@@ -12,7 +12,7 @@ import java.util.Locale;
  *
  * @author megan
  */
-public class MiLocale{
+public class  MiLocale  implements Comparable{
     private Locale locale;
     private String nombre;
 
@@ -37,6 +37,11 @@ public class MiLocale{
         this.nombre = nombre;
     }
 
+    @Override
+    public int compareTo(Object o) {
+        return this.nombre.compareTo(((MiLocale)o).getNombre());
+    }
+    
     @Override
     public String toString() {
         return nombre + " - " + NumberFormat.getCurrencyInstance(locale).getCurrency();

@@ -1,8 +1,8 @@
 .root{
     -fx-base: #eee;
     -fx-accent: #304FFE;
-    -fx-secundary: #3D5AFE;
-    
+    -fx-secundary: #788cff;
+    -iluminar: #222;
     -jfx-primary-color: -fx-accent;
     -jfx-secondary-color: -fx-secundary;
     -jfx-checked-color: -fx-accent;
@@ -10,8 +10,9 @@
         
     -fx-default-button: -fx-accent;
     -fx-focus-color: -fx-secundary;
-    -jfx-unfocus-color: derive(-fx-accent, 50%);
+    -jfx-unfocus-color: derive(-fx-accent, 60%);
     -jfx-toggle-color: -fx-accent;
+    -jfx-toggle-line-color: -fx-accent;
     -fx-prompt-text-fill: -jfx-unfocus-color;
     
     -jfx-unchecked-color: derive(-fx-accent, 50%);
@@ -37,14 +38,14 @@
     -fx-color: -fx-base;
 
     /* Chart Color Palette */
-    CHART_COLOR_1: #f3622d;
-    CHART_COLOR_2: #fba71b;
-    CHART_COLOR_3: #57b757;
-    CHART_COLOR_4: #41a9c9;
-    CHART_COLOR_5: #4258c9;
-    CHART_COLOR_6: #9a42c8;
-    CHART_COLOR_7: #c84164;
-    CHART_COLOR_8: #888888;
+    CHART_COLOR_1: #FF6D00;
+    CHART_COLOR_2: #FFD600;
+    CHART_COLOR_3: #00b25b;
+    CHART_COLOR_4: #00B8D4;
+    CHART_COLOR_5: #304FFE;
+    CHART_COLOR_6: #AA00FF;
+    CHART_COLOR_7: #C51162;
+    CHART_COLOR_8: #424242;
     
     /* Chart Color Palette Semi-Transparent */
     CHART_COLOR_1_TRANS_20: #f3622d33;
@@ -257,13 +258,6 @@
         -fx-mid-text-color 60%
     );
     -fx-focused-mark-color : -fx-focused-text-base-color ;
-
-    /***************************************************************************
-     *                                                                         *
-     * Set the default background color for the scene                          *
-     *                                                                         *
-     **************************************************************************/
-
     -fx-background-color: -fx-background;
 }
 
@@ -285,4 +279,9 @@
 
 .jfx-spinner .arc {
     -fx-stroke: -fx-accent;
+}
+
+.jfx-tab-pane .tab-selected-line {
+    -fx-border-color: -colorTexto4;
+    -fx-stroke-width: 10pt;
 }
