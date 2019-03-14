@@ -8,7 +8,6 @@ import sitetech.hotspot.ThemeColor;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXToggleButton;
 import com.jfoenix.controls.JFXTextField;
-import javafx.scene.shape.Rectangle;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -28,16 +27,13 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import sitetech.hotspot.Modelos.Configuracion;
-import sitetech.hotspot.Modelos.ConfiguracionManager;
+import sitetech.hotspot.Modelos.ConfiguracionManager2;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import org.springframework.util.StringUtils;
 import sitetech.Helpers.dbHelper;
 
 /**
@@ -55,12 +51,14 @@ public class ConfiguracionController implements Initializable {
     @FXML private JFXTextField timagen;
     @FXML private JFXTextField tdominio;
     @FXML private JFXComboBox<MiLocale> cbmoneda;
+    @FXML private JFXComboBox<String> cbidioma;
     @FXML private Label lemoneda;
     @FXML private JFXToggleButton tgmostrarBarras;
     @FXML private ImageView iticket;
     @FXML private JFXComboBox<ThemeColor> cbenfasis;
+    @FXML private JFXComboBox<ThemeColor> cbtema;
     
-    private ConfiguracionManager cm;
+    private ConfiguracionManager2 cm;
     public final Stage thisStage;
     
     @Override
@@ -72,18 +70,18 @@ public class ConfiguracionController implements Initializable {
         thisStage = new Stage();
         Util.util.cargarStage("/Vistas/Configuraciones/Configuracion.fxml", "Configuracion de hotspot", thisStage, this, Modality.APPLICATION_MODAL);
         
-        
-        cm = new ConfiguracionManager();
+        cm = new ConfiguracionManager2();
         cargarDatos();
     }
     
+    private Configuracion conf;
     private  void cargarDatos(){
-        cargarPaises();
-        cargarColores();
+        conf = cm.getConfiguracion();
         
-        Configuracion conf = cm.getConfiguracion();
-        if (conf == null)
-            conf = new Configuracion(true);
+        cargarPaises();
+        cargarIdiomas();
+        cargarColores(cbenfasis, Temas.getEnfasis(), true);
+        cargarColores(cbtema, Temas.getTemas(), false);
         
         System.out.println("****************** EMPRESA: " + conf.getEmpresa());
         tempresa.setText(conf.getEmpresa());
@@ -97,23 +95,41 @@ public class ConfiguracionController implements Initializable {
         
         File fimg = new File(conf.getImagenTicket());
         iticket.setImage(new Image( fimg.toURI().toString()) );
-        
-        cbmoneda.setValue(new MiLocale(conf.getrLocale(), conf.getrLocale().getDisplayCountry()));
-        conf.setRegionLocal(new MiLocale(conf.getrLocale(), conf.getrLocale().getDisplayCountry()));
     }
     
+    private void cargarIdiomas(){
+        String[] _idiomas = Locale.getISOLanguages();
+        ObservableList<String> idiomas = FXCollections.observableArrayList();
+        
+        for (String lenguaje : _idiomas) {
+            String len = StringUtils.capitalize(new Locale(lenguaje).getDisplayLanguage());
+            idiomas.add(len);
+            if (len.toLowerCase().startsWith(conf.getIdioma().toLowerCase() ) )
+                cbidioma.getSelectionModel().select(len);
+	} 
+        
+        FXCollections.sort(idiomas);
+        cbidioma.setItems(idiomas);
+    }
     private void cargarPaises(){
         String[] paises = Locale.getISOCountries();
         ObservableList<MiLocale> locales = FXCollections.observableArrayList();
+       
         for (String countryCode : paises) {
-            Locale obj = new Locale("", countryCode);
+            Locale obj = new Locale(conf.getIdioma(), countryCode);
             cbpais.getItems().add(obj.getDisplayCountry());
             
-            locales.add(new MiLocale(obj, obj.getDisplayCountry()));
+            MiLocale ml = new MiLocale(obj, obj.getDisplayCountry());
+            locales.add(ml);
+            if (ml.getLocale().getCountry().equals(conf.getFormatoMoneda()))
+                cbmoneda.getSelectionModel().select(ml);
 	}
         
+        FXCollections.sort(locales);
+        cbmoneda.setItems(locales); 
         
-        cbmoneda.setItems(locales);
+        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale(conf.getIdioma(), conf.getFormatoMoneda()));
+        lemoneda.setText(nf.format(5100.50));
         cbmoneda.valueProperty().addListener(new ChangeListener<MiLocale>() {
             @Override
             public void changed(ObservableValue<? extends MiLocale> observable, MiLocale oldValue, MiLocale newValue) {
@@ -129,8 +145,6 @@ public class ConfiguracionController implements Initializable {
     
     @FXML
     void guardarAction(ActionEvent event) {
-        Configuracion conf = cm.getConfiguracion();
-        
         conf.setEmpresa(tempresa.getText());
         conf.setPais(cbpais.getValue());
         conf.setEstado(testado.getText());
@@ -140,10 +154,10 @@ public class ConfiguracionController implements Initializable {
         conf.setDominio(tdominio.getText());
         conf.setCodigoBarraVisible(tgmostrarBarras.isSelected());
         conf.setColorEnfasis(cbenfasis.getValue().getNombre());
+        conf.setColorTema(cbtema.getValue().getNombre());
         
-        NumberFormat nf = NumberFormat.getCurrencyInstance(cbmoneda.getValue().getLocale());
-        conf.setMoneda(nf.getCurrency());
-        conf.setrLocale(cbmoneda.getValue().getLocale());
+        conf.setIdioma(cbidioma.getValue());
+        conf.setFormatoMoneda(cbmoneda.getValue().getLocale().getCountry());
 
         if (conf.getId() == 777)
             cm.Agregar(conf);
@@ -178,51 +192,31 @@ public class ConfiguracionController implements Initializable {
     
     @FXML
     void enfasisAction(ActionEvent event) {
-        ObservableList<String> enfasis = cbenfasis.getValue().getCssList();
+        ThemeColor enfasisSeleccionado = cbenfasis.getValue();
+        ThemeColor temaSeleccionado = cbtema.getValue();
         Stage primaryStage = (Stage)thisStage.getUserData();
-        thisStage.getScene().getRoot().getStylesheets().setAll(enfasis);
         
-        primaryStage.getScene().getRoot().getStylesheets().setAll(enfasis);
-        System.out.println("ENFASIS: #" + enfasis.get(0));
+        Temas.aplicarTema(enfasisSeleccionado, temaSeleccionado, thisStage.getScene());
+        Temas.aplicarTema(enfasisSeleccionado, temaSeleccionado, primaryStage.getScene());
     }
     
-    private void cargarColores(){
-        ObservableList<ThemeColor> colores = Temas.getTemas(this);
-        cbenfasis.setItems(colores);
-        for (ThemeColor tc : cbenfasis.getItems()){
-            if ( tc.getNombre().equals(ConfiguracionManager.getConfiguracion(new dbHelper()).getColorEnfasis() ) )
-                cbenfasis.getSelectionModel().select(tc);
+    private void cargarColores(JFXComboBox<ThemeColor> cb, ObservableList<ThemeColor> colores, boolean enfasis){
+        cb.setItems(colores);
+        for (ThemeColor tc : cb.getItems()){
+            if ( tc.getNombre().equals(conf.getColorEnfasis() ) && enfasis )
+                cb.getSelectionModel().select(tc);
+            else if ( tc.getNombre().equals(conf.getColorTema()) && !enfasis )
+                cb.getSelectionModel().select(tc);
         }
+        
         javafx.util.Callback<ListView<ThemeColor>, ListCell<ThemeColor>> factory = new javafx.util.Callback<ListView<ThemeColor>, ListCell<ThemeColor>>() {
             @Override
             public ListCell<ThemeColor> call(ListView<ThemeColor> list) {
-                return new ColorRectCell();
+                return new Util.PanelColor();
             }
         };
-
-        cbenfasis.setCellFactory(factory);
-        cbenfasis.setButtonCell(factory.call(null));
-    }
-    
-    static class ColorRectCell extends ListCell<ThemeColor>{
-      @Override
-      public void updateItem(ThemeColor item, boolean empty){
-          super.updateItem(item, empty);
-          AnchorPane panel = new AnchorPane();
-          panel.setPrefSize(150, 35);
-          Label lb = new Label();
-          lb.setPadding(new Insets(10,10,10,10));
-          
-          lb.textAlignmentProperty().setValue(TextAlignment.CENTER);
-          
-          Rectangle rect = new Rectangle(120,18);
-          if(item != null){
-            lb.setText(item.getNombre());
-            panel.setStyle("-fx-background-color: #" + item.getColor() + "");
-            panel.getChildren().addAll(lb);
-              setGraphic(panel);
-          }
-    }
-    }   
-    
+        
+        cb.setCellFactory(factory);
+        cb.setButtonCell(factory.call(null));
+   }   
 }

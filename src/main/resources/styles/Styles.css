@@ -1,24 +1,4 @@
 /***************+ PRINCIPALES ****************/
-.root {
-    -fx-base: #eee;
-    -fx-color: -fx-base;
-    -fx-accent: #304FFE;
-    -fx-secundary: #526FFf;
-    
-    -jfx-primary-color: -fx-accent;
-    -jfx-secondary-color: -fx-secundary;
-}
-
-.rootRosado {
-    -fx-base: #888;
-    -fx-color: -fx-base;
-    -fx-accent: #ff3333;
-    -fx-secundary: #526FFf;
-    
-    -jfx-primary-color: -fx-accent;
-    -jfx-secondary-color: -fx-secundary;
-}
-
 .menu-bar .label {
     -fx-font-size: 15 pt;
     -fx-text-fill: #eee;
@@ -68,16 +48,25 @@
     -fx-background-color: linear-gradient(#03A9F4, #03A9F4);
 }
 
-.ticket-button-toolbar {
-    -fx-background-color: rgba(255,255,255,0.5);
+.ticket-toolbar .jfx-button {
+    -fx-background-color: rgba(255,255,255,0.4);
+    -fx-background-radius: 5px;
+}
+.ticket-toolbar .jfx-button .label{
+    -fx-text-fill: #333;
 }
 
-.ticket-button-toolbar:hover {
-    -fx-background-color: rgba(255,255,255,0.7);
+.ticket-toolbar .jfx-button:hover {
+    -fx-background-color: rgba(255,255,255,0.6);
+    -fx-background-radius: 8px;
+}
+.ticket-toolbar .jfx-button .label:hover{
+    -fx-text-fill: #222;
 }
 
 .combobox-text-blanco .cell{
     -fx-text-fill: #ccc;
+    
 }
 
 /******************************* DIALOGO ALERTA ***************************/

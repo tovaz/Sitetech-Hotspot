@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="522.0" prefWidth="779.0" styleClass="fondoApp" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="522.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -126,7 +126,7 @@
                   <Insets left="5.0" right="5.0" top="10.0" />
                </padding>
             </HBox>
-            <VBox>
+            <VBox style="-fx-background-color: -colorFondo;">
                <children>
                   <HBox fx:id="pbotones">
                      <children>
@@ -194,10 +194,10 @@
                   </HBox>
                </children>
                <padding>
-                  <Insets top="10.0" />
+                  <Insets left="10.0" top="10.0" />
                </padding>
                <VBox.margin>
-                  <Insets left="5.0" />
+                  <Insets />
                </VBox.margin>
             </VBox>
             <AnchorPane VBox.vgrow="ALWAYS">
@@ -224,5 +224,6 @@
       <URL value="@../../styles/validation.css" />
       <URL value="@../../styles/botones.css" />
       <URL value="@../../styles/Styles.css" />
+      <URL value="@../../styles/Temas/Tema-Obscuro.css" />
    </stylesheets>
 </AnchorPane>

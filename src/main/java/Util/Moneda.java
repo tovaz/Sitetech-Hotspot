@@ -8,6 +8,7 @@ package Util;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import javafx.scene.layout.Region;
 import sitetech.hotspot.Modelos.Configuracion;
 
 /**
