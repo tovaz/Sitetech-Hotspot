@@ -97,7 +97,7 @@ public class ConfiguracionController implements Initializable {
         iticket.setImage(new Image( fimg.toURI().toString()) );
     }
     
-    private void cargarIdiomas(){
+    private void cargarIdiomas(){ 
         String[] _idiomas = Locale.getISOLanguages();
         ObservableList<String> idiomas = FXCollections.observableArrayList();
         
