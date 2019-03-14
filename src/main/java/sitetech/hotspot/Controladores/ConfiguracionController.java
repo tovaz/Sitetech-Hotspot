@@ -106,7 +106,7 @@ public class ConfiguracionController implements Initializable {
             idiomas.add(len);
             if (len.toLowerCase().startsWith(conf.getIdioma().toLowerCase() ) )
                 cbidioma.getSelectionModel().select(len);
-	}
+	} 
         
         FXCollections.sort(idiomas);
         cbidioma.setItems(idiomas);
