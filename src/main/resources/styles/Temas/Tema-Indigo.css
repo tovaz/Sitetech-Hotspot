@@ -1,12 +1,12 @@
 .root{
     -fx-base: #eee;
     -fx-accent: #304FFE;
-    -fx-secundary: #788cff;
+    -fx-secundary: #3D5AFE;
     -iluminar: #222;
     -jfx-primary-color: -fx-accent;
     -jfx-secondary-color: -fx-secundary;
     -jfx-checked-color: -fx-accent;
-    -jfx-unchecked-color: -fx-light-text-color;
+    -jfx-unchecked-color: -colorTexto3;
         
     -fx-default-button: -fx-accent;
     -fx-focus-color: -fx-secundary;

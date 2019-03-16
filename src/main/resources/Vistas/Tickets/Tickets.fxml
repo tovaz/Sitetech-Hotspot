@@ -105,7 +105,7 @@
                             <children>
                                 <ToolBar blendMode="SRC_ATOP" prefWidth="757.0" style="-fx-background-color: -fx-accent;" styleClass="ticket-toolbar">
                                     <items>
-                                        <Label style="-fx-text-fill: -colorTexto4;" styleClass="sombra3" text="Tickets">
+                                        <Label style="-fx-text-fill: -colorTexto4;" styleClass="sombra1" text="Tickets">
                                             <font>
                                                 <Font size="18.0" />
                                             </font>

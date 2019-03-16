@@ -2,10 +2,10 @@
 .root {
     -fx-base: #222  ;
     -jfx-rippler-fill: #111;
-    -colorFondo: #444;
-    -colorFondo2: #333;
-    -colorFondo3: #222;
-    -colorFondo4: #111;
+    -colorFondo: #333;
+    -colorFondo2: #222;
+    -colorFondo3: #111;
+    -colorFondo4: #1212;
     -colorFondo5: #000;
     
     -colorTexto: #ccc;
@@ -17,7 +17,7 @@
     -fx-dark-text-color: #eee;
     -fx-mid-text-color: #bbb;
     -fx-light-text-color: #eee;
-}
+} 
 
 /*************** SOMBRAS *************/
 .sombra1 {

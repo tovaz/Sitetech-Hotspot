@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXSpinner?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.collections.FXCollections?>
@@ -11,7 +12,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -27,8 +27,8 @@
                <children>
                   <VBox>
                      <children>
-                        <Label prefHeight="23.0" prefWidth="44.0" style="-fx-text-fill: -fx-light-text-color;" text="Paquete" />
-                        <JFXComboBox fx:id="cbpaquetes" prefHeight="25.0" prefWidth="226.0" promptText="Selecciona un Paquete" styleClass="btn-gris-30" />
+                        <Label prefHeight="23.0" prefWidth="44.0" style="-fx-text-fill: -colorTexto2;" text="Paquete" />
+                        <JFXComboBox fx:id="cbpaquetes" prefHeight="25.0" prefWidth="226.0" promptText="Selecciona un Paquete" styleClass="btn-default" />
                         <Label fx:id="lepaquete" layoutX="10.0" layoutY="10.0" prefHeight="23.0" styleClass="txt-gris-claro2" VBox.vgrow="ALWAYS" />
                      </children>
                      <HBox.margin>
@@ -37,8 +37,8 @@
                   </VBox>
                   <VBox>
                      <children>
-                        <Label prefHeight="24.0" prefWidth="36.0" style="-fx-text-fill: -fx-light-text-color;" text="Router" />
-                        <JFXComboBox fx:id="cbrouters" prefHeight="25.0" prefWidth="210.0" promptText="Selecciona un Router" styleClass="btn-gris-30" />
+                        <Label prefHeight="24.0" prefWidth="36.0" style="-fx-text-fill: -colorTexto2;" text="Router" />
+                        <JFXComboBox fx:id="cbrouters" prefHeight="25.0" prefWidth="210.0" promptText="Selecciona un Router" styleClass="btn-default" />
                         <Label fx:id="lerouter" layoutX="10.0" layoutY="10.0" prefHeight="24.0" styleClass="txt-gris-claro2" VBox.vgrow="ALWAYS" />
                      </children>
                      <HBox.margin>
@@ -47,10 +47,10 @@
                   </VBox>
                   <VBox prefHeight="50.0" prefWidth="171.0" HBox.hgrow="NEVER">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="174.0" style="-fx-text-fill: -fx-light-text-color;" text="Longitud usuario y contraseña" />
+                        <Label prefHeight="25.0" prefWidth="174.0" style="-fx-text-fill: -colorTexto2;" text="Longitud usuario y contraseña" />
                         <HBox prefHeight="25.0" prefWidth="154.0">
                            <children>
-                              <JFXComboBox fx:id="cbusuario" styleClass="btn-gris-30">
+                              <JFXComboBox fx:id="cbusuario" styleClass="btn-default">
                                   <items>
                                       <FXCollections fx:factory="observableArrayList">
                                       <String fx:value="1" />
@@ -71,7 +71,7 @@
                                       </FXCollections>
                                   </items>
                               </JFXComboBox>
-                              <JFXComboBox fx:id="cbcontraseña" styleClass="btn-gris-30">
+                              <JFXComboBox fx:id="cbcontraseña" styleClass="btn-default">
                                   <items>
                                       <FXCollections fx:factory="observableArrayList">
                                       <String fx:value="1" />
@@ -104,14 +104,14 @@
                   </VBox>
                   <VBox prefHeight="55.0" prefWidth="127.0">
                      <children>
-                        <Label style="-fx-text-fill: -fx-light-text-color;" styleClass="txt-gris-claro2" text="Cantida de tickets" VBox.vgrow="NEVER">
+                        <Label style="-fx-text-fill: -colorTexto2;" styleClass="txt-gris-claro2" text="Cantida de tickets" VBox.vgrow="NEVER">
                            <VBox.margin>
                               <Insets bottom="3.0" left="3.0" right="3.0" top="5.0" />
                            </VBox.margin></Label>
-                        <TextField fx:id="tcantidad" prefHeight="25.0" prefWidth="95.0" styleClass="btn-gris-30" text="5">
+                        <JFXTextField fx:id="tcantidad" prefHeight="25.0" prefWidth="95.0" styleClass="btn-default" text="5">
                            <VBox.margin>
                               <Insets />
-                           </VBox.margin></TextField>
+                           </VBox.margin></JFXTextField>
                         <Label fx:id="lecantidad" layoutX="23.0" layoutY="15.0" styleClass="txt-gris-claro2" />
                      </children>
                      <HBox.margin>
@@ -202,7 +202,7 @@
             </VBox>
             <AnchorPane VBox.vgrow="ALWAYS">
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets />
                </VBox.margin>
                <children>
                   <TableView fx:id="tvtickets" prefHeight="200.0" prefWidth="648.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
