@@ -27,7 +27,7 @@ public class PanelColor extends ListCell<ThemeColor>{
           //panel.setPadding(new Insets(5,0,0,5));
           
           Label lb = new Label();
-          lb.setPadding(new Insets(10,10,10,10));
+          lb.setPadding(new Insets(5,0,0,5));
           lb.textAlignmentProperty().setValue(TextAlignment.CENTER);
           
           if(item != null){

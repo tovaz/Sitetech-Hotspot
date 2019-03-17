@@ -45,6 +45,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 
 import java.util.List;
+import sitetech.hotspot.Temas;
+import sitetech.hotspot.ThemeColor;
 
 /**
  * @author Shadi Shaheen FUTURE WORK: this UI will get re-designed to match material design guidlines
@@ -346,10 +348,17 @@ class JFXColorPalette extends Region {
             final int numColors = RAW_VALUES.length / 3;
             Color[] colors = new Color[numColors];
             for (int i = 0; i < numColors; i++) {
-                colors[i] = new Color(RAW_VALUES[i * 3] / 255,
-                    RAW_VALUES[(i * 3) + 1] / 255, RAW_VALUES[(i * 3) + 2] / 255,
-                    1.0);
-                ColorSquare cs = new ColorSquare(colors[i], i);
+                //colors[i] = new Color(RAW_VALUES[i * 3] / 255,
+                //    RAW_VALUES[(i * 3) + 1] / 255, RAW_VALUES[(i * 3) + 2] / 255,
+                //    1.0);
+                //ColorSquare cs = new ColorSquare(colors[i], i);
+                //squares.add(cs);
+            }
+            
+            ObservableList<ThemeColor> listaEnfasis = Temas.getEnfasis();
+            for(int i=0; i<listaEnfasis.size(); i++){
+                ThemeColor tc = listaEnfasis.get(i);
+                ColorSquare cs = new ColorSquare( Color.valueOf(tc.getColor()), i );
                 squares.add(cs);
             }
 
@@ -411,101 +420,13 @@ class JFXColorPalette extends Region {
         38, 79, 254, // first row 
         41, 98, 255,
         9, 145, 234,
-        
-        // second row
-        236, 239, 241,
-        207, 216, 220,
-        176, 190, 197,
-        
-        // third row
-        255, 235, 238,
-        255, 205, 210,
-        239, 154, 154,
-        
-        // forth row
-        252, 228, 236,
-        248, 187, 208,
-        244, 143, 177,
-        
-        // fifth row
-        243, 229, 245,
-        225, 190, 231,
-        206, 147, 216,
-        
-        // sixth row
-        237, 231, 246,
-        209, 196, 233,
-        179, 157, 219,
-        
-        // seventh row
-        232, 234, 246,
-        197, 202, 233,
-        159, 168, 218,
-        
-        // eigth row
-        227, 242, 253,
-        187, 222, 251,
-        144, 202, 249,
-        
-        // ninth row
-        225, 245, 254,
-        179, 229, 252,
-        129, 212, 250,
-        
-        // tenth row
-        224, 247, 250,
-        178, 235, 242,
-        128, 222, 234,
-        
-        // eleventh row
-        224, 242, 241,
-        178, 223, 219,
-        128, 203, 196,
-        
-        // twelfth row
-        232, 245, 233,
-        200, 230, 201,
-        165, 214, 167,
-        
-        
-        // thirteenth row
-        241, 248, 233,
-        220, 237, 200,
-        197, 225, 165,
-        
-        // fourteenth row
-        249, 251, 231,
-        240, 244, 195,
-        230, 238, 156,
-
-
-        // fifteenth row
-        255, 253, 231,
-        255, 249, 196,
-        255, 245, 157,
-
-        // sixteenth row
-        255, 248, 225,
-        255, 236, 179,
-        255, 224, 130,
-        
-
-        // seventeenth row
-        255, 243, 224,
-        255, 224, 178,
-        255, 204, 128,
-        
-
-        // eighteenth row
-        251, 233, 231,
-        255, 204, 188,
-        255, 171, 145,
-
-        // nineteenth row
-        239, 235, 233,
-        215, 204, 200,
-        188, 170, 164,
-
+        0, 0, 0,
+        0, 0, 0,
+        0, 0, 0,
+        0, 0, 0,
+        0, 0, 0,
+        0, 0, 0,
+        0, 0, 0,
     };
 
     private static final int NUM_OF_COLORS = RAW_VALUES.length / 3;

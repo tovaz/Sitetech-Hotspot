@@ -188,7 +188,7 @@
       <URL value="@../../styles/botones.css" />
       <URL value="@../../styles/Styles.css" />
       <URL value="@../../styles/validation.css" />
-      <URL value="@../../styles/Temas/Tema-Obscuro.css" />
       <URL value="@../../styles/Temas/Tema-Celeste.css" />
+      <URL value="@../../styles/Temas/Tema-Obscuro.css" />
    </stylesheets>
 </AnchorPane>

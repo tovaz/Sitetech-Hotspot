@@ -29,7 +29,7 @@
 }
 
 .ticket-toolbar .jfx-button {
-    -fx-background-color: rgba(255,255,255,0.5);
+    -fx-background-color: rgba(255,255,255,0.7);
     -fx-background-radius: 5px;
 }
 .ticket-toolbar .jfx-button .label{
@@ -37,7 +37,7 @@
 }
 
 .ticket-toolbar .jfx-button:hover {
-    -fx-background-color: rgba(255,255,255,0.6);
+    -fx-background-color: rgba(255,255,255,0.8);
     -fx-background-radius: 5px;
 }
 .ticket-toolbar .jfx-button .label:hover{
@@ -96,6 +96,35 @@
   -fx-text-fill:black;
   -fx-font-weight:bold; 
  }
+ 
+ .degradado1 {
+     -fx-fill: linear-gradient(derive(-fx-accent, 10%), derive(-fx-accent, 80%));
+ }
+ 
+  .degradado2 {
+     -fx-fill: linear-gradient(derive(-fx-secundary, 10%), derive(-fx-secundary, 80%));
+ }
+ 
+ .degradado3 {
+     -fx-fill: linear-gradient(derive(-colorTexto, 10%), derive(-colorTexto, 80%));
+ }
+ 
+ .context-menu {
+    -fx-background-color: -colorFondo;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow( three-pass-box, black, 20.0, 0.0, 0.0, 0.0);
+    
+    -fx-padding: 5px;
+}
+
+ .menu-item:focused {
+    -fx-background-radius: 10;
+}
+
+ .context-menu .label {
+    -fx-text-fill: -colorTexto;
+}
+
 /********************** FIN DIALOGO ALERTA **************/
 
 
@@ -177,3 +206,4 @@
     -fx-font-family: "Roboto Medium";
     -fx-font-size: 14.0;
 }
+
