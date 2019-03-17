@@ -1,7 +1,7 @@
-Sat Mar 16 23:10:01 CST 2019 : Servidor de red Apache Derby: Se ha iniciado 10.11.1.2 - (1629631) y está listo para aceptar las conexiones en el puerto 1527
+Thu Mar 14 01:41:13 CST 2019 : Servidor de red Apache Derby: Se ha iniciado 10.11.1.2 - (1629631) y está listo para aceptar las conexiones en el puerto 1527
 ----------------------------------------------------------------
-Sat Mar 16 23:12:31 CST 2019:
- Iniciando instancia a816c00e-0169-8a0e-7dda-000034a795cb de Derby, versión The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): 
+Thu Mar 14 01:41:16 CST 2019:
+ Iniciando instancia a816c00e-0169-7b25-bf60-000034a795cb de Derby, versión The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): 
 en el directorio de base de datos C:\Users\Aura Marina Choxon\Documents\GitHub\hotspot\hotspot con el cargador de clases sun.misc.Launcher$AppClassLoader@6f94fa3e
 Cargado desde file:/C:/Program%20Files/Java/jdk1.8.0_111/db/lib/derby.jar
 java.vendor=Oracle Corporation

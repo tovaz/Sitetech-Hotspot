@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXColorPicker?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -158,6 +159,7 @@
                               <JFXComboBox fx:id="cbenfasis" layoutX="151.0" layoutY="23.0" onAction="#enfasisAction" prefHeight="25.0" prefWidth="175.0" style="-fx-font-size: 14px;" AnchorPane.topAnchor="30.0" />
                               <Label layoutX="108.0" layoutY="121.0" text="Tema" />
                               <JFXComboBox fx:id="cbtema" layoutX="151.0" layoutY="108.0" onAction="#enfasisAction" prefHeight="25.0" prefWidth="175.0" style="-fx-font-size: 14px;" />
+                              <JFXColorPicker layoutX="347.0" layoutY="39.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -183,10 +185,10 @@
       </VBox>
    </children>
    <stylesheets>
-      <URL value="@../../styles/Temas/Tema-Rosado.css" />
       <URL value="@../../styles/botones.css" />
       <URL value="@../../styles/Styles.css" />
       <URL value="@../../styles/validation.css" />
       <URL value="@../../styles/Temas/Tema-Obscuro.css" />
+      <URL value="@../../styles/Temas/Tema-Celeste.css" />
    </stylesheets>
 </AnchorPane>
