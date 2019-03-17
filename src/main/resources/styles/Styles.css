@@ -28,28 +28,8 @@
     -fx-background-color: linear-gradient(to top right, #1299e2, #51d5fF);
 }
 
-.fondoApp {
-    -fx-background-color: radial-gradient(focus-angle 254deg , focus-distance 74% , center 50% 50% , radius 55% , #E0F7FA, #E8EAF6);
-}
-
-.ticket-toolbar {
-    -fx-background-color: linear-gradient(#00BCD4, #03A9F4);
-}
-
-.menubar {
-    -fx-background-color: linear-gradient(#03A9F4, #00BCD4);
-}
-
-.main-menu {
-    -fx-background-color: linear-gradient(#03A9F4, #00BCD4);
-}
-
-.main-titlebar {
-    -fx-background-color: linear-gradient(#03A9F4, #03A9F4);
-}
-
 .ticket-toolbar .jfx-button {
-    -fx-background-color: rgba(255,255,255,0.4);
+    -fx-background-color: rgba(255,255,255,0.5);
     -fx-background-radius: 5px;
 }
 .ticket-toolbar .jfx-button .label{
@@ -58,7 +38,7 @@
 
 .ticket-toolbar .jfx-button:hover {
     -fx-background-color: rgba(255,255,255,0.6);
-    -fx-background-radius: 8px;
+    -fx-background-radius: 5px;
 }
 .ticket-toolbar .jfx-button .label:hover{
     -fx-text-fill: #222;
@@ -71,9 +51,9 @@
 
 /******************************* DIALOGO ALERTA ***************************/
 .dialog-pane{
-  -fx-border-color: #cecece;
-  /*-fx-border-width:2.0px;*/
- }
+    -fx-border-color: #cecece;
+    /*-fx-border-width:2.0px;*/
+}
 
 /**Costumization of The Bar where the buttons are located**/
 .dialog-pane > .button-bar > .container {
@@ -134,4 +114,66 @@
 
 .fondo-negro99{
     -fx-background-color: linear-gradient(#999999 0%, #000000 50%, #999999 100%);
+}
+
+
+/***************************************************************************
+ *                                                                         *
+ * Fonts			                                                       *
+ *                                                                         *
+ **************************************************************************/
+
+.h4 {
+    -fx-font-family: "Roboto Light";
+    -fx-font-size: 112.0;
+}
+
+.h3 {
+    -fx-font-family: "Roboto";
+    -fx-font-size: 56.0;
+}
+
+.h2 {
+    -fx-font-family: "Roboto";
+    -fx-font-size: 45.0;
+}
+
+.h1 {
+    -fx-font-family: "Roboto";
+    -fx-font-size: 34.0;
+}
+
+.headline {
+    -fx-font-family: "Roboto";
+    -fx-font-size: 24.0;
+}
+
+.title {
+    -fx-font-family: "Roboto Light";
+    -fx-font-size: 13.0;
+}
+
+.subhead {
+    -fx-font-family: "Roboto";
+    -fx-font-size: 15.0;
+}
+
+.body2 {
+    -fx-font-family: "Roboto Medium";
+    -fx-font-size: 13.0;
+}
+
+.body1 {
+    -fx-font-family: "Roboto";
+    -fx-font-size: 13.0;
+}
+
+.caption {
+    -fx-font-family: "Roboto";
+    -fx-font-size: 12.0;
+}
+
+.button {
+    -fx-font-family: "Roboto Medium";
+    -fx-font-size: 14.0;
 }

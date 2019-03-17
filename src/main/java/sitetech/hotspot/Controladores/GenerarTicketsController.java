@@ -67,7 +67,7 @@ public class GenerarTicketsController implements Initializable {
     @FXML private Label lepaquete;
     @FXML private Label lerouter;
     
-    private final Stage thisStage;
+    public final Stage thisStage;
     private TicketManager tm;
     
     /**

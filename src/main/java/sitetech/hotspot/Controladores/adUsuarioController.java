@@ -1,6 +1,8 @@
 package sitetech.hotspot.Controladores;
 
 import Util.Validar;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 import java.io.IOException;
 import java.net.URL;
@@ -32,26 +34,18 @@ public class adUsuarioController implements Initializable {
 
     final Stage thisStage;
     
-    @FXML
-    private TextField tusuario;
-
-    @FXML
-    private PasswordField tcontraseña;
-
-    @FXML
-    private PasswordField tcontraseña2;
-
+    @FXML private JFXTextField tusuario;
+    @FXML private JFXTextField tcontraseña;
+    @FXML private JFXTextField tcontraseña2;
     @FXML private Label lnota;
-    
     @FXML private Label ltitulo;
-    
     @FXML private Label ltusuario;
     @FXML private Label ltcontraseña;
     @FXML private Label ltconfirmar;
     @FXML private Label lcbprivilegios;
     
     @FXML
-    private ComboBox<String> cbprivilegios;
+    private JFXComboBox<String> cbprivilegios;
 
     @FXML
     private VBox pguardar;
@@ -68,20 +62,6 @@ public class adUsuarioController implements Initializable {
     }
     
     public adUsuarioController (){
-        /*thisStage = new Stage();
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/Usuarios/adUsuario.fxml"));
-            loader.setController(this);
-
-            thisStage.initModality(Modality.APPLICATION_MODAL);
-            Scene thisScene = new Scene((Parent)loader.load());
-            //thisScene.getStylesheets().add("/styles/Styles.css");
-            thisStage.setScene(thisScene);
-            thisStage.setTitle("Agregar Usuario");
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        */
         thisStage = new Stage();
         Util.util.cargarStage("/Vistas/Usuarios/adUsuario.fxml", "Agregar Usuario", thisStage, this, Modality.APPLICATION_MODAL);
     }

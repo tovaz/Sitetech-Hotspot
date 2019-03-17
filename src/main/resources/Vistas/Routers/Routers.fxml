@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="rootApp" prefHeight="500.0" prefWidth="800.0" styleClass="fondoApp" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="rootApp" prefHeight="500.0" prefWidth="800.0" styleClass="fondoApp" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
       <VBox styleClass="rootApp" stylesheets="@../../styles/Styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -55,13 +56,13 @@
                               </TableView>
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="50.0" style="-fx-background-color: transparent;" SplitPane.resizableWithParent="false">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="50.0" style="-fx-background-color: -colorFondo2;" SplitPane.resizableWithParent="false">
                            <children>
                               <VBox layoutX="36.0" layoutY="12.0" prefHeight="158.0" prefWidth="113.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane>
                                        <children>
-                                          <JFXButton buttonType="RAISED" mnemonicParsing="false" onAction="#showAgregarRouter" prefHeight="50.0" styleClass="backgroundLineal-boton" text="Agregar" textAlignment="CENTER" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                          <JFXButton buttonType="RAISED" mnemonicParsing="false" onAction="#showAgregarRouter" prefHeight="50.0" text="Agregar" textAlignment="CENTER" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                              <graphic>
                                                 <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -73,7 +74,7 @@
                                     </AnchorPane>
                                     <AnchorPane>
                                        <children>
-                                          <JFXButton mnemonicParsing="false" onAction="#showEditarRouter" prefHeight="50.0" styleClass="backgroundLineal-boton" text="Editar" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                          <JFXButton mnemonicParsing="false" onAction="#showEditarRouter" prefHeight="50.0" text="Editar" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                              <graphic>
                                                 <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -85,7 +86,7 @@
                                     </AnchorPane>
                                     <AnchorPane>
                                        <children>
-                                          <JFXButton mnemonicParsing="false" onAction="#EliminarRouterAction" prefHeight="50.0" styleClass="backgroundLineal-boton" text="Eliminar" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                          <JFXButton mnemonicParsing="false" onAction="#EliminarRouterAction" prefHeight="50.0" styleClass="btn-primario-borde" text="Eliminar" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                              <graphic>
                                                 <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -109,4 +110,8 @@
          </padding>
       </VBox>
    </children>
+   <stylesheets>
+      <URL value="@../../styles/Styles.css" />
+      <URL value="@../../styles/Temas/Tema-Obscuro.css" />
+   </stylesheets>
 </AnchorPane>

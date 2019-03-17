@@ -2,12 +2,12 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXSpinner?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" minHeight="560.0" minWidth="502.0" prefHeight="560.0" prefWidth="528.0" styleClass="fondoApp" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" minHeight="600.0" minWidth="502.0" prefWidth="528.0" styleClass="fondoApp" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox layoutX="20.0" layoutY="20.0" prefHeight="480.0" prefWidth="566.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -40,7 +40,7 @@
                      <children>
                         <TitledPane collapsible="false" prefHeight="411.0" prefWidth="271.0" text="Informacion basica">
                            <content>
-                              <VBox prefHeight="89.0" prefWidth="198.0" style="-fx-background-color: #ECEFF1;">
+                              <VBox prefHeight="89.0" prefWidth="198.0" style="-fx-background-color: -colorFondo2;">
                                  <children>
                                     <VBox prefHeight="89.0" prefWidth="198.0">
                                        <children>
@@ -54,7 +54,10 @@
                                                 </Label>
                                              </children>
                                           </HBox>
-                                          <TextField fx:id="tnombre" />
+                                          <JFXTextField fx:id="tnombre">
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin></JFXTextField>
                                           <HBox>
                                              <children>
                                                 <Label text="Ip *" />
@@ -65,7 +68,10 @@
                                                 </Label>
                                              </children>
                                           </HBox>
-                                          <TextField fx:id="tip" promptText="Ejemplo: 192.168.1.1" />
+                                          <JFXTextField fx:id="tip" promptText="Ejemplo: 192.168.1.1">
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin></JFXTextField>
                                        </children>
                                     </VBox>
                                     <Label layoutX="20.0" layoutY="188.0" text="Datos de acceso">
@@ -86,7 +92,10 @@
                                           </Label>
                                        </children>
                                     </HBox>
-                                    <TextField fx:id="tusuario" />
+                                    <JFXTextField fx:id="tusuario">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin></JFXTextField>
                                     <HBox>
                                        <children>
                                           <Label text="Contraseña *" />
@@ -97,7 +106,10 @@
                                           </Label>
                                        </children>
                                     </HBox>
-                                    <TextField fx:id="tcontraseña" />
+                                    <JFXTextField fx:id="tcontraseña">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin></JFXTextField>
                                     <Label layoutX="20.0" layoutY="20.0" text="Configuracion de puertos">
                                        <VBox.margin>
                                           <Insets />
@@ -119,7 +131,10 @@
                                           </Label>
                                        </children>
                                     </HBox>
-                                    <TextField fx:id="tpuertoApi" layoutX="20.0" layoutY="37.0" prefWidth="125.0" promptText="Ejemplo: 8728" />
+                                    <JFXTextField fx:id="tpuertoApi" layoutX="20.0" layoutY="37.0" prefWidth="125.0" promptText="Ejemplo: 8728">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin></JFXTextField>
                                     <HBox>
                                        <children>
                                           <Label text="Puerto Web *" />
@@ -130,7 +145,10 @@
                                           </Label>
                                        </children>
                                     </HBox>
-                                    <TextField fx:id="tpuertoWeb" layoutX="20.0" layoutY="79.0" promptText="80" text="80" />
+                                    <JFXTextField fx:id="tpuertoWeb" layoutX="20.0" layoutY="79.0" promptText="80" text="80">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin></JFXTextField>
                                     <Label text="Habilitar la utilizacion de la api">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
@@ -158,19 +176,25 @@
                            <children>
                               <TitledPane prefHeight="200.0" prefWidth="200.0" text="Interface y seguridad">
                                  <content>
-                                    <VBox style="-fx-background-color: #ECEFF1;">
+                                    <VBox style="-fx-background-color: -colorFondo2;">
                                        <children>
                                           <Label text="Interface Lan" />
-                                          <TextField fx:id="tlan" prefWidth="125.0" promptText="Ejemplo: Eth0" />
+                                          <JFXTextField fx:id="tlan" prefWidth="125.0" promptText="Ejemplo: Eth0">
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin></JFXTextField>
                                           <Label text="Interface Wlan" />
-                                          <TextField fx:id="twlan" promptText="Ejemplo Eth1" />
+                                          <JFXTextField fx:id="twlan" promptText="Ejemplo Eth1">
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin></JFXTextField>
                                           <Label layoutX="20.0" layoutY="62.0" text="Rango Ip" />
                                           <TextArea fx:id="trangos" prefHeight="200.0" prefWidth="200.0" />
                                        </children>
                                     </VBox>
                                  </content>
                               </TitledPane>
-                              <JFXButton onAction="#verificarConexionAction" styleClass="btn-lima2" text="Verificar conexion del router">
+                              <JFXButton onAction="#verificarConexionAction" style="-fx-background-color: -fx-secundary;" text="Verificar conexion del router">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
@@ -213,12 +237,12 @@
                <children>
                   <AnchorPane prefHeight="40.0" prefWidth="226.0">
                      <children>
-                        <JFXButton cancelButton="true" layoutX="37.0" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#cancelarAction" prefHeight="40.0" style="-fx-background-color: #BDBDBD;" text="Cancelar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="0.0" />
+                        <JFXButton cancelButton="true" layoutX="37.0" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#cancelarAction" prefHeight="40.0" style="-fx-background-color: #BDBDBD;" styleClass="btn-default" text="Cancelar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="40.0" prefWidth="257.0">
                      <children>
-                        <JFXButton fx:id="bAgregar" buttonType="RAISED" defaultButton="true" layoutX="53.0" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#agregarRouterAction" prefHeight="40.0" styleClass="aceptarBoton" text="Agregar Router" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="0.0" />
+                        <JFXButton fx:id="bAgregar" buttonType="RAISED" defaultButton="true" layoutX="53.0" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#agregarRouterAction" prefHeight="40.0" text="Agregar Router" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </children>
@@ -236,5 +260,7 @@
       <URL value="@../../styles/Styles.css" />
       <URL value="@../../styles/validation.css" />
       <URL value="@../../styles/botones.css" />
+      <URL value="@../../styles/Temas/Tema-Celeste.css" />
+      <URL value="@../../styles/Temas/Tema-Obscuro.css" />
    </stylesheets>
 </AnchorPane>

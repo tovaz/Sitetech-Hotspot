@@ -46,18 +46,7 @@ public class UsuariosController implements Initializable {
     
     public UsuariosController (){
         thisStage = new Stage();
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/Usuarios/UsuariosVista.fxml"));
-            loader.setController(this);
-
-            thisStage.initModality(Modality.APPLICATION_MODAL);
-            Scene thisScene = new Scene((Parent)loader.load());
-            //thisScene.getStylesheets().add("/styles/Styles.css");
-            thisStage.setScene(thisScene);
-            thisStage.setTitle("Gestion de Usuario");
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        Util.util.cargarStage("/Vistas/Usuarios/UsuariosVista.fxml", "Agregar Usuario", thisStage, this, Modality.APPLICATION_MODAL);
     }
     
     public void cargarTabla(){

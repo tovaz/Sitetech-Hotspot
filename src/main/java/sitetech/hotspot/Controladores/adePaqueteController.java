@@ -76,6 +76,7 @@ public class adePaqueteController implements Initializable {
     public adePaqueteController() {
         thisStage = new Stage();
         Util.util.cargarStage("/Vistas/Paquetes/adePaquete.fxml", "Agregar Paquete de Internet", thisStage, this, Modality.APPLICATION_MODAL);
+        sldias.setValue(0);
     }
     
     public void showStage() {

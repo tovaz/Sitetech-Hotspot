@@ -22,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
@@ -46,7 +47,7 @@ import sitetech.hotspot.Modelos.TicketManager;
  */
 public class TicketsController implements Initializable, ArrastrarScene {
 
-    private final Stage thisStage;
+    public final Stage thisStage;
 
     @FXML private AnchorPane ticketsPanel;
     @FXML private TextField tnombre;

@@ -1,9 +1,11 @@
 /***************+ PRINCIPALES ****************/
 .root {
-    -fx-base: #222  ;
-    -jfx-rippler-fill: #111;
+    -fx-base: #333;
+    -jfx-rippler-fill: derive(-fx-accent, 50%) 20%;
+    -fx-primaryText: #ddd;
+    
     -colorFondo: #333;
-    -colorFondo2: #222;
+    -colorFondo2: #232323;
     -colorFondo3: #111;
     -colorFondo4: #1212;
     -colorFondo5: #000;
@@ -15,8 +17,19 @@
     -colorTexto5: #eee;
     
     -fx-dark-text-color: #eee;
-    -fx-mid-text-color: #bbb;
-    -fx-light-text-color: #eee;
+    -fx-mid-text-color: #999;
+    -fx-light-text-color: #aaa;
+    
+    -fx-background: derive(-fx-base,30.4%);
+    -fx-control-inner-background: derive(-fx-base,80%);
+    -fx-control-inner-background-alt: derive(-fx-control-inner-background,-2%);
+    
+    -fx-color: -fx-base;
+    -jfx-unfocus-color: -colorTexto;
+    -jfx-focus-color: derive(-fx-accent, 50%);
+    
+    -jfx-default-thumb: -fx-accent;
+    -jfx-default-track: -colorTexto2;
 } 
 
 /*************** SOMBRAS *************/
@@ -34,26 +47,7 @@
 }
 
 
-/**************** BOTONES ********************/
-.btn-default{ 
-    -fx-background-color: -colorFondo; 
-    -fx-text-fill: -colorTexto;
-}
 
-.btn-default2{ 
-    -fx-background-color: -colorfondo2; 
-    -fx-text-fill: -colorTexto2;
-}
-
-.btn-primario{ 
-    -fx-background-color: -fx-accent; 
-    -fx-text-fill: #eee;
-}
-
-.btn-secundario{ 
-    -fx-background-color: -fx-secundary; 
-    -fx-text-fill: #eee;
-}
 
 .fondo-degradado1 {
   -fx-background-color: radial-gradient(focus-angle 254deg, focus-distance 74%, center 50% 50%, radius 55%, -colorFondo, -colorFondo2); }
@@ -77,4 +71,266 @@
 
 .menubar .menu-item:hover {
     -fx-background-color: -fx-secundary;
+}
+
+/************************** COMUN INTERFACE *****************/
+.root{
+    /* Chart Color Palette */
+    CHART_COLOR_1: #FF6D00;
+    CHART_COLOR_2: #FFD600;
+    CHART_COLOR_3: #00b25b;
+    CHART_COLOR_4: #00B8D4;
+    CHART_COLOR_5: #304FFE;
+    CHART_COLOR_6: #AA00FF;
+    CHART_COLOR_7: #C51162;
+    CHART_COLOR_8: #424242;
+    
+    /* Chart Color Palette Semi-Transparent */
+    CHART_COLOR_1_TRANS_20: #f3622d33;
+    CHART_COLOR_2_TRANS_20: #fba71b33;
+    CHART_COLOR_3_TRANS_20: #57b75733;
+    CHART_COLOR_4_TRANS_20: #41a9c933;
+    CHART_COLOR_5_TRANS_20: #4258c933;
+    CHART_COLOR_6_TRANS_20: #9a42c833;
+    CHART_COLOR_7_TRANS_20: #c8416433;
+    CHART_COLOR_8_TRANS_20: #88888833;
+    
+    /* 70% opacity */
+    CHART_COLOR_1_TRANS_70: #f3622db3;
+    CHART_COLOR_2_TRANS_70: #fba71bb3;
+    CHART_COLOR_3_TRANS_70: #57b757b3;
+    CHART_COLOR_4_TRANS_70: #41a9c9b3;
+    CHART_COLOR_5_TRANS_70: #4258c9b3;
+    CHART_COLOR_6_TRANS_70: #9a42c8b3;
+    CHART_COLOR_7_TRANS_70: #c84164b3;
+    CHART_COLOR_8_TRANS_70: #888888b3;
+
+    /***************************************************************************
+     *                                                                         *
+     * Colors that are derived from the main color palette.                    *
+     *                                                                         *
+     **************************************************************************/
+    -fx-hover-base: ladder(
+        -fx-base,
+        derive(-fx-base,20%) 20%,
+        derive(-fx-base,30%) 35%,
+        derive(-fx-base,40%) 50%
+     );
+
+    -fx-pressed-base: derive(-fx-base,-6%);
+
+    -fx-text-background-color: ladder(
+        -fx-background,
+        -fx-light-text-color 45%,
+        -fx-dark-text-color  46%,
+        -fx-dark-text-color  59%,
+        -fx-mid-text-color   60%
+    );
+
+    -fx-box-border: ladder(
+        -fx-color,
+        black 20%,
+        derive(-fx-color,-15%) 30%
+    );
+
+    -fx-text-box-border: ladder(
+        -fx-background,
+        black 10%,
+        derive(-fx-background, -15%) 30%
+    );
+
+    -fx-shadow-highlight-color: ladder(
+        -fx-background,
+        rgba(255,255,255,0.07) 0%,
+        rgba(255,255,255,0.07) 20%,
+        rgba(255,255,255,0.07) 70%,
+        rgba(255,255,255,0.7) 90%,
+        rgba(255,255,255,0.75) 100%
+      );
+
+    -fx-outer-border: derive(-fx-color,-23%);
+
+    -fx-inner-border: linear-gradient(to bottom,
+                ladder(
+                    -fx-color,
+                    derive(-fx-color,30%) 0%,
+                    derive(-fx-color,20%) 40%,
+                    derive(-fx-color,25%) 60%,
+                    derive(-fx-color,55%) 80%,
+                    derive(-fx-color,55%) 90%,
+                    derive(-fx-color,75%) 100%
+                ),
+                ladder(
+                    -fx-color,
+                    derive(-fx-color,20%) 0%,
+                    derive(-fx-color,10%) 20%,
+                    derive(-fx-color,5%) 40%,
+                    derive(-fx-color,-2%) 60%,
+                    derive(-fx-color,-5%) 100%
+                ));
+    -fx-inner-border-horizontal: linear-gradient(to right, derive(-fx-color,55%), derive(-fx-color,-5%));
+    -fx-inner-border-bottomup: linear-gradient(to top, derive(-fx-color,55%), derive(-fx-color,-5%));
+
+    -fx-body-color: linear-gradient(to bottom,
+            ladder(
+                -fx-color,
+                derive(-fx-color,8%) 75%,
+                derive(-fx-color,10%) 80%
+            ),
+            derive(-fx-color,-8%));
+    -fx-body-color-bottomup: linear-gradient(to top, derive(-fx-color,10%) ,derive(-fx-color,-6%));
+    -fx-body-color-to-right: linear-gradient(to right, derive(-fx-color,10%) ,derive(-fx-color,-6%));
+
+    -fx-text-base-color: ladder(
+        -fx-color,
+        -fx-light-text-color 45%,
+        -fx-dark-text-color  46%,
+        -fx-dark-text-color  59%,
+        -fx-mid-text-color   60%
+    );
+
+    -fx-text-inner-color: ladder(
+        -fx-control-inner-background,
+        -fx-light-text-color 45%,
+        -fx-dark-text-color  46%,
+        -fx-dark-text-color  59%,
+        -fx-mid-text-color   60%
+    );
+
+    -fx-mark-color: ladder(
+        -fx-color,
+        white 30%,
+        derive(-fx-color,-63%) 31%
+    );
+
+    -fx-mark-highlight-color: ladder(
+        -fx-color,
+        derive(-fx-color,80%) 60%,
+        white 70%
+    );
+
+    -fx-selection-bar: -fx-accent;
+
+    -fx-selection-bar-non-focused: lightgrey;
+
+    /* TODO: this can be removed*/
+    -fx-selection-bar-text: -fx-text-background-color;
+
+    /* These are needed for Popup */
+    -fx-background-color: inherit;
+    -fx-background-radius: inherit;
+    -fx-background-insets: inherit;
+    -fx-padding: inherit;
+
+    -fx-cell-hover-color: #cce3f4;
+
+    -fx-cell-focus-inner-border: derive(-fx-selection-bar,30%);
+
+
+    -fx-page-bullet-border: #acacac;
+    -fx-page-indicator-hover-border: #accee5;
+
+    -fx-focused-text-base-color : ladder(
+        -fx-selection-bar,
+        -fx-light-text-color 45%,
+        -fx-dark-text-color 46%,
+        -fx-dark-text-color 59%,
+        -fx-mid-text-color 60%
+    );
+    -fx-focused-mark-color : -fx-focused-text-base-color ;
+    -fx-background-color: -fx-background;
+}
+
+.jfx-tab-pane .tab-header-background {
+    -fx-background-color: -fx-accent;
+}
+
+.jfx-tab-pane .headers-region {
+    -fx-background-color: -fx-accent;
+}
+
+.jfx-button{ 
+    -fx-background-color: -fx-accent; 
+    -fx-text-fill: -fx-light-text-color;
+    
+    -fx-background-radius: 25;
+    -fx-background-insets: 0.5;
+}
+
+.jfx-spinner .arc {
+    -fx-stroke: -fx-accent;
+}
+
+.jfx-tab-pane .tab-selected-line {
+    -fx-border-color: -colorTexto4;
+    -fx-stroke-width: 10pt;
+}
+
+/************** JFX TOGGLE BUTTON ***************/
+.jfx-toggle-button Line {
+    -fx-stroke: -jfx-untoggle-line-color;
+}
+.jfx-toggle-button:selected Line{
+    -fx-stroke: -jfx-toggle-line-color;
+}
+
+.jfx-toggle-button Circle{
+    -fx-fill: -jfx-untoggle-color;
+}
+
+.jfx-toggle-button:selected Circle{
+    -fx-fill: -jfx-toggle-color;
+}
+
+.jfx-toggle-button .jfx-rippler {
+    -jfx-rippler-fill: -jfx-untoggle-line-color;
+}
+
+.jfx-toggle-button:selected .jfx-rippler {
+    -jfx-rippler-fill: -jfx-toggle-line-color;
+}
+
+.jfx-tab-pane .headers-region .tab-selected-line {
+    -fx-background-color: -fx-secundary;;
+}
+
+/**************** BOTONES ********************/
+.btn-default{ 
+    -fx-background-color: -colorFondo; 
+    -fx-text-fill: -colorTexto;
+}
+
+.btn-default2{ 
+    -fx-background-color: -colorfondo2; 
+    -fx-text-fill: -colorTexto2;
+}
+
+.btn-default-borde{
+    -fx-background-color: transparent;
+    -fx-background-radius: 25px;
+    -fx-border-radius: 25px;
+    -fx-border-color: -colorFondo;
+    -fx-text-fill: -colorTexto;
+}
+
+.btn-primario{ 
+    -fx-background-color: -fx-accent; 
+    -fx-text-fill: #eee;
+}
+
+.btn-secundario{ 
+    -fx-background-color: -fx-secundary; 
+    -fx-text-fill: #eee;
+}
+
+.btn-primario-borde{
+    -fx-background-color: transparent;
+    -fx-background-radius: 25px;
+    -fx-border-radius: 25px;
+    -fx-border-color: -fx-accent;
+    -fx-text-fill: -fx-accent;
+}
+
+.fondoApp {
+    -fx-background-color: radial-gradient(focus-angle 254deg , focus-distance 74% , center 50% 50% , radius 55% , derive(-fx-accent, -80%), -colorFondo2);
 }

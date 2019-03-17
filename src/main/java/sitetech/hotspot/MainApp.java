@@ -58,12 +58,7 @@ public class MainApp extends Application {
     }
 
     public void mainScene2(Stage stagePrincipal) {
-        try {
-            MainController mainController = new MainController();
-            mainController.showStage();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+        
     }
 
     public void mainScene() {

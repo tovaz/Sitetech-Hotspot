@@ -22,7 +22,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ticketsPanel" styleClass="fondoApp" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="ticketsPanel" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <JFXToolbar prefHeight="580.0" prefWidth="808.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <center>
@@ -113,11 +113,11 @@
                                                 <Insets left="10.0" right="50.0" />
                                             </padding>
                                         </Label>
-                                        <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGenerarAction" prefHeight="55.0" prefWidth="117.0" text=" ">
+                                        <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGenerarAction" prefHeight="55.0" prefWidth="120.0" text=" ">
                                             <graphic>
-                                                <VBox alignment="CENTER" prefHeight="55.0" prefWidth="90.0">
+                                                <VBox alignment="CENTER" prefHeight="55.0" prefWidth="110.0">
                                                     <children>
-                                                        <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                                             <image>
                                                                 <Image url="@../../Imagenes/ticketgenerate.png" />
                                                             </image>
@@ -127,11 +127,11 @@
                                                 </VBox>
                                             </graphic>
                                         </JFXButton>
-                                        <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" maxHeight="55.0" minHeight="55.0" mnemonicParsing="false" onAction="#onImprimirAction" prefHeight="55.0" prefWidth="117.0" text=" ">
+                                        <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" maxHeight="55.0" minHeight="55.0" mnemonicParsing="false" onAction="#onImprimirAction" prefHeight="55.0" prefWidth="120.0" text=" ">
                                             <graphic>
                                                 <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
                                                     <children>
-                                                        <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                        <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                                             <image>
                                                                 <Image url="@../../Imagenes/ticketprint.png" />
                                                             </image>
@@ -141,11 +141,11 @@
                                                 </VBox>
                                             </graphic>
                                         </JFXButton>
-                                        <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onVenderAction" prefHeight="55.0" prefWidth="117.0" text=" ">
+                                        <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onVenderAction" prefHeight="55.0" prefWidth="120.0" text=" ">
                                             <graphic>
                                                 <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
                                                     <children>
-                                                        <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                                             <image>
                                                                 <Image url="@../../Imagenes/ticketsell.png" />
                                                             </image>
@@ -156,11 +156,11 @@
                                             </graphic>
                                         </JFXButton>
                                         <Separator orientation="VERTICAL" />
-                                        <JFXButton fx:id="beliminar" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onEliminarAction" prefHeight="55.0" prefWidth="117.0" text=" ">
+                                        <JFXButton fx:id="beliminar" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onEliminarAction" prefHeight="55.0" prefWidth="100.0" text=" ">
                                             <graphic>
                                                 <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
                                                     <children>
-                                                        <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                                             <image>
                                                                 <Image url="@../../Imagenes/ticketdelbar.png" />
                                                             </image>

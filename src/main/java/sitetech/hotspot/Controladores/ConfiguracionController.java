@@ -30,11 +30,11 @@ import sitetech.hotspot.Modelos.Configuracion;
 import sitetech.hotspot.Modelos.ConfiguracionManager2;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import org.springframework.util.StringUtils;
-import sitetech.Helpers.dbHelper;
 
 /**
  * FXML Controller class
@@ -194,10 +194,13 @@ public class ConfiguracionController implements Initializable {
     void enfasisAction(ActionEvent event) {
         ThemeColor enfasisSeleccionado = cbenfasis.getValue();
         ThemeColor temaSeleccionado = cbtema.getValue();
-        Stage primaryStage = (Stage)thisStage.getUserData();
+        //Stage primaryStage = (Stage)thisStage.getUserData();
+        for (Scene sx : (ObservableList<Scene>) thisStage.getUserData())
+            if (sx != null)
+                Temas.aplicarTema(enfasisSeleccionado, temaSeleccionado, sx);
         
+        //Temas.aplicarTema(enfasisSeleccionado, temaSeleccionado, primaryStage.getScene());
         Temas.aplicarTema(enfasisSeleccionado, temaSeleccionado, thisStage.getScene());
-        Temas.aplicarTema(enfasisSeleccionado, temaSeleccionado, primaryStage.getScene());
     }
     
     private void cargarColores(JFXComboBox<ThemeColor> cb, ObservableList<ThemeColor> colores, boolean enfasis){

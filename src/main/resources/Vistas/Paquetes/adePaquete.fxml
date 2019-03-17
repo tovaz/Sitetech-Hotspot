@@ -2,14 +2,13 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,13 +17,13 @@
 <?import javafx.scene.text.Font?>
 <?import slider.control.CircularSlider?>
 
-<AnchorPane id="AnchorPane" minWidth="500.0" prefWidth="500.0" styleClass="fondoApp" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minWidth="500.0" prefWidth="500.0" style="-fx-background-color: -colorFondo;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox layoutX="20.0" layoutY="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
          <children>
             <AnchorPane minHeight="45.0" prefHeight="45.0">
                <children>
-                  <Label fx:id="ltitulo" layoutX="122.0" prefHeight="45.0" prefWidth="242.0" text="Agregar Paquete de Internet" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="122.0" AnchorPane.rightAnchor="108.0" AnchorPane.topAnchor="0.0">
+                  <Label fx:id="ltitulo" layoutX="122.0" prefHeight="45.0" prefWidth="242.0" style="-fx-text-fill: -fx-accent;" text="Agregar Paquete de Internet" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="122.0" AnchorPane.rightAnchor="108.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -36,244 +35,238 @@
                   </ImageView>
                </children>
             </AnchorPane>
-             <TitledPane collapsible="false" text="Informacion basica">
-               <content>
-                  <VBox>
+            <VBox>
+               <children>
+                  <HBox>
                      <children>
-                        <HBox>
+                        <AnchorPane>
                            <children>
-                              <AnchorPane>
-                                 <children>
-                                    <Label text="Nombre" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                 </children>
-                              </AnchorPane>
-                              <TextField fx:id="tnombre">
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <AnchorPane>
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                                 <children>
-                                    <Label text="Precio Q." AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                 </children>
-                              </AnchorPane>
-                              <TextField fx:id="tprecio" prefHeight="25.0" prefWidth="161.0">
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
-                              </TextField>
+                              <Label text="Nombre:" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
-                        </HBox>
-                        <HBox>
+                        </AnchorPane>
+                        <TextField fx:id="tnombre">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <AnchorPane>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
                            <children>
-                              <Label fx:id="ltnombre">
-                                 <HBox.margin>
-                                    <Insets left="50.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <Label fx:id="ltprecio" layoutX="10.0" layoutY="10.0">
-                                 <HBox.margin>
-                                    <Insets left="168.0" />
-                                 </HBox.margin>
-                              </Label>
+                              <Label text="Precio:" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
-                        </HBox>
+                        </AnchorPane>
+                        <TextField fx:id="tprecio" prefHeight="25.0" prefWidth="161.0">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </TextField>
                      </children>
-                     <padding>
-                        <Insets bottom="5.0" left="10.0" top="5.0" />
-                     </padding>
-                  </VBox>
-               </content>
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-             </TitledPane>
-             
-                  <TitledPane collapsible="false" text="Limite de tiempo e internet">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-               <content>
-                  <VBox style="-fx-background-color: #ECEFF1;">
+                  </HBox>
+                  <HBox>
                      <children>
-                        <TabPane>
-                         <tabs>
-                          <Tab closable="false" text="Tiempo">
-                              <content>
-                                  <VBox>
+                        <Label fx:id="ltnombre">
+                           <HBox.margin>
+                              <Insets left="50.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="ltprecio" layoutX="10.0" layoutY="10.0">
+                           <HBox.margin>
+                              <Insets left="168.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="10.0" top="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox style="-fx-background-color: -colorFondo2;">
+               <children>
+                  <JFXTabPane>
+                   <tabs>
+                    <Tab closable="false" text="Tiempo">
+                        <content>
+                            <VBox>
+                            <children>
+                               <HBox>
+                                  <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
                                   <children>
-                                     <HBox>
-                                        <VBox.margin>
-                                          <Insets top="10.0" />
-                                       </VBox.margin>
-                                        <children>
-                                           <Label prefHeight="17.0" prefWidth="68.0" text="Dias" />
-                                                <Label fx:id="ltdias" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="150.0" />
-                                           <JFXTextField fx:id="tdias" focusColor="#40a858" labelFloat="true" maxWidth="250.0" minWidth="200.0" onKeyReleased="#onKeypresstDias" prefHeight="25.0" prefWidth="200.0" promptText="Selecciona o escribe el numero de dias" text="0" unFocusColor="#11b553" />
-                                        </children>
-                                     </HBox>
-                                     <JFXSlider fx:id="sldias" blockIncrement="1.0" majorTickUnit="30.0" max="90.0" minorTickCount="1" onDragOver="#onDragslDias" showTickLabels="true" showTickMarks="true">
-                                        <VBox.margin>
-                                           <Insets top="15.0" />
-                                        </VBox.margin>
-                                     </JFXSlider>
-                                     <HBox alignment="TOP_CENTER">
-                                        <children>
-                                           <VBox alignment="TOP_CENTER">
-                                              <children>
-                                                 <Label style="-fx-text-alignment: center;" text="Horas" />
-                                                 <CircularSlider fx:id="slhoras" blockIncrement="1.0" majorTickUnit="1.0" max="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="1" prefHeight="170.0" prefWidth="180.0" style="-fx-font-size: 14px;" thickness="0.25">
-                                                    <VBox.margin>
-                                                       <Insets bottom="10.0" top="10.0" />
-                                                    </VBox.margin>
-                                                 </CircularSlider>
-                                                      <Label fx:id="lshoras" layoutX="85.0" layoutY="10.0" style="-fx-text-alignment: center;" />
-                                              </children>
-                                                   <HBox.margin>
-                                                      <Insets />
-                                                   </HBox.margin>
-                                           </VBox>
-                                           <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0">
-                                              <children>
-                                                 <Label text="Minutos" />
-                                                 <CircularSlider fx:id="slminutos" blockIncrement="1.0" majorTickUnit="1.0" max="59.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="1" prefHeight="170.0" prefWidth="180.0" style="-fx-font-size: 14px;" thickness="0.25" tickMarkVisible="false">
-                                                    <VBox.margin>
-                                                       <Insets top="10.0" />
-                                                    </VBox.margin>
-                                                 </CircularSlider>
-                                                      <Label fx:id="lsminutos" layoutX="78.0" layoutY="10.0">
-                                                         <VBox.margin>
-                                                            <Insets top="10.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                              </children>
-                                              <HBox.margin>
-                                                 <Insets left="15.0" />
-                                              </HBox.margin>
-                                           </VBox>
-                                        </children>
-                                             <VBox.margin>
-                                                <Insets bottom="20.0" />
-                                             </VBox.margin>
-                                     </HBox>
+                                     <Label prefHeight="17.0" prefWidth="68.0" text="Dias" />
+                                          <Label fx:id="ltdias" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="150.0" />
+                                     <JFXTextField fx:id="tdias" focusColor="#40a858" maxWidth="250.0" minWidth="200.0" onKeyReleased="#onKeypresstDias" prefHeight="25.0" prefWidth="200.0" promptText="Selecciona o escribe el numero de dias" text="0" unFocusColor="#1b1b1b" />
                                   </children>
-                                       <padding>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </padding>
-                               </VBox>
-                              </content>
-                          </Tab>
-      
+                               </HBox>
+                               <JFXSlider fx:id="sldias" blockIncrement="1.0" majorTickUnit="30.0" max="90.0" minorTickCount="1" onDragOver="#onDragslDias" showTickLabels="true" showTickMarks="true">
+                                  <VBox.margin>
+                                     <Insets top="15.0" />
+                                  </VBox.margin>
+                               </JFXSlider>
+                               <HBox alignment="TOP_CENTER">
+                                  <children>
+                                     <VBox alignment="TOP_CENTER">
+                                        <children>
+                                           <Label style="-fx-text-alignment: center;" text="Horas" />
+                                           <CircularSlider fx:id="slhoras" blockIncrement="1.0" majorTickUnit="1.0" max="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="1" prefHeight="170.0" prefWidth="180.0" style="-fx-font-size: 14px;" thickness="0.25">
+                                              <VBox.margin>
+                                                 <Insets bottom="10.0" top="10.0" />
+                                              </VBox.margin>
+                                           </CircularSlider>
+                                                <Label fx:id="lshoras" layoutX="85.0" layoutY="10.0" style="-fx-text-alignment: center;" />
+                                        </children>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                     </VBox>
+                                     <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0">
+                                        <children>
+                                           <Label text="Minutos" />
+                                           <CircularSlider fx:id="slminutos" blockIncrement="1.0" majorTickUnit="1.0" max="59.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="1" prefHeight="170.0" prefWidth="180.0" style="-fx-font-size: 14px;" thickness="0.25" tickMarkVisible="false">
+                                              <VBox.margin>
+                                                 <Insets top="10.0" />
+                                              </VBox.margin>
+                                           </CircularSlider>
+                                                <Label fx:id="lsminutos" layoutX="78.0" layoutY="10.0">
+                                                   <VBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                        </children>
+                                        <HBox.margin>
+                                           <Insets left="15.0" />
+                                        </HBox.margin>
+                                     </VBox>
+                                  </children>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                               </HBox>
+                            </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                         </VBox>
+                        </content>
+                    </Tab>
+
                             <Tab closable="false" text="Descarga">
-                               <content>
-                                  <VBox>
-                                     <children>
-                                          <HBox alignment="TOP_CENTER">
+                         <content>
+                            <VBox>
+                               <children>
+                                    <HBox alignment="TOP_CENTER">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER">
                                              <children>
-                                                <VBox alignment="TOP_CENTER">
-                                                   <children>
-                                                      <Label style="-fx-text-alignment: center;" text="Megabytes" />
-                                                      <CircularSlider fx:id="slmegasDown" blockIncrement="1.0" majorTickUnit="1.0" max="1000.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="1" prefHeight="170.0" prefWidth="180.0" style="-fx-font-size: 14px;" thickness="0.25" tickMarkVisible="false">
-                                                         <VBox.margin>
-                                                            <Insets bottom="10.0" top="10.0" />
-                                                         </VBox.margin>
-                                                      </CircularSlider>
-                                                      <Label fx:id="lsmegasDown" layoutX="71.0" layoutY="10.0" style="-fx-text-alignment: center;" />
-                                                   </children>
-                                                   <HBox.margin>
-                                                      <Insets />
-                                                   </HBox.margin>
-                                                </VBox>
-                                                <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0">
-                                                   <children>
-                                                      <Label text="Gigabytes" />
-                                                      <CircularSlider fx:id="slgigasDown" blockIncrement="1.0" majorTickUnit="1.0" max="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="1" prefHeight="170.0" prefWidth="180.0" style="-fx-font-size: 14px;" thickness="0.25" tickMarkVisible="false">
-                                                         <VBox.margin>
-                                                            <Insets bottom="10.0" top="10.0" />
-                                                         </VBox.margin>
-                                                      </CircularSlider>
-                                                      <Label fx:id="lsgigasDown" layoutX="74.0" layoutY="10.0" />
-                                                   </children>
-                                                   <HBox.margin>
-                                                      <Insets left="15.0" />
-                                                   </HBox.margin>
-                                                </VBox>
+                                                <Label style="-fx-text-alignment: center;" text="Megabytes" />
+                                                <CircularSlider fx:id="slmegasDown" blockIncrement="1.0" majorTickUnit="1.0" max="1000.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="1" prefHeight="170.0" prefWidth="180.0" style="-fx-font-size: 14px;" thickness="0.25" tickMarkVisible="false">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </CircularSlider>
+                                                <Label fx:id="lsmegasDown" layoutX="71.0" layoutY="10.0" style="-fx-text-alignment: center;" />
                                              </children>
-                                          </HBox>
-                                     </children>
-                                       <padding>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </padding>
-                                  </VBox>
-                               </content>
-                            </Tab>
-      
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </VBox>
+                                          <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0">
+                                             <children>
+                                                <Label text="Gigabytes" />
+                                                <CircularSlider fx:id="slgigasDown" blockIncrement="1.0" majorTickUnit="1.0" max="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="1" prefHeight="170.0" prefWidth="180.0" style="-fx-font-size: 14px;" thickness="0.25" tickMarkVisible="false">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </CircularSlider>
+                                                <Label fx:id="lsgigasDown" layoutX="74.0" layoutY="10.0" />
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="15.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                               </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                            </VBox>
+                         </content>
+                      </Tab>
+
                             <Tab closable="false" text="Subida">
-                               <content>
-                                  <VBox>
-                                     <children>
-                                          <HBox alignment="TOP_CENTER">
+                         <content>
+                            <VBox>
+                               <children>
+                                    <HBox alignment="TOP_CENTER">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER">
                                              <children>
-                                                <VBox alignment="TOP_CENTER">
-                                                   <children>
-                                                      <Label style="-fx-text-alignment: center;" text="Megabytes" />
-                                                      <CircularSlider fx:id="slmegasUp" blockIncrement="1.0" majorTickUnit="1.0" max="1000.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="1" prefHeight="170.0" prefWidth="180.0" style="-fx-font-size: 14px;" thickness="0.25" tickMarkVisible="false">
-                                                         <VBox.margin>
-                                                            <Insets bottom="10.0" top="10.0" />
-                                                         </VBox.margin>
-                                                      </CircularSlider>
-                                                      <Label fx:id="lsmegasUp" layoutX="71.0" layoutY="10.0" style="-fx-text-alignment: center;" />
-                                                   </children>
-                                                   <HBox.margin>
-                                                      <Insets />
-                                                   </HBox.margin>
-                                                </VBox>
-                                                <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0">
-                                                   <children>
-                                                      <Label text="Gigabytes" />
-                                                      <CircularSlider fx:id="slgigasUp" blockIncrement="1.0" majorTickUnit="1.0" max="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="1" prefHeight="170.0" prefWidth="180.0" style="-fx-font-size: 14px;" thickness="0.25" tickMarkVisible="false">
-                                                         <VBox.margin>
-                                                            <Insets bottom="10.0" top="10.0" />
-                                                         </VBox.margin>
-                                                      </CircularSlider>
-                                                      <Label fx:id="lsgigasUp" layoutX="74.0" layoutY="10.0" />
-                                                   </children>
-                                                   <HBox.margin>
-                                                      <Insets left="15.0" />
-                                                   </HBox.margin>
-                                                </VBox>
+                                                <Label style="-fx-text-alignment: center;" text="Megabytes" />
+                                                <CircularSlider fx:id="slmegasUp" blockIncrement="1.0" majorTickUnit="1.0" max="1000.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="1" prefHeight="170.0" prefWidth="180.0" style="-fx-font-size: 14px;" thickness="0.25" tickMarkVisible="false">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </CircularSlider>
+                                                <Label fx:id="lsmegasUp" layoutX="71.0" layoutY="10.0" style="-fx-text-alignment: center;" />
                                              </children>
-                                          </HBox>
-                                     </children>
-                                       <padding>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </padding>
-                                  </VBox>
-                               </content>
-                            </Tab>
-                         </tabs>
-                         <HBox.margin>
-                            <Insets left="20.0" />
-                         </HBox.margin>
-                      </TabPane> 
-                       
-                     </children>
-                  </VBox>
-               </content>
-            </TitledPane>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </VBox>
+                                          <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0">
+                                             <children>
+                                                <Label text="Gigabytes" />
+                                                <CircularSlider fx:id="slgigasUp" blockIncrement="1.0" majorTickUnit="1.0" max="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="1" prefHeight="170.0" prefWidth="180.0" style="-fx-font-size: 14px;" thickness="0.25" tickMarkVisible="false">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </CircularSlider>
+                                                <Label fx:id="lsgigasUp" layoutX="74.0" layoutY="10.0" />
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="15.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                               </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                            </VBox>
+                         </content>
+                      </Tab>
+                   </tabs>
+                   <HBox.margin>
+                      <Insets left="20.0" />
+                   </HBox.margin>
+                </JFXTabPane> 
+                 
+               </children>
+            </VBox>
             <HBox>
                <children>
                   <AnchorPane prefHeight="40.0" prefWidth="256">
                      <children>
-                        <JFXButton cancelButton="true" layoutX="37.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#cancelarAction" prefHeight="40.0" style="-fx-background-color: #BDBDBD;" text="Cancelar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0" />
+                        <JFXButton cancelButton="true" layoutX="37.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#cancelarAction" prefHeight="40.0" styleClass="btn-default2" text="Cancelar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="40.0" prefWidth="207.0">
                      <children>
-                        <JFXButton fx:id="bAgregar" buttonType="RAISED" defaultButton="true" layoutX="53.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#agregarAction" prefHeight="40.0" styleClass="aceptarBoton" text="Agregar Paquete" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <JFXButton fx:id="bAgregar" buttonType="RAISED" defaultButton="true" layoutX="53.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#agregarAction" prefHeight="40.0" text="Agregar Paquete" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </children>
@@ -290,5 +283,7 @@
    <stylesheets>
       <URL value="@../../styles/Styles.css" />
       <URL value="@../../styles/validation.css" />
+      <URL value="@../../styles/Temas/Tema-Celeste.css" />
+      <URL value="@../../styles/Temas/Tema-Obscuro.css" />
    </stylesheets>
 </AnchorPane>

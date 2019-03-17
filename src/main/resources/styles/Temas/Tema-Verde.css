@@ -1,6 +1,6 @@
-* {
-    -fx-accent: #C51162;
-    -fx-secundary: #F50057;
+*{
+    -fx-accent: #00b25b;
+    -fx-secundary: #2E7D32;
     -iluminar: #222;
     
         
@@ -22,5 +22,5 @@
      
     -fx-prompt-text-fill: -jfx-unfocus-color;
      
-    -fx-faint-focus-color: #C5116222; /*ACCENT + 22*/
+    -fx-faint-focus-color: #00b25b22; /*ACCENT + 22*/
 }

@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,11 +41,11 @@ public class MainController implements Initializable, ArrastrarScene {
     @FXML
     private Label ltprueba;
 
+    TicketsController tc;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //this.ArrastrarScene(panelTitulo);
-
-        TicketsController tc = new TicketsController();
+        tc = new TicketsController();
         try {
             tc.cargarPanel(panelPrincipal);
         } catch (IOException ex) {
@@ -86,6 +88,9 @@ public class MainController implements Initializable, ArrastrarScene {
         adUsuario.showAgregar(new UsuariosController());
     }
 
+    UsuariosController uvController;
+    RoutersController rController;
+    PaquetesController pController;
     @FXML
     private void onMenuAction(ActionEvent event) throws IOException {
         MenuItem mi = (MenuItem) event.getSource();
@@ -93,25 +98,28 @@ public class MainController implements Initializable, ArrastrarScene {
 
         switch (mi.getText()) {
             case "Usuarios":
-                UsuariosController uvController = new UsuariosController();
+                uvController = new UsuariosController();
                 uvController.showStage();
                 break;
 
             case "Routers":
-                RoutersController rController = new RoutersController();
+                rController = new RoutersController();
                 rController.showStage();
                 break;
 
             case "Paquetes de Internet":
-                PaquetesController pController = new PaquetesController();
+                pController = new PaquetesController();
                 pController.showStage();
                 break;
             
             case "Configuracion":
                 ConfiguracionController pConfiguracion = new ConfiguracionController();
-                pConfiguracion.thisStage.setUserData(thisStage);
-                pConfiguracion.showStage();
+                ObservableList<Scene> scenes = FXCollections.observableArrayList();
+                scenes.add(tc.thisStage.getScene());
+                scenes.add(thisStage.getScene());
                 
+                pConfiguracion.thisStage.setUserData(scenes);
+                pConfiguracion.showStage();
                 break;
 
         }
