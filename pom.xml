@@ -93,8 +93,8 @@
         <!-- SQLite JDBC library -->
         <dependency>
             <groupId>org.apache.derby</groupId>
-            <artifactId>derbyclient</artifactId>
-            <version>10.14.2.0</version>
+            <artifactId>derby</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
         <!-- junit test -->

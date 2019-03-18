@@ -1,32 +1,34 @@
 /***************+ PRINCIPALES ****************/
 .root {
+    -colorEnfasis: -fx-accent;
+    -fx-accent: derive(-colorEnfasis, -80%);
     -fx-base: #333;
     -jfx-rippler-fill: derive(-fx-accent, 50%) 20%;
     -fx-primaryText: #ddd;
     
-    -colorFondo: #333;
+    -colorFondo: #323232;
     -colorFondo2: #232323;
     -colorFondo3: #111;
     -colorFondo4: #1212;
     -colorFondo5: #000;
     
-    -colorTexto: #ccc;
+    -colorTexto: #ddd;
     -colorTexto2: #cecece;
     -colorTexto3: #eee;
     -colorTexto4: #ececec;
     -colorTexto5: #eee;
     
-    -fx-dark-text-color: #eee;
+    -fx-dark-text-color: #ddd;
     -fx-mid-text-color: #999;
-    -fx-light-text-color: #aaa;
+    -fx-light-text-color: #bbb;
     
     -fx-background: derive(-fx-base,30.4%);
     -fx-control-inner-background: derive(-fx-base,80%);
     -fx-control-inner-background-alt: derive(-fx-control-inner-background,-2%);
     
     -fx-color: -fx-base;
-    -jfx-unfocus-color: -colorTexto;
-    -jfx-focus-color: derive(-fx-accent, 50%);
+    -jfx-unfocus-color: -colorTexto2;
+    -jfx-focus-color: derive(-fx-accent, 70%);
     
     -jfx-default-thumb: -fx-accent;
     -jfx-default-track: -colorTexto2;
@@ -66,11 +68,11 @@
 }
 
 .menubar .menu:hover {
-    -fx-background-color: -fx-secundary;
+    -fx-background-color: derive(-fx-secundary,50%);
 }
 
 .menubar .menu-item:hover {
-    -fx-background-color: -fx-secundary;
+    -fx-background-color: derive(-fx-secundary,50%);
 }
 
 /************************** COMUN INTERFACE *****************/
@@ -266,6 +268,7 @@
     -fx-stroke-width: 10pt;
 }
 
+.jfx-combo-box .list-view .list-cell   { -fx-background: -colorFondo2; -fx-text-fill: -colorTexto2; }
 /************** JFX TOGGLE BUTTON ***************/
 .jfx-toggle-button Line {
     -fx-stroke: -jfx-untoggle-line-color;

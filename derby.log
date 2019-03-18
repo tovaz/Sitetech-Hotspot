@@ -1,14 +1,13 @@
-Sun Mar 17 11:49:22 CST 2019 : Servidor de red Apache Derby: Se ha iniciado 10.14.2.0 - (1828579) y está listo para aceptar las conexiones en el puerto 1527
 ----------------------------------------------------------------
-Sun Mar 17 14:15:10 CST 2019:
- Iniciando instancia a816c00e-0169-8cc5-b5b7-000008e7b5bf de Derby, versión The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): 
-en el directorio de base de datos F:\Documents\NetBeansProjects\hotspot\hotspot con el cargador de clases sun.misc.Launcher$AppClassLoader@144bcfa
-Cargado desde file:/C:/db-derby-10.14.2.0-lib/lib/derby.jar
+Sun Mar 17 21:10:58 CST 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-0169-8ec7-e388-000001a4f0f0 
+on database directory F:\Documents\NetBeansProjects\hotspot\hotspot with class loader java.net.URLClassLoader@89e92e 
+Loaded from file:/C:/Users/sitet/.m2/repository/org/apache/derby/derby/10.14.1.0/derby-10.14.1.0.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_201-b09
-user.dir=C:\db-derby-10.14.2.0-lib
+user.dir=F:\Documents\NetBeansProjects\hotspot
 os.name=Windows 10
 os.arch=x86
 os.version=10.0
-derby.system.home=F:\Documents\NetBeansProjects\hotspot
-Cargador de clases de base de datos iniciado - derby.database.classpath=''
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

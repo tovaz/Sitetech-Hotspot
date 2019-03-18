@@ -8,10 +8,10 @@
         <property name="show_sql">true</property>
 	<property name="format_sql">true</property>
         
-        <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.ClientDriver</property>
+        <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.EmbeddedDriver</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">to34va80z5200</property>
-        <property name="hibernate.connection.url">jdbc:derby://localhost:1527/hotspot</property>
+        <property name="hibernate.connection.url">jdbc:derby:hotspot;create=true</property>
         
         <!-- Enable Hibernate's automatic session context management -->
         <property name="current_session_context_class">thread</property>

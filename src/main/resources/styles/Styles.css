@@ -118,6 +118,7 @@
 }
 
  .menu-item:focused {
+    -fx-background: derive(-fx-secundary, -30%);
     -fx-background-radius: 10;
 }
 
