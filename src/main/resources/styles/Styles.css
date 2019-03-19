@@ -131,40 +131,6 @@
     -fx-background-color: linear-gradient(#999999 0%, #000000 50%, #999999 100%);
 }
 
-/************************ TABLE VIEW **********************************/
-/**********************************************************************/
-.table-view { -fx-border-color: -colorFondo; }
-.table-view:focused { -fx-border-color: derive(-fx-accent, 50%);}
-.table-view .column-header,
-.table-view .column-header .filler,
-.table-view .column-header-background .filler {   
-    -fx-background-color: derive;
-    -fx-stroke: transparent;
-    -fx-size:40;
-    -fx-alignment: CENTER ;    
-    -fx-text-alignment: center;
-}
-.table-row-cell:filled:hover {
-    -fx-size:40;
-    -fx-alignment: CENTER;
-    -fx-text-alignment: center;
-}
-.table-view:row-selection {
-    -fx-text-fill: white;
-    -fx-fixed-cell-size: 40;
-    -fx-alignment: CENTER;
-    -fx-text-alignment: center;
-}
-
-.table-view .table-column{
-    -fx-text-alignment: center;
-    -fx-alignment: CENTER 
-}
-
-.table-row-cell { -fx-background-color: -colorFondo; }
-.table-row-cell:selected { -fx-background-color: derive(-fx-accent, -50%); -fx-table-cell-border-color: -colorFondo; }
-.table-row-cell:filled:selected { -fx-effect: dropshadow(two-pass-box, -fx-accent, 10,0,0,0); }
-
 
 /***************************************************************************
  *                                                                         *
