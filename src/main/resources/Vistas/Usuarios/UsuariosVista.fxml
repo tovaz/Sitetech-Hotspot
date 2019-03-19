@@ -3,9 +3,9 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,7 +19,7 @@
          <children>
             <AnchorPane maxHeight="63.0" minHeight="63.0" prefHeight="63.0" prefWidth="580.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label fx:id="titulo" layoutY="18.0" style="-fx-text-fill: -fx-accent;" text="Gestion de Usuarios">
+                  <Label fx:id="titulo" layoutY="18.0" text="Gestion de Usuarios">
                      <font>
                         <Font size="18.0" />
                      </font>

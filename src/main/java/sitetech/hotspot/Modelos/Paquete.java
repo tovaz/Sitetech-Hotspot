@@ -1,6 +1,7 @@
 package sitetech.hotspot.Modelos;
 import Util.Moneda;
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.Date;
 import javafx.beans.property.StringProperty;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Transient;
+import sitetech.Helpers.dbHelper;
 
 @Entity
 @Table(name = "Paquete")
@@ -37,6 +39,9 @@ public class Paquete {
     
     @Transient
     public boolean  Combobox_default;
+    
+    @Transient
+    public String  precioFormateado;
     
     @PrePersist
     protected void onCreate() {
@@ -204,6 +209,10 @@ public class Paquete {
         this.LimiteInternet = LimiteInternet;
     }
     
+    public String getPrecioFormateado(){
+        return Moneda.Formatear(precio);
+    }
+    
     @Override
     public String toString() { 
         if (!Combobox_default)
@@ -211,4 +220,6 @@ public class Paquete {
         else
             return "Todos";
     }
+    
+    
 }

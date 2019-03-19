@@ -43,6 +43,8 @@ public class Configuracion {
 
     private String colorEnfasis="Indigo";
     private String colorTema="Claro";
+    private boolean colorToolbar = true;
+    private boolean colorMenu = true;
     
     @Transient
     private MiLocale RegionLocal; 
@@ -125,10 +127,6 @@ public class Configuracion {
         return new MiLocale(new Locale(Idioma, FormatoMoneda), FormatoMoneda);
     }
 
-    //public void setRegionLocal(MiLocale RegionLocal) {
-    //    this.RegionLocal = RegionLocal;
-    //}
-
     public Currency getMoneda() {
         return Currency.getInstance(new Locale(Idioma, FormatoMoneda));
     }
@@ -171,6 +169,22 @@ public class Configuracion {
 
     public void setIdioma(String Idioma) {
         this.Idioma = Idioma;
+    }
+
+    public boolean isColorToolbar() {
+        return colorToolbar;
+    }
+
+    public void setColorToolbar(boolean colorToolbar) {
+        this.colorToolbar = colorToolbar;
+    }
+
+    public boolean isColorMenu() {
+        return colorMenu;
+    }
+
+    public void setColorMenu(boolean colorMenu) {
+        this.colorMenu = colorMenu;
     }
 
     

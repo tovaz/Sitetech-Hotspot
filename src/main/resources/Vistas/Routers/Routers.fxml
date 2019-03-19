@@ -113,5 +113,6 @@
    <stylesheets>
       <URL value="@../../styles/Styles.css" />
       <URL value="@../../styles/Temas/Tema-Obscuro.css" />
+      <URL value="@../../styles/Temas/Tema-Celeste.css" />
    </stylesheets>
 </AnchorPane>

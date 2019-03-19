@@ -51,8 +51,11 @@ public class usuarioManager {
     
     
     public ObservableList<Usuario> getUsuarios(){
-        return listaUsuarios = (ObservableList<Usuario>) 
+        listaUsuarios = (ObservableList<Usuario>) 
         DbHelper.Select("FROM Usuario WHERE eliminado=false");
+        
+        if (listaUsuarios.size() == 0 ) return null;
+        else return listaUsuarios;
     }
     
     public boolean checkLogin(String nombre, String contraseña)

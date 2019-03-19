@@ -19,16 +19,27 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="522.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="522.0" prefWidth="779.0" styleClass="fondoApp" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <HBox style="-fx-background-color: -fx-accent;">
+            <Label text="Generar nuevos tickets">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <HBox style="-fx-background-color: -colorfondo2;">
                <children>
                   <VBox>
                      <children>
-                        <Label prefHeight="23.0" prefWidth="44.0" style="-fx-text-fill: -colorTexto3;" text="Paquete" />
-                        <JFXComboBox fx:id="cbpaquetes" prefHeight="25.0" prefWidth="226.0" promptText="Selecciona un Paquete" style="-fx-background-color: -colorFondo; -fx-text-fill: -colorTexto;" />
+                        <Label prefHeight="23.0" prefWidth="44.0" style="-fx-text-fill: -colorTexto;" text="Paquete" />
+                        <JFXComboBox fx:id="cbpaquetes" prefHeight="25.0" prefWidth="226.0" promptText="Selecciona un Paquete" />
                         <Label fx:id="lepaquete" layoutX="10.0" layoutY="10.0" prefHeight="23.0" styleClass="txt-gris-claro2" VBox.vgrow="ALWAYS" />
                      </children>
                      <HBox.margin>
@@ -37,8 +48,8 @@
                   </VBox>
                   <VBox>
                      <children>
-                        <Label prefHeight="24.0" prefWidth="36.0" style="-fx-text-fill: -colorTexto3;" text="Router" />
-                        <JFXComboBox fx:id="cbrouters" prefHeight="25.0" prefWidth="210.0" promptText="Selecciona un Router" style="-fx-background-color: -colorFondo;" styleClass="btn-default" />
+                        <Label prefHeight="24.0" prefWidth="36.0" style="-fx-text-fill: -colorTexto;" text="Router" />
+                        <JFXComboBox fx:id="cbrouters" prefHeight="25.0" prefWidth="210.0" promptText="Selecciona un Router" />
                         <Label fx:id="lerouter" layoutX="10.0" layoutY="10.0" prefHeight="24.0" styleClass="txt-gris-claro2" VBox.vgrow="ALWAYS" />
                      </children>
                      <HBox.margin>
@@ -47,10 +58,10 @@
                   </VBox>
                   <VBox prefHeight="50.0" prefWidth="171.0" HBox.hgrow="NEVER">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="174.0" style="-fx-text-fill: -colorTexto3;" text="Longitud usuario y contraseña" />
+                        <Label prefHeight="25.0" prefWidth="174.0" style="-fx-text-fill: -colorTexto;" text="Longitud usuario y contraseña" />
                         <HBox prefHeight="25.0" prefWidth="154.0">
                            <children>
-                              <JFXComboBox fx:id="cbusuario" style="-fx-background-color: -colorFondo;" styleClass="btn-default">
+                              <JFXComboBox fx:id="cbusuario">
                                   <items>
                                       <FXCollections fx:factory="observableArrayList">
                                       <String fx:value="1" />
@@ -71,7 +82,7 @@
                                       </FXCollections>
                                   </items>
                               </JFXComboBox>
-                              <JFXComboBox fx:id="cbcontraseña" style="-fx-background-color: -colorFondo;" styleClass="btn-default">
+                              <JFXComboBox fx:id="cbcontraseña">
                                   <items>
                                       <FXCollections fx:factory="observableArrayList">
                                       <String fx:value="1" />
@@ -104,11 +115,11 @@
                   </VBox>
                   <VBox prefHeight="55.0" prefWidth="127.0">
                      <children>
-                        <Label style="-fx-text-fill: -colorTexto3;" styleClass="txt-gris-claro2" text="Cantida de tickets" VBox.vgrow="NEVER">
+                        <Label style="-fx-text-fill: -colorTexto;" styleClass="txt-gris-claro2" text="Cantida de tickets" VBox.vgrow="NEVER">
                            <VBox.margin>
                               <Insets bottom="3.0" left="3.0" right="3.0" top="5.0" />
                            </VBox.margin></Label>
-                        <JFXTextField fx:id="tcantidad" prefHeight="25.0" prefWidth="95.0" style="-fx-background-color: -colorFondo;" styleClass="btn-default" text="5">
+                        <JFXTextField fx:id="tcantidad" prefHeight="25.0" prefWidth="95.0" text="5">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin></JFXTextField>
@@ -126,11 +137,11 @@
                   <Insets left="5.0" right="5.0" top="10.0" />
                </padding>
             </HBox>
-            <VBox style="-fx-background-color: -colorFondo;">
+            <VBox>
                <children>
                   <HBox fx:id="pbotones">
                      <children>
-                        <JFXButton fx:id="bgenerar" minHeight="35.0" onAction="#generarAction" prefHeight="35.0" styleClass="btn-borde" text="Generar tickets" textFill="#f8f8f8">
+                        <JFXButton fx:id="bgenerar" minHeight="35.0" onAction="#generarAction" prefHeight="35.0" text="Generar tickets" textFill="#f8f8f8">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -151,7 +162,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </JFXButton>
-                        <JFXButton fx:id="bimprimir" minHeight="35.0" onAction="#imprimirAction" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-border-color: -fx-accent; -fx-text-fill: -fx-accent;" styleClass="borde-Azul" text="Imprimir" textFill="WHITE">
+                        <JFXButton fx:id="bimprimir" minHeight="35.0" onAction="#imprimirAction" prefHeight="35.0" prefWidth="100.0" styleClass="btn-primario-borde" text="Imprimir" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

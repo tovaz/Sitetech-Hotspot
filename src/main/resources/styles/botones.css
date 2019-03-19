@@ -264,9 +264,6 @@
 .btn-gris-claro {
   -fx-background-color: linear-gradient(#FAFAFA, #FAFAFA); }
 
-.btn-default {
-  -fx-background-color: linear-gradient(#EEEEEE, #EEEEEE); }
-
 .btn-gris-30 {
   -fx-background-color: linear-gradient(#EEEEEE, #E0E0E0); }
 

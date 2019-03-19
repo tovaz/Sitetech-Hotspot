@@ -23,7 +23,7 @@
          <children>
             <AnchorPane>
                <children>
-                  <Label fx:id="ltitulo" layoutX="89.0" prefHeight="30.0" prefWidth="141.0" style="-fx-text-fill: -fx-accent;" text="Agregar usuario" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="0.0">
+                  <Label fx:id="ltitulo" layoutX="89.0" prefHeight="30.0" prefWidth="141.0" text="Agregar usuario" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="Segoe UI Light" size="20.0" />
                      </font>
@@ -126,7 +126,7 @@
                      <children>
                         <AnchorPane minHeight="40.0" prefHeight="40.0" prefWidth="318.0">
                            <children>
-                              <JFXButton cancelButton="true" layoutX="30.0" layoutY="10.0" mnemonicParsing="false" onAction="#bcancelar" prefHeight="40.0" prefWidth="88.0" styleClass="btn-default2" text="Cancelar" textFill="#404040" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="0.0" />
+                              <JFXButton cancelButton="true" layoutX="30.0" layoutY="10.0" mnemonicParsing="false" onAction="#bcancelar" prefHeight="40.0" prefWidth="88.0" styleClass="btn-default" text="Cancelar" textFill="#404040" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="0.0" />
                               <JFXButton defaultButton="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#agregarAction" text="Agregar Usuario" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>

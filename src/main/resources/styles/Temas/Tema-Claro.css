@@ -26,9 +26,12 @@
     -fx-color: -fx-base;
     -jfx-unfocus-color: -colorTexto;
     -jfx-focus-color: -fx-accent;
+    -fx-focus-color: -fx-accent;
     
     -jfx-default-thumb: -fx-accent;
     -jfx-default-track: -colorTexto2;
+    
+    -fx-prompt-text-fill: -colorTexto2;
 } 
 
 /*************** SOMBRAS *************/
@@ -59,16 +62,9 @@
 .fondo-degradado4 {
   -fx-background-color: radial-gradient(focus-angle 254deg, focus-distance 74%, center 50% 50%, radius 55%, -colorFondo4, -colorFondo5); }
 
-.menubar {
-    -fx-text-fill: -colorTexto3;
-}
-
-.menubar .menu:hover {
-    -fx-background-color: -fx-secundary;
-}
-
-.menubar .menu-item:hover {
-    -fx-background-color: -fx-secundary;
+.menu-item:focused {
+    -fx-background: derive(-fx-secundary, 70%);
+    -fx-background-radius: 10;
 }
 
 /************************** COMUN INTERFACE *****************/
@@ -307,7 +303,7 @@
 
 .jfx-button{ 
     -fx-background-color: -fx-accent; 
-    -fx-text-fill: -fx-light-text-color;
+    -fx-text-fill: #eee;
     
     -fx-background-radius: 25;
     -fx-background-insets: 0.5;
@@ -349,15 +345,25 @@
 .jfx-tab-pane .headers-region .tab-selected-line {
     -fx-background-color: -fx-secundary;;
 }
+
+
 /**************** BOTONES ********************/
 .btn-default{ 
     -fx-background-color: -colorFondo; 
-    -fx-text-fill: -colorTexto3;
+    -fx-text-fill: -colorTexto;
 }
 
 .btn-default2{ 
     -fx-background-color: -colorfondo2; 
-    -fx-text-fill: -colorTexto3;
+    -fx-text-fill: -colorTexto2;
+}
+
+.btn-default-borde{
+    -fx-background-color: transparent;
+    -fx-background-radius: 25px;
+    -fx-border-radius: 25px;
+    -fx-border-color: -colorFondo;
+    -fx-text-fill: -colorTexto;
 }
 
 .btn-primario{ 
@@ -370,7 +376,16 @@
     -fx-text-fill: #eee;
 }
 
+.btn-primario-borde{
+    -fx-background-color: transparent;
+    -fx-background-radius: 25px;
+    -fx-border-radius: 25px;
+    -fx-border-color: -fx-accent;
+    -fx-text-fill: -fx-accent;
+}
 
 .fondoApp {
-    -fx-background-color: radial-gradient(focus-angle 254deg , focus-distance 74% , center 50% 50% , radius 55% , derive(-fx-accent, 110%), -colorFondo);
+    -fx-background-color: radial-gradient(focus-angle 254deg , focus-distance 74% , center 50% 50% , radius 55% , derive(-fx-secundary, 90%), -colorFondo2);
 }
+
+.jfx-text-field { -fx-text-fill: -colorTexto2; }

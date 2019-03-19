@@ -3,6 +3,8 @@ package sitetech.hotspot;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.ToolBar;
 import sitetech.Helpers.dbHelper;
 import sitetech.hotspot.Modelos.Configuracion;
 import sitetech.hotspot.Modelos.ConfiguracionManager2;
@@ -35,8 +37,8 @@ public class Temas {
         ThemeColor tc6 = new ThemeColor("Verde", "00b25b", verde);
         ThemeColor tc7 = new ThemeColor("Rosado", "C51162", rosado);
         ThemeColor tc8 = new ThemeColor("Naranja", "FF3D00", naranja);
-        ThemeColor tc9 = new ThemeColor("Light", "bbb", light);
-        ThemeColor tc10 = new ThemeColor("Dark", "555", dark);
+        ThemeColor tc9 = new ThemeColor("Light", "999", light);
+        ThemeColor tc10 = new ThemeColor("Dark", "333", dark);
         
         return FXCollections.observableArrayList(tc1,tc2,tc3,tc4,tc5,tc6,tc7,tc8,tc9,tc10);
     }
@@ -45,8 +47,8 @@ public class Temas {
         ObservableList<String> claro = FXCollections.observableArrayList( "/styles/Temas/Tema-Claro.css" );
         ObservableList<String> obscuro = FXCollections.observableArrayList(  "/styles/Temas/Tema-Obscuro.css" );
         
-        ThemeColor tc = new ThemeColor("Claro", "bbb", claro);
-        ThemeColor to = new ThemeColor("Obscuro", "555", obscuro);
+        ThemeColor tc = new ThemeColor("Claro", "999", claro);
+        ThemeColor to = new ThemeColor("Obscuro", "333", obscuro);
         return FXCollections.observableArrayList(tc, to);
     }
     
@@ -73,19 +75,17 @@ public class Temas {
         escena.getRoot().getStylesheets().removeAll(Temas.getStringColors(getEnfasis()));
         escena.getRoot().getStylesheets().removeAll(Temas.getStringColors(getTemas()));
         
-        
         escena.getRoot().getStylesheets().addAll(tema.getCssList());
         escena.getRoot().getStylesheets().addAll(enfasis.getCssList());
-        
         
         System.out.println("ENFASIS : #" + enfasis.getCssList());
     }
     
+   
     public static void aplicarTema(Scene escena){
         Configuracion conf = ConfiguracionManager2.getConfiguracion(new dbHelper());
         ThemeColor enfasis = getCssporNombre(conf.getColorEnfasis(), Temas.getEnfasis());
         ThemeColor tema = getCssporNombre(conf.getColorTema(), Temas.getTemas());
-        
         
         escena.getRoot().getStylesheets().removeAll(Temas.getStringColors(getTemas()));
         escena.getRoot().getStylesheets().removeAll(Temas.getStringColors(getEnfasis()));
@@ -93,7 +93,23 @@ public class Temas {
         escena.getRoot().getStylesheets().addAll(tema.getCssList());
         escena.getRoot().getStylesheets().addAll(enfasis.getCssList());
         
-        
+        colorearBarras(escena, conf.isColorMenu(), conf.isColorToolbar());
         System.out.println("ENFASIS : #" + enfasis.getCssList());
+    }
+    
+    public static void colorearBarras(Scene escena, boolean colorMenu, boolean colorToolbar)
+    {
+        ToolBar toolbar = (ToolBar) escena.lookup("#ticketToolbar");
+        MenuBar menubar = (MenuBar) escena.lookup("#menuBar");
+        
+        if (menubar != null && colorMenu) {
+            menubar.setStyle(".menu-bar .label { -fx-text-fill: #eee; }");
+            menubar.setStyle("-fx-background-color: -fx-accent; -fx-text-fill: #eee;");
+            
+        }
+        if (menubar != null && !colorMenu) menubar.setStyle("-fx-background-color: -colorFondo2; -fx-text-fill: -colorTexto2; ");
+                
+        if (toolbar != null && colorToolbar) toolbar.setStyle("-fx-background-color: -fx-accent;");
+        if (toolbar != null && !colorToolbar) toolbar.setStyle("-fx-background-color: -colorFondo2;");
     }
 }

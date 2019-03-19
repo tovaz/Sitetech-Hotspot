@@ -1,8 +1,6 @@
 /***************+ PRINCIPALES ****************/
 .root {
-    -colorEnfasis: -fx-accent;
-    -fx-accent: derive(-colorEnfasis, -80%);
-    -fx-base: #333;
+    -fx-base: #232323;
     -jfx-rippler-fill: derive(-fx-accent, 50%) 20%;
     -fx-primaryText: #ddd;
     
@@ -22,16 +20,22 @@
     -fx-mid-text-color: #999;
     -fx-light-text-color: #bbb;
     
+    
+    
     -fx-background: derive(-fx-base,30.4%);
     -fx-control-inner-background: derive(-fx-base,80%);
     -fx-control-inner-background-alt: derive(-fx-control-inner-background,-2%);
     
     -fx-color: -fx-base;
     -jfx-unfocus-color: -colorTexto2;
-    -jfx-focus-color: derive(-fx-accent, 70%);
+    -jfx-focus-color: derive(-fx-accent, 50%);
+    -fx-focus-color: derive(-fx-accent, 50%);
+    
     
     -jfx-default-thumb: -fx-accent;
     -jfx-default-track: -colorTexto2;
+    
+    -fx-prompt-text-fill: -colorTexto2;
 } 
 
 /*************** SOMBRAS *************/
@@ -63,18 +67,10 @@
 .fondo-degradado4 {
   -fx-background-color: radial-gradient(focus-angle 254deg, focus-distance 74%, center 50% 50%, radius 55%, -colorFondo4, -colorFondo5); }
 
-.menubar {
-    -fx-text-fill: -colorTexto3;
+.menu-item:focused {
+    -fx-background: derive(-fx-secundary, -30%);
+    -fx-background-radius: 10;
 }
-
-.menubar .menu:hover {
-    -fx-background-color: derive(-fx-secundary,50%);
-}
-
-.menubar .menu-item:hover {
-    -fx-background-color: derive(-fx-secundary,50%);
-}
-
 /************************** COMUN INTERFACE *****************/
 .root{
     /* Chart Color Palette */
@@ -253,7 +249,7 @@
 
 .jfx-button{ 
     -fx-background-color: -fx-accent; 
-    -fx-text-fill: -fx-light-text-color;
+    -fx-text-fill: #eee;
     
     -fx-background-radius: 25;
     -fx-background-insets: 0.5;
@@ -335,5 +331,7 @@
 }
 
 .fondoApp {
-    -fx-background-color: radial-gradient(focus-angle 254deg , focus-distance 74% , center 50% 50% , radius 55% , derive(-fx-accent, -80%), -colorFondo2);
+    -fx-background-color: radial-gradient(focus-angle 254deg , focus-distance 74% , center 50% 50% , radius 55% , derive(-fx-secundary, -80%), -colorFondo2);
 }
+
+.jfx-text-field  { -fx-text-fill: -colorTexto4; }

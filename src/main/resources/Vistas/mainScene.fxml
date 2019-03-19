@@ -16,7 +16,7 @@
     <children>
         <VBox prefHeight="600.0" prefWidth="1031.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <MenuBar maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" style="-fx-background-color: -fx-accent; -fx-text-fill: -colorTexto2;" VBox.vgrow="ALWAYS">
+                <MenuBar fx:id="menuBar" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" VBox.vgrow="ALWAYS">
                     <menus>
                         <Menu mnemonicParsing="false" text="Caja">
                             <items>
@@ -49,7 +49,7 @@
                                 <MenuItem mnemonicParsing="false" text="Modificar Ticket" />
                             </items>
                         </Menu>
-                        <Menu mnemonicParsing="false" styleClass="txt-gris-claro1" text="Administracion">
+                        <Menu mnemonicParsing="false" text="Administracion">
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Usuarios">
                            <graphic>
@@ -123,6 +123,6 @@
         <URL value="@../styles/Styles.css" />
         <URL value="@../styles/botones.css" />
       <URL value="@../styles/Temas/Tema-Indigo.css" />
-      <URL value="@../styles/Temas/Tema-Obscuro.css" />
+      <URL value="@../styles/Temas/Tema-Claro.css" />
     </stylesheets>
 </AnchorPane>

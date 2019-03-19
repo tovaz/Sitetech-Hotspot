@@ -23,7 +23,7 @@
          <children>
             <AnchorPane minHeight="45.0" prefHeight="45.0">
                <children>
-                  <Label fx:id="ltitulo" layoutX="122.0" prefHeight="45.0" prefWidth="242.0" style="-fx-text-fill: -fx-accent;" text="Agregar Paquete de Internet" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="122.0" AnchorPane.rightAnchor="108.0" AnchorPane.topAnchor="0.0">
+                  <Label fx:id="ltitulo" layoutX="122.0" prefHeight="45.0" prefWidth="242.0" text="Agregar Paquete de Internet" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="122.0" AnchorPane.rightAnchor="108.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font size="18.0" />
                      </font>

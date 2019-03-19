@@ -237,7 +237,7 @@
                <children>
                   <AnchorPane prefHeight="40.0" prefWidth="226.0">
                      <children>
-                        <JFXButton cancelButton="true" layoutX="37.0" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#cancelarAction" prefHeight="40.0" style="-fx-background-color: #BDBDBD;" styleClass="btn-default" text="Cancelar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="0.0" />
+                        <JFXButton cancelButton="true" layoutX="37.0" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#cancelarAction" prefHeight="40.0" styleClass="btn-default" text="Cancelar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="40.0" prefWidth="257.0">

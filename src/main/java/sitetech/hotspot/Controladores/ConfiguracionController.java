@@ -4,12 +4,14 @@ import sitetech.hotspot.Temas;
 import Util.Archivo;
 import Util.Dialogo;
 import Util.MiLocale;
+import Util.Moneda;
 import sitetech.hotspot.ThemeColor;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXToggleButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -57,6 +59,8 @@ public class ConfiguracionController implements Initializable {
     @FXML private ImageView iticket;
     @FXML private JFXComboBox<ThemeColor> cbenfasis;
     @FXML private JFXComboBox<ThemeColor> cbtema;
+    @FXML private JFXToggleButton tbtoolbar;
+    @FXML private JFXToggleButton tbmenu;
     
     private ConfiguracionManager2 cm;
     public final Stage thisStage;
@@ -92,6 +96,8 @@ public class ConfiguracionController implements Initializable {
         timagen.setText(conf.getImagenTicket());
         tdominio.setText(conf.getDominio());
         tgmostrarBarras.setSelected(conf.isCodigoBarraVisible());
+        tbmenu.setSelected(conf.isColorMenu());
+        tbtoolbar.setSelected(conf.isColorToolbar());
         
         File fimg = new File(conf.getImagenTicket());
         iticket.setImage(new Image( fimg.toURI().toString()) );
@@ -128,13 +134,11 @@ public class ConfiguracionController implements Initializable {
         FXCollections.sort(locales);
         cbmoneda.setItems(locales); 
         
-        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale(conf.getIdioma(), conf.getFormatoMoneda()));
-        lemoneda.setText(nf.format(5100.50));
+        lemoneda.setText(Moneda.Formatear( new BigDecimal(5100.50), conf.getRegionLocal().getLocale() ) );
         cbmoneda.valueProperty().addListener(new ChangeListener<MiLocale>() {
             @Override
             public void changed(ObservableValue<? extends MiLocale> observable, MiLocale oldValue, MiLocale newValue) {
-                NumberFormat nf = NumberFormat.getCurrencyInstance(newValue.getLocale());
-                lemoneda.setText(nf.format(5100.50));
+                lemoneda.setText(Moneda.Formatear( new BigDecimal(5100.50), newValue.getLocale() ) );
             }
         });
     }
@@ -153,8 +157,12 @@ public class ConfiguracionController implements Initializable {
         conf.setImagenTicket(timagen.getText());
         conf.setDominio(tdominio.getText());
         conf.setCodigoBarraVisible(tgmostrarBarras.isSelected());
+        
+        // CONFIGURACION DE APARIENCIA
         conf.setColorEnfasis(cbenfasis.getValue().getNombre());
         conf.setColorTema(cbtema.getValue().getNombre());
+        conf.setColorMenu(tbmenu.isSelected());
+        conf.setColorToolbar(tbtoolbar.isSelected());
         
         conf.setIdioma(cbidioma.getValue());
         conf.setFormatoMoneda(cbmoneda.getValue().getLocale().getCountry());
@@ -194,12 +202,13 @@ public class ConfiguracionController implements Initializable {
     void enfasisAction(ActionEvent event) {
         ThemeColor enfasisSeleccionado = cbenfasis.getValue();
         ThemeColor temaSeleccionado = cbtema.getValue();
-        //Stage primaryStage = (Stage)thisStage.getUserData();
-        for (Scene sx : (ObservableList<Scene>) thisStage.getUserData())
-            if (sx != null)
-                Temas.aplicarTema(enfasisSeleccionado, temaSeleccionado, sx);
         
-        //Temas.aplicarTema(enfasisSeleccionado, temaSeleccionado, primaryStage.getScene());
+        for (Scene sx : (ObservableList<Scene>) thisStage.getUserData())
+            if (sx != null){
+                Temas.aplicarTema(enfasisSeleccionado, temaSeleccionado, sx);
+                Temas.colorearBarras(sx, tbmenu.isSelected(), tbtoolbar.isSelected());
+            }
+        
         Temas.aplicarTema(enfasisSeleccionado, temaSeleccionado, thisStage.getScene());
     }
     

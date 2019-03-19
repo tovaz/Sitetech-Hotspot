@@ -34,7 +34,7 @@ public class PanelColor extends ListCell<ThemeColor>{
             lb.setText(item.getNombre());
             lb.setStyle("-fx-text-fill: #eee");
             panel.setStyle("-fx-background-color: #" + item.getColor() + "; " + 
-                          "-fx-border-color: #" + item.getColor() + "ff; ");
+                          "-fx-border-color: derive(#" + item.getColor() + ", 50%);");
             
             panel.getChildren().addAll(lb);
               setGraphic(panel);

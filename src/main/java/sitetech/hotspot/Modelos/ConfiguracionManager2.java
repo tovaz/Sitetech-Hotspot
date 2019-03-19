@@ -32,7 +32,7 @@ public class ConfiguracionManager2 {
         if (lista.size() == 0)
             return new Configuracion(true);
         else
-            return (Configuracion)lista.get(0);
+            return lista.get(0);
     }
     
     public void Agregar(Configuracion conf)

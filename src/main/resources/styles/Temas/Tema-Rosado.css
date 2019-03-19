@@ -5,10 +5,9 @@
     
         
     -fx-default-button: -fx-accent;
-    -fx-focus-color: -fx-accent;
     
     -jfx-rippler-fill: derive(-fx-accent, 50%);
-    -jfx-focus-color: derive(-fx-accent, 50%);
+    -jfx-focus-color: -fx-accent;
     
     -jfx-primary-color: -fx-accent;
     -jfx-secondary-color: -fx-secundary;
@@ -20,7 +19,6 @@
     -jfx-default-color: -fx-accent;
     -jfx-unchecked-color: derive(-fx-accent, 50%);
      
-    -fx-prompt-text-fill: -jfx-unfocus-color;
      
     -fx-faint-focus-color: #C5116222; /*ACCENT + 22*/
 }

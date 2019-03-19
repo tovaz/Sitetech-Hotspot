@@ -8,8 +8,15 @@ package Util;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import javafx.scene.layout.Region;
+import java.text.NumberFormat;
+import java.util.Comparator;
+import java.util.Currency;
+import java.util.Locale;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import sitetech.Helpers.dbHelper;
 import sitetech.hotspot.Modelos.Configuracion;
+import sitetech.hotspot.Modelos.ConfiguracionManager2;
 
 /**
  *
@@ -17,18 +24,39 @@ import sitetech.hotspot.Modelos.Configuracion;
  */
 public class Moneda {
     public static String Formatear(BigDecimal bd) {
-        Configuracion conf = new Configuracion();
-        DecimalFormatSymbols symbols = new DecimalFormatSymbols(conf.getRegionLocal().getLocale());
-        //symbols.setDecimalSeparator(',');
-        DecimalFormat df = new DecimalFormat("##.00", symbols);
-        
-        if(contieneDecimal(bd)) 
-          return df.format(bd);
-        else
-          return bd.toString();
+        Configuracion conf = ConfiguracionManager2.getConfiguracion(new dbHelper());
+        Currency currency = conf.getMoneda();
+        DecimalFormat df = new DecimalFormat(getSimbolo(currency.getCurrencyCode()) + " ###,###.00", new DecimalFormatSymbols(conf.getRegionLocal().getLocale()));
+
+        return df.format(bd);
     }
     
-     private static boolean contieneDecimal(BigDecimal bd) {
-        return bd.toString().contains(".");
+    public static String Formatear(BigDecimal bd, Locale locale) {
+        Currency currency = Currency.getInstance(locale);
+        DecimalFormat df = new DecimalFormat(getSimbolo(currency.getCurrencyCode()) + " ###,###.00", new DecimalFormatSymbols(locale));
+        
+        return df.format(bd);
+    }
+    
+    public static SortedMap<Currency, Locale> currencyLocaleMap;
+      static {
+          currencyLocaleMap = new TreeMap<Currency, Locale>(new Comparator<Currency>() {
+            public int compare(Currency c1, Currency c2){
+                return c1.getCurrencyCode().compareTo(c2.getCurrencyCode());
+            }
+        });
+        for (Locale locale : Locale.getAvailableLocales()) {
+             try {
+                 Currency currency = Currency.getInstance(locale);
+             currencyLocaleMap.put(currency, locale);
+             }catch (Exception e){
+         }
+        }
+      }
+      
+    public static String getSimbolo(String currencyCode) {
+        Currency currency = Currency.getInstance(currencyCode);
+        System.out.println( currencyCode+ ":-" + currency.getSymbol(currencyLocaleMap.get(currency)));
+        return currency.getSymbol(currencyLocaleMap.get(currency));
     }
 }

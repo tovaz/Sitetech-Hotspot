@@ -47,7 +47,7 @@ public class PaquetesController implements Initializable {
     public void cargarTabla(){
         tvpaquetes.getColumns().get(0).setCellValueFactory( new PropertyValueFactory("Id") );
         tvpaquetes.getColumns().get(2).setCellValueFactory( new PropertyValueFactory("Nombre") );
-        tvpaquetes.getColumns().get(3).setCellValueFactory( new PropertyValueFactory("Precio") );
+        tvpaquetes.getColumns().get(3).setCellValueFactory( new PropertyValueFactory("PrecioFormateado") );
         tvpaquetes.getColumns().get(4).setCellValueFactory( new PropertyValueFactory("Duracion") );
         tvpaquetes.getColumns().get(5).setCellValueFactory( new PropertyValueFactory("LimiteInternet") );
         tvpaquetes.setItems( pm.getPaquetes() );
