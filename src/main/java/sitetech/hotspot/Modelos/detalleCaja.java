@@ -33,11 +33,13 @@ public class detalleCaja {
     @OneToOne @JoinColumn(name = "idTicket")
     private Ticket ticket;
     
-    public enum TipoDetalle { Ingreso, Egreso };
+    public enum TipoDetalle { Venta, Ingreso, Egreso };
     private TipoDetalle tipo;
+    public enum EstadoDetalle { Correcto, anulado };
+    private EstadoDetalle estado;
+    
     private String comentario;
     private BigDecimal monto;
-    
     private Date fechaCreacion;
     @PrePersist protected void onCreate() {
         this.fechaCreacion = new Date();
@@ -108,6 +110,14 @@ public class detalleCaja {
 
     public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
+    }
+
+    public EstadoDetalle getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoDetalle estado) {
+        this.estado = estado;
     }
     
     

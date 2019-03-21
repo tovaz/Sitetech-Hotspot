@@ -1,19 +1,12 @@
 package sitetech.hotspot;
 
-import java.io.IOException;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import sitetech.hotspot.Controladores.LoginController;
 import sitetech.hotspot.Controladores.MainController;
 import sitetech.hotspot.Modelos.Usuario;
+import sitetech.hotspot.Modelos.usuarioManager;
 
 public class MainApp extends Application {
 
@@ -24,8 +17,9 @@ public class MainApp extends Application {
     public void start(Stage stage) throws Exception {
         primaryStage = new Stage();
         //primaryStage.getIcons().add(new Image(MainApp.class.getResourceAsStream( "/Imagenes/icon.png" )));
-        mainScene();
-
+        //loginScene();
+        
+        checkLogin("tovaz", "correr");
         //********************************************
         //setUserAgentStylesheet(STYLESHEET_MODENA);
         //setUserAgentStylesheet(STYLESHEET_CASPIAN);
@@ -37,37 +31,34 @@ public class MainApp extends Application {
         launch(args);
     }
 
+    LoginController logc;
     public void loginScene() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("/Vistas/login.fxml"));
-
-            //AnchorPane rootLayout = (AnchorPane) loader.load();
-            VBox rootLayout = (VBox) loader.load();
-            Scene scene = new Scene(rootLayout);
-            scene.getStylesheets().add("../../resources/styles/Styles.css");
-            primaryStage.setScene(scene);
-
-            LoginController controladorx = loader.getController();
-            controladorx.pasarStage(this, primaryStage);
-
-            primaryStage.show();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        logc = new LoginController(this);
+        logc.showStage();
     }
 
     public void mainScene2(Stage stagePrincipal) {
         
     }
 
+    MainController mainControlador;
     public void mainScene() {
-        MainController mainControlador = new MainController();
+        mainControlador = new MainController();
         mainControlador.showStage();
     }
 
-    public void cambiarTema(ThemeColor tm){
-        primaryStage.getScene().getRoot().getStylesheets().addAll(tm.getCssList());
+    public boolean checkLogin(String usuario, String contraseña){
+        usuarioManager um = new usuarioManager();
+        boolean login = um.checkLogin(usuario, contraseña);
+        
+        if (login){
+            this.usuarioLogeado = um.usuarioLogeado;
+            this.mainScene();
+            
+            mainControlador.logearUsuario(usuarioLogeado);
+            return true;
+        }
+        else return false;
     }
     
     public static Stage getStage(){ return primaryStage; }

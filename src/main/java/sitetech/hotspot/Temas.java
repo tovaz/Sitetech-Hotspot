@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.ToolBar;
+import javafx.scene.layout.HBox;
 import sitetech.Helpers.dbHelper;
 import sitetech.hotspot.Modelos.Configuracion;
 import sitetech.hotspot.Modelos.ConfiguracionManager2;
@@ -100,14 +101,14 @@ public class Temas {
     public static void colorearBarras(Scene escena, boolean colorMenu, boolean colorToolbar)
     {
         ToolBar toolbar = (ToolBar) escena.lookup("#ticketToolbar");
-        MenuBar menubar = (MenuBar) escena.lookup("#menuBar");
+        HBox panelMenu = (HBox) escena.lookup("#panelMenu");
         
-        if (menubar != null && colorMenu) {
-            menubar.setStyle(".menu-bar .label { -fx-text-fill: #eee; }");
-            menubar.setStyle("-fx-background-color: -fx-accent; -fx-text-fill: #eee;");
+        if (panelMenu != null && colorMenu) {
+            panelMenu.setStyle("-colorTextoMenu: #eee;");
+            panelMenu.setStyle("-fx-background-color: -fx-accent;");
             
         }
-        if (menubar != null && !colorMenu) menubar.setStyle("-fx-background-color: -colorFondo2; -fx-text-fill: -colorTexto2; ");
+        if (panelMenu != null && !colorMenu) panelMenu.setStyle("-fx-background-color: -colorFondo2; -colorTextoMenu: -colorTexto2; ");
                 
         if (toolbar != null && colorToolbar) toolbar.setStyle("-fx-background-color: -fx-accent;");
         if (toolbar != null && !colorToolbar) toolbar.setStyle("-fx-background-color: -colorFondo2;");

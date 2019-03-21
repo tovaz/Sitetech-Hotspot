@@ -22,24 +22,19 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import sitetech.hotspot.MainApp;
+import sitetech.hotspot.Modelos.Usuario;
+import sitetech.hotspot.Modelos.usuarioManager;
 
 public class MainController implements Initializable, ArrastrarScene {
 
     private MainApp App;
     public Stage thisStage;
 
-    @FXML
-    private AnchorPane panelPrincipal;
-    @FXML
-    private AnchorPane panelTitulo;
-
-    @FXML
-    private Label ltitulo;
-
-    @FXML
-    private TextField tprueba;
-    @FXML
-    private Label ltprueba;
+    @FXML private AnchorPane panelPrincipal;
+    @FXML private AnchorPane panelTitulo;
+    @FXML private Label ltitulo;
+    @FXML private TextField tprueba;
+    @FXML private Label lusuario;
 
     TicketsController tc;
     @Override
@@ -58,6 +53,10 @@ public class MainController implements Initializable, ArrastrarScene {
 
     }
 
+    public void logearUsuario(Usuario user){
+        lusuario.setText(user.getNombre());
+    }
+    
     public MainController() {
         thisStage = new Stage();
         //util.cargarStage("/Vistas/mainScene.fxml", "Hotspot", thisStage, this, Modality.APPLICATION_MODAL);
@@ -162,5 +161,10 @@ public class MainController implements Initializable, ArrastrarScene {
             thisStage.setHeight(alto);
         }
         isMaximized = !isMaximized;
+    }
+    
+    @FXML
+    void cerrarSesionAction(ActionEvent event) {
+        
     }
 }

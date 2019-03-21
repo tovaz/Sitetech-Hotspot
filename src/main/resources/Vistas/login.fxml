@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,68 +12,82 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="rootApp" minWidth="324.0" prefHeight="377.0" prefWidth="324.0" styleClass="fondoApp" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sitetech.hotspot.Controladores.LoginController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane>
-         <children>   
-            <ImageView fitHeight="107.0" fitWidth="117.0" layoutX="99.0" pickOnBounds="true" preserveRatio="true" smooth="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="99.0" AnchorPane.rightAnchor="98.0" AnchorPane.topAnchor="0.0">
-               <image>
-                  <Image url="@../Imagenes/user.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      
-                        <TextField fx:id="tusuario" onKeyPressed="#onKeyPress" prefHeight="44.0" prefWidth="214.0" promptText="Usuario" stylesheets="@../styles/validation.css">
-         <font>
-            <Font size="15.0" />
-         </font>
-         <VBox.margin>
-            <Insets top="10.0" />
-         </VBox.margin>
-      </TextField>
-      <Label fx:id="ltusuario">
-         <VBox.margin>
-            <Insets bottom="10.0" />
-         </VBox.margin>
-      </Label>
-         
-         <PasswordField fx:id="tcontraseña" onKeyPressed="#onKeyPress" prefHeight="44.0" prefWidth="214.0" promptText="Contraseña">
-         
-      </PasswordField>
-      <Label fx:id="ltcontraseña" />
-      <AnchorPane id="plogin" fx:id="plogin" maxHeight="332.0" maxWidth="357.0" minHeight="30.0" minWidth="357.0" prefHeight="30.0" prefWidth="357.0" style="-fx-background-color: #f46b6b;" visible="false">
+      <VBox id="rootApp" alignment="CENTER" minWidth="324.0" prefHeight="377.0" prefWidth="324.0" styleClass="fondoApp">
          <children>
-            <Label layoutX="60.0" layoutY="6.0" prefHeight="17.0" prefWidth="238.0" text="Error: Usuario o contraseña incorrecta" textFill="WHITE">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-         </children></AnchorPane>
-      <AnchorPane>
-         <children>
+            <AnchorPane>
+               <children>   
+                  <ImageView fitHeight="107.0" fitWidth="117.0" layoutX="99.0" pickOnBounds="true" preserveRatio="true" smooth="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="99.0" AnchorPane.rightAnchor="98.0" AnchorPane.topAnchor="0.0">
+                     <image>
+                        <Image url="@../Imagenes/user.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
             
-                        <Button id="blogin" layoutX="94.0" layoutY="-8.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="44.0" prefWidth="117.0" style="-fx-background-image: url(&quot;@.../Imagenes/glass1.png&quot;);" styleClass="backgroundLineal-boton" stylesheets="@../styles/login.css" text="Iniciar Sesion" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="94.0" AnchorPane.rightAnchor="93.0" AnchorPane.topAnchor="-8.0">
+            <JFXTextField fx:id="tusuario" onKeyPressed="#onKeyPress" prefHeight="44.0" prefWidth="214.0" promptText="Usuario">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <Label fx:id="ltusuario">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+               
+               <JFXTextField fx:id="tcontraseña" onKeyPressed="#onKeyPress" prefHeight="44.0" prefWidth="214.0" promptText="Contraseña">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXTextField>
+            <Label fx:id="ltcontraseña" />
+            <AnchorPane id="plogin" fx:id="plogin" maxHeight="332.0" maxWidth="357.0" minHeight="30.0" minWidth="357.0" prefHeight="30.0" prefWidth="357.0" style="-fx-background-color: #f46b6b;" visible="false">
+               <children>
+                  <Label layoutX="60.0" layoutY="6.0" prefHeight="17.0" prefWidth="238.0" text="Error: Usuario o contraseña incorrecta" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane />
+            
+            <JFXButton id="blogin" mnemonicParsing="false" onAction="#loginAction" prefHeight="44.0" prefWidth="117.0" stylesheets="@../styles/login.css" text="Iniciar Sesion">
                <effect>
                   <Blend />
                </effect>
                <font>
                   <Font size="14.0" />
                </font>
-            </Button>
+            </JFXButton>
+            
+               <JFXButton fx:id="btest" mnemonicParsing="false" onAction="#testAction" prefHeight="28.0" prefWidth="117.0" styleClass="btn-default" stylesheets="@../styles/login.css" text="Test ">
+               <effect>
+                  <Blend />
+               </effect>
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </JFXButton>
          </children>
-      </AnchorPane>
-      
-                        <Button fx:id="btest" mnemonicParsing="false" onAction="#testAction" prefHeight="28.0" prefWidth="117.0" styleClass="btnlogin" stylesheets="@../styles/login.css" text="Test ">
-         <effect>
-            <Blend />
-         </effect>
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Button>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <stylesheets>
+            <URL value="@../styles/Styles.css" />
+            <URL value="@../styles/botones.css" />
+            <URL value="@../styles/validation.css" />
+            <URL value="@../styles/Temas/Tema-Azul.css" />
+            <URL value="@../styles/Temas/Tema-Claro.css" />
+         </stylesheets>
+      </VBox>
    </children>
-   <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-   </padding>
-</VBox>
+</AnchorPane>

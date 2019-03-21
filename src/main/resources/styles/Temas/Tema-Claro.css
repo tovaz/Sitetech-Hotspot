@@ -60,6 +60,11 @@
 .fondo-degradado4 {
   -fx-background-color: radial-gradient(focus-angle 254deg, focus-distance 74%, center 50% 50%, radius 55%, -colorFondo4, -colorFondo5); }
 
+.menu-bar .menu-item:focus {
+    -fx-background: derive(-fx-secundary, 70%);
+    -fx-background-radius: 10;
+}
+
 .menu-item:focused {
     -fx-background: derive(-fx-secundary, 70%);
     -fx-background-radius: 10;
@@ -412,7 +417,7 @@
     -fx-alignment: CENTER 
 }
 
-.table-row-cell:selected { -fx-background-color: -fx-secundary; -fx-table-cell-border-color: derive(-fx-accent, -10%); }
+.table-row-cell:selected { -fx-background-color: -fx-accent; -fx-table-cell-border-color: derive(-fx-accent, -10%); }
 .table-row-cell { -fx-background-color: -colorFondo; }
 .table-row-cell:filled:selected { -fx-effect: dropshadow(two-pass-box, -fx-accent, 10,0,0,0); }
 
@@ -425,3 +430,9 @@
 }
 
 .jfx-text-field { -fx-text-fill: -colorTexto2; }
+
+
+.menu-bar .label
+{
+    -colorTextoMenu: -colorTexto;
+}

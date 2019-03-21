@@ -371,3 +371,8 @@
 }
 
 .jfx-text-field  { -fx-text-fill: -colorTexto4; }
+
+.menu-bar .label
+{
+    -colorTextoMenu: -colorTexto;
+}

@@ -6,6 +6,7 @@
 package sitetech.hotspot.Controladores;
 
 import Util.Validar;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sitetech.hotspot.Modelos.usuarioManager;
 import sitetech.hotspot.MainApp;
@@ -35,14 +37,16 @@ public class LoginController implements Initializable {
     private Label ltcontraseña;
     
     @FXML
-    private TextField tusuario;
+    private JFXTextField  tusuario;
     @FXML
-    private PasswordField tcontraseña;
+    private JFXTextField  tcontraseña;
     @FXML
     private Pane plogin;
     
     private MainApp App;
-    private Stage stage;
+    public final Stage thisStage;
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -50,6 +54,13 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
     }    
+
+    public LoginController(MainApp _app) {
+        this.App = _app;
+        thisStage = new Stage();
+        Util.util.cargarStage("/Vistas/login.fxml", "Iniciar Sesion", thisStage, this, Modality.APPLICATION_MODAL);
+    }
+    
     
     
     @FXML
@@ -61,12 +72,8 @@ public class LoginController implements Initializable {
     @FXML
     public void loginAction (ActionEvent event) throws IOException{
         if (camposValidos()) {
-            usuarioManager um = new usuarioManager();
-            boolean login = um.checkLogin(tusuario.getText(), tcontraseña.getText());
-            if (login){
-                App.usuarioLogeado = um.usuarioLogeado;
-                App.mainScene();
-            }
+            if (App.checkLogin(tusuario.getText(), tcontraseña.getText()))
+                thisStage.close();
             else
                 plogin.setVisible(true);
         }
@@ -88,13 +95,18 @@ public class LoginController implements Initializable {
             plogin.setVisible(false);
     }
             
+    public void showStage() {
+        thisStage.setAlwaysOnTop(true);
+        thisStage.setResizable(false);
+        thisStage.setTitle("Sitetech :: Hotspot - Login");
+        thisStage.show();
+    }
+    
     public void pasarStage (MainApp _app, Stage _stage)
     {
-        this.App = _app;
-        this.stage = _stage;
         
-        stage.setAlwaysOnTop(true);
-        stage.setResizable(false);
-        stage.setTitle("Sitetech :: Hotspot - Login");
+        //this.thisStage = _stage;
+        
+        
     }
 }

@@ -108,12 +108,9 @@ public class adePaqueteController implements Initializable {
     private void onKeypresstDias(KeyEvent event) {
         double x = Double.valueOf(tdias.getText());
         
-        if ( x >= sldias.getMin() && x <= sldias.getMax() )
-            sldias.setValue( Double.valueOf(tdias.getText()));
-        else if ( x > sldias.getMax() ) { x = sldias.getMax(); }
-        else if ( x < sldias.getMin() ) { x = sldias.getMin(); }
-        
-        tdias.setText(String.valueOf((int)x));
+        if ( x > sldias.getMax() ) { x = sldias.getMax(); tdias.setText(String.valueOf((int)x)); }
+        if ( x < sldias.getMin() ) { x = sldias.getMin(); tdias.setText(String.valueOf((int)x));}
+        sldias.setValue( Double.valueOf(tdias.getText()));
     }
 
     @FXML
