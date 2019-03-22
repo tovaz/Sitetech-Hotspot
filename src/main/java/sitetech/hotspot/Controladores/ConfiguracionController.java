@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.text.NumberFormat;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -37,6 +38,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import org.springframework.util.StringUtils;
+import sitetech.hotspot.MainApp;
 
 /**
  * FXML Controller class
@@ -63,6 +65,7 @@ public class ConfiguracionController implements Initializable {
     @FXML private JFXToggleButton tbmenu;
     
     private ConfiguracionManager2 cm;
+    private MainApp App;
     public final Stage thisStage;
     
     @Override
@@ -70,10 +73,12 @@ public class ConfiguracionController implements Initializable {
     }    
 
     
-    public ConfiguracionController() {
+    public ConfiguracionController(MainApp _app) {
         thisStage = new Stage();
+        App = _app;
         Util.util.cargarStage("/Vistas/Configuraciones/Configuracion.fxml", "Configuracion de hotspot", thisStage, this, Modality.APPLICATION_MODAL);
         
+        App.agregarEscena("scene_configuraciones", thisStage.getScene());
         cm = new ConfiguracionManager2();
         cargarDatos();
     }
@@ -203,11 +208,17 @@ public class ConfiguracionController implements Initializable {
         ThemeColor enfasisSeleccionado = cbenfasis.getValue();
         ThemeColor temaSeleccionado = cbtema.getValue();
         
-        for (Scene sx : (ObservableList<Scene>) thisStage.getUserData())
-            if (sx != null){
+        Iterator it = App.escenas.keySet().iterator();
+        while(it.hasNext()){
+          String key = (String)it.next();
+          Scene sx = (Scene) App.escenas.get(key);
+          if (sx != null){
                 Temas.aplicarTema(enfasisSeleccionado, temaSeleccionado, sx);
                 Temas.colorearBarras(sx, tbmenu.isSelected(), tbtoolbar.isSelected());
-            }
+          }
+          
+          System.out.println("Escena: " + key );
+        }
         
         Temas.aplicarTema(enfasisSeleccionado, temaSeleccionado, thisStage.getScene());
     }

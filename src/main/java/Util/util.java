@@ -92,7 +92,7 @@ public class util {
             main.initModality(modalidad);
             Scene thisScene = new Scene((Parent)loader.load());
             
-            Temas.aplicarTema(thisScene);
+            Temas.aplicarTema(thisScene); /// APLICAR EL TEMA
             main.setScene(thisScene);
             main.setTitle(titulo);
             return Controlador;

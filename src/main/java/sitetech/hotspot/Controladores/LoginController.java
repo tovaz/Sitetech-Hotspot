@@ -56,9 +56,10 @@ public class LoginController implements Initializable {
     }    
 
     public LoginController(MainApp _app) {
-        this.App = _app;
+        App = _app;
         thisStage = new Stage();
         Util.util.cargarStage("/Vistas/login.fxml", "Iniciar Sesion", thisStage, this, Modality.APPLICATION_MODAL);
+        App.agregarEscena("scene_login", thisStage.getScene());
     }
     
     

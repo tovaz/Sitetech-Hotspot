@@ -334,7 +334,7 @@
 .table-view .column-header,
 .table-view .column-header .filler,
 .table-view .column-header-background .filler {   
-    -fx-background-color: derive;
+    /*-fx-background-color: derive;*/
     -fx-stroke: transparent;
     -fx-size:40;
     -fx-alignment: CENTER ;    

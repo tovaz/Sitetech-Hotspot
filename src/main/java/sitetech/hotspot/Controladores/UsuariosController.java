@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sitetech.hotspot.MainApp;
 import sitetech.hotspot.Modelos.Usuario;
 import sitetech.hotspot.Modelos.usuarioManager;
 
@@ -23,7 +24,7 @@ import sitetech.hotspot.Modelos.usuarioManager;
 public class UsuariosController implements Initializable {
 
     private final Stage thisStage;
-    
+    private MainApp App;
     @FXML
     public AnchorPane AnchorPane;
     
@@ -40,9 +41,11 @@ public class UsuariosController implements Initializable {
         cargarTabla();
     }    
     
-    public UsuariosController (){
+    public UsuariosController (MainApp _app){
+        App = _app;
         thisStage = new Stage();
         Util.util.cargarStage("/Vistas/Usuarios/UsuariosVista.fxml", "Agregar Usuario", thisStage, this, Modality.APPLICATION_MODAL);
+        App.agregarEscena("scene_usuarios", thisStage.getScene());
     }
     
     public void cargarTabla(){

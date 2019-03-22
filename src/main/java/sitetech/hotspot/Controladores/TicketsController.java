@@ -8,11 +8,13 @@ package sitetech.hotspot.Controladores;
 import Util.ArrastrarScene;
 import Util.Dialogo;
 import Util.Mikrotik;
+import Util.Moneda;
 import Util.util;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSpinner;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -22,7 +24,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
@@ -33,6 +34,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import sitetech.Helpers.reporteHelper;
+import sitetech.hotspot.MainApp;
 import sitetech.hotspot.Modelos.Paquete;
 import sitetech.hotspot.Modelos.PaqueteManager;
 import sitetech.hotspot.Modelos.Router;
@@ -76,6 +78,7 @@ public class TicketsController implements Initializable, ArrastrarScene {
     @FXML private Label llimiteSubida;
     @FXML private Label llimiteTiempo;
     
+    private MainApp App;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //this.ArrastrarScene(panelTicket);
@@ -84,9 +87,9 @@ public class TicketsController implements Initializable, ArrastrarScene {
     public ObservableList<Ticket> listaTickets;
     private TicketManager tm;
 
-    public TicketsController() {
+    public TicketsController(MainApp _app) {
         thisStage = new Stage();
-
+        App = _app;
         listaTickets = observableArrayList();
         tm = new TicketManager();
 
@@ -223,7 +226,7 @@ public class TicketsController implements Initializable, ArrastrarScene {
         
     @FXML
     void onGenerarAction(ActionEvent event) {
-        GenerarTicketsController genTicket = new GenerarTicketsController(this);
+        GenerarTicketsController genTicket = new GenerarTicketsController(this, App);
         genTicket.showStage();
     }
 
@@ -257,7 +260,7 @@ public class TicketsController implements Initializable, ArrastrarScene {
             spConsumidoUp.setProgress(tc.getPorcentaje(tc.getmegasConsumidoUp(), (tc.getLimiteGigasUp() * 1024) + tc.getLimiteMegasUp()) );
 
             lpaquete.setText(tc.getPaquete().getNombre());
-            lprecio.setText("Q " + tc.getPaquete().getPrecio().toString());
+            lprecio.setText(Moneda.Formatear(tc.getPaquete().getPrecio(), App.configuracion.getRegionLocal().getLocale()));
             llimiteTiempo.setText(tc.getPaquete().getDuracion());
             llimiteDescarga.setText(tc.getPaquete().getLimiteInternet());
         }
@@ -276,7 +279,7 @@ public class TicketsController implements Initializable, ArrastrarScene {
             spConsumidoUp.setProgress(0);
 
             lpaquete.setText("");
-            lprecio.setText("");
+            lprecio.setText(Moneda.Formatear(new BigDecimal(0.00), App.configuracion.getRegionLocal().getLocale()));
             llimiteTiempo.setText("");
             llimiteDescarga.setText("");
         }

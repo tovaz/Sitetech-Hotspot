@@ -14,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sitetech.hotspot.MainApp;
 import sitetech.hotspot.Modelos.Paquete;
 import sitetech.hotspot.Modelos.PaqueteManager;
 
@@ -30,6 +31,7 @@ public class PaquetesController implements Initializable {
     private TableView<Paquete> tvpaquetes;
 
     private final Stage thisStage;
+    private MainApp App;
     private PaqueteManager pm;
     private Paquete pSeleccionado;
     @Override
@@ -37,9 +39,12 @@ public class PaquetesController implements Initializable {
         
     }    
     
-    public PaquetesController() {
+    public PaquetesController(MainApp _app) {
+        App = _app;
         thisStage = new Stage();
         Util.util.cargarStage("/Vistas/Paquetes/Paquetes.fxml", "Gestion de Paquetes", thisStage, this, Modality.APPLICATION_MODAL);
+        App.agregarEscena("scene_paquetes", thisStage.getScene());
+        
         pm = new PaqueteManager();
         cargarTabla();
     }

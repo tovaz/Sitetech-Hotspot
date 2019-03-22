@@ -12,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sitetech.hotspot.MainApp;
 import sitetech.hotspot.Modelos.Router;
 import sitetech.hotspot.Modelos.RouterManager;
 
@@ -23,6 +24,7 @@ public class RoutersController implements Initializable {
     private Label titulo;
     @FXML
     private TableView<Router> tvrouters;
+    private MainApp App;
     
     private RouterManager rm;
     
@@ -31,10 +33,12 @@ public class RoutersController implements Initializable {
         // TODO
     }
 
-    public RoutersController() {
-        
+    public RoutersController(MainApp _app) {
+        App = _app;
         thisStage = new Stage();
         Util.util.cargarStage("/Vistas/Routers/Routers.fxml", "Gestion de Routers", thisStage, this, Modality.APPLICATION_MODAL);
+        App.agregarEscena("scene_routers", thisStage.getScene());
+        
         rm = new RouterManager();
         cargarTabla();
         

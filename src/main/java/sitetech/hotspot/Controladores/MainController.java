@@ -1,6 +1,7 @@
 package sitetech.hotspot.Controladores;
 
 import Util.ArrastrarScene;
+import Util.Moneda;
 import sitetech.hotspot.Temas;
 import java.io.IOException;
 import java.net.URL;
@@ -23,24 +24,25 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import sitetech.hotspot.MainApp;
 import sitetech.hotspot.Modelos.Usuario;
-import sitetech.hotspot.Modelos.usuarioManager;
 
 public class MainController implements Initializable, ArrastrarScene {
 
-    private MainApp App;
+    public MainApp App;
     public Stage thisStage;
-
+    
     @FXML private AnchorPane panelPrincipal;
     @FXML private AnchorPane panelTitulo;
     @FXML private Label ltitulo;
     @FXML private TextField tprueba;
     @FXML private Label lusuario;
+    @FXML private Label lcaja;
+    @FXML private Label lcajaTotal;
 
     TicketsController tc;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //this.ArrastrarScene(panelTitulo);
-        tc = new TicketsController();
+        tc = new TicketsController(App);
         try {
             tc.cargarPanel(panelPrincipal);
         } catch (IOException ex) {
@@ -53,11 +55,14 @@ public class MainController implements Initializable, ArrastrarScene {
 
     }
 
-    public void logearUsuario(Usuario user){
+    public void cargarInfo(Usuario user){
         lusuario.setText(user.getNombre());
+        lcaja.setText( String.valueOf(App.cajaAbierta.getId() ));
+        lcajaTotal.setText( Moneda.Formatear(App.cajaAbierta.getTotal(), App.configuracion.getRegionLocal().getLocale()));
     }
     
-    public MainController() {
+    public MainController(MainApp _mainApp) {
+        App = _mainApp;
         thisStage = new Stage();
         //util.cargarStage("/Vistas/mainScene.fxml", "Hotspot", thisStage, this, Modality.APPLICATION_MODAL);
         try {
@@ -74,6 +79,8 @@ public class MainController implements Initializable, ArrastrarScene {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+        
+        App.agregarEscena("scene_main", thisStage.getScene());
     }
 
     public void showStage() {
@@ -84,7 +91,7 @@ public class MainController implements Initializable, ArrastrarScene {
     @FXML
     public void loadUsuarios() throws IOException {
         adUsuarioController adUsuario = new adUsuarioController();
-        adUsuario.showAgregar(new UsuariosController());
+        adUsuario.showAgregar(new UsuariosController(App));
     }
 
     UsuariosController uvController;
@@ -97,22 +104,22 @@ public class MainController implements Initializable, ArrastrarScene {
 
         switch (mi.getText()) {
             case "Usuarios":
-                uvController = new UsuariosController();
+                uvController = new UsuariosController(App);
                 uvController.showStage();
                 break;
 
             case "Routers":
-                rController = new RoutersController();
+                rController = new RoutersController(App);
                 rController.showStage();
                 break;
 
             case "Paquetes de Internet":
-                pController = new PaquetesController();
+                pController = new PaquetesController(App);
                 pController.showStage();
                 break;
             
             case "Configuracion":
-                ConfiguracionController pConfiguracion = new ConfiguracionController();
+                ConfiguracionController pConfiguracion = new ConfiguracionController(App);
                 ObservableList<Scene> scenes = FXCollections.observableArrayList();
                 scenes.add(tc.thisStage.getScene());
                 scenes.add(thisStage.getScene());

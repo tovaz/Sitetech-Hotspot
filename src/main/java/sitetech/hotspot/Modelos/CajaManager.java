@@ -5,6 +5,7 @@
  */
 package sitetech.hotspot.Modelos;
 
+import java.math.BigDecimal;
 import javafx.collections.ObservableList;
 import sitetech.Helpers.dbHelper;
 
@@ -26,13 +27,17 @@ public class CajaManager {
             return lista;
     }
     
-    public static Caja getCajaAbierta(dbHelper db){
-        ObservableList<Caja> lista =   (ObservableList<Caja>)db.Select("FROM Caja WHERE UsuarioCierre = null");
-        if (lista.size() == 0)
-            return null;
+    public Caja getCajaAbierta(Usuario usuarioLogeado){
+        ObservableList<Caja> lista =(ObservableList<Caja>)DbHelper.Select("FROM Caja WHERE UsuarioCierre = null");
+        if (lista.size() == 0){
+            Caja nuevaCaja = new Caja(usuarioLogeado, new BigDecimal(0), new BigDecimal(0));
+            crearCaja(nuevaCaja);
+            return nuevaCaja;
+        }
         else
             return lista.get(0);
     }
+    
     
     public void crearCaja(Caja caja)
     {

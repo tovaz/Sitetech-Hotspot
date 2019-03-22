@@ -38,12 +38,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-                
-        <dependency>
-            <groupId>WilliamValdez</groupId>
-            <artifactId>JavaFxController</artifactId>
-            <version>1.1</version>
-        </dependency>
 
         <!-- Grovy -->
         <dependency>
@@ -81,6 +75,12 @@
             <artifactId>jfoenix</artifactId>
             <version>8.0.8</version>
             <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>WilliamValdez</groupId>
+            <artifactId>JavaFxController</artifactId>
+            <version>1.1</version>
         </dependency>
 
         <!-- hibernate -->

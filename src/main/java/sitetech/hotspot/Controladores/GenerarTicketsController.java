@@ -35,6 +35,7 @@ import javafx.stage.Stage;
 import javax.swing.UnsupportedLookAndFeelException;
 import net.sf.jasperreports.engine.JRException;
 import sitetech.Helpers.reporteHelper;
+import sitetech.hotspot.MainApp;
 import sitetech.hotspot.Modelos.Paquete;
 import sitetech.hotspot.Modelos.PaqueteManager;
 import sitetech.hotspot.Modelos.Router;
@@ -69,6 +70,7 @@ public class GenerarTicketsController implements Initializable {
     
     public final Stage thisStage;
     private TicketManager tm;
+    private MainApp App;
     
     /**
      * Initializes the controller class.
@@ -79,10 +81,13 @@ public class GenerarTicketsController implements Initializable {
     }
 
     private TicketsController tc;
-    public GenerarTicketsController(TicketsController _tc) {
+    public GenerarTicketsController(TicketsController _tc, MainApp _app) {
         tc = _tc;
         thisStage = new Stage();
         Util.util.cargarStage("/Vistas/Tickets/generarTickets.fxml", "Generador de tickets", thisStage, this, Modality.NONE);
+        
+        App = _app;
+        App.agregarEscena("scene_generarTickets", thisStage.getScene());
     }
 
     public void showStage() {

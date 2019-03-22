@@ -1,25 +1,44 @@
 package sitetech.hotspot;
 
+import java.util.HashMap;
+import java.util.Map;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sitetech.Helpers.dbHelper;
 import sitetech.hotspot.Controladores.LoginController;
 import sitetech.hotspot.Controladores.MainController;
+import sitetech.hotspot.Modelos.Caja;
+import sitetech.hotspot.Modelos.CajaManager;
+import sitetech.hotspot.Modelos.Configuracion;
+import sitetech.hotspot.Modelos.ConfiguracionManager2;
 import sitetech.hotspot.Modelos.Usuario;
 import sitetech.hotspot.Modelos.usuarioManager;
 
 public class MainApp extends Application {
 
-    public Usuario usuarioLogeado = null;
     public static Stage primaryStage;
-
+    public static Map<String, Scene> escenas = new HashMap<String, Scene>();
+    
+    private LoginController logc;
+    private MainController mainControlador;
+    private CajaManager cm;
+    
+    public Usuario usuarioLogeado = null;
+    public Caja cajaAbierta;
+    public Configuracion configuracion;
+    
+    
     @Override
     public void start(Stage stage) throws Exception {
-        primaryStage = new Stage();
+        //primaryStage = new Stage();
+        cm = new CajaManager();
+        configuracion = ConfiguracionManager2.getConfiguracion(new dbHelper());
         //primaryStage.getIcons().add(new Image(MainApp.class.getResourceAsStream( "/Imagenes/icon.png" )));
-        //loginScene();
         
         checkLogin("tovaz", "correr");
+        
         //********************************************
         //setUserAgentStylesheet(STYLESHEET_MODENA);
         //setUserAgentStylesheet(STYLESHEET_CASPIAN);
@@ -27,23 +46,23 @@ public class MainApp extends Application {
         //********************************************
     }
 
+    public void agregarEscena(String key, Scene scene){
+        escenas.put(key, scene);
+        //primaryStage.setUserData(escenas);
+    }
+    
     public static void main(String[] args) {
         launch(args);
     }
 
-    LoginController logc;
     public void loginScene() {
         logc = new LoginController(this);
         logc.showStage();
     }
 
-    public void mainScene2(Stage stagePrincipal) {
-        
-    }
-
-    MainController mainControlador;
     public void mainScene() {
-        mainControlador = new MainController();
+        mainControlador = new MainController(this);
+        cajaAbierta = cm.getCajaAbierta(usuarioLogeado);
         mainControlador.showStage();
     }
 
@@ -53,13 +72,16 @@ public class MainApp extends Application {
         
         if (login){
             this.usuarioLogeado = um.usuarioLogeado;
-            this.mainScene();
+            this.mainScene();                       // ABRE LA ESCENA CENTRAL ( MAIN SCENE )
             
-            mainControlador.logearUsuario(usuarioLogeado);
+            //agregarVariable("usuarioLogeado", usuarioLogeado);
+            mainControlador.cargarInfo(usuarioLogeado);
             return true;
         }
         else return false;
     }
     
-    public static Stage getStage(){ return primaryStage; }
+    //public static Stage getStage(){ return primaryStage; }
+
+    
 }

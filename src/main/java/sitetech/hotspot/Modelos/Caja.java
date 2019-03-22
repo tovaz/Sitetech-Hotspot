@@ -41,9 +41,9 @@ public class Caja {
     
     private BigDecimal cajaInicial;
     
-    private BigDecimal total;
-    private BigDecimal totalIngreso;
-    private BigDecimal totalEgreso;
+    private BigDecimal total = new BigDecimal(0);
+    private BigDecimal totalIngreso = new BigDecimal(0);
+    private BigDecimal totalEgreso = new BigDecimal(0);
     
     private Date fechaApertura;
     private Date fechaCierre;
@@ -63,6 +63,13 @@ public class Caja {
         this.fechaActualizacion = new Date();
     }
 
+    public Caja(Usuario UsuarioApertura, BigDecimal cajaInicial, BigDecimal total) {
+        this.UsuarioApertura = UsuarioApertura;
+        this.cajaInicial = cajaInicial;
+        this.total = total;
+    }
+
+    
     public Caja(Usuario UsuarioApertura, BigDecimal cajaInicial, BigDecimal totalIngreso, BigDecimal totalEgreso) {
         this.UsuarioApertura = UsuarioApertura;
         this.cajaInicial = cajaInicial;
