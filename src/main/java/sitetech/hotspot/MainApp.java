@@ -1,6 +1,7 @@
 package sitetech.hotspot;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -29,12 +30,14 @@ public class MainApp extends Application {
     public Caja cajaAbierta;
     public Configuracion configuracion;
     
-    
     @Override
     public void start(Stage stage) throws Exception {
         //primaryStage = new Stage();
         cm = new CajaManager();
         configuracion = ConfiguracionManager2.getConfiguracion(new dbHelper());
+        Locale.setDefault(configuracion.getRegionLocal().getLocale());
+        
+        //setUserAgentStylesheet();
         //primaryStage.getIcons().add(new Image(MainApp.class.getResourceAsStream( "/Imagenes/icon.png" )));
         
         checkLogin("tovaz", "correr");
@@ -44,8 +47,14 @@ public class MainApp extends Application {
         //setUserAgentStylesheet(STYLESHEET_CASPIAN);
         //AquaFx.style();
         //********************************************
+        
     }
-
+    
+    public void ActualizarConfiguracion(Configuracion conf){
+        configuracion = conf;
+        Locale.setDefault(conf.getRegionLocal().getLocale());
+    }
+    
     public void agregarEscena(String key, Scene scene){
         escenas.put(key, scene);
         //primaryStage.setUserData(escenas);

@@ -3,6 +3,7 @@ import Util.Moneda;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Date;
+import java.util.Locale;
 import javafx.beans.property.StringProperty;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -216,7 +217,7 @@ public class Paquete {
     @Override
     public String toString() { 
         if (!Combobox_default)
-            return nombre + " | " + Moneda.Formatear(precio) + " | Limite: " + dias + "d " + horas + ":" + minutos + " | ( " + megasDescarga + " Mb + " + gigasDescarga + " Gb )"; 
+            return nombre + " | " + Moneda.Formatear(precio, Locale.getDefault()) + " | Limite: " + dias + "d " + horas + ":" + minutos + " | ( " + megasDescarga + " Mb + " + gigasDescarga + " Gb )"; 
         else
             return "Todos";
     }

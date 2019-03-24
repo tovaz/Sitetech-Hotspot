@@ -41,6 +41,7 @@ import sitetech.hotspot.Modelos.Router;
 import sitetech.hotspot.Modelos.RouterManager;
 import sitetech.hotspot.Modelos.Ticket;
 import sitetech.hotspot.Modelos.TicketManager;
+import sitetech.hotspot.Temas;
 
 /**
  * FXML Controller class
@@ -172,9 +173,9 @@ public class TicketsController implements Initializable, ArrastrarScene {
             ButtonType btn;
             
             if (ticketsSeleccionados.size() == 1)
-                btn = Util.util.mostrarAlerta("¿Desea realmente eliminar el ticket con usuario = \" " + ticketsSeleccionados.get(0).getUsuario()  + " \" ?, se eliminara del router tambien.", "Eliminar Ticket", ButtonType.YES, ButtonType.NO);
+                btn = Dialogo.mostrarInformacion("¿Desea realmente eliminar el ticket con usuario = \" " + ticketsSeleccionados.get(0).getUsuario()  + " \" ?, se eliminara del router tambien.", "Eliminar Ticket", App.configuracion.getColorTema(), ButtonType.YES, ButtonType.NO);
             else 
-                btn = Util.util.mostrarAlerta("¿Desea realmente eliminar " + ticketsSeleccionados.size() + " ? tickets, se eliminaran del router tambien.", "Eliminar Tickets", ButtonType.YES, ButtonType.NO);
+                btn = Dialogo.mostrarInformacion("¿Desea realmente eliminar " + ticketsSeleccionados.size() + " ? tickets, se eliminaran del router tambien.", "Eliminar Tickets", App.configuracion.getColorTema(), ButtonType.YES, ButtonType.NO);
             
             if ( btn == ButtonType.YES) {
                 if (ticketsSeleccionados.size() == 1)
@@ -215,9 +216,9 @@ public class TicketsController implements Initializable, ArrastrarScene {
         ltrabajando.setText("Se eleminaron " + ticketsEliminados + " correctamente.");
         
         if (ticketsEliminados == ticketsSeleccinados.size()) {
-            Dialogo.mostrarInformacion("Se eliminaron " + ticketsEliminados + " tickets correctamente.", "Todos los tickets se eliminaron.", ButtonType.OK);
+            Dialogo.mostrarInformacion("Se eliminaron " + ticketsEliminados + " tickets correctamente.", "Todos los tickets se eliminaron.", App.configuracion.getColorTema(), ButtonType.OK);
         } else {
-            Dialogo.mostrarError("Se eliminaron solamente " + ticketsEliminados + " tickets correctamente.", "No se eliminaron todos los tickets.", ButtonType.OK);
+            Dialogo.mostrarError("Se eliminaron solamente " + ticketsEliminados + " tickets correctamente.", "No se eliminaron todos los tickets.", App.configuracion.getColorTema(), ButtonType.OK);
         }
         
         beliminar.setDisable(false);

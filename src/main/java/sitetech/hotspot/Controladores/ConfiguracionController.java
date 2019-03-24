@@ -177,6 +177,7 @@ public class ConfiguracionController implements Initializable {
         else
             cm.Editar(conf);
         
+        App.ActualizarConfiguracion(conf);
         cancelarAction(event);
     }
     
@@ -199,7 +200,7 @@ public class ConfiguracionController implements Initializable {
                 iticket.setImage(new Image( fimg.toURI().toString()) );
             }
             else
-                Dialogo.mostrarError("Error al copiar el archivo, verifica que existe y que tiene permisos para copiar en el directorio de destino.", "Error al copiar el archivo.", ButtonType.OK);
+                Dialogo.mostrarError("Error al copiar el archivo, verifica que existe y que tiene permisos para copiar en el directorio de destino.", "Error al copiar el archivo.", conf.getColorTema(), ButtonType.OK);
         }
     }
     
