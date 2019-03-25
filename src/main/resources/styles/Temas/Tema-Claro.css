@@ -2,7 +2,8 @@
 .root {
     -fx-base: #eee;
     -fx-primaryText: #333;
-        
+    
+    -colorAlerta: #FFEA00;
     -colorFondo: #eee;
     -colorFondo2: #ddd;
     -colorFondo3: #ccc;
@@ -477,7 +478,7 @@
 
 .table-row-cell:selected { -fx-background-color: -fx-accent; -fx-table-cell-border-color: derive(-fx-accent, -10%); }
 .table-row-cell { -fx-background-color: -colorFondo; }
-.table-row-cell:filled:selected { -fx-effect: dropshadow(two-pass-box, -fx-accent, 10,0,0,0); }
+/*.table-row-cell:filled:selected { -fx-effect: dropshadow(two-pass-box, -fx-accent, 10,0,0,0); }*/
 
 
 /****************************************************************************************/

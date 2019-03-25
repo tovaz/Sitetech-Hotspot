@@ -4,11 +4,12 @@
     -jfx-rippler-fill: derive(-fx-accent, 100%);
     -fx-primaryText: #ddd;
     
+    -colorAlerta: #b18e00;
     -colorFondo: #323232;
     -colorFondo2: #232323;
     -colorFondo3: #111;
     -colorFondo4: #1212;
-    -colorFondo5: #000;
+    -colorFondo5: #222;
     
     -colorTexto: #ddd;
     -colorTexto2: #cecece;
@@ -312,6 +313,7 @@
 }
 
 .jfx-combo-box .list-view .list-cell   { -fx-background: -colorFondo2; -fx-text-fill: -colorTexto2; }
+
 /************** JFX TOGGLE BUTTON ***************/
 .jfx-toggle-button Line {
     -fx-stroke: -jfx-untoggle-line-color;
@@ -418,7 +420,7 @@
 
 .table-row-cell:selected { -fx-background-color: derive(-fx-accent, -30%); -fx-table-cell-border-color: derive(-fx-accent, -20%); }
 .table-row-cell { -fx-background-color: -colorFondo; }
-.table-row-cell:filled:selected { -fx-effect: dropshadow(two-pass-box, -fx-accent, 10,0,0,0); }
+/*.table-row-cell:filled:selected { -fx-effect: dropshadow(two-pass-box, -fx-accent, 10,0,0,0); }*/
 
 
 
