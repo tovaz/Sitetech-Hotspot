@@ -334,15 +334,25 @@ public class Ticket {
     }
     
     public String getLimiteInternetDown(){
+        if (limiteGigasDown == 0 && limiteMegasDown == 0) return "Sin limite";
         return limiteGigasDown + " Gb + " + limiteMegasDown + " Mb";
     }
     
     public String getLimiteInternetUp(){
+        if (limiteGigasUp == 0 && limiteMegasUp == 0) return "Sin limite";
         return limiteGigasUp + " Gb + " + limiteMegasUp + " Mb";
     }
     
     public String getDuracion() {
-        return String.valueOf(diasConsumidos) + " dias y " + String.valueOf(horasConsumidas) + "hr " + String.valueOf(minutosConsumidos) + " min";
+        String duracion = String.valueOf(diasConsumidos) + " dias y " + String.valueOf(horasConsumidas) + " hr " + String.valueOf(minutosConsumidos) + " min";
+        if (duracion.equals("0 dias y 0 hr 0 min")) return "Sin limite";
+        else return duracion;
+    }
+    
+    public String getDuracionConsumida() {
+        String duracion = String.valueOf(diasConsumidos) + " dias y " + String.valueOf(horasConsumidas) + " hr " + String.valueOf(minutosConsumidos) + " min";
+        if (duracion.equals("0 dias y 0 hr 0 min")) return "Aun sin consumir";
+        else return duracion;
     }
 
     

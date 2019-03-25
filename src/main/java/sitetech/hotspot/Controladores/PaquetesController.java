@@ -1,6 +1,7 @@
 
 package sitetech.hotspot.Controladores;
 
+import Util.StageManager;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
@@ -42,7 +43,7 @@ public class PaquetesController implements Initializable {
     public PaquetesController(MainApp _app) {
         App = _app;
         thisStage = new Stage();
-        Util.util.cargarStage("/Vistas/Paquetes/Paquetes.fxml", "Gestion de Paquetes", thisStage, this, Modality.APPLICATION_MODAL);
+        StageManager.cargarStage("/Vistas/Paquetes/Paquetes.fxml", "Gestion de Paquetes", thisStage, this, Modality.APPLICATION_MODAL, App.configuracion);
         App.agregarEscena("scene_paquetes", thisStage.getScene());
         
         pm = new PaqueteManager();
@@ -71,7 +72,7 @@ public class PaquetesController implements Initializable {
 
     @FXML
     private void showAgregar(ActionEvent event) {
-        adePaqueteController agregarController = new adePaqueteController();
+        adePaqueteController agregarController = new adePaqueteController(App);
         agregarController.showStage();
         cargarTabla();
     }
@@ -80,7 +81,7 @@ public class PaquetesController implements Initializable {
     private void showEditar(ActionEvent event) {
         pSeleccionado = tvpaquetes.getSelectionModel().getSelectedItem();
         if (pSeleccionado != null) {
-            adePaqueteController agregarController = new adePaqueteController();
+            adePaqueteController agregarController = new adePaqueteController(App);
             agregarController.cargarInfo(pSeleccionado);
             agregarController.showStage();
             cargarTabla();

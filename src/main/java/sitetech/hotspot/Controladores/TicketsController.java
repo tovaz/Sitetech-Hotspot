@@ -9,7 +9,7 @@ import Util.ArrastrarScene;
 import Util.Dialogo;
 import Util.Mikrotik;
 import Util.Moneda;
-import Util.util;
+import Util.StageManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSpinner;
@@ -95,14 +95,10 @@ public class TicketsController implements Initializable, ArrastrarScene {
         tm = new TicketManager();
 
         listaTickets = tm.getTickets();
-
-        //Util.util.cargarStage("/Vistas/Tickets/Tickets.fxml", "Tickets", thisStage, this, Modality.APPLICATION_MODAL);
     }
 
     public void cargarPanel(AnchorPane panel) throws IOException {
-        //FXMLLoader fl =  FXMLLoader.load(getClass().getResource("/Vistas/Tickets/Tickets.fxml"));
-        //fl.setController(this);
-        Node nodo = (Node) util.cargarEscenaEnPanel("/Vistas/Tickets/Tickets.fxml", "Tickets", this);
+        Node nodo = (Node) StageManager.cargarEscenaEnPanel("/Vistas/Tickets/Tickets.fxml", "Tickets", this);
         AnchorPane.setTopAnchor(nodo, 0.0);
 
         AnchorPane.setLeftAnchor(nodo, 0.0);
@@ -161,8 +157,11 @@ public class TicketsController implements Initializable, ArrastrarScene {
         tvtickets.setItems(listaTickets);
     }
 
+    //****************************************************************************************
+    //<editor-fold desc="ACCIONES AL ELIMINAR UN TICKET">  **************************
+    //****************************************************************************************
+    //****************************************************************************************
     Thread th;
-    // ACCIONES AL ELIMINAR UN TICKET
     @FXML
     void onEliminarAction(ActionEvent event) {
          ObservableList<Ticket> ticketsSeleccionados = tvtickets.getSelectionModel().getSelectedItems();
@@ -190,7 +189,7 @@ public class TicketsController implements Initializable, ArrastrarScene {
             }
         }
         else
-            Util.util.mostrarAlerta("Debe de seleccionar algun ticket para poder eliminarlo.", "Eliminar Ticket", ButtonType.OK);
+            Dialogo.mostrarAlerta("Debe de seleccionar algun ticket para poder eliminarlo.", "Eliminar Ticket", App.configuracion.getColorTema(), ButtonType.OK);
     }
     
     private void eliminarVariosTickets(ObservableList<Ticket> ticketsSeleccinados, Mikrotik mk){
@@ -225,9 +224,16 @@ public class TicketsController implements Initializable, ArrastrarScene {
         ptrabajando.setVisible(false);
     }
         
+    //****************************************************************************************
+    //</editor-fold>
+    //****************************************************************************************
+    
+    GenerarTicketsController genTicket;
     @FXML
     void onGenerarAction(ActionEvent event) {
-        GenerarTicketsController genTicket = new GenerarTicketsController(this, App);
+        if (genTicket == null)
+            genTicket = new GenerarTicketsController(this, App);
+        
         genTicket.showStage();
     }
 
@@ -242,7 +248,20 @@ public class TicketsController implements Initializable, ArrastrarScene {
 
     @FXML
     void onVenderAction(ActionEvent event) {
-
+        ObservableList<Ticket> ticketsSeleccionados = tvtickets.getSelectionModel().getSelectedItems();
+         
+        if (ticketsSeleccionados != null) {
+            if (ticketsSeleccionados.size() == 1){
+                VenderTicketController vtc = new VenderTicketController(this, App);
+                System.out.println(ticketsSeleccionados.get(0));
+                vtc.cargarDatos(ticketsSeleccionados.get(0));
+                vtc.showStage();
+            }
+            else 
+                Dialogo.mostrarError("Solamente puede seleccionar un ticket para vender. ", "Seleccione unicamente un ticket.", App.configuracion.getColorTema(), ButtonType.OK);
+        }
+        else
+            Dialogo.mostrarError("Debe de seleccionar un ticket para vender.", "No a seleccionado ningun ticket", App.configuracion.getColorTema(), ButtonType.OK);
     }
     
     void llenarDetalles(Ticket tc) {
@@ -253,7 +272,7 @@ public class TicketsController implements Initializable, ArrastrarScene {
             lmac.setText(tc.getMac());
             lestado.setText(tc.getEstado().name());
 
-            ltiempoConsumido.setText(tc.getDuracion());
+            ltiempoConsumido.setText(tc.getDuracionConsumida());
             lconsumidoDown.setText(tc.getmegasConsumidoDown().toString() + " Mb ");
             lconsumidoUp.setText(tc.getmegasConsumidoUp().toString() + " Mb ");
 
@@ -263,7 +282,8 @@ public class TicketsController implements Initializable, ArrastrarScene {
             lpaquete.setText(tc.getPaquete().getNombre());
             lprecio.setText(Moneda.Formatear(tc.getPaquete().getPrecio(), App.configuracion.getRegionLocal().getLocale()));
             llimiteTiempo.setText(tc.getPaquete().getDuracion());
-            llimiteDescarga.setText(tc.getPaquete().getLimiteInternet());
+            llimiteDescarga.setText(tc.getPaquete().getLimiteDescargaS());
+            llimiteSubida.setText(tc.getPaquete().getLimiteSubidaS());
         }
         else {
             lusuario.setText("");

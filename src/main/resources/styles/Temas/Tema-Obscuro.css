@@ -1,7 +1,7 @@
 /***************+ PRINCIPALES ****************/
 .root {
     -fx-base: #232323;
-    -jfx-rippler-fill: derive(-fx-accent, 50%) 20%;
+    -jfx-rippler-fill: derive(-fx-accent, 100%);
     -fx-primaryText: #ddd;
     
     -colorFondo: #323232;
@@ -15,6 +15,7 @@
     -colorTexto3: #eee;
     -colorTexto4: #ececec;
     -colorTexto5: #eee;
+    -colorTextoRojo: #fd4358;
     
     -fx-dark-text-color: #ddd;
     -fx-mid-text-color: #999;
@@ -376,6 +377,15 @@
     -fx-text-fill: -fx-accent;
 }
 
+.btn-rojo-borde{
+    -fx-background-color: transparent;
+    -fx-background-radius: 25px;
+    -fx-border-radius: 25px;
+    -fx-border-color: #fd4358;
+    -fx-text-fill: #fd4358;
+    -jfx-rippler-fill: #fd4358;
+    
+}
 /************************ TABLE VIEW **********************************/
 /**********************************************************************/
 .table-view { -fx-border-color: -colorFondo; }

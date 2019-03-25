@@ -5,6 +5,7 @@
  */
 package sitetech.hotspot.Controladores;
 
+import Util.StageManager;
 import Util.Validar;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
@@ -58,7 +59,7 @@ public class LoginController implements Initializable {
     public LoginController(MainApp _app) {
         App = _app;
         thisStage = new Stage();
-        Util.util.cargarStage("/Vistas/login.fxml", "Iniciar Sesion", thisStage, this, Modality.APPLICATION_MODAL);
+        StageManager.cargarStage("/Vistas/login.fxml", "Iniciar Sesion", thisStage, this, Modality.APPLICATION_MODAL, App.configuracion);
         App.agregarEscena("scene_login", thisStage.getScene());
     }
     
@@ -100,7 +101,7 @@ public class LoginController implements Initializable {
         thisStage.setAlwaysOnTop(true);
         thisStage.setResizable(false);
         thisStage.setTitle("Sitetech :: Hotspot - Login");
-        thisStage.show();
+        thisStage.showAndWait();
     }
     
     public void pasarStage (MainApp _app, Stage _stage)

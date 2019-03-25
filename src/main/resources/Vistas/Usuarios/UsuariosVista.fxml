@@ -3,9 +3,9 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -46,11 +46,11 @@
                         </TableView>
                      </children>
                   </AnchorPane>
-                  <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="158.0" prefWidth="180.0" style="-fx-background-color: -colorFondo2;" HBox.hgrow="NEVER">
+                  <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="158.0" prefWidth="180.0" HBox.hgrow="NEVER">
                      <children>
                         <AnchorPane>
                            <children>
-                              <JFXButton buttonType="RAISED" mnemonicParsing="false" onAction="#agregarUsuarioAction" prefHeight="50.0" text="Agregar" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                              <JFXButton mnemonicParsing="false" onAction="#agregarUsuarioAction" prefHeight="50.0" text="Agregar" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                  <graphic>
                                     <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -63,7 +63,7 @@
                         </AnchorPane>
                         <AnchorPane>
                            <children>
-                              <JFXButton buttonType="RAISED" mnemonicParsing="false" onAction="#editarUsuarioAction" prefHeight="50.0" text="Editar" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                              <JFXButton mnemonicParsing="false" onAction="#editarUsuarioAction" prefHeight="50.0" text="Editar" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                  <graphic>
                                     <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -76,7 +76,7 @@
                         </AnchorPane>
                         <AnchorPane>
                            <children>
-                              <JFXButton mnemonicParsing="false" onAction="#onEliminarAction" prefHeight="50.0" style="-fx-background-color: transparent;" styleClass="borde-Rosado" text="Eliminar" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                              <JFXButton mnemonicParsing="false" onAction="#onEliminarAction" prefHeight="50.0" styleClass="btn-rojo-borde" text="Eliminar" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                  <graphic>
                                     <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                        <image>

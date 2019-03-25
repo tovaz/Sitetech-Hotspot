@@ -14,6 +14,7 @@
     -colorTexto3: #444;
     -colorTexto4: #ccc;
     -colorTexto5: #eee;
+    -colorTextoRojo: #fd4358;
     
     -fx-dark-text-color: #111;
     -fx-mid-text-color: #333;
@@ -434,6 +435,14 @@
     -fx-border-radius: 25px;
     -fx-border-color: -fx-accent;
     -fx-text-fill: -fx-accent;
+}
+
+.btn-rojo-borde{
+    -fx-background-color: transparent;
+    -fx-background-radius: 25px;
+    -fx-border-radius: 25px;
+    -fx-border-color: #fd4358;
+    -fx-text-fill: #fd4358;
 }
 
 /************************ TABLE VIEW **********************************/

@@ -62,7 +62,7 @@
                                  <children>
                                     <AnchorPane>
                                        <children>
-                                          <JFXButton buttonType="RAISED" mnemonicParsing="false" onAction="#showAgregarRouter" prefHeight="50.0" text="Agregar" textAlignment="CENTER" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                          <JFXButton mnemonicParsing="false" onAction="#showAgregarRouter" prefHeight="50.0" text="Agregar" textAlignment="CENTER" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                              <graphic>
                                                 <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -86,7 +86,7 @@
                                     </AnchorPane>
                                     <AnchorPane>
                                        <children>
-                                          <JFXButton mnemonicParsing="false" onAction="#EliminarRouterAction" prefHeight="50.0" styleClass="btn-primario-borde" text="Eliminar" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                          <JFXButton mnemonicParsing="false" onAction="#EliminarRouterAction" prefHeight="50.0" styleClass="btn-rojo-borde" text="Eliminar" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                              <graphic>
                                                 <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>

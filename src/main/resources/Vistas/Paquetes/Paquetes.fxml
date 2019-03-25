@@ -60,9 +60,9 @@
                               </TableView>
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="300.0" minWidth="133.0" prefWidth="133.0" style="-fx-background-color: transparent;" HBox.hgrow="NEVER">
+                      <AnchorPane minHeight="300.0" minWidth="133.0" prefHeight="396.0" prefWidth="168.0" style="-fx-background-color: transparent;" HBox.hgrow="NEVER">
                            <children>
-                              <VBox layoutX="18.0" layoutY="12.0" prefHeight="410.0" prefWidth="133.0" style="-fx-background-color: -colorFondo2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <VBox layoutX="-21.0" layoutY="12.0" prefHeight="396.0" prefWidth="154.0" style="-fx-background-color: -colorFondo2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane>
                                        <children>
@@ -92,7 +92,7 @@
                                     </AnchorPane>
                                     <AnchorPane>
                                        <children>
-                                          <JFXButton mnemonicParsing="false" onAction="#EliminarAction" prefHeight="50.0" style="-fx-background-color: transparent;" styleClass="borde-Rosado" text="Eliminar" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                          <JFXButton mnemonicParsing="false" onAction="#EliminarAction" prefHeight="50.0" styleClass="btn-rojo-borde" text="Eliminar" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                              <graphic>
                                                 <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>

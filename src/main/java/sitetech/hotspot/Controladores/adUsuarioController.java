@@ -1,5 +1,6 @@
 package sitetech.hotspot.Controladores;
 
+import Util.StageManager;
 import Util.Validar;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -23,6 +24,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sitetech.hotspot.MainApp;
 import sitetech.hotspot.Modelos.Usuario;
 
 /**
@@ -61,9 +63,11 @@ public class adUsuarioController implements Initializable {
         
     }
     
-    public adUsuarioController (){
+    MainApp App;
+    public adUsuarioController (MainApp _app){
+        App = _app;
         thisStage = new Stage();
-        Util.util.cargarStage("/Vistas/Usuarios/adUsuario.fxml", "Agregar Usuario", thisStage, this, Modality.APPLICATION_MODAL);
+        StageManager.cargarStage("/Vistas/Usuarios/adUsuario.fxml", "Agregar Usuario", thisStage, this, Modality.APPLICATION_MODAL, App.configuracion);
     }
     
     public void showStage() {

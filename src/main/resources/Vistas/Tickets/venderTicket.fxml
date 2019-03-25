@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefWidth="297.0" styleClass="fondoApp" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="CENTER" layoutY="14.0" prefWidth="296.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="360.0" prefWidth="277.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="360.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="100.0" style="-fx-fill: -colorFondo; -fx-stroke: -fx-accent;" width="276.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <VBox alignment="TOP_CENTER" layoutX="73.0" layoutY="23.0" prefHeight="139.0" prefWidth="277.0" AnchorPane.bottomAnchor="212.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label text="Usuario">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="lusuario" style="-fx-text-fill: -fx-accent;" text="td7his">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label text="Contraseña">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lcontraseña" text="0 Mb">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Separator prefWidth="200.0">
+                           <opaqueInsets>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Separator>
+                     </children>
+                  </VBox>
+                  <Label layoutX="10.0" layoutY="135.0" text="Limite de tiempo" AnchorPane.leftAnchor="10.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="ltiempo" layoutX="10.0" layoutY="155.0" prefHeight="27.0" prefWidth="257.0" text="1 dia + 3hr y 20 min" AnchorPane.leftAnchor="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lvbajada" layoutX="10.0" layoutY="229.0" prefHeight="27.0" prefWidth="48.0" style="-fx-text-fill: -fx-accent;" text="0 Mb" AnchorPane.leftAnchor="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="ltiempoConsumido1" layoutX="10.0" layoutY="210.0" text="Descarga" AnchorPane.leftAnchor="10.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lvsubida" layoutX="10.0" layoutY="278.0" prefHeight="27.0" prefWidth="257.0" style="-fx-text-fill: -fx-accent;" text="600 Mb" AnchorPane.leftAnchor="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="ltiempoConsumido11" layoutX="10.0" layoutY="259.0" text="Subida" AnchorPane.leftAnchor="10.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="189.0" text="Limite de internet" AnchorPane.leftAnchor="10.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="306.0" style="-fx-text-fill: -colorTexto3;" text="Nombre del paquete" AnchorPane.leftAnchor="10.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lpaquete" layoutX="10.0" layoutY="324.0" prefHeight="27.0" prefWidth="257.0" style="-fx-text-fill: -colorTexto3;" text="1 dia + 3hr y 20 min" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <JFXButton onAction="#onCancelar" prefHeight="40.0" prefWidth="100.0" styleClass="btn-default" text="Cancelar" />
+                  <JFXButton onAction="#onVender" prefHeight="40.0" prefWidth="100.0" text="Vender">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+   <stylesheets>
+      <URL value="@../../styles/Styles.css" />
+      <URL value="@../../styles/botones.css" />
+      <URL value="@../../styles/Temas/Tema-Claro.css" />
+      <URL value="@../../styles/Temas/Tema-Celeste.css" />
+   </stylesheets>
+</AnchorPane>

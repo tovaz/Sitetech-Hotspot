@@ -92,13 +92,12 @@ public class Temas {
     }
     
    
-    public static void aplicarTema(Scene escena){
-        Configuracion conf = ConfiguracionManager2.getConfiguracion(new dbHelper());
-        ThemeColor enfasis = getCssporNombre(conf.getColorEnfasis(), Temas.getEnfasis());
-        ThemeColor tema = getCssporNombre(conf.getColorTema(), Temas.getTemas());
+    public static void aplicarTema(Scene escena, Configuracion config){
+        ThemeColor enfasis = getCssporNombre(config.getColorEnfasis(), Temas.getEnfasis());
+        ThemeColor tema = getCssporNombre(config.getColorTema(), Temas.getTemas());
         
         aplicarTema(enfasis, tema, escena);
-        colorearBarras(escena, conf.isColorMenu(), conf.isColorToolbar());
+        colorearBarras(escena, config.isColorMenu(), config.isColorToolbar());
         
         System.out.println("ENFASIS : #" + enfasis.getCssList());
     }

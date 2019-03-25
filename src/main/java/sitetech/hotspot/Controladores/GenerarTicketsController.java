@@ -7,6 +7,7 @@ package sitetech.hotspot.Controladores;
 
 import Util.Dialogo;
 import Util.Mikrotik;
+import Util.StageManager;
 import Util.Validar;
 import Util.cadenaAletoria;
 import com.jfoenix.controls.JFXButton;
@@ -84,10 +85,10 @@ public class GenerarTicketsController implements Initializable {
     private TicketsController tc;
     public GenerarTicketsController(TicketsController _tc, MainApp _app) {
         tc = _tc;
-        thisStage = new Stage();
-        Util.util.cargarStage("/Vistas/Tickets/generarTickets.fxml", "Generador de tickets", thisStage, this, Modality.NONE);
-        
         App = _app;
+        thisStage = new Stage();
+        StageManager.cargarStage("/Vistas/Tickets/generarTickets.fxml", "Generador de tickets", thisStage, this, Modality.NONE, App.configuracion);
+        
         App.agregarEscena("scene_generarTickets", thisStage.getScene());
     }
 

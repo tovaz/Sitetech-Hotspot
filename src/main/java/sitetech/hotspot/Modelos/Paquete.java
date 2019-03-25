@@ -194,16 +194,34 @@ public class Paquete {
     public String LimiteInternet;
     
     public String getDuracion() {
-        return String.valueOf(dias) + " dias y " + String.valueOf(horas) + "hr " + String.valueOf(minutos) + " min";
+        String duracion = String.valueOf(dias) + " dias y " + String.valueOf(horas) + " hr " + String.valueOf(minutos) + " min";
+        if (duracion.equals("0 dias y 0 hr 0 min")) return "Sin limite";
+        else return duracion;
     }
 
     public void setDuracion(String Duracion) {
         this.Duracion = Duracion;
     }
 
+    
+    public String getLimiteSubidaS() {
+        return  String.valueOf(gigasSubida) + " Gb " + " + " + String.valueOf(megasSubida) + " Mb ";
+    }
+    
+    public String getLimiteDescargaS() {
+        return  String.valueOf(gigasDescarga) + " Gb " + " + " + String.valueOf(megasDescarga) + " Mb ";
+    }
+    
     public String getLimiteInternet() {
-        return "Megas D/U " + String.valueOf(megasDescarga) + " / " + String.valueOf(megasSubida) +
-                " | Gigas D/U " + String.valueOf(gigasDescarga) + " / " + String.valueOf(gigasSubida);
+        String limite = "";
+                if (megasDescarga == 0) limite += " Sin limite. ";
+                else limite += String.valueOf(megasDescarga) + " Mb " + " / " + String.valueOf(megasSubida) + " Mb ";
+                
+                limite += " | ";
+                if (gigasDescarga == 0) limite += "Sin limite. ";
+                else limite += String.valueOf(gigasDescarga) + " Gb " + " / " + String.valueOf(gigasSubida) + " Gb ";
+        
+        return limite;
     }
 
     public void setLimiteInternet(String LimiteInternet) {

@@ -1,5 +1,6 @@
 package sitetech.hotspot.Controladores;
 
+import Util.StageManager;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -36,7 +37,7 @@ public class RoutersController implements Initializable {
     public RoutersController(MainApp _app) {
         App = _app;
         thisStage = new Stage();
-        Util.util.cargarStage("/Vistas/Routers/Routers.fxml", "Gestion de Routers", thisStage, this, Modality.APPLICATION_MODAL);
+        StageManager.cargarStage("/Vistas/Routers/Routers.fxml", "Gestion de Routers", thisStage, this, Modality.APPLICATION_MODAL, App.configuracion);
         App.agregarEscena("scene_routers", thisStage.getScene());
         
         rm = new RouterManager();
@@ -68,7 +69,7 @@ public class RoutersController implements Initializable {
     
     @FXML
     private void showAgregarRouter(ActionEvent event) {
-        adeRouterController agregarRouterC = new adeRouterController();
+        adeRouterController agregarRouterC = new adeRouterController(App);
         agregarRouterC.showStage();
         cargarTabla();
     }
@@ -77,7 +78,7 @@ public class RoutersController implements Initializable {
     private void showEditarRouter(ActionEvent event) {
         rSeleccionado = tvrouters.getSelectionModel().getSelectedItem();
         if (rSeleccionado != null) {
-            adeRouterController editarRouterC = new adeRouterController();
+            adeRouterController editarRouterC = new adeRouterController(App);
             editarRouterC.cargarRouterInfo(rSeleccionado);
             editarRouterC.showStage();
             cargarTabla();

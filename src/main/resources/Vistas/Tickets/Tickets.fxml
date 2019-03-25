@@ -22,7 +22,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ticketsPanel" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="ticketsPanel" prefHeight="636.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <JFXToolbar prefHeight="580.0" prefWidth="808.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <center>
@@ -171,7 +171,7 @@
                 </AnchorPane>
             </top>
          <right>
-                  <VBox prefHeight="515.0" prefWidth="220.0" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="571.0" prefWidth="229.0" BorderPane.alignment="CENTER">
                      <children>
                   <VBox style="-fx-background-color: -colorFondo;" VBox.vgrow="ALWAYS">
                      <children>
@@ -222,7 +222,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                              <Label fx:id="ltiempoConsumido" text="1 dia + 3hr y 20 min" />
+                              <Label fx:id="ltiempoConsumido" prefHeight="17.0" prefWidth="233.0" text="1 dia + 3hr y 20 min" />
                         <Label layoutX="20.0" layoutY="170.0" text="Internet consumido">
                            <font>
                               <Font name="System Bold" size="12.0" />
@@ -283,9 +283,9 @@
                         <Insets left="10.0" right="10.0" />
                      </padding>
                   </VBox>
-                        <VBox style="-fx-background-color: -colorFondo2;" VBox.vgrow="NEVER">
+                        <VBox prefHeight="156.0" prefWidth="257.0" style="-fx-background-color: -colorFondo2;" VBox.vgrow="NEVER">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="193.0" style="-fx-text-fill: -fx-accent;" text="Info del paquete" textAlignment="CENTER" textFill="#004db2">
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="250.0" style="-fx-text-fill: -fx-accent;" text="Info del paquete" textAlignment="CENTER" textFill="#004db2">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -295,30 +295,34 @@
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                            <padding>
-                              <Insets bottom="5.0" />
+                              <Insets bottom="3.0" />
                            </padding>
                               </Label>
                               <GridPane hgap="2.0" vgap="2.0">
                                  <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.0" minWidth="10.0" prefWidth="99.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="99.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.0" minWidth="10.0" prefWidth="24.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="10.0" prefWidth="144.0" />
                                  </columnConstraints>
                                  <rowConstraints>
                                     <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                                     <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                                     <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Label text="Limite de tiempo:" GridPane.rowIndex="1" />
-                                    <Label text="Limite de Internet:" GridPane.rowIndex="2" />
-                                    <Label fx:id="llimiteDescarga" prefHeight="17.0" prefWidth="104.0" text="1Gb + 300 Mb" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Label fx:id="llimiteTiempo" layoutX="105.0" layoutY="32.0" prefHeight="17.0" prefWidth="98.0" text="3hr + 0 min" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label prefHeight="17.0" prefWidth="109.0" text="Limites" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Label>
+                                    <Label text="Tiempo:" GridPane.rowIndex="2" />
+                                    <Label fx:id="llimiteTiempo" layoutX="105.0" layoutY="32.0" prefHeight="17.0" prefWidth="181.0" text="3hr + 0 min" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <Label layoutX="10.0" layoutY="34.0" text="Precio:" />
-                                    <Label fx:id="lprecio" layoutX="106.0" layoutY="32.0" text="Q 6.00" GridPane.columnIndex="1">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
+                                    <Label fx:id="lprecio" layoutX="106.0" layoutY="32.0" prefHeight="20.0" prefWidth="166.0" text="Q 6.00" GridPane.columnIndex="1" />
+                              <Label text="Descarga:" GridPane.rowIndex="3" />
+                                    <Label fx:id="llimiteDescarga" prefHeight="17.0" prefWidth="176.0" text="1Gb + 300 Mb" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label text="Subida:" GridPane.rowIndex="4" />
+                              <Label fx:id="llimiteSubida" prefHeight="17.0" prefWidth="175.0" text="1Gb + 300 Mb" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                  </children>
                               </GridPane>
                            </children>
@@ -326,7 +330,7 @@
                               <Insets />
                            </VBox.margin>
                      <padding>
-                        <Insets bottom="20.0" left="10.0" right="10.0" top="5.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
                      </padding>
                         </VBox>
                      </children>

@@ -1,5 +1,6 @@
 package sitetech.hotspot.Controladores;
 
+import Util.StageManager;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -44,7 +45,7 @@ public class UsuariosController implements Initializable {
     public UsuariosController (MainApp _app){
         App = _app;
         thisStage = new Stage();
-        Util.util.cargarStage("/Vistas/Usuarios/UsuariosVista.fxml", "Agregar Usuario", thisStage, this, Modality.APPLICATION_MODAL);
+        StageManager.cargarStage("/Vistas/Usuarios/UsuariosVista.fxml", "Agregar Usuario", thisStage, this, Modality.APPLICATION_MODAL, App.configuracion);
         App.agregarEscena("scene_usuarios", thisStage.getScene());
     }
     
@@ -79,7 +80,7 @@ public class UsuariosController implements Initializable {
     public Usuario uSeleccionado = null;
     @FXML
     void agregarUsuarioAction(ActionEvent event) {
-        adUsuarioController adUsuario = new adUsuarioController();
+        adUsuarioController adUsuario = new adUsuarioController(App);
         adUsuario.showAgregar(this);
     }
     
@@ -87,7 +88,7 @@ public class UsuariosController implements Initializable {
     void editarUsuarioAction(ActionEvent event) {
         uSeleccionado = tvusuarios.getSelectionModel().getSelectedItem();
         if (uSeleccionado != null) {
-            adUsuarioController adUsuario = new adUsuarioController();
+            adUsuarioController adUsuario = new adUsuarioController(App);
             adUsuario.showEditar(uSeleccionado, this);
         }
         else

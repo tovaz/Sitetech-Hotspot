@@ -19,7 +19,7 @@ import sitetech.hotspot.Modelos.usuarioManager;
 
 public class MainApp extends Application {
 
-    public static Stage primaryStage;
+    //public static Stage primaryStage;
     public static Map<String, Scene> escenas = new HashMap<String, Scene>();
     
     private LoginController logc;
@@ -70,7 +70,9 @@ public class MainApp extends Application {
     }
 
     public void mainScene() {
-        mainControlador = new MainController(this);
+        if (mainControlador == null)
+            mainControlador = new MainController(this);
+        
         cajaAbierta = cm.getCajaAbierta(usuarioLogeado);
         mainControlador.showStage();
     }
@@ -84,7 +86,7 @@ public class MainApp extends Application {
             this.mainScene();                       // ABRE LA ESCENA CENTRAL ( MAIN SCENE )
             
             //agregarVariable("usuarioLogeado", usuarioLogeado);
-            mainControlador.cargarInfo(usuarioLogeado);
+            mainControlador.actualizarInfo(usuarioLogeado);
             return true;
         }
         else return false;

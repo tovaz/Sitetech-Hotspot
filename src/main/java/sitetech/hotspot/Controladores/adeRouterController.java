@@ -1,6 +1,7 @@
 
 package sitetech.hotspot.Controladores;
 import Util.Mikrotik;
+import Util.StageManager;
 import Util.Validar;
 import Util.claseRetorno;
 import com.jfoenix.controls.JFXSpinner;
@@ -27,6 +28,7 @@ import sitetech.hotspot.Modelos.Router;
 import sitetech.hotspot.Modelos.RouterManager;
 import java.util.concurrent.CompletableFuture;
 import javafx.application.Platform;
+import sitetech.hotspot.MainApp;
 
 
 public class adeRouterController implements Initializable {
@@ -76,9 +78,11 @@ public class adeRouterController implements Initializable {
      *
      * @author megan
      */
-    public adeRouterController (){
+    MainApp App;
+    public adeRouterController (MainApp _app){
+        App = _app;
         thisStage = new Stage();
-        Util.util.cargarStage("/Vistas/Routers/adeRouters.fxml", "Agregar Router", thisStage, this, Modality.APPLICATION_MODAL);
+        StageManager.cargarStage("/Vistas/Routers/adeRouters.fxml", "Agregar Router", thisStage, this, Modality.APPLICATION_MODAL, App.configuracion);
     }
 
     public void showStage() {

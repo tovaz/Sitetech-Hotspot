@@ -5,22 +5,13 @@
  */
 package Util;
 
-import sitetech.hotspot.Temas;
-import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import sitetech.hotspot.MainApp;
+import com.sun.javafx.scene.control.skin.Utils;
+import javafx.scene.control.Label;
 
 /**
  *
@@ -52,71 +43,6 @@ public class util {
         return alert.getResult();
     }
     
-    public static Object mostrarStage(String vista, String titulo, Stage main, Object Controlador, Modality modalidad)
-    {
-        Stage nuevaStage;
-        if (main == null)
-            nuevaStage = new Stage();
-        else
-            nuevaStage = main;
-        
-        try {
-            FXMLLoader loader = new FXMLLoader(Controlador.getClass().getResource(vista));
-            loader.setController(Controlador);
-
-            nuevaStage.initModality(modalidad);
-            Scene thisScene = new Scene((Parent)loader.load());
-            
-            Temas.aplicarTema(thisScene);
-            nuevaStage.setScene(thisScene);
-            nuevaStage.setTitle(titulo);
-            
-            if (modalidad == Modality.NONE)
-                nuevaStage.show();
-            else
-                nuevaStage.showAndWait();
-            return Controlador;
-            
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
-    
-    public static Object cargarStage(String vista, String titulo, Stage main, Object Controlador, Modality modalidad)
-    {
-        try {
-            FXMLLoader loader = new FXMLLoader(Controlador.getClass().getResource(vista));
-            loader.setController(Controlador);
-
-            main.initModality(modalidad);
-            Scene thisScene = new Scene((Parent)loader.load());
-            
-            Temas.aplicarTema(thisScene); /// APLICAR EL TEMA
-            main.setScene(thisScene);
-            main.setTitle(titulo);
-            return Controlador;
-            
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
-    
-    public static Object cargarEscenaEnPanel(String vista, String titulo, Object Controlador)
-    {
-        FXMLLoader loader = new FXMLLoader(Controlador.getClass().getResource(vista));
-        loader.setController(Controlador);
-        Object control;
-        try {
-            control = loader.load();
-            return control;
-        } catch (IOException ex) {
-            Logger.getLogger(util.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
-    
     //IP TEXT REGEX
     public static String makePartialIPRegex() {
         String partialBlock = "(([01]?[0-9]{0,2})|(2[0-4][0-9])|(25[0-5]))" ;
@@ -124,4 +50,5 @@ public class util {
         String ipAddress = partialBlock+"?"+subsequentPartialBlock+"{0,3}";
         return "^"+ipAddress ;
     }
+    
 }

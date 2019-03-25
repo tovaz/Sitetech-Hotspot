@@ -1,5 +1,6 @@
 package sitetech.hotspot.Controladores;
 
+import Util.StageManager;
 import Util.Validar;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
@@ -19,6 +20,7 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sitetech.hotspot.MainApp;
 import sitetech.hotspot.Modelos.Paquete;
 import sitetech.hotspot.Modelos.PaqueteManager;
 import slider.control.CircularSlider;
@@ -73,9 +75,11 @@ public class adePaqueteController implements Initializable {
         // TODO
     }    
 
-    public adePaqueteController() {
+    MainApp App;
+    public adePaqueteController(MainApp _app) {
+        App = _app;
         thisStage = new Stage();
-        Util.util.cargarStage("/Vistas/Paquetes/adePaquete.fxml", "Agregar Paquete de Internet", thisStage, this, Modality.APPLICATION_MODAL);
+        StageManager.cargarStage("/Vistas/Paquetes/adePaquete.fxml", "Agregar Paquete de Internet", thisStage, this, Modality.APPLICATION_MODAL, App.configuracion);
         sldias.setValue(0);
     }
     

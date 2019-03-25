@@ -50,12 +50,19 @@ public class MainController implements Initializable, ArrastrarScene {
         }
     }
 
+    @Override
+    protected void finalize() throws Throwable {
+        App.stop();
+        super.finalize(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
     @FXML
     void testAction(ActionEvent event) throws IOException {
 
     }
 
-    public void cargarInfo(Usuario user){
+    public void actualizarInfo(Usuario user){
         lusuario.setText(user.getNombre());
         lcaja.setText( String.valueOf(App.cajaAbierta.getId() ));
         lcajaTotal.setText( Moneda.Formatear(App.cajaAbierta.getTotal(), App.configuracion.getRegionLocal().getLocale()));
@@ -73,7 +80,7 @@ public class MainController implements Initializable, ArrastrarScene {
             thisStage.initStyle(StageStyle.DECORATED);
             Scene scene = new Scene((Parent) loader.load());
 
-            Temas.aplicarTema(scene);
+            Temas.aplicarTema(scene, App.configuracion);
             thisStage.setScene(scene);
             thisStage.setTitle("Hotspot 1.0");
         } catch (IOException e) {
@@ -90,7 +97,7 @@ public class MainController implements Initializable, ArrastrarScene {
 
     @FXML
     public void loadUsuarios() throws IOException {
-        adUsuarioController adUsuario = new adUsuarioController();
+        adUsuarioController adUsuario = new adUsuarioController(App);
         adUsuario.showAgregar(new UsuariosController(App));
     }
 
@@ -171,7 +178,14 @@ public class MainController implements Initializable, ArrastrarScene {
     }
     
     @FXML
-    void cerrarSesionAction(ActionEvent event) {
+    void cerrarSesionAction(ActionEvent event) throws Exception {
+        LoginController logc = new LoginController(App);
+        App.usuarioLogeado = null;
+        lusuario.setText("");
+        logc.showStage();
         
+        if (App.usuarioLogeado == null){
+            thisStage.close();
+        }
     }
 }

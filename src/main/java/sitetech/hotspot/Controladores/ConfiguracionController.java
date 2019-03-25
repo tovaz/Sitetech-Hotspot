@@ -5,6 +5,7 @@ import Util.Archivo;
 import Util.Dialogo;
 import Util.MiLocale;
 import Util.Moneda;
+import Util.StageManager;
 import sitetech.hotspot.ThemeColor;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXToggleButton;
@@ -76,7 +77,7 @@ public class ConfiguracionController implements Initializable {
     public ConfiguracionController(MainApp _app) {
         thisStage = new Stage();
         App = _app;
-        Util.util.cargarStage("/Vistas/Configuraciones/Configuracion.fxml", "Configuracion de hotspot", thisStage, this, Modality.APPLICATION_MODAL);
+        StageManager.cargarStage("/Vistas/Configuraciones/Configuracion.fxml", "Configuracion de hotspot", thisStage, this, Modality.APPLICATION_MODAL, App.configuracion);
         
         App.agregarEscena("scene_configuraciones", thisStage.getScene());
         cm = new ConfiguracionManager2();
