@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="548.0" prefWidth="864.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="sitetech.hotspot.Controladores.ReportesControlador">
+   <children>
+      <TreeView layoutX="14.0" layoutY="14.0" prefHeight="525.0" prefWidth="232.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
+   <stylesheets>
+      <URL value="@../styles/Temas/Tema-Celeste.css" />
+      <URL value="@../styles/Temas/Tema-Claro.css" />
+      <URL value="@../styles/Styles.css" />
+   </stylesheets>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</AnchorPane>

@@ -252,16 +252,29 @@ public class TicketsController implements Initializable, ArrastrarScene {
          
         if (ticketsSeleccionados != null) {
             if (ticketsSeleccionados.size() == 1){
-                VenderTicketController vtc = new VenderTicketController(this, App);
-                System.out.println(ticketsSeleccionados.get(0));
-                vtc.cargarDatos(ticketsSeleccionados.get(0));
-                vtc.showStage();
+                if (ticketsSeleccionados.get(0).getEstado() != Ticket.EstadosType.Activo){
+                    Dialogo.mostrarAlerta("El estado del ticket es incorrecto, ticket ya vendido o en uso.", "Ticket ya vendido o en uso.", App.configuracion.getColorTema(), ButtonType.OK);
+                    return;
+                }
+                else {
+                    VenderTicketController vtc = new VenderTicketController(this, App);
+                    System.out.println(ticketsSeleccionados.get(0));
+                    vtc.cargarDatos(ticketsSeleccionados.get(0));
+                    vtc.showStage();
+                }
             }
             else 
                 Dialogo.mostrarError("Solamente puede seleccionar un ticket para vender. ", "Seleccione unicamente un ticket.", App.configuracion.getColorTema(), ButtonType.OK);
         }
         else
             Dialogo.mostrarError("Debe de seleccionar un ticket para vender.", "No a seleccionado ningun ticket", App.configuracion.getColorTema(), ButtonType.OK);
+    }
+    
+    public void actualizarTicket (Ticket ticket){
+        for (int i=0; i<listaTickets.size(); i++){
+            if (listaTickets.get(i).getId() == ticket.getId())
+                listaTickets.set(i, ticket);
+        }
     }
     
     void llenarDetalles(Ticket tc) {

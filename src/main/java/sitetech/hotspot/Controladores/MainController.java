@@ -5,6 +5,7 @@ import Util.Moneda;
 import sitetech.hotspot.Temas;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -23,6 +24,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import sitetech.hotspot.MainApp;
+import sitetech.hotspot.Modelos.Caja;
 import sitetech.hotspot.Modelos.Usuario;
 
 public class MainController implements Initializable, ArrastrarScene {
@@ -62,10 +64,10 @@ public class MainController implements Initializable, ArrastrarScene {
 
     }
 
-    public void actualizarInfo(Usuario user){
+    public void actualizarInfo(Usuario user, Caja caja){
         lusuario.setText(user.getNombre());
-        lcaja.setText( String.valueOf(App.cajaAbierta.getId() ));
-        lcajaTotal.setText( Moneda.Formatear(App.cajaAbierta.getTotal(), App.configuracion.getRegionLocal().getLocale()));
+        lcaja.setText( String.valueOf(caja.getId() ));
+        lcajaTotal.setText( Moneda.Formatear(caja.getTotal(), Locale.getDefault()));
     }
     
     public MainController(MainApp _mainApp) {
@@ -134,10 +136,13 @@ public class MainController implements Initializable, ArrastrarScene {
                 pConfiguracion.thisStage.setUserData(scenes);
                 pConfiguracion.showStage();
                 break;
-
         }
 
     }
+    
+    private void CerrarCaja(){
+        
+    }    
 
     @FXML
     void cerrarAction(ActionEvent event) {

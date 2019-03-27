@@ -76,6 +76,11 @@ public class MainApp extends Application {
         cajaAbierta = cm.getCajaAbierta(usuarioLogeado);
         mainControlador.showStage();
     }
+    
+    public void actualizarCaja(Caja caja){
+        this.cajaAbierta = caja;
+        mainControlador.actualizarInfo(usuarioLogeado, cajaAbierta);
+    }
 
     public boolean checkLogin(String usuario, String contraseña){
         usuarioManager um = new usuarioManager();
@@ -86,7 +91,7 @@ public class MainApp extends Application {
             this.mainScene();                       // ABRE LA ESCENA CENTRAL ( MAIN SCENE )
             
             //agregarVariable("usuarioLogeado", usuarioLogeado);
-            mainControlador.actualizarInfo(usuarioLogeado);
+            mainControlador.actualizarInfo(usuarioLogeado, cajaAbierta);
             return true;
         }
         else return false;

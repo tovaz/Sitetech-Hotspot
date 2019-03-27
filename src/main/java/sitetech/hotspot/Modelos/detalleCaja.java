@@ -33,7 +33,7 @@ public class detalleCaja {
     @OneToOne @JoinColumn(name = "idTicket")
     private Ticket ticket;
     
-    public enum TipoDetalle { Venta, Ingreso, Egreso };
+    public enum TipoDetalle { VentaArticulo, Ingreso, Egreso, Venta_Ticket };
     private TipoDetalle tipo;
     public enum EstadoDetalle { Correcto, anulado };
     private EstadoDetalle estado;
@@ -46,9 +46,11 @@ public class detalleCaja {
     }
 
     public detalleCaja() {
+        
     }
 
-    public detalleCaja(Caja caja, Ticket ticket, TipoDetalle tipo, String comentario, BigDecimal monto) {
+    public detalleCaja(Caja caja, Ticket ticket, TipoDetalle tipo, String comentario, BigDecimal monto, EstadoDetalle _estado) {
+        this.estado = _estado;
         this.caja = caja;
         this.ticket = ticket;
         this.tipo = tipo;

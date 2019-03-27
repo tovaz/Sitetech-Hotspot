@@ -59,8 +59,32 @@ public class CajaManager {
             return lista;
     }
     
-    public void agregarDetalle(detalleCaja detalle){
-        DbHelper.Agregar(detalle);
+    public Caja agregarDetalle(detalleCaja detalle){
+        Caja caja = detalle.getCaja();
+        
+        if ( DbHelper.Agregar(detalle) ){
+            switch (detalle.getTipo().name()){
+                case "Venta_Ticket":
+                    caja.setTotal( caja.getTotal().add(detalle.getMonto()) );
+                    break;
+                
+                case "Ingreso":
+                    caja.setTotalIngreso(caja.getTotalIngreso().add(detalle.getMonto()) );
+                    caja.setTotal( caja.getTotal().add(detalle.getMonto()) );
+                    break;
+                    
+                case "Egreso":
+                    caja.setTotalEgreso(caja.getTotalEgreso().add(detalle.getMonto()) );
+                    caja.setTotal( caja.getTotal().subtract(detalle.getMonto()) );
+                    break;
+                    
+                default: break;
+            }
+            DbHelper.Editar(caja);
+            return caja;
+        }
+        
+        return null;
     }
     
     public void Editar(detalleCaja detalle)

@@ -69,7 +69,7 @@ public class Ticket {
     private boolean eliminado = false;
 
     public static enum EstadosType {
-        Todos, Activo, Desactivado, En_Uso, Eliminado, Consumido, Generado, Error
+        Todos, Activo, Desactivado, En_Uso, Eliminado, Consumido, Generado, Error, Vendido
     };
     
     private EstadosType estado;

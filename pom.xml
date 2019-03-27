@@ -54,7 +54,12 @@
             <version>6.7.0</version>
             <optional>false</optional>
         </dependency>
-
+        
+        <dependency>
+            <groupId>win.zqxu</groupId>
+            <artifactId>jrviewer-fx</artifactId>
+            <version>latest-version</version>
+        </dependency>
         <!-- JFXtras  -->
         <!--dependency>
             <groupId>org.jfxtras</groupId>
