@@ -53,6 +53,7 @@ public class MainApp extends Application {
     public void ActualizarConfiguracion(Configuracion conf){
         configuracion = conf;
         Locale.setDefault(conf.getRegionLocal().getLocale());
+        actualizarCaja(cajaAbierta);
     }
     
     public void agregarEscena(String key, Scene scene){
@@ -70,10 +71,10 @@ public class MainApp extends Application {
     }
 
     public void mainScene() {
+        cajaAbierta = cm.getCajaAbierta(usuarioLogeado);
         if (mainControlador == null)
             mainControlador = new MainController(this);
         
-        cajaAbierta = cm.getCajaAbierta(usuarioLogeado);
         mainControlador.showStage();
     }
     
