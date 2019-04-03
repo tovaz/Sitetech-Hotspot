@@ -3,6 +3,14 @@
     -fx-font-size: 15 pt;
 }
 
+.menuEnfasis .label {
+    -fx-text-fill: #eee;
+}
+
+.menuSinEnfasis .label {
+    -fx-text-fill: -colorTexto2;
+}
+
 .backgroundLineal-boton {
     -fx-background-color: linear-gradient(to top right, #69F0AE, #40C4FF);
 }
@@ -40,54 +48,6 @@
     
 }
 
-/******************************* DIALOGO ALERTA ***************************/
-.dialog-pane{
-    -fx-border-color: #cecece;
-    /*-fx-border-width:2.0px;*/
-}
-
-/**Costumization of The Bar where the buttons are located**/
-.dialog-pane > .button-bar > .container {
-  -fx-background-color:#304FFE;
-}
-
-.dialog-pane > .content.label {
-   -fx-padding: 0.5em 0.5em 0.5em 0.5em;
-   -fx-text-fill: #444;
-   -fx-font-size:15.0px;
-}
-
-/**Costumization of DialogPane Header**/
-.dialog-pane:header .header-panel {
-  -fx-background-color: black;
-}
-
-.dialog-pane:header .header-panel .label{
-  -fx-background-color: #cecece;
-  -fx-background-radius:10px;
-  -fx-text-fill:#333;
-  -fx-font-size:15.0px;
-}
-
-
-/**Costumization of Buttons**/
-.dialog-pane .button{
-    -fx-border-radius: 25px;
-    -fx-border-color: -fx-accent;
-    -fx-text-fill: -fx-accent;
-    -fx-background-radius: 25;
-    -fx-background-insets: 0.5;
-  
-   -fx-wrap-text: true;
-   -fx-effect: dropshadow( three-pass-box, black, 10.0, 0.0, 0.0, 0.0);
- }
-
-.dialog-pane .button:hover{     
-  -fx-background-color:white;
-  -fx-text-fill:black;
-  -fx-font-weight:bold; 
- }
- 
  .degradado1 {
      -fx-fill: linear-gradient(derive(-fx-accent, 10%), derive(-fx-accent, 80%));
  }
@@ -103,7 +63,7 @@
  .context-menu {
     -fx-background-color: -colorFondo;
     -fx-background-radius: 10;
-    -fx-effect: dropshadow( three-pass-box, black, 20.0, 0.0, 0.0, 0.0);
+    -fx-effect: dropshadow( three-pass-box, #333, 10.0, 0.0, 0.0, 0.0);
     
     -fx-padding: 5px;
 }
@@ -144,6 +104,11 @@
  * Fonts			                                                       *
  *                                                                         *
  **************************************************************************/
+@font-face {
+    font-family: 'Roboto';
+    src: url('Fuentes\Roboto-Medium.ttf');
+}
+
 .h4 {
     -fx-font-family: "Roboto Light";
     -fx-font-size: 112.0;

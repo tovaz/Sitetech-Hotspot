@@ -39,11 +39,12 @@ public class Caja {
     @JoinColumn(name = "usuarioCierre")
     private Usuario UsuarioCierre;
     
-    private BigDecimal cajaInicial;
+    private BigDecimal cajaInicial = BigDecimal.ZERO;
     
-    private BigDecimal total = new BigDecimal(0);
-    private BigDecimal totalIngreso = new BigDecimal(0);
-    private BigDecimal totalEgreso = new BigDecimal(0);
+    private BigDecimal total = BigDecimal.ZERO;
+    private BigDecimal totalIngreso = BigDecimal.ZERO;
+    private BigDecimal totalEgreso = BigDecimal.ZERO;
+    private BigDecimal totalCierre = BigDecimal.ZERO;
     
     private Date fechaApertura;
     private Date fechaCierre;
@@ -189,4 +190,14 @@ public class Caja {
     public String getTotalEgresoF(){
         return Moneda.Formatear(this.totalEgreso);
     }
+
+    public BigDecimal getTotalCierre() {
+        return totalCierre;
+    }
+
+    public void setTotalCierre(BigDecimal totalCierre) {
+        this.totalCierre = totalCierre;
+    }
+    
+    
 }

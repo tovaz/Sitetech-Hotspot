@@ -95,11 +95,13 @@ public class VenderTicketController implements Initializable {
     @FXML
     private void onVender(ActionEvent event) {
         if (ticket.getEstado() != Ticket.EstadosType.Activo){ // por si llega a abrir esta ventana y el ticket tiene un estado incorrecto.
-            Dialogo.mostrarAlerta("El estado del ticket es incorrecto, ticket ya vendido o en uso.", "Ticket ya vendido o en uso.", App.configuracion.getColorTema(), ButtonType.OK);
+            Dialogo.mostrarAlerta("El estado del ticket es incorrecto, ticket ya vendido o en uso.", "Ticket ya vendido o en uso.", 
+                    App.configuracion, ButtonType.OK);
             return;
         }
         
-        ButtonType btn = Dialogo.mostrarInformacion("¿Confirme la venta del ticket " + ticket.getUsuario() + " ? por un precio de " + Moneda.Formatear(ticket.getPaquete().getPrecio(), Locale.getDefault()) + ".", "Confirmar venta", App.configuracion.getColorTema(), ButtonType.YES, ButtonType.NO);
+        ButtonType btn = Dialogo.mostrarInformacion("¿Confirme la venta del ticket " + ticket.getUsuario() + " ? por un precio de " + Moneda.Formatear(ticket.getPaquete().getPrecio(), Locale.getDefault()) + ".", "Confirmar venta", 
+                App.configuracion, ButtonType.YES, ButtonType.NO);
         
         if (btn == ButtonType.YES){
             CajaManager cm = new CajaManager();
@@ -118,7 +120,8 @@ public class VenderTicketController implements Initializable {
                 thisStage.close();
             }
             else
-                Dialogo.mostrarError("Ocurrio un error al intentar vender el ticket, comunicate con el administrador para informar el error.", "Error al ingresar la venta del ticket", App.configuracion.getColorTema(), ButtonType.OK);
+                Dialogo.mostrarError("Ocurrio un error al intentar vender el ticket, comunicate con el administrador para informar el error.", "Error al ingresar la venta del ticket", 
+                        App.configuracion, ButtonType.OK);
         }
         
     }

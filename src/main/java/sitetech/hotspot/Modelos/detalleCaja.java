@@ -39,7 +39,7 @@ public class detalleCaja {
     private EstadoDetalle estado;
     
     private String comentario;
-    private BigDecimal monto;
+    private BigDecimal monto = BigDecimal.ZERO;
     private Date fechaCreacion;
     @PrePersist protected void onCreate() {
         this.fechaCreacion = new Date();

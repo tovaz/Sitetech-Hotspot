@@ -97,8 +97,10 @@ public class TicketsController implements Initializable, ArrastrarScene {
         listaTickets = tm.getTickets();
     }
 
+    public Node nodo;
     public void cargarPanel(AnchorPane panel) throws IOException {
-        Node nodo = (Node) StageManager.cargarEscenaEnPanel("/Vistas/Tickets/Tickets.fxml", "Tickets", this);
+        nodo = (Node) StageManager.cargarEscenaEnPanel("/Vistas/Tickets/Tickets.fxml", "Tickets", this);
+        
         AnchorPane.setTopAnchor(nodo, 0.0);
 
         AnchorPane.setLeftAnchor(nodo, 0.0);
@@ -172,9 +174,11 @@ public class TicketsController implements Initializable, ArrastrarScene {
             ButtonType btn;
             
             if (ticketsSeleccionados.size() == 1)
-                btn = Dialogo.mostrarInformacion("¿Desea realmente eliminar el ticket con usuario = \" " + ticketsSeleccionados.get(0).getUsuario()  + " \" ?, se eliminara del router tambien.", "Eliminar Ticket", App.configuracion.getColorTema(), ButtonType.YES, ButtonType.NO);
+                btn = Dialogo.mostrarInformacion("¿Desea realmente eliminar el ticket con usuario = \" " + ticketsSeleccionados.get(0).getUsuario()  + " \" ?, se eliminara del router tambien.", 
+                        "Eliminar Ticket", App.configuracion, ButtonType.YES, ButtonType.NO);
             else 
-                btn = Dialogo.mostrarInformacion("¿Desea realmente eliminar " + ticketsSeleccionados.size() + " ? tickets, se eliminaran del router tambien.", "Eliminar Tickets", App.configuracion.getColorTema(), ButtonType.YES, ButtonType.NO);
+                btn = Dialogo.mostrarInformacion("¿Desea realmente eliminar " + ticketsSeleccionados.size() + " ? tickets, se eliminaran del router tambien.", "Eliminar Tickets", 
+                        App.configuracion, ButtonType.YES, ButtonType.NO);
             
             if ( btn == ButtonType.YES) {
                 if (ticketsSeleccionados.size() == 1)
@@ -189,7 +193,8 @@ public class TicketsController implements Initializable, ArrastrarScene {
             }
         }
         else
-            Dialogo.mostrarAlerta("Debe de seleccionar algun ticket para poder eliminarlo.", "Eliminar Ticket", App.configuracion.getColorTema(), ButtonType.OK);
+            Dialogo.mostrarAlerta("Debe de seleccionar algun ticket para poder eliminarlo.", "Eliminar Ticket", 
+                    App.configuracion, ButtonType.OK);
     }
     
     private void eliminarVariosTickets(ObservableList<Ticket> ticketsSeleccinados, Mikrotik mk){
@@ -215,9 +220,11 @@ public class TicketsController implements Initializable, ArrastrarScene {
         ltrabajando.setText("Se eleminaron " + ticketsEliminados + " correctamente.");
         
         if (ticketsEliminados == ticketsSeleccinados.size()) {
-            Dialogo.mostrarInformacion("Se eliminaron " + ticketsEliminados + " tickets correctamente.", "Todos los tickets se eliminaron.", App.configuracion.getColorTema(), ButtonType.OK);
+            Dialogo.mostrarInformacion("Se eliminaron " + ticketsEliminados + " tickets correctamente.", "Todos los tickets se eliminaron.", 
+                    App.configuracion, ButtonType.OK);
         } else {
-            Dialogo.mostrarError("Se eliminaron solamente " + ticketsEliminados + " tickets correctamente.", "No se eliminaron todos los tickets.", App.configuracion.getColorTema(), ButtonType.OK);
+            Dialogo.mostrarError("Se eliminaron solamente " + ticketsEliminados + " tickets correctamente.", "No se eliminaron todos los tickets.", 
+                    App.configuracion, ButtonType.OK);
         }
         
         beliminar.setDisable(false);
@@ -253,7 +260,8 @@ public class TicketsController implements Initializable, ArrastrarScene {
         if (ticketsSeleccionados != null) {
             if (ticketsSeleccionados.size() == 1){
                 if (ticketsSeleccionados.get(0).getEstado() != Ticket.EstadosType.Activo){
-                    Dialogo.mostrarAlerta("El estado del ticket es incorrecto, ticket ya vendido o en uso.", "Ticket ya vendido o en uso.", App.configuracion.getColorTema(), ButtonType.OK);
+                    Dialogo.mostrarAlerta("El estado del ticket es incorrecto, ticket ya vendido o en uso.", "Ticket ya vendido o en uso.", 
+                            App.configuracion, ButtonType.OK);
                     return;
                 }
                 else {
@@ -264,10 +272,12 @@ public class TicketsController implements Initializable, ArrastrarScene {
                 }
             }
             else 
-                Dialogo.mostrarError("Solamente puede seleccionar un ticket para vender. ", "Seleccione unicamente un ticket.", App.configuracion.getColorTema(), ButtonType.OK);
+                Dialogo.mostrarError("Solamente puede seleccionar un ticket para vender. ", "Seleccione unicamente un ticket.", 
+                        App.configuracion, ButtonType.OK);
         }
         else
-            Dialogo.mostrarError("Debe de seleccionar un ticket para vender.", "No a seleccionado ningun ticket", App.configuracion.getColorTema(), ButtonType.OK);
+            Dialogo.mostrarError("Debe de seleccionar un ticket para vender.", "No a seleccionado ningun ticket", 
+                    App.configuracion, ButtonType.OK);
     }
     
     public void actualizarTicket (Ticket ticket){

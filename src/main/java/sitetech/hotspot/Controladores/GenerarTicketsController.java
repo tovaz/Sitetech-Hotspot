@@ -123,7 +123,8 @@ public class GenerarTicketsController implements Initializable {
             if (listaTickets == null )
                 this.generarTickets(longusuario, longcontraseña, cantidad);
             else{
-                if (Dialogo.mostrarConfirmacion("Se perderan los tickets que actualmente se generaron y no se guardaron.", "¿Desea generar mas Tickets?", App.configuracion.getColorTema(), ButtonType.YES, ButtonType.NO) == ButtonType.YES)
+                if (Dialogo.mostrarConfirmacion("Se perderan los tickets que actualmente se generaron y no se guardaron.", "¿Desea generar mas Tickets?", 
+                        App.configuracion, ButtonType.YES, ButtonType.NO) == ButtonType.YES)
                     this.generarTickets(longusuario, longcontraseña, cantidad);
             }
         }
@@ -144,7 +145,8 @@ public class GenerarTicketsController implements Initializable {
         
         for (int i = 1; i <= cantidad; i++) {
             if (listaTicketsRt == null) {
-                Dialogo.mostrarError("Porfavor verifica la coneccion con el router y vuelve a intentar.", "Error al comunicarse con el router.", App.configuracion.getColorTema(), ButtonType.OK); 
+                Dialogo.mostrarError("Porfavor verifica la coneccion con el router y vuelve a intentar.", "Error al comunicarse con el router.", 
+                        App.configuracion, ButtonType.OK); 
                 break; 
             }
             
@@ -247,9 +249,11 @@ public class GenerarTicketsController implements Initializable {
 
         ltrabajando.setText("Se generaron " + ctickets + " tickets correctamente.");
         if (ctickets == listaTickets.size()) {
-            Dialogo.mostrarInformacion("Se guardaron " + ctickets + " tickets correctamente.", "Todos los tickets se guardaron.", App.configuracion.getColorTema(), ButtonType.OK);
+            Dialogo.mostrarInformacion("Se guardaron " + ctickets + " tickets correctamente.", "Todos los tickets se guardaron.", 
+                    App.configuracion, ButtonType.OK);
         } else {
-            Dialogo.mostrarError("Se guardaron solamente " + ctickets + " tickets correctamente.", "No se guardaron todos los tickets.", App.configuracion.getColorTema(), ButtonType.OK);
+            Dialogo.mostrarError("Se guardaron solamente " + ctickets + " tickets correctamente.", "No se guardaron todos los tickets.", 
+                    App.configuracion, ButtonType.OK);
         }
 
         

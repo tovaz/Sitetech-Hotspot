@@ -5,6 +5,8 @@ import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.HBox;
@@ -119,14 +121,35 @@ public class Temas {
         ToolBar toolbar = (ToolBar) escena.lookup("#ticketToolbar");
         HBox panelMenu = (HBox) escena.lookup("#panelMenu");
         
-        if (panelMenu != null && colorMenu) {
-            panelMenu.setStyle("-colorTextoMenu: #eee;");
-            panelMenu.setStyle("-fx-background-color: -fx-accent;");
-            
+        if (panelMenu != null) {
+            MenuBar menu = (MenuBar) panelMenu.lookup("#menuBar");
+            ObservableList<Menu> mi = menu.getMenus();
+            if (colorMenu){
+                for (Menu mx : mi){
+                    panelMenu.getStyleClass().remove("menuSinEnfasis");
+                    panelMenu.getStyleClass().add("menuEnfasis");
+                }
+                panelMenu.setStyle("-fx-background-color: -fx-accent;");
+            }
+            else{
+                for (Menu mx : mi){
+                    panelMenu.getStyleClass().remove("menuEnfasis");
+                    panelMenu.getStyleClass().add("menuSinEnfasis");
+                }
+                panelMenu.setStyle("-fx-background-color: -colorFondo2;");
+            }
         }
-        if (panelMenu != null && !colorMenu) panelMenu.setStyle("-fx-background-color: -colorFondo2; -colorTextoMenu: -colorTexto2; ");
-                
-        if (toolbar != null && colorToolbar) toolbar.setStyle("-fx-background-color: -fx-accent;");
-        if (toolbar != null && !colorToolbar) toolbar.setStyle("-fx-background-color: -colorFondo2;");
+        
+        if (toolbar != null) { 
+            Label lticket = (Label) toolbar.lookup("#lTickets");
+            System.err.println("----f Ticket: " + lticket);
+            if (colorToolbar){
+                toolbar.setStyle("-fx-background-color: -fx-accent;");
+                if (lticket != null) lticket.setStyle("-fx-text-fill: #eee22");
+            }else{
+                toolbar.setStyle("-fx-background-color: -colorFondo2;");
+                if (lticket != null) lticket.setStyle("-fx-text-fill: #00022");
+            }
+        }
     }
 }

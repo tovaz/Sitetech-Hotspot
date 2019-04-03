@@ -1,6 +1,7 @@
 package sitetech.hotspot.Controladores;
 
 import Util.ArrastrarScene;
+import Util.Dialogo;
 import Util.Moneda;
 import sitetech.hotspot.Temas;
 import java.io.IOException;
@@ -14,11 +15,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.MotionBlur;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -47,6 +51,7 @@ public class MainController implements Initializable, ArrastrarScene {
         tc = new TicketsController(App);
         try {
             tc.cargarPanel(panelPrincipal);
+            //Temas.aplicarTema(tc.nodo.getScene(), App.configuracion);
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
         }
@@ -93,7 +98,7 @@ public class MainController implements Initializable, ArrastrarScene {
     }
 
     public void showStage() {
-        //ltitulo.setText("Hotspot - Sitetech");
+        panelPrincipal.setEffect(null);
         thisStage.show();
     }
 
@@ -111,7 +116,9 @@ public class MainController implements Initializable, ArrastrarScene {
         MenuItem mi = (MenuItem) event.getSource();
         System.out.println(mi.getText());
 
+        
         switch (mi.getText()) {
+            //*************** ADMIN MENU ******************//
             case "Usuarios":
                 uvController = new UsuariosController(App);
                 uvController.showStage();
@@ -135,6 +142,13 @@ public class MainController implements Initializable, ArrastrarScene {
                 
                 pConfiguracion.thisStage.setUserData(scenes);
                 pConfiguracion.showStage();
+                break;
+                
+            //*************** TICKET MENU ******************//
+            //*************** CAJA MENU ******************//
+            case "Consultar caja": case "Cerrar caja":
+                DetalleCajaControlador detallesC = new DetalleCajaControlador(App);
+                detallesC.showStage();
                 break;
         }
 
@@ -184,13 +198,23 @@ public class MainController implements Initializable, ArrastrarScene {
     
     @FXML
     void cerrarSesionAction(ActionEvent event) throws Exception {
-        LoginController logc = new LoginController(App);
-        App.usuarioLogeado = null;
-        lusuario.setText("");
-        logc.showStage();
+        ButtonType btn = Dialogo.mostrarConfirmacion("¿Desea realmente cerrar sesion?", "Cerrar Sesion", App.configuracion, ButtonType.YES, ButtonType.NO);
         
-        if (App.usuarioLogeado == null){
-            thisStage.close();
+        if (btn == ButtonType.YES){
+            LoginController logc = new LoginController(App);
+            App.usuarioLogeado = null;
+            lusuario.setText("");
+            
+            MotionBlur mb = new MotionBlur();
+            mb.setRadius(15.0f);
+            mb.setAngle(45.0f);
+
+            panelPrincipal.setEffect(mb);
+            logc.showStage();
+
+            if (App.usuarioLogeado == null){
+                thisStage.close();
+            }
         }
     }
 }

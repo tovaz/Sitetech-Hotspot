@@ -24,10 +24,9 @@ import sitetech.hotspot.Modelos.ConfiguracionManager2;
  */
 public class Moneda {
     public static String Formatear(BigDecimal bd) {
-        Configuracion conf = ConfiguracionManager2.getConfiguracion(new dbHelper());
-        Currency currency = conf.getMoneda();
-        DecimalFormat df = new DecimalFormat(getSimbolo(currency.getCurrencyCode()) + " ###,###.00", new DecimalFormatSymbols(conf.getRegionLocal().getLocale()));
-
+        Currency currency = Currency.getInstance(Locale.getDefault());
+        DecimalFormat df = new DecimalFormat(getSimbolo(currency.getCurrencyCode()) + " ###,###.00", new DecimalFormatSymbols(Locale.getDefault()));
+        
         return df.format(bd);
     }
     

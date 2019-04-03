@@ -2,50 +2,62 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.effect.Blend?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.effect.DisplacementMap?>
+<?import javafx.scene.effect.FloatMap?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox id="rootApp" alignment="CENTER" minWidth="324.0" prefHeight="377.0" prefWidth="324.0" styleClass="fondoApp">
+      <VBox id="rootApp" alignment="CENTER" prefHeight="401.0" prefWidth="357.0" style="-fx-background-color: -colorFondo;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane>
-               <children>   
-                  <ImageView fitHeight="107.0" fitWidth="117.0" layoutX="99.0" pickOnBounds="true" preserveRatio="true" smooth="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="99.0" AnchorPane.rightAnchor="98.0" AnchorPane.topAnchor="0.0">
-                     <image>
-                        <Image url="@../Imagenes/user.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
+            <FontAwesomeIcon glyphStyle="-fx-fill: -fx-accent;" iconName="USER" size="8em">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <effect>
+                  <DisplacementMap>
+                     <mapData>
+                        <FloatMap />
+                     </mapData>
+                  </DisplacementMap>
+               </effect>
+            </FontAwesomeIcon>
+            <AnchorPane />
             
-            <JFXTextField fx:id="tusuario" onKeyPressed="#onKeyPress" prefHeight="44.0" prefWidth="214.0" promptText="Usuario">
+            <JFXTextField fx:id="tusuario" alignment="CENTER" labelFloat="true" onKeyPressed="#onKeyPress" prefHeight="44.0" prefWidth="214.0" promptText="Usuario">
                <font>
                   <Font size="15.0" />
                </font>
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets left="30.0" right="30.0" top="30.0" />
                </VBox.margin>
             </JFXTextField>
             <Label fx:id="ltusuario">
                <VBox.margin>
-                  <Insets bottom="10.0" />
+                  <Insets bottom="10.0" top="5.0" />
                </VBox.margin>
             </Label>
                
-               <JFXTextField fx:id="tcontraseña" onKeyPressed="#onKeyPress" prefHeight="44.0" prefWidth="214.0" promptText="Contraseña">
+               <JFXTextField fx:id="tcontraseña" alignment="CENTER" labelFloat="true" onKeyPressed="#onKeyPress" prefHeight="44.0" prefWidth="214.0" promptText="Contraseña">
                <font>
                   <Font size="15.0" />
                </font>
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" top="10.0" />
+               </VBox.margin>
             </JFXTextField>
-            <Label fx:id="ltcontraseña" />
+            <Label fx:id="ltcontraseña">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin></Label>
             <AnchorPane id="plogin" fx:id="plogin" maxHeight="332.0" maxWidth="357.0" minHeight="30.0" minWidth="357.0" prefHeight="30.0" prefWidth="357.0" style="-fx-background-color: #f46b6b;" visible="false">
                <children>
                   <Label layoutX="60.0" layoutY="6.0" prefHeight="17.0" prefWidth="238.0" text="Error: Usuario o contraseña incorrecta" textFill="WHITE">
@@ -54,40 +66,45 @@
                      </font>
                   </Label>
                </children>
-            </AnchorPane>
-            <AnchorPane />
-            
-            <JFXButton id="blogin" mnemonicParsing="false" onAction="#loginAction" prefHeight="44.0" prefWidth="117.0" stylesheets="@../styles/login.css" text="Iniciar Sesion">
-               <effect>
-                  <Blend />
-               </effect>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXButton>
-            
-               <JFXButton fx:id="btest" mnemonicParsing="false" onAction="#testAction" prefHeight="28.0" prefWidth="117.0" styleClass="btn-default" stylesheets="@../styles/login.css" text="Test ">
-               <effect>
-                  <Blend />
-               </effect>
-               <font>
-                  <Font size="10.0" />
-               </font>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
-            </JFXButton>
+            </AnchorPane>
+            <Separator prefWidth="200.0" />
+            <AnchorPane />
+            <AnchorPane style="-fx-background-color: -colorFondo2;">
+               <children>
+                  
+                  <JFXButton id="blogin" layoutX="114.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="40.0" prefWidth="130.0" stylesheets="@../styles/login.css" text="Iniciar Sesion" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="114.0" AnchorPane.rightAnchor="113.0" AnchorPane.topAnchor="15.0">
+                     <effect>
+                        <Blend />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXButton>
+                  
+                     <JFXButton fx:id="btest" layoutX="120.0" layoutY="54.0" mnemonicParsing="false" onAction="#testAction" prefHeight="28.0" prefWidth="100.0" styleClass="btn-default" stylesheets="@../styles/login.css" text="Test " visible="false" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="20.0">
+                     <effect>
+                        <Blend />
+                     </effect>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </AnchorPane>
          </children>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-         <stylesheets>
-            <URL value="@../styles/Styles.css" />
-            <URL value="@../styles/botones.css" />
-            <URL value="@../styles/validation.css" />
-            <URL value="@../styles/Temas/Tema-Azul.css" />
-            <URL value="@../styles/Temas/Tema-Claro.css" />
-         </stylesheets>
       </VBox>
    </children>
+   <stylesheets>
+      <URL value="@../styles/Styles.css" />
+      <URL value="@../styles/botones.css" />
+      <URL value="@../styles/validation.css" />
+      <URL value="@../styles/Temas/Tema-Indigo.css" />
+      <URL value="@../styles/Temas/Tema-Claro.css" />
+   </stylesheets>
 </AnchorPane>
