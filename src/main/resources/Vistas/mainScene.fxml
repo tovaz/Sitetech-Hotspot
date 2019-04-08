@@ -31,33 +31,34 @@
                                       <SeparatorMenuItem mnemonicParsing="false" onAction="#onMenuAction" />
                                       <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Ingreso" />
                                       <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Egreso" />
-                                      <Menu mnemonicParsing="false" onAction="#onMenuAction" text="Cerrar caja" />
+                              <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Cerrar caja" />
                                   </items>
                               </Menu>
                               <Menu mnemonicParsing="false" text="Tickets">
                                   <items>
-                                      <MenuItem mnemonicParsing="false" text="Generar tickets">
-                                 <graphic>
-                                    <FontAwesomeIcon glyphStyleClass="degradado1" iconName="PLUS" size="18PX" />
-                                 </graphic>
-                              </MenuItem>
-                                      <MenuItem mnemonicParsing="false" text="Vender Ticket">
+                                      <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Vender Ticket">
                                  <graphic>
                                     <FontAwesomeIcon glyphStyleClass="degradado1" iconName="MONEY" size="18px" />
                                  </graphic>
                               </MenuItem>
-                                      <MenuItem mnemonicParsing="false" text="Imprimir tickets">
+                              <SeparatorMenuItem mnemonicParsing="false" text="separadormenu" />
+                                      <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Generar tickets">
+                                 <graphic>
+                                    <FontAwesomeIcon glyphStyleClass="degradado1" iconName="PLUS" size="18PX" />
+                                 </graphic>
+                              </MenuItem>
+                                      <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Imprimir tickets">
                                  <graphic>
                                     <FontAwesomeIcon glyphStyleClass="degradado1" iconName="PRINT" size="18PX" />
                                  </graphic>
                               </MenuItem>
                                       <SeparatorMenuItem mnemonicParsing="false" text="separadormenu" />
-                                      <MenuItem mnemonicParsing="false" text="Eliminar ticket">
+                                      <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Eliminar ticket">
                                  <graphic>
                                     <FontAwesomeIcon glyphStyleClass="degradado1" iconName="TRASH" size="18PX" />
                                  </graphic>
                               </MenuItem>
-                                      <MenuItem mnemonicParsing="false" text="Modificar Ticket" />
+                                      <MenuItem disable="true" mnemonicParsing="false" text="Modificar Ticket" />
                                   </items>
                               </Menu>
                               <Menu mnemonicParsing="false" text="Administracion">

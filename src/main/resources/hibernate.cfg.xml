@@ -18,12 +18,12 @@
         
 
         <property name="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</property>
-        <mapping class="sitetech.hotspot.Modelos.Usuario"/>
-        <mapping class="sitetech.hotspot.Modelos.Router"/>
-        <mapping class="sitetech.hotspot.Modelos.Paquete"/>
-        <mapping class="sitetech.hotspot.Modelos.Ticket"/>
-        <mapping class="sitetech.hotspot.Modelos.Caja"/>
-        <mapping class="sitetech.hotspot.Modelos.detalleCaja"/>
-        <mapping class="sitetech.hotspot.Modelos.Configuracion"/>
+        <mapping class="sitetech.hotspot.Modelos.Usuario"></mapping>
+        <mapping class="sitetech.hotspot.Modelos.Router" ></mapping>
+        <mapping class="sitetech.hotspot.Modelos.Paquete" ></mapping>
+        <mapping class="sitetech.hotspot.Modelos.Ticket" ></mapping>
+        <mapping class="sitetech.hotspot.Modelos.Caja" ></mapping>
+        <mapping class="sitetech.hotspot.Modelos.detalleCaja" ></mapping>
+        <mapping class="sitetech.hotspot.Modelos.Configuracion" ></mapping>
     </session-factory>
 </hibernate-configuration>

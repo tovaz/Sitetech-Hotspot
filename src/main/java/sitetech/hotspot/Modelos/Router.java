@@ -5,7 +5,6 @@
  */
 package sitetech.hotspot.Modelos;
 
-import java.util.logging.Logger;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;

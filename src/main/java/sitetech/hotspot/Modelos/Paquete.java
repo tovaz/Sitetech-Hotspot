@@ -1,6 +1,7 @@
 package sitetech.hotspot.Modelos;
 import Util.Moneda;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -194,9 +195,15 @@ public class Paquete {
     public String LimiteInternet;
     
     public String getDuracion() {
-        String duracion = String.valueOf(dias) + " dias y " + String.valueOf(horas) + " hr " + String.valueOf(minutos) + " min";
-        if (duracion.equals("0 dias y 0 hr 0 min")) return "Sin limite";
-        else return duracion;
+        String duracion;
+        if (dias != 0) 
+            duracion = String.valueOf(dias) + " dias y " + String.valueOf(horas) + " hr " + String.valueOf(minutos) + " min";
+        else{
+            duracion = String.valueOf(horas) + " hr " + String.valueOf(minutos) + " min";
+            if (duracion.equals("0 hr 0 min")) return "Sin limite";
+        }
+        
+        return duracion;
     }
 
     public void setDuracion(String Duracion) {
@@ -213,14 +220,19 @@ public class Paquete {
     }
     
     public String getLimiteInternet() {
+        DecimalFormat f = new DecimalFormat("##.00");
         String limite = "";
-                if (megasDescarga == 0) limite += " Sin limite. ";
-                else limite += String.valueOf(megasDescarga) + " Mb " + " / " + String.valueOf(megasSubida) + " Mb ";
+                if (megasDescarga == 0 && gigasDescarga == 0) limite += " Sin limite. ";
+                else if (megasDescarga == 0) 
+                    limite = String.valueOf(f.format(gigasDescarga)) + " Gb " + " / " + String.valueOf( f.format((megasSubida/1024) + gigasSubida)) + " Gb ";
+                else
+                    limite = String.valueOf(f.format((megasDescarga/1024) + gigasDescarga)) + " Gb " + " / " + String.valueOf( f.format((megasSubida/1024) + gigasSubida)) + " Gb ";
                 
-                limite += " | ";
+                
+                /*limite += " + ";
                 if (gigasDescarga == 0) limite += "Sin limite. ";
                 else limite += String.valueOf(gigasDescarga) + " Gb " + " / " + String.valueOf(gigasSubida) + " Gb ";
-        
+                */
         return limite;
     }
 

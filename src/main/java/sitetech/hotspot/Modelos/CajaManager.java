@@ -32,7 +32,7 @@ public class CajaManager {
     public Caja getCajaAbierta(Usuario usuarioLogeado){
         ObservableList<Caja> lista =(ObservableList<Caja>)DbHelper.Select("FROM Caja WHERE UsuarioCierre = null");
         if (lista.isEmpty()){
-            Caja nuevaCaja = new Caja(usuarioLogeado, new BigDecimal(0), new BigDecimal(0));
+            Caja nuevaCaja = new Caja(usuarioLogeado, BigDecimal.ZERO, BigDecimal.ZERO);
             crearCaja(nuevaCaja);
             return nuevaCaja;
         }
@@ -40,6 +40,16 @@ public class CajaManager {
             return lista.get(0);
     }
     
+    public Caja nuevaCajaconSaldo(Usuario usuarioLogeado, BigDecimal saldo){
+        Caja nuevaCaja = new Caja(usuarioLogeado, BigDecimal.ZERO, BigDecimal.ZERO);
+        if (saldo != BigDecimal.ZERO){ 
+            nuevaCaja.setCajaInicial(saldo);
+            nuevaCaja.setTotal(saldo);
+        }
+        
+        crearCaja(nuevaCaja);
+        return nuevaCaja;
+    }
     
     public void crearCaja(Caja caja)
     {
@@ -65,9 +75,11 @@ public class CajaManager {
         ObservableList<detalleCaja> listaDetalles = getDetalleCaja(caja);
         ObservableList<detalleCaja> listaRetorno = observableArrayList();
         
-        for (int i=0; i<listaDetalles.size(); i++){
-            if (listaDetalles.get(i).getTicket() != null)
-                listaRetorno.add(listaDetalles.get(i));
+        if (listaDetalles != null){
+            for (int i=0; i<listaDetalles.size(); i++){
+                if (listaDetalles.get(i).getTicket() != null)
+                    listaRetorno.add(listaDetalles.get(i));
+            }
         }
         
         return listaRetorno;

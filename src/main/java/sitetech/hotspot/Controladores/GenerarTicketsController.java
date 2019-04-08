@@ -35,6 +35,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javax.swing.UnsupportedLookAndFeelException;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperPrint;
 import sitetech.Helpers.reporteHelper;
 import sitetech.hotspot.MainApp;
 import sitetech.hotspot.Modelos.Paquete;
@@ -266,7 +267,15 @@ public class GenerarTicketsController implements Initializable {
 
     @FXML
     private void imprimirAction(ActionEvent event) throws IOException, JRException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-        reporteHelper.imprimirTickets(listaTickets);
+        JasperPrint jp = reporteHelper.getJasperPrintTicket(listaTickets, App.configuracion);
+        if (jp != null){
+            ReporteViewerControlador rview = new ReporteViewerControlador(App);
+            rview.mostrarReporte("Reporte de tickets generados", jp);
+        }
+        else
+            Dialogo.mostrarError("Error no se pudo generar el reporte.", "Error al generar el reporte.", App.configuracion, ButtonType.OK);
+        
+        //reporteHelper.imprimirTickets(listaTickets, App.configuracion);
     }
 
 }

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="526.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="ticket-toolbar" BorderPane.alignment="CENTER">
+               <items>
+                  <JFXButton fx:id="bimprimir" onAction="#onImprimir" text=" ">
+                     <graphic>
+                        <Label text="Imprimir">
+                           <graphic>
+                              <FontAwesomeIcon glyphStyle="-fx-fill:  -fx-accent;" glyphStyleClass="" iconName="PRINT" size="1.3em" />
+                           </graphic>
+                        </Label>
+                     </graphic></JFXButton>
+                  <JFXButton fx:id="bguardar" layoutX="10.0" layoutY="10.0" onAction="#onGuardar" styleClass="btn-default" text=" ">
+                     <graphic>
+                        <Label text="Guardar">
+                           <graphic>
+                              <FontAwesomeIcon glyphStyle="-fx-fill:  -fx-accent;" iconName="SAVE" size="1.3em" />
+                           </graphic>
+                        </Label>
+                     </graphic></JFXButton>
+                  <MenuButton maxHeight="30.0" minHeight="30.0" mnemonicParsing="false" prefHeight="30.0" styleClass="btn-default2" text="Exportar como">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#onExportar" text="Pdf">
+                           <graphic>
+                              <FontAwesomeIcon glyphStyle="-fx-fill: -fx-accent;" iconName="FILE_PDF_ALT" size="1.3em" />
+                           </graphic>
+                        </MenuItem>
+                      <MenuItem mnemonicParsing="false" onAction="#onExportar" text="Html">
+                           <graphic>
+                              <FontAwesomeIcon glyphStyle="-fx-fill: -fx-accent;" iconName="FILE_CODE_ALT" size="1.3em" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#onExportar" text="Xml">
+                           <graphic>
+                              <FontAwesomeIcon glyphStyle="-fx-fill: -fx-accent;" iconName="FILE_CODE_ALT" size="1.3em" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#onExportar" text="Xls">
+                           <graphic>
+                              <FontAwesomeIcon glyphStyle="-fx-fill: -fx-accent;" iconName="FILE_EXCEL_ALT" size="1.3em" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#onExportar" text="Xlsx">
+                           <graphic>
+                              <FontAwesomeIcon glyphStyle="-fx-fill: -fx-accent;" iconName="FILE_EXCEL_ALT" size="1.3em" />
+                           </graphic>
+                        </MenuItem>
+                    </items>
+                     <graphic>
+                        <FontAwesomeIcon glyphStyle="-fx-fill: -fx-accent;" iconName="EXTERNAL_LINK" size="1.3em" />
+                     </graphic>
+                  </MenuButton>
+                  <VBox alignment="TOP_CENTER">
+                     <children>
+                        <Label text="Zoom" />
+                        <JFXSlider fx:id="slzoom" max="175.0" min="25.0" minorTickCount="1" prefHeight="38.0" prefWidth="200.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="100.0" />
+                     </children>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <HBox>
+                           <children>
+                              <Label fx:id="lpagina1" contentDisplay="CENTER" minWidth="-Infinity" text="Paginas: " textAlignment="CENTER">
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="lpagina" contentDisplay="CENTER" minWidth="-Infinity" text="1" textAlignment="CENTER">
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <JFXButton fx:id="batraz2" ellipsisString="" prefWidth="20.0">
+                                 <graphic>
+                                    <FontAwesomeIcon glyphStyle="-fx-fill:  -fx-accent;" iconName="ANGLE_DOUBLE_LEFT" />
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="batraz" ellipsisString="" prefWidth="20.0" text=" ">
+                                 <graphic>
+                                    <FontAwesomeIcon iconName="ANGLE_LEFT" styleClass="btn-default2" />
+                                 </graphic>
+                              </JFXButton>
+                              <JFXTextField fx:id="tpagina" alignment="CENTER" onAction="#onTextPagina" prefWidth="50.0" promptText="1">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets left="5.0" right="5.0" />
+                                 </padding>
+                              </JFXTextField>
+                              <JFXButton fx:id="badelante" ellipsisString="" prefWidth="20.0" text=" ">
+                                 <graphic>
+                                    <FontAwesomeIcon iconName="ANGLE_RIGHT" />
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="badelante2" ellipsisString="" prefWidth="20.0" text=" ">
+                                 <graphic>
+                                    <FontAwesomeIcon glyphStyle="-fx-fill:  -fx-accent;" iconName="ANGLE_DOUBLE_RIGHT" />
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  
+               </items>
+            </ToolBar>
+         </top>
+         <center>
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="AS_NEEDED" pannable="true" vbarPolicy="AS_NEEDED">
+               <content>
+                  <StackPane fx:id="stack" style="-fx-background-color: -colorFondo2;">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fx:id="ireporte" cache="true" smooth="false" styleClass="sombra2">
+                                 <image>
+                                    <Image url="@../Imagenes/user.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Group>
+                     </children>
+                  </StackPane>
+               </content>
+            </ScrollPane>
+         </center>
+      </BorderPane>
+   </children>
+   <stylesheets>
+      <URL value="@../styles/Styles.css" />
+      <URL value="@../styles/botones.css" />
+      <URL value="@../styles/Temas/Tema-Celeste.css" />
+      <URL value="@../styles/Temas/Tema-Obscuro.css" />
+   </stylesheets>
+</AnchorPane>

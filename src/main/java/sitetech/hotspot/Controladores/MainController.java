@@ -72,7 +72,7 @@ public class MainController implements Initializable, ArrastrarScene {
     public void actualizarInfo(Usuario user, Caja caja){
         lusuario.setText(user.getNombre());
         lcaja.setText( String.valueOf(caja.getId() ));
-        lcajaTotal.setText( Moneda.Formatear(caja.getTotal(), Locale.getDefault()));
+        lcajaTotal.setText( caja.getTotalF() );
     }
     
     public MainController(MainApp _mainApp) {
@@ -145,6 +145,22 @@ public class MainController implements Initializable, ArrastrarScene {
                 break;
                 
             //*************** TICKET MENU ******************//
+            case "Vender Ticket":
+                tc.onVenderAction(event);
+            break;
+            
+            case "Generar tickets":
+                tc.onGenerarAction(event);
+            break;
+            
+            case "Imprimir tickets":
+                tc.onImprimirAction(event);
+            break;
+            
+            case "Eliminar ticket":
+                tc.onEliminarAction(event);
+            break;
+            
             //*************** CAJA MENU ******************//
             case "Consultar caja": case "Cerrar caja":
                 DetalleCajaControlador detallesC = new DetalleCajaControlador(App);

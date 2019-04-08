@@ -27,7 +27,7 @@ public class Configuracion {
     private int id=777;
     
     private String Dominio="http://st.cklogin/";
-    private String imagenTicket="";
+    private String imagenTicket=getClass().getResource("/Imagenes/icon.png").toString();
     private String Empresa="Sitetech";
     private String direccion="0 Calle D11B";
     private String Pais = "Guatemala";

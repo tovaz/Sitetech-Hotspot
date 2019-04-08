@@ -33,6 +33,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JasperPrint;
 import sitetech.Helpers.reporteHelper;
 import sitetech.hotspot.MainApp;
 import sitetech.hotspot.Modelos.Paquete;
@@ -165,7 +166,7 @@ public class TicketsController implements Initializable, ArrastrarScene {
     //****************************************************************************************
     Thread th;
     @FXML
-    void onEliminarAction(ActionEvent event) {
+    public void onEliminarAction(ActionEvent event) {
          ObservableList<Ticket> ticketsSeleccionados = tvtickets.getSelectionModel().getSelectedItems();
          
         if (ticketsSeleccionados != null) {
@@ -237,7 +238,7 @@ public class TicketsController implements Initializable, ArrastrarScene {
     
     GenerarTicketsController genTicket;
     @FXML
-    void onGenerarAction(ActionEvent event) {
+    public void onGenerarAction(ActionEvent event) {
         if (genTicket == null)
             genTicket = new GenerarTicketsController(this, App);
         
@@ -245,16 +246,23 @@ public class TicketsController implements Initializable, ArrastrarScene {
     }
 
     @FXML
-    void onImprimirAction(ActionEvent event) {
+    public void onImprimirAction(ActionEvent event) {
         ObservableList<Ticket> ticketsSeleccionados = tvtickets.getSelectionModel().getSelectedItems();
-        if (ticketsSeleccionados != null)
-            reporteHelper.imprimirTickets(ticketsSeleccionados);
-        else 
+        if (ticketsSeleccionados != null){
+            JasperPrint jp = reporteHelper.getJasperPrintTicket(ticketsSeleccionados, App.configuracion);
+            if (jp != null){
+                ReporteViewerControlador rview = new ReporteViewerControlador(App);
+                rview.mostrarReporte("Reporte de tickets generados", jp);
+            }
+            else
+                Dialogo.mostrarError("Error no se pudo generar el reporte.", "Error al generar el reporte.", App.configuracion, ButtonType.OK);
+            //reporteHelper.imprimirTickets(ticketsSeleccionados, App.configuracion);
+        }else 
             Util.util.mostrarAlerta("Debe de seleccionar uno o mas tickets para imprimir ", "No hay tickets seleccionados para imprimir", ButtonType.OK);
     }
 
     @FXML
-    void onVenderAction(ActionEvent event) {
+    public void onVenderAction(ActionEvent event) {
         ObservableList<Ticket> ticketsSeleccionados = tvtickets.getSelectionModel().getSelectedItems();
          
         if (ticketsSeleccionados != null) {

@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import Util.util;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
@@ -18,7 +17,7 @@ import javax.persistence.GenerationType;
  */
 @Entity
 @Table(name = "Usuario")
-public class Usuario extends RecursiveTreeObject<Usuario>{
+public class Usuario{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;

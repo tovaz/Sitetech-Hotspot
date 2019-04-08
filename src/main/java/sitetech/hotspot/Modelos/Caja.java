@@ -180,7 +180,7 @@ public class Caja {
     }
     
     public String getTotalF(){
-        return Moneda.Formatear(this.total);
+        return Moneda.Formatear(this.total.subtract(totalEgreso));
     }
     
     public String getTotalIngresoF(){

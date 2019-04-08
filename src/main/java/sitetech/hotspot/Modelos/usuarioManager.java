@@ -54,13 +54,22 @@ public class usuarioManager {
         listaUsuarios = (ObservableList<Usuario>) 
         DbHelper.Select("FROM Usuario WHERE eliminado=false");
         
-        if (listaUsuarios.size() == 0 ) return null;
+        if ( listaUsuarios.size() == 0 ) return null;
         else return listaUsuarios;
     }
     
     public boolean checkLogin(String nombre, String contraseña)
     {
         Usuario ux = null;
+        if (listaUsuarios == null){
+            ux = new Usuario(0, nombre, contraseña, "Administrador", false, true);
+            ux.setContraseña(contraseña);
+            this.AgregarUsuario(ux);
+            
+            usuarioLogeado = ux;
+            return true;
+        }
+        
         for (int i=0; i<listaUsuarios.size(); i++)
             if (listaUsuarios.get(i).getNombre().equals(nombre) ) {
                 ux = listaUsuarios.get(i);

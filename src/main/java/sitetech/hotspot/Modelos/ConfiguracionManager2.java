@@ -29,7 +29,7 @@ public class ConfiguracionManager2 {
     
     public static Configuracion getConfiguracion(dbHelper db){
         ObservableList<Configuracion> lista =   (ObservableList<Configuracion>)db.Select("FROM Configuracion");
-        if (lista.size() == 0)
+        if (lista == null)
             return new Configuracion(true);
         else
             return lista.get(0);

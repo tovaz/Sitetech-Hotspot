@@ -1,13 +1,17 @@
 package sitetech.hotspot;
 
+import Util.Dialogo;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import sitetech.Helpers.dbHelper;
+import sitetech.Helpers.dbManager;
 import sitetech.hotspot.Controladores.LoginController;
 import sitetech.hotspot.Controladores.MainController;
 import sitetech.hotspot.Modelos.Caja;
@@ -35,19 +39,28 @@ public class MainApp extends Application {
         //primaryStage = new Stage();
         cm = new CajaManager();
         configuracion = ConfiguracionManager2.getConfiguracion(new dbHelper());
-        Locale.setDefault(configuracion.getRegionLocal().getLocale());
         
-        //setUserAgentStylesheet();
+        
+        checkConeccion();
         //primaryStage.getIcons().add(new Image(MainApp.class.getResourceAsStream( "/Imagenes/icon.png" )));
         
         checkLogin("tovaz", "correr");
         
+        Locale.setDefault(configuracion.getRegionLocal().getLocale());
         //********************************************
         //setUserAgentStylesheet(STYLESHEET_MODENA);
         //setUserAgentStylesheet(STYLESHEET_CASPIAN);
         //AquaFx.style();
         //********************************************
         
+    }
+    
+    public void checkConeccion() throws Exception{
+        dbManager dbm = new dbManager();
+        if (!dbm.conectarHb()){
+            Dialogo.mostrarError("Error al intentar comunicarse con la base de datos.", "Error coneccion de base de datos.", configuracion, ButtonType.OK);
+            stop();
+        }
     }
     
     public void ActualizarConfiguracion(Configuracion conf){

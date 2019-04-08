@@ -6,6 +6,7 @@
 package Util;
 
 import com.jfoenix.controls.JFXTextField;
+import java.math.BigDecimal;
 import java.util.Optional;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -105,14 +106,13 @@ public class Dialogo {
         //**********************************************************************
         
         dialog.getDialogPane().getButtonTypes().add(ButtonType.YES);
-        dialog.getDialogPane().getButtonTypes().add(ButtonType.NO);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
 
         dialog.setResultConverter(new Callback<ButtonType, Retiro>() {
             @Override
             public Retiro call(ButtonType b) {
 
                 if (b == ButtonType.YES) {
-
                     return new Retiro(tretiro1.getText(), tretiro2.getText());
                 }
 
@@ -121,15 +121,31 @@ public class Dialogo {
         });
         
         
-        return dialog.showAndWait();
+        Optional<Dialogo.Retiro> retiro = dialog.showAndWait();
+        Dialogo.Retiro retiroData = new Dialogo.Retiro("0", "0");
+        if (retiro.isPresent()){
+            retiroData = retiro.get();
+            if (retiroData.retiro1.compareTo(retiroData.retiro2) != 0) {
+                Dialogo.mostrarError("Debe de escribir la misma cantidad.", "Error al ingresar retiro", 
+                        config, ButtonType.OK);
+                return CerrarCaja(config, caja);
+            }
+            else if ( (retiroData.retiro1.compareTo(caja.getTotal()) == 1) ){
+                Dialogo.mostrarError("Debe de escribir una cantidad menor a la cantidad total de dinero en caja.", "Error al ingresar retiro", 
+                        config, ButtonType.OK);
+                return CerrarCaja(config, caja);
+            }
+        }
+        
+        return retiro;
     }
     
     public static class Retiro {
-        public double retiro1=0;
-        public double retiro2=0;
+        public BigDecimal retiro1 = BigDecimal.ZERO;
+        public BigDecimal retiro2 = BigDecimal.ZERO;
         public Retiro(String a, String b){
-            retiro1 = Double.valueOf(a);
-            retiro2 = Double.valueOf(b);
+            retiro1 = new BigDecimal(a);
+            retiro2 = new BigDecimal(b);
         }
     }
 }

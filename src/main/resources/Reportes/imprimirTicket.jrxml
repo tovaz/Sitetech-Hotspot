@@ -5,6 +5,9 @@
 	<property name="ireport.y" value="0"/>
 	<parameter name="dominio" class="java.lang.String"/>
 	<parameter name="iTicket" class="java.lang.String"/>
+	<queryString language="hql">
+		<![CDATA[]]>
+	</queryString>
 	<field name="usuario" class="java.lang.Object"/>
 	<field name="contraseña" class="java.lang.Object"/>
 	<field name="fechaCreacion" class="java.lang.Object"/>
@@ -15,6 +18,9 @@
 	<field name="limiteMegasDown" class="java.lang.Object"/>
 	<field name="limiteMegasUp" class="java.lang.Object"/>
 	<field name="limiteMinutos" class="java.lang.Object"/>
+	<field name="duracion" class="java.lang.Object"/>
+	<field name="precio" class="java.lang.String"/>
+	<field name="limiteInternet" class="java.lang.Object"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -23,7 +29,7 @@
 			<staticText>
 				<reportElement x="229" y="0" width="109" height="32" uuid="77ee4e4b-a93a-4e0f-ad8a-b83b9cf5046d"/>
 				<textElement textAlignment="Center">
-					<font size="24"/>
+					<font size="24" isBold="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Tickets]]></text>
 			</staticText>
@@ -77,7 +83,7 @@
 			<staticText>
 				<reportElement x="3" y="85" width="107" height="16" uuid="15204ded-339f-4a71-bc06-9cc46b147041"/>
 				<textElement textAlignment="Left">
-					<font size="11"/>
+					<font size="11" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Limite de tiempo]]></text>
 			</staticText>
@@ -93,19 +99,33 @@
 				<textElement>
 					<font size="13"/>
 				</textElement>
-				<textFieldExpression><![CDATA[( ($F{limiteDias} > 0)?  $F{limiteDias} + " dias y " : "")+ $F{limiteHoras} + " hr y " + $F{limiteMinutos} + " min"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{duracion}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="3" y="132" width="107" height="18" uuid="abd851c0-a313-4933-b3c0-025c92dc941d"/>
 				<textElement>
-					<font size="13"/>
+					<font size="13" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[(($F{limiteGigasDown}>0)? $F{limiteGigasDown} + " Gb + ": "") + $F{limiteMegasDown} + " Mb "]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{limiteInternet}]]></textFieldExpression>
 			</textField>
 			<image>
 				<reportElement x="1" y="3" width="28" height="22" uuid="7d444537-f17e-4a0f-9ca6-ab4d6a97d7b8"/>
 				<imageExpression><![CDATA[$P{iTicket}]]></imageExpression>
 			</image>
+			<textField>
+				<reportElement x="41" y="153" width="69" height="18" uuid="0acf3abb-63ab-42ac-8b9f-4f4ea9452250"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="154" width="38" height="16" uuid="8a361ee1-e00d-4198-ae3b-3bbf72150ca6"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Precio: ]]></text>
+			</staticText>
 		</band>
 	</detail>
 </jasperReport>

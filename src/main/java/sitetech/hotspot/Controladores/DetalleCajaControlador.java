@@ -43,12 +43,14 @@ public class DetalleCajaControlador implements Initializable {
     @FXML private Label lingresos;
     @FXML private Label legresos;
     @FXML private Label ltotal;
+    @FXML private Label lcajainicial;
     @FXML private JFXSpinner spespere;
     @FXML private JFXButton bcancelar;
     @FXML private JFXButton bcerrar;
     @FXML private Label lespere;
     
     MainApp App;
+    CajaManager cm;
     public static Stage thisStage;
     
     /**
@@ -68,7 +70,7 @@ public class DetalleCajaControlador implements Initializable {
     Caja caja;
     public void cargarInfo(){
         caja = App.cajaAbierta;
-        CajaManager cm = new CajaManager();
+        cm = new CajaManager();
         ObservableList<detalleCaja> listaDetalles = cm.getTicketsdeCaja(caja);
         
         String tickets = String.valueOf(listaDetalles.size());
@@ -81,6 +83,7 @@ public class DetalleCajaControlador implements Initializable {
         ltickets.setText(tickets);
         ltotaltickets.setText(Moneda.Formatear(totalTickets, Locale.getDefault()));
         lcaja.setText(String.valueOf(caja.getId()));
+        lcajainicial.setText( Moneda.Formatear(caja.getCajaInicial()) );
         lingresos.setText(caja.getTotalIngresoF());
         legresos.setText(caja.getTotalEgresoF());
         ltotal.setText(caja.getTotalF());
@@ -103,21 +106,8 @@ public class DetalleCajaControlador implements Initializable {
         Dialogo.Retiro retiroData = new Dialogo.Retiro("0", "0");
         if (retiro.isPresent()){
             retiroData = retiro.get();
-            while (retiroData.retiro1 != retiroData.retiro2) { 
-                Dialogo.mostrarError("Debe de escribir la misma cantidad.", "Error al ingresar retiro", App.configuracion, ButtonType.OK);
-                retiro = Dialogo.CerrarCaja(App.configuracion, caja);
-                retiroData = retiro.get();
-            }
-            
             cerrar(retiroData);
-            
-            
-            
-            Dialogo.mostrarAlerta("Ingreso 1: " + String.valueOf(retiroData.retiro1), "Prueba", App.configuracion, ButtonType.OK);
-            Dialogo.mostrarAlerta("Ingreso 2: " + String.valueOf(retiroData.retiro2), "Prueba", App.configuracion, ButtonType.OK);
         }
-        
-        
     }
     
     private void cerrar(Dialogo.Retiro retiro)
@@ -125,12 +115,26 @@ public class DetalleCajaControlador implements Initializable {
         BigDecimal totalCierre = BigDecimal.ZERO;
         lespere.setText("Espere mientras se cierra la caja...");
         lespere.setVisible(true);
+        spespere.setVisible(true);
         bcerrar.setVisible(false);
         bcancelar.setVisible(false);
             
         caja.setUsuarioCierre(App.usuarioLogeado);
         caja.setFechaCierre(new Date());
-        caja.setTotalCierre();
+        caja.setTotalCierre(caja.getTotal().subtract(retiro.retiro1));
+        
+        try {
+            cm.Editar(caja);
+            Caja cajaNueva = cm.nuevaCajaconSaldo( App.usuarioLogeado, caja.getTotal().subtract(retiro.retiro1) ); // RETIRO1 -> tiene el saldo inicial de la siguiente caja.
+            App.actualizarCaja(cajaNueva);
+
+            Dialogo.mostrarInformacion("Caja cerrada exitosamente.", "Caja cerrada", App.configuracion, ButtonType.OK);
+        }
+        catch (Exception ex){ 
+            Dialogo.mostrarError("Error al cerrar la caja, porfavor vuelve a intentar nuevamente.", "Error al cerrar la caja", App.configuracion, ButtonType.OK);
+        }
+        
+        thisStage.close();
     }
     
 }

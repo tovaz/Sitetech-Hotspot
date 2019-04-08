@@ -5,6 +5,7 @@
  */
 package sitetech.hotspot.Modelos;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -344,7 +345,7 @@ public class Ticket {
     }
     
     public String getDuracion() {
-        String duracion = String.valueOf(diasConsumidos) + " dias y " + String.valueOf(horasConsumidas) + " hr " + String.valueOf(minutosConsumidos) + " min";
+        String duracion = String.valueOf(paquete.getDias()) + " dias y " + String.valueOf(paquete.getHoras()) + " hr " + String.valueOf(paquete.getMinutos()) + " min";
         if (duracion.equals("0 dias y 0 hr 0 min")) return "Sin limite";
         else return duracion;
     }
@@ -354,8 +355,18 @@ public class Ticket {
         if (duracion.equals("0 dias y 0 hr 0 min")) return "Aun sin consumir";
         else return duracion;
     }
-
     
+    
+    // FUNCIONES DE PAQUETE - para los reportes
+    @Transient private String precio;
+    @Transient private String limiteInternet;
+    public String getPrecio() {
+        return paquete.getPrecioFormateado();
+    }
+    
+    public String getLimiteInternet(){
+        return paquete.getLimiteInternet();
+    }
     
     
 }
