@@ -54,7 +54,7 @@ public class usuarioManager {
         listaUsuarios = (ObservableList<Usuario>) 
         DbHelper.Select("FROM Usuario WHERE eliminado=false");
         
-        if ( listaUsuarios.size() == 0 ) return null;
+        if ( listaUsuarios.isEmpty() ) return null;
         else return listaUsuarios;
     }
     

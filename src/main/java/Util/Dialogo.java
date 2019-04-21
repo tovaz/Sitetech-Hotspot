@@ -9,16 +9,13 @@ import com.jfoenix.controls.JFXTextField;
 import java.math.BigDecimal;
 import java.util.Optional;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 import sitetech.hotspot.Modelos.Caja;
@@ -43,6 +40,15 @@ public class Dialogo {
         dialogPane.getStyleClass().add("dialog-pane");
         
         //mostrar2(null, DialogType.COMMON, titulo, mensaje, btn);
+        
+        alert.showAndWait();
+        return alert.getResult();
+    }
+    
+    public static ButtonType mostrar(String mensaje, String titulo, AlertType tipo, ButtonType... btn)
+    {
+        Alert alert = new Alert(tipo, mensaje, btn);
+        alert.setHeaderText(titulo);
         
         alert.showAndWait();
         return alert.getResult();

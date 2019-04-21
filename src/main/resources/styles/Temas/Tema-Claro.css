@@ -455,46 +455,20 @@
     -fx-text-fill: #fd4358;
 }
 
-/************************ TABLE VIEW **********************************/
-/**********************************************************************/
-.table-view { -fx-border-color: -colorFondo; }
-.table-view:focused { -fx-border-color: derive(-fx-accent, 50%);}
-.table-view .column-header,
-.table-view .column-header .filler,
-.table-view .column-header-background .filler {   
-    /*-fx-background-color: derive;*/
-    -fx-stroke: transparent;
-    -fx-size:40;
-    -fx-alignment: CENTER ;    
-    -fx-text-alignment: center;
+/*************************** TABLE VIEW ********************************/
+
+.table-row-cell:selected .text, .table-row-cell:selected .text:focused{ -fx-fill: -colorTexto2; }
+.table-row-cell:selected { -fx-background-color: -colorFondo3; -fx-table-cell-border-color: -colorFondo3; }
+
+
+/************************************************************************/
+
+.fondoApp2 {
+    -fx-background-color: radial-gradient(focus-angle 254deg , focus-distance 74% , center 50% 50% , radius 55% , derive(-fx-secundary, 90%), -colorFondo2);
 }
-.table-row-cell:filled:hover {
-    -fx-size:40;
-    -fx-alignment: CENTER;
-    -fx-text-alignment: center;
-}
-.table-view:row-selection {
-    -fx-text-fill: white;
-    -fx-fixed-cell-size: 40;
-    -fx-alignment: CENTER;
-    -fx-text-alignment: center;
-}
-
-.table-view .table-column{
-    -fx-text-alignment: center;
-    -fx-alignment: CENTER 
-}
-
-.table-row-cell:selected { -fx-background-color: -fx-accent; -fx-table-cell-border-color: derive(-fx-accent, -10%); }
-.table-row-cell { -fx-background-color: -colorFondo; }
-/*.table-row-cell:filled:selected { -fx-effect: dropshadow(two-pass-box, -fx-accent, 10,0,0,0); }*/
-
-
-/****************************************************************************************/
-
 
 .fondoApp {
-    -fx-background-color: radial-gradient(focus-angle 254deg , focus-distance 74% , center 50% 50% , radius 55% , derive(-fx-secundary, 90%), -colorFondo2);
+    -fx-background-color: radial-gradient(focus-angle 254deg , focus-distance 100% , center 50% 50% , radius 100% , derive(-fx-secundary, 100%), -colorFondo2);
 }
 
 .jfx-text-field { -fx-text-fill: -colorTexto2; }

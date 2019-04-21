@@ -41,7 +41,7 @@ public class Configuracion {
     @Transient
     private Currency Moneda;
 
-    private String colorEnfasis="Indigo";
+    private String colorEnfasis="Azul";
     private String colorTema="Claro";
     private boolean colorToolbar = true;
     private boolean colorMenu = true;

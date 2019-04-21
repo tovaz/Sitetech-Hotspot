@@ -21,7 +21,7 @@ public class ConfiguracionManager2 {
     
     public Configuracion getConfiguracion(){
         ObservableList<Configuracion> lista =   (ObservableList<Configuracion>)DbHelper.Select("FROM Configuracion");
-        if (lista.size() == 0)
+        if (lista.isEmpty())
             return new Configuracion(true);
         else
             return (Configuracion)lista.get(0);
@@ -29,10 +29,10 @@ public class ConfiguracionManager2 {
     
     public static Configuracion getConfiguracion(dbHelper db){
         ObservableList<Configuracion> lista =   (ObservableList<Configuracion>)db.Select("FROM Configuracion");
-        if (lista == null)
+        if (lista.isEmpty())
             return new Configuracion(true);
         else
-            return lista.get(0);
+            return (Configuracion)lista.get(0);
     }
     
     public void Agregar(Configuracion conf)

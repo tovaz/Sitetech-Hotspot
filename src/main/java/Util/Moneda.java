@@ -55,7 +55,9 @@ public class Moneda {
       
     public static String getSimbolo(String currencyCode) {
         Currency currency = Currency.getInstance(currencyCode);
-        System.out.println( currencyCode+ ":-" + currency.getSymbol(currencyLocaleMap.get(currency)));
+        if (currency.getSymbol(currencyLocaleMap.get(currency)) == "")
+            currency = Currency.getInstance(Locale.US);
+        
         return currency.getSymbol(currencyLocaleMap.get(currency));
     }
 }

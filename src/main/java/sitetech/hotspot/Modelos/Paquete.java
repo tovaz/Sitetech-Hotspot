@@ -195,12 +195,31 @@ public class Paquete {
     public String LimiteInternet;
     
     public String getDuracion() {
-        String duracion;
-        if (dias != 0) 
-            duracion = String.valueOf(dias) + " dias y " + String.valueOf(horas) + " hr " + String.valueOf(minutos) + " min";
+        String duracion = "";
+        if (dias > 0)
+            if (horas > 0)
+                if (minutos > 0)
+                    duracion = String.valueOf(dias) + " dias y " + String.valueOf(horas) + " hr " + String.valueOf(minutos) + " min";
+                else if (horas == 1)
+                    duracion = String.valueOf(dias) + " dias y " + String.valueOf(horas) + " hora";
+                else
+                    duracion = String.valueOf(dias) + " dias y " + String.valueOf(horas) + " horas";
+            else if (minutos > 0)
+                duracion = String.valueOf(dias) + " dias y "  + String.valueOf(minutos) + " minutos";
+            else
+                duracion = String.valueOf(dias) + " dias";
         else{
-            duracion = String.valueOf(horas) + " hr " + String.valueOf(minutos) + " min";
-            if (duracion.equals("0 hr 0 min")) return "Sin limite";
+            if (horas > 0)
+                if (minutos > 0)
+                    duracion = String.valueOf(horas) + " hr " + String.valueOf(minutos) + " min";
+                else if (horas == 1)
+                    duracion = String.valueOf(horas) + " hora ";
+                else
+                    duracion = String.valueOf(horas) + " horas ";
+            else if (minutos > 0 )
+                duracion = String.valueOf(minutos) + " minutos";
+            else
+                return "Sin limite";
         }
         
         return duracion;
@@ -243,6 +262,7 @@ public class Paquete {
     public String getPrecioFormateado(){
         return Moneda.Formatear(precio);
     }
+    
     
     @Override
     public String toString() { 

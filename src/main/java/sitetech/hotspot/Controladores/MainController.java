@@ -3,14 +3,21 @@ package sitetech.hotspot.Controladores;
 import Util.ArrastrarScene;
 import Util.Dialogo;
 import Util.Moneda;
+import com.jfoenix.controls.JFXSpinner;
 import sitetech.hotspot.Temas;
 import java.io.IOException;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,11 +31,18 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.MotionBlur;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import sitetech.Helpers.DateTimeHelper;
+import sitetech.Helpers.LabelHelper;
 import sitetech.hotspot.MainApp;
 import sitetech.hotspot.Modelos.Caja;
+import sitetech.hotspot.Modelos.Router;
+import sitetech.hotspot.Modelos.RouterManager;
+import sitetech.hotspot.Modelos.Ticket;
+import sitetech.hotspot.Modelos.TicketManager;
 import sitetech.hotspot.Modelos.Usuario;
 
 public class MainController implements Initializable, ArrastrarScene {
@@ -39,11 +53,12 @@ public class MainController implements Initializable, ArrastrarScene {
     @FXML private AnchorPane panelPrincipal;
     @FXML private AnchorPane panelTitulo;
     @FXML private Label ltitulo;
-    @FXML private TextField tprueba;
     @FXML private Label lusuario;
     @FXML private Label lcaja;
     @FXML private Label lcajaTotal;
-
+    @FXML private Label lsincronizando;
+    @FXML private JFXSpinner spsincronizando;
+    
     TicketsController tc;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -55,6 +70,7 @@ public class MainController implements Initializable, ArrastrarScene {
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
         }
+        
     }
 
     @Override
@@ -63,31 +79,30 @@ public class MainController implements Initializable, ArrastrarScene {
         super.finalize(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
-    @FXML
-    void testAction(ActionEvent event) throws IOException {
-
-    }
-
     public void actualizarInfo(Usuario user, Caja caja){
         lusuario.setText(user.getNombre());
         lcaja.setText( String.valueOf(caja.getId() ));
         lcajaTotal.setText( caja.getTotalF() );
     }
     
+    public Timer  timer;
+    public TimerTask timerTask;
     public MainController(MainApp _mainApp) {
         App = _mainApp;
         thisStage = new Stage();
-        //util.cargarStage("/Vistas/mainScene.fxml", "Hotspot", thisStage, this, Modality.APPLICATION_MODAL);
+        
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/Vistas/mainScene.fxml"));
             loader.setController(this);
+            //loader.setControllerFactory(App.springContext::getBean); // SPRING BOOT
             
             thisStage.initStyle(StageStyle.DECORATED);
             Scene scene = new Scene((Parent) loader.load());
 
             Temas.aplicarTema(scene, App.configuracion);
+            
+            thisStage.getIcons().add(App.iconoApp); // ICONO DE LA APP
             thisStage.setScene(scene);
             thisStage.setTitle("Hotspot 1.0");
         } catch (IOException e) {
@@ -95,6 +110,13 @@ public class MainController implements Initializable, ArrastrarScene {
         }
         
         App.agregarEscena("scene_main", thisStage.getScene());
+        
+        // Sincronizar los tickest y programar la tarea cada 30 segundos ... TASK
+        spsincronizando.setVisible(true);
+        LabelHelper.asignarTexto(lsincronizando, "Sincronizando tickets ...");
+        timer = new Timer ();
+        if (sync == null) sync = new syncTicket();
+        timer.schedule(sync, 10000, 300000);
     }
 
     public void showStage() {
@@ -132,6 +154,11 @@ public class MainController implements Initializable, ArrastrarScene {
             case "Paquetes de Internet":
                 pController = new PaquetesController(App);
                 pController.showStage();
+                break;
+            
+            case "Reportes":
+                ReportesControlador rControlador = new ReportesControlador(App);
+                rControlador.show();
                 break;
             
             case "Configuracion":
@@ -189,7 +216,6 @@ public class MainController implements Initializable, ArrastrarScene {
 
     @FXML
     void maximizarAction(ActionEvent event) {
-
         Screen screen = Screen.getPrimary();
         javafx.geometry.Rectangle2D bounds = screen.getVisualBounds();
 
@@ -232,5 +258,97 @@ public class MainController implements Initializable, ArrastrarScene {
                 thisStage.close();
             }
         }
+    }
+    
+    //**************************************** SINCRONIZACION DE INFORMACION TICKETS DB Y TICKETS EN ROUTER
+    public syncTicket sync;
+    @FXML
+    void onsincronizar(ActionEvent event) {
+        spsincronizando.setVisible(true);
+        LabelHelper.asignarTexto(lsincronizando, "Sincronizando tickets ...");
+        
+        if (sync == null)
+           sync = new syncTicket();
+        
+        sync.run();
+    }
+    
+    ObservableList<Ticket> ticketsActualizados;
+    public void  actualizarTickets(){
+        RouterManager rm = new RouterManager();
+        TicketManager tm = new TicketManager();
+        ObservableList<Ticket> listaDb = tm.getTickets();
+        ObservableList<Router> lrouters = rm.getRouters();
+        ticketsActualizados = FXCollections.observableArrayList();
+        ticketsActualizados.clear();
+        
+        for (Router rx : lrouters){ // Recorremos cada router, buscando sus tickets, luego los comparamos con los tickets de la base de datos.
+            ObservableList<Ticket> listaRouter = tm.getticketsRouter(rx);
+            
+            if (listaRouter != null){
+                for (Ticket tcRouter : listaRouter){
+                    for (Ticket tc : listaDb){
+                        if (tc.getUsuario().equals(tcRouter.getUsuario())){
+                            tc.setDiasConsumidos( tcRouter.getDiasConsumidos() );
+                            tc.setHorasConsumidas(tcRouter.getHorasConsumidas());
+                            tc.setMinutosConsumidos(tcRouter.getMinutosConsumidos());
+
+                            tc.setGigasConsumidosDown(tcRouter.getGigasConsumidosDown());
+                            tc.setGigasConsumidosUp(tcRouter.getGigasConsumidosUp());
+
+                            tc.setMegasConsumidosDown(tcRouter.getMegasConsumidosDown());
+                            tc.setMegasConsumidosUp(tcRouter.getMegasConsumidosUp());
+
+                            //lsincronizando.setText("Sinc. " + tc.getUsuario());
+                            tm.EditarTicket(tc); //Actualizamos el ticket en la DB
+                            ticketsActualizados.add(tc);
+                        }
+                    }
+                }
+            }
+        }
+        
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run(){
+                guardarTickets();
+            }
+        });
+    }
+    
+    private void guardarTickets(){ // Actualizamos el ticket en la lista que vemos
+        for (Ticket tx : ticketsActualizados){
+            for (int i=0; i<tc.listaTickets.size(); i++){
+                if (tc.listaTickets.get(i).getId() == tx.getId())
+                    tc.listaTickets.set(i, tx); 
+            }
+        }
+        
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+        if (ticketsActualizados.isEmpty())
+            LabelHelper.asignarTexto(lsincronizando, "No se actualizo ningun ticket, verifique conexion con el router. <" + java.time.LocalTime.now().format(dtf) + ">");
+        else
+            LabelHelper.asignarTexto(lsincronizando, "Se actualizaron " + ticketsActualizados.size() + " tickets. <" + java.time.LocalTime.now().format(dtf) + ">");
+        
+        spsincronizando.setVisible(false);
+    }
+    
+    public class syncTicket extends TimerTask {
+        Thread th;
+        @Override
+        public void run() {
+            spsincronizando.setVisible(true);
+            lsincronizando.setText("Sincronizando tickets ...");
+            th = new Thread(() -> actualizarTickets());
+            th.start();
+        }
+
+        @Override
+        public boolean cancel() {
+            th.interrupt();
+            return super.cancel(); //To change body of generated methods, choose Tools | Templates.
+        }
+        
+        
     }
 }

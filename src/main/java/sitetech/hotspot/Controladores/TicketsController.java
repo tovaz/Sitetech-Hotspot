@@ -103,7 +103,6 @@ public class TicketsController implements Initializable, ArrastrarScene {
         nodo = (Node) StageManager.cargarEscenaEnPanel("/Vistas/Tickets/Tickets.fxml", "Tickets", this);
         
         AnchorPane.setTopAnchor(nodo, 0.0);
-
         AnchorPane.setLeftAnchor(nodo, 0.0);
         AnchorPane.setRightAnchor(nodo, 0.0);
         AnchorPane.setBottomAnchor(nodo, 0.0);
@@ -125,13 +124,13 @@ public class TicketsController implements Initializable, ArrastrarScene {
         
         //TableColumn paqueteColum = tvtickets.getColumns().get(2);
         //paqueteColum.setCellValueFactory(cellData -> ((Ticket) cellData).getPaquete().getNombre() );
-        tvtickets.getColumns().get(3).setCellValueFactory(new PropertyValueFactory("Paquete.getNombre()"));
+        tvtickets.getColumns().get(2).setCellValueFactory(new PropertyValueFactory("PaqueteS"));
         tvtickets.getColumns().get(3).setCellValueFactory(new PropertyValueFactory("Estado"));
         
-        tvtickets.getColumns().get(4).setCellValueFactory(new PropertyValueFactory("fechaCreacion"));
+        tvtickets.getColumns().get(4).setCellValueFactory(new PropertyValueFactory("Precio"));
         tvtickets.getColumns().get(5).setCellValueFactory(new PropertyValueFactory("duracion"));
         tvtickets.getColumns().get(6).setCellValueFactory(new PropertyValueFactory("LimiteInternetDown"));
-        tvtickets.getColumns().get(7).setCellValueFactory(new PropertyValueFactory("LimiteInternetUp"));
+        tvtickets.getColumns().get(7).setCellValueFactory(new PropertyValueFactory("FechaCreacion"));
 
     
         tvtickets.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -253,6 +252,7 @@ public class TicketsController implements Initializable, ArrastrarScene {
             if (jp != null){
                 ReporteViewerControlador rview = new ReporteViewerControlador(App);
                 rview.mostrarReporte("Reporte de tickets generados", jp);
+                App.agregarEscena("reporte", rview.thisStage.getScene());
             }
             else
                 Dialogo.mostrarError("Error no se pudo generar el reporte.", "Error al generar el reporte.", App.configuracion, ButtonType.OK);
@@ -306,9 +306,14 @@ public class TicketsController implements Initializable, ArrastrarScene {
             ltiempoConsumido.setText(tc.getDuracionConsumida());
             lconsumidoDown.setText(tc.getmegasConsumidoDown().toString() + " Mb ");
             lconsumidoUp.setText(tc.getmegasConsumidoUp().toString() + " Mb ");
-
-            spConsumidoDown.setProgress( tc.getmegasConsumidoDown() / ( (tc.getLimiteGigasDown() * 1024) + tc.getLimiteMegasDown() ) );
-            spConsumidoUp.setProgress(tc.getPorcentaje(tc.getmegasConsumidoUp(), (tc.getLimiteGigasUp() * 1024) + tc.getLimiteMegasUp()) );
+            
+            spConsumidoDown.setProgress(0);
+            spConsumidoUp.setProgress(0);
+            if (tc.getLimiteGigasDown() != 0 || tc.getLimiteMegasDown() !=0 )
+                spConsumidoDown.setProgress( tc.getPorcentajeDescarga() );
+                
+            if (tc.getLimiteGigasUp() != 0 || tc.getLimiteMegasUp() !=0 )
+                spConsumidoUp.setProgress( tc.getPorcentajeSubida() );
 
             lpaquete.setText(tc.getPaquete().getNombre());
             lprecio.setText(Moneda.Formatear(tc.getPaquete().getPrecio(), App.configuracion.getRegionLocal().getLocale()));

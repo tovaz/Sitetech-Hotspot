@@ -5,12 +5,14 @@
  */
 package sitetech.hotspot.Controladores;
 
+import Util.Dialogo;
 import Util.StageManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXTextField;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -21,14 +23,14 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -52,6 +54,7 @@ public class ReporteViewerControlador implements Initializable {
     @FXML private JFXButton batraz2;
     @FXML private JFXButton batraz;
     @FXML private Label lpagina;
+    @FXML private Label lmensaje;
     @FXML private JFXButton badelante;
     @FXML private JFXButton badelante2;
     @FXML private StackPane stack;
@@ -105,9 +108,10 @@ public class ReporteViewerControlador implements Initializable {
     @FXML
     private void onImprimir(ActionEvent event) {
         try {
-            JasperPrintManager.printReport(jasperPrint, true);
+            JasperPrintManager.printReport(jasperPrint, false);
             //thisStage.close();
         } catch (JRException ex) {
+            Dialogo.mostrarError("Error al intentar imprimir: " + ex.getMessage(), "Error al imprimir", App.configuracion, ButtonType.OK);
             ex.printStackTrace();
         }
     }
@@ -207,8 +211,24 @@ public class ReporteViewerControlador implements Initializable {
             renderPage(1);
         }
 
+        lmensaje.setVisible(false);
         thisStage.setTitle(titulo);
         thisStage.show();
+    }
+    
+    public void cargarReporte(String titulo, JasperPrint jasperPrint) {
+        this.jasperPrint = jasperPrint;
+
+        imageHeight = jasperPrint.getPageHeight() + 284;
+        imageWidth = jasperPrint.getPageWidth() + 201;
+        paginasReporte = jasperPrint.getPages().size();
+        lpagina.setText("1 de " + paginasReporte);
+
+        if(paginasReporte > 0) {
+            renderPage(1);
+        }
+        
+        lmensaje.setVisible(false);
     }
     
     /**
@@ -237,6 +257,7 @@ public class ReporteViewerControlador implements Initializable {
         badelante2.setDisable(isLastPage);
     }
     
+    double factorAnterior = 0;
     /**
      * Scale image from ImageView
      * @param factor Zoom factor
@@ -255,8 +276,8 @@ public class ReporteViewerControlador implements Initializable {
      */
     private Image pageToImage(int pageNumber) {
         try {
-            //float zoom = (float) ( 1.33 + (slzoom.getValue()/100) );
-            float zoom = (float) 1.33;
+            float zoom = (float) 2.66;
+            
             BufferedImage image = (BufferedImage) JasperPrintManager.printPageToImage(jasperPrint, pageNumber - 1, zoom);
             WritableImage fxImage = new WritableImage(imageHeight, imageWidth);
 
@@ -265,5 +286,15 @@ public class ReporteViewerControlador implements Initializable {
             ex.printStackTrace();
         }
         return null;
+    }
+    
+    public Node nodo;
+    public void cargarPanel(AnchorPane panel) throws IOException {
+        nodo = (Node)thisStage.getScene().getRoot();
+        AnchorPane.setTopAnchor(nodo, 0.0);
+        AnchorPane.setLeftAnchor(nodo, 0.0);
+        AnchorPane.setRightAnchor(nodo, 0.0);
+        AnchorPane.setBottomAnchor(nodo, 0.0);
+        panel.getChildren().setAll(nodo);
     }
 }

@@ -71,7 +71,7 @@ public class LoginController implements Initializable {
     @FXML
     public void loginAction (ActionEvent event) throws IOException{
         if (camposValidos()) {
-            if (App.checkLogin(tusuario.getText(), tcontraseña.getText()))
+            if (App.checkLogin(tusuario.getText(), tcontraseña.getText(), null))
                 thisStage.close();
             else
                 plogin.setVisible(true);

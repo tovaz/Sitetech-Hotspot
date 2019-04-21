@@ -20,6 +20,6 @@
 
 .customControlError{
     /*-fx-background-color: linear-gradient(to top right, #FFEBEE, #FCE4EC);*/
-    /*-fx-border-color: #E53935;*/
+    -fx-border-color: #E53935;
     -fx-effect: dropshadow(one-pass-box, #E53935, 5, 0.3, 1, 1);
 }

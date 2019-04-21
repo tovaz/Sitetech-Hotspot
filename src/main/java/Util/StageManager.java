@@ -13,6 +13,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sitetech.hotspot.Controladores.SplashControlador;
+import sitetech.hotspot.MainApp;
 import sitetech.hotspot.Modelos.Configuracion;
 import sitetech.hotspot.Temas;
 
@@ -64,6 +66,8 @@ public class StageManager {
             Temas.aplicarTema(thisScene, config); /// APLICAR EL TEMA
             main.setScene(thisScene);
             main.setTitle(titulo);
+            
+            main.getIcons().add(MainApp.iconoApp); // ICONO DE LA APP
             return Controlador;
             
         } catch (IOException e) {
@@ -84,5 +88,10 @@ public class StageManager {
             Logger.getLogger(util.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    public static void SplashScreen(MainApp App){
+        SplashControlador sc = new SplashControlador(App);
+        sc.mostrar();
     }
 }

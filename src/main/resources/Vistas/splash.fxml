@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXSpinner?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPanel" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="400.0" layoutX="131.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" style="-fx-backgroud-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../Imagenes/splash.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lmensaje" layoutX="22.0" layoutY="288.0" style="-fx-background-color: transparent;" text="Cargando configuraciones ...">
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <JFXSpinner fx:id="spcargando" layoutX="125.0" layoutY="227.0" prefWidth="35.0" />
+   </children>
+</AnchorPane>

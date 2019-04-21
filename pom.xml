@@ -7,7 +7,7 @@
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>Hotspot</name>
+    <name>Sitetech Hotspot</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -87,7 +87,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.4.1.Final</version>
+            <version>5.4.2.Final</version>
         </dependency>
 
         <!-- SQLite JDBC library -->
@@ -111,6 +111,13 @@
             <artifactId>fontawesomefx</artifactId>
             <version>8.1</version>
         </dependency>
+        
+        <dependency>
+            <groupId>com.zenjava</groupId>
+            <artifactId>javafx-maven-plugin</artifactId>
+            <version>8.8.3</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -134,8 +141,30 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2.1</version>
+                <version>1.2</version>
                 <configuration>
+                    <mainClass>sitetech.hotspot.MainApp</mainClass>
+                    <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                        <fork>true</fork>
+                        <executable>C:\Program Files\Java\jdk1.8.0_111\bin\javac</executable>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>com.zenjava</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>8.8.3</version>
+                <configuration>
+                    <vendor>Sitetech</vendor>
                     <mainClass>sitetech.hotspot.MainApp</mainClass>
                 </configuration>
             </plugin>
@@ -167,7 +196,7 @@
             </resource>
         </resources>
 
-        <finalName>Hotspot</finalName>
+        <finalName>Sitetech Hotspot</finalName>
                 
         
     </build>

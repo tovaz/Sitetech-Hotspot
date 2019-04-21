@@ -5,10 +5,13 @@
  */
 package sitetech.Helpers;
 
+import Util.Dialogo;
 import java.sql.ResultSet;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 public class dbHelper extends dbManager{
     //******************** QUERYS BASICAS *********************
@@ -57,7 +60,9 @@ public class dbHelper extends dbManager{
                 return ltemporal;
             }
         } catch (Exception ex) {
+            Dialogo.mostrar(ex.getMessage(), "Error al seleccionar: ( '" + query + "' )", Alert.AlertType.ERROR, ButtonType.OK);
             System.err.println(ex.getMessage());
+            return null;
         }
         
         return null;

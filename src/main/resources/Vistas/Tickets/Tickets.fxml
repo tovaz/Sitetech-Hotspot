@@ -81,12 +81,12 @@
                                     <columns>
                                         <TableColumn id="tcno" editable="false" prefWidth="48.0" resizable="false" text="No." />
                                         <TableColumn id="tcusuario" editable="false" prefWidth="100.0" text="Usuario" />
-                                        <TableColumn id="tcdeshabilitado" editable="false" prefWidth="120.0" resizable="false" text="Paquete" />
+                                        <TableColumn id="tcdeshabilitado" editable="false" prefWidth="100.0" resizable="false" text="Paquete" />
                                         <TableColumn id="tcdeshabilitado" editable="false" prefWidth="90.0" resizable="false" text="Estado" />
-                                        <TableColumn id="tcprivilegios" editable="false" prefWidth="125.0" resizable="false" text="Creado" />
+                                        <TableColumn id="tcprivilegios" editable="false" prefWidth="80.0" resizable="false" text="Precio" />
                                         <TableColumn id="tcprivilegios" editable="false" prefWidth="125.0" resizable="false" text="Duracion" />
                                         <TableColumn id="tcprivilegios" editable="false" prefWidth="115.0" resizable="false" text="L. Descarga" />
-                                        <TableColumn id="tcprivilegios" editable="false" prefWidth="115.0" resizable="false" text="L. Subida" />
+                                        <TableColumn id="tcprivilegios" editable="false" prefWidth="115.0" resizable="true" text="Fecha Creacion" />
                                     </columns>
                                     <VBox.margin>
                                         <Insets />
@@ -167,7 +167,7 @@
                 </AnchorPane>
             </top>
          <right>
-                  <VBox prefHeight="571.0" prefWidth="229.0" style="-fx-border-color: -colorFondo3;" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="571.0" prefWidth="229.0" BorderPane.alignment="CENTER">
                      <children>
                   <VBox style="-fx-background-color: -colorFondo;" VBox.vgrow="ALWAYS">
                      <children>
@@ -333,9 +333,6 @@
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
-               <padding>
-                  <Insets top="-1.0" />
-               </padding>
                   </VBox>
          </right>
         </JFXToolbar>

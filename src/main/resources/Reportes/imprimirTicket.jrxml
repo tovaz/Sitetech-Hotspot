@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Tickets" language="groovy" columnCount="5" printOrder="Horizontal" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="115" columnSpacing="1" leftMargin="15" rightMargin="15" topMargin="15" bottomMargin="15" uuid="44c68a96-9c22-4299-bb5a-63d1c0f033be">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="29"/>
 	<parameter name="dominio" class="java.lang.String"/>
 	<parameter name="iTicket" class="java.lang.String"/>
 	<queryString language="hql">
@@ -126,6 +126,12 @@
 				</textElement>
 				<text><![CDATA[Precio: ]]></text>
 			</staticText>
+			<componentElement>
+				<reportElement x="124" y="118" width="40" height="36" uuid="7ea221d4-618b-4839-b067-2f2c8a8f6361"/>
+				<jr:DataMatrix xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" textPosition="bottom">
+					<jr:codeExpression><![CDATA[]]></jr:codeExpression>
+				</jr:DataMatrix>
+			</componentElement>
 		</band>
 	</detail>
 </jasperReport>

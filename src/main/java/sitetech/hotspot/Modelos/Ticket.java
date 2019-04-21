@@ -321,22 +321,39 @@ public class Ticket {
     @Transient public String LimiteInternetDown;
     @Transient public String LimiteInternetUp;
     
+    public Double getPorcentajeDescarga(){
+        return (getmegasConsumidoDown()*100)/(getLimiteMegasDown() + (getLimiteGigasDown()*1024) )/100;
+    }
+    
+    public Double getPorcentajeSubida(){
+        return (getmegasConsumidoUp()*100)/(getLimiteMegasUp() + (getLimiteGigasUp()*1024) )/100;
+    }
     
     public Double getPorcentaje(double consumido, double limite){
         return consumido / limite;
     }
     
     public Double getmegasConsumidoDown(){
-        return (gigasConsumidosDown*1024) + megasConsumidosDown;
+        Double _return = (gigasConsumidosDown*1024) + megasConsumidosDown;
+        _return = Math.round(_return * 100.0) / 100.0;
+        return _return;
     }
     
     public Double getmegasConsumidoUp(){
-        return (gigasConsumidosUp*1024) + megasConsumidosUp;
+        Double _return = (gigasConsumidosUp*1024) + megasConsumidosUp;
+        _return = Math.round(_return * 100.0) / 100.0;
+        return _return;
     }
     
     public String getLimiteInternetDown(){
-        if (limiteGigasDown == 0 && limiteMegasDown == 0) return "Sin limite";
-        return limiteGigasDown + " Gb + " + limiteMegasDown + " Mb";
+        String lreturn = "";
+        if (limiteGigasDown == 0 && limiteMegasDown == 0) lreturn = "Sin limite";
+        else if (limiteGigasDown > 0) {
+            if (limiteMegasDown > 0) lreturn = limiteGigasDown + " Gb + " + limiteMegasDown + " Mb";
+            else lreturn = limiteGigasDown + " Gb";
+        }
+        else if (limiteMegasDown > 0) lreturn = limiteMegasDown + " Mb";
+        return lreturn;
     }
     
     public String getLimiteInternetUp(){
@@ -345,21 +362,52 @@ public class Ticket {
     }
     
     public String getDuracion() {
-        String duracion = String.valueOf(paquete.getDias()) + " dias y " + String.valueOf(paquete.getHoras()) + " hr " + String.valueOf(paquete.getMinutos()) + " min";
-        if (duracion.equals("0 dias y 0 hr 0 min")) return "Sin limite";
-        else return duracion;
+        return paquete.getDuracion();
     }
     
     public String getDuracionConsumida() {
-        String duracion = String.valueOf(diasConsumidos) + " dias y " + String.valueOf(horasConsumidas) + " hr " + String.valueOf(minutosConsumidos) + " min";
+        String _duracion = "";
+        if (diasConsumidos > 0)
+            if (horasConsumidas > 0)
+                if (minutosConsumidos > 0)
+                    _duracion = String.valueOf(diasConsumidos) + " dias y " + String.valueOf(horasConsumidas) + " hr " + String.valueOf(minutosConsumidos) + " min";
+                else if (horasConsumidas == 1)
+                    _duracion = String.valueOf(diasConsumidos) + " dias y " + String.valueOf(horasConsumidas) + " hora";
+                else
+                    _duracion = String.valueOf(diasConsumidos) + " dias y " + String.valueOf(horasConsumidas) + " horas";
+            else if (minutosConsumidos > 0)
+                _duracion = String.valueOf(diasConsumidos) + " dias y "  + String.valueOf(minutosConsumidos) + " minutos";
+            else
+                _duracion = String.valueOf(diasConsumidos) + " dias";
+        else{
+            if (horasConsumidas > 0)
+                if (minutosConsumidos > 0)
+                    _duracion = String.valueOf(horasConsumidas) + " hr " + String.valueOf(minutosConsumidos) + " min";
+                else if (horasConsumidas == 1)
+                    _duracion = String.valueOf(horasConsumidas) + " hora ";
+                else
+                    _duracion = String.valueOf(horasConsumidas) + " horas ";
+            else if (minutosConsumidos > 0 )
+                _duracion = String.valueOf(minutosConsumidos) + " minutos";
+            else
+                return "Aun sin consumir";
+        }
+        
+        if (diasConsumidos == paquete.getDias() && horasConsumidas == paquete.getHoras() && minutosConsumidos == paquete.getMinutos())
+            _duracion += " ** Llego al limite **";
+        
+        return _duracion;
+        
+        /*String duracion = String.valueOf(diasConsumidos) + " dias y " + String.valueOf(horasConsumidas) + " hr " + String.valueOf(minutosConsumidos) + " min";
         if (duracion.equals("0 dias y 0 hr 0 min")) return "Aun sin consumir";
-        else return duracion;
+        else return duracion;*/
     }
     
     
     // FUNCIONES DE PAQUETE - para los reportes
     @Transient private String precio;
     @Transient private String limiteInternet;
+    @Transient private String paqueteS;
     public String getPrecio() {
         return paquete.getPrecioFormateado();
     }
@@ -368,5 +416,8 @@ public class Ticket {
         return paquete.getLimiteInternet();
     }
     
+    public String getPaqueteS(){
+        return paquete.getNombre();
+    }
     
 }

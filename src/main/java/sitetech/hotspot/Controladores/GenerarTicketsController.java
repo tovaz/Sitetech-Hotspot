@@ -105,8 +105,8 @@ public class GenerarTicketsController implements Initializable {
 
         PaqueteManager pm = new PaqueteManager();
         RouterManager rm = new RouterManager();
-        cbpaquetes.getItems().addAll(pm.listaPaquetes);
-        cbrouters.getItems().addAll(rm.listaRouters);
+        cbpaquetes.getItems().setAll(pm.listaPaquetes);
+        cbrouters.getItems().setAll(rm.listaRouters);
 
         bguardar.setDisable(true);
         bimprimir.setDisable(true);
