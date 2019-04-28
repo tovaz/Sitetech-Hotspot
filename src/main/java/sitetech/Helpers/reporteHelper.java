@@ -72,6 +72,22 @@ public class reporteHelper {
         return null;
     }
     
+    public static JasperPrint getJasperPrint(String reporte_nombre, ObservableList<?> lista, Map<String,Object> parametros, Configuracion config ){
+        MainApp mainApp = new MainApp();
+        //parametros.put("dominio", config.getDominio()); // propiedad de configuracion
+                
+        try {
+            JasperReport jp = (JasperReport) JRLoader.loadObject(mainApp.getClass().getResource(reporte_nombre));
+            JRBeanCollectionDataSource listaReporte = new JRBeanCollectionDataSource(lista);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jp, (Map<String,Object>)parametros, listaReporte);
+
+            return jasperPrint;
+        } catch (JRException ex) { 
+            System.out.println(ex.getMessage()); 
+        }
+        
+        return null;
+    }
     // ***********************************************
     // Export Utilities
     // ***********************************************

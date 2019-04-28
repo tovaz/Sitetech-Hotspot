@@ -13,6 +13,7 @@ import Util.StageManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSpinner;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
@@ -28,7 +29,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -50,11 +50,10 @@ import sitetech.hotspot.Temas;
  * @author willi
  */
 public class TicketsController implements Initializable, ArrastrarScene {
-
     public final Stage thisStage;
 
     @FXML private AnchorPane ticketsPanel;
-    @FXML private TextField tnombre;
+    @FXML private JFXTextField tnombre;
     @FXML private JFXComboBox<Ticket.EstadosType> cbestado;
     @FXML private JFXComboBox<Paquete> cbpaquetes;
     @FXML private TableView<Ticket> tvtickets;

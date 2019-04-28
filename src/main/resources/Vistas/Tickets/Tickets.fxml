@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXSpinner?>
 <?import com.jfoenix.controls.JFXToolbar?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
@@ -13,6 +14,8 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -34,10 +37,10 @@
                                         <VBox>
                                             <children>
                                                 <Label text="Usuario" />
-                                                <TextField fx:id="tnombre" prefHeight="25.0" prefWidth="105.0" styleClass="btn-redondo">
+                                                <JFXTextField fx:id="tnombre" prefHeight="25.0" prefWidth="105.0" styleClass="btn-redondo">
                                        <VBox.margin>
                                           <Insets top="2.0" />
-                                       </VBox.margin></TextField>
+                                       </VBox.margin></JFXTextField>
                                             </children>
                                             <padding>
                                                 <Insets left="10.0" />
@@ -104,14 +107,11 @@
                             <children>
                                 <ToolBar fx:id="ticketToolbar" blendMode="SRC_ATOP" prefWidth="757.0" styleClass="ticket-toolbar" VBox.vgrow="ALWAYS">
                                     <items>
-                                        <Label fx:id="lTickets" style="-fx-text-fill: -colorTexto3;" text="Tickets">
-                                            <font>
-                                                <Font size="18.0" />
-                                            </font>
-                                            <padding>
-                                                <Insets left="10.0" right="50.0" />
-                                            </padding>
-                                        </Label>
+                              <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Imagenes/hotspot-100.png" />
+                                 </image>
+                              </ImageView>
                                         <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGenerarAction" prefHeight="55.0" prefWidth="120.0" text=" ">
                                             <graphic>
                                                 <VBox alignment="CENTER" prefHeight="55.0" prefWidth="110.0">

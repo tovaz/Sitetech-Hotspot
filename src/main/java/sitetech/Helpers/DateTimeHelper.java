@@ -25,15 +25,10 @@ public class DateTimeHelper {
     
             
     public static TiempoDividido dividirTiempo(String tiempo){
-        /*Pattern pdias = Pattern.compile("(\\d+)[d].*");
-        Pattern phoras = Pattern.compile(".*[\\d+[d]]*(\\d+)[h].*");
-        Pattern pminutos = Pattern.compile(".*[\\d+[h]]*(\\d+)[m].*");
-        Pattern psegundos = Pattern.compile(".*[\\d+[m]]*(\\d+)[s]");*/
-        
         Pattern pdias = Pattern.compile("(\\d?\\d)[d].*");
         Pattern phoras = Pattern.compile(".*?[d?]?(\\d?\\d)[h].*");
-        Pattern pminutos = Pattern.compile(".*[h?](\\d?\\d)[m].*");
-        Pattern psegundos = Pattern.compile(".*[m?](\\d?\\d)[s]");
+        Pattern pminutos = Pattern.compile(".*?[h?]?(\\d?\\d)[m].*");
+        Pattern psegundos = Pattern.compile(".*?[m?]?(\\d?\\d)[s]");
         
         Matcher matchdias = pdias.matcher(tiempo);
         Matcher matchhoras = phoras.matcher(tiempo);
@@ -47,7 +42,7 @@ public class DateTimeHelper {
         if (matchminutos.matches())  td.Minutos = Integer.parseInt(matchminutos.group(1).replace("m", ""));
         if (matchsegundos.matches())  td.Segundos = Integer.parseInt(matchsegundos.group(1).replace("s", ""));
         
-        System.out.println("TIEMPO: " + tiempo + " -- " + td.toString());
+        //System.out.println("TIEMPO: " + tiempo + " -- " + td.toString());
         return td;
     }
     

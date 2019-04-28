@@ -19,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -198,6 +199,18 @@ public class Caja {
     public void setTotalCierre(BigDecimal totalCierre) {
         this.totalCierre = totalCierre;
     }
+    
+    @Transient private String uCierre;
+    @Transient private String uApertura;
+
+    public String getuCierre() {
+        return UsuarioCierre.getNombre();
+    }
+
+    public String getuApertura() {
+        return UsuarioApertura.getNombre();
+    }
+    
     
     
 }

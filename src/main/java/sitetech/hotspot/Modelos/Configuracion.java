@@ -43,7 +43,7 @@ public class Configuracion {
 
     private String colorEnfasis="Azul";
     private String colorTema="Claro";
-    private boolean colorToolbar = true;
+    private boolean colorToolbar = false;
     private boolean colorMenu = true;
     
     @Transient

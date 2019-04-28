@@ -5,7 +5,10 @@
  */
 package sitetech.hotspot.Modelos;
 
+import com.google.gson.Gson;
 import java.math.BigDecimal;
+import java.util.Date;
+import java.util.HashMap;
 import javafx.collections.FXCollections;
 import static javafx.collections.FXCollections.observableArrayList;
 import javafx.collections.ObservableList;
@@ -22,7 +25,24 @@ public class CajaManager {
     }
     
     public ObservableList<Caja> getCajas(){
-        ObservableList<Caja> lista =   (ObservableList<Caja>)DbHelper.Select("FROM Caja");
+        ObservableList<Caja> lista =  (ObservableList<Caja>)DbHelper.Select("FROM Caja");
+        if (lista.isEmpty())
+            return null;
+        else
+            return lista;
+    }
+    
+    public ObservableList<Caja> getPorFecha(Date FechaInicio, Date FechaFin){
+        HashMap<String, Object> parametros = new HashMap<String, Object>();
+        parametros.put("fechaI", FechaInicio);
+        parametros.put("fechaF", FechaFin);
+        Object l = DbHelper.Select("FROM Caja WHERE UsuarioCierre is not null AND fechaCierre BETWEEN :fechaI AND :fechaF ORDER BY fechaCierre", parametros);
+        ObservableList<Caja> lista = (ObservableList<Caja>)l;
+        
+        //System.out.println("LISTA DE CAJAS *****");
+        //Gson gson = new Gson();
+        //System.out.println(gson.toJson(lista));
+        
         if (lista.isEmpty())
             return null;
         else

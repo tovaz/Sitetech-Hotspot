@@ -6,32 +6,34 @@
 package sitetech.hotspot.Controladores;
 
 import Util.Dialogo;
-import Util.StageManager;
-import de.jensd.fx.glyphs.GlyphsBuilder;
-import de.jensd.fx.glyphs.GlyphsStack;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconName;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
 import javafx.stage.Modality;
-import javafx.stage.Stage;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import sitetech.Helpers.imagenHelper;
 import sitetech.Helpers.reporteHelper;
 import sitetech.hotspot.MainApp;
+import sitetech.hotspot.Modelos.Caja;
+import sitetech.hotspot.Modelos.CajaManager;
 import sitetech.hotspot.Modelos.Ticket;
 import sitetech.hotspot.Modelos.TicketManager;
 
@@ -86,21 +88,47 @@ public class ReportesControlador extends MiControlador {
     
     ParametrosCajaControlador pcaja;
     private void selectTreeView(TreeItem<String> selectedItem){
+        CajaManager cm = new CajaManager();
         System.out.println("Selected Text : " + selectedItem.getValue());
         switch (selectedItem.getValue()){
             case "Cajas por fecha":
                 pcaja = new ParametrosCajaControlador(App, ParametrosCajaControlador.VistaType.Fecha);
                 pcaja.showAndWait();
+                Map<String,Object> parametros = new HashMap<String,Object>();
+                parametros.put("FechaInicio", pcaja.getFechaInicio());
+                parametros.put("FechaFin", pcaja.getFechaFin()); 
+                parametros.put("UsuarioLogueado", App.usuarioLogeado.getNombre()); 
+
+                try {
+                    ObservableList<Caja> cajas = cm.getPorFecha(pcaja.getFechaInicio(), pcaja.getFechaFin());
+                    JasperPrint jp = reporteHelper.getJasperPrint("/Reportes/Caja/CajasporFecha.jasper", cajas, parametros, App.configuracion);
+                    
+                    //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                    
+                    rviewer.cargarReporte("Reporte de cajas por fechas", jp);
+                    App.agregarEscena("reporte", rviewer.thisStage.getScene());
+                
+                    /*JasperViewer jv = new JasperViewer(jp, false);
+                    jv.setTitle("Reporte de cajas");
+                    jv.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ticketprint.png")).getImage());
+                    jv.setVisible(true);*/
+                } catch (Exception ex) { 
+                    System.out.println(ex.getMessage()); 
+                    Dialogo.mostrarError(ex.getMessage(), "Error al cargar el reporte", App.configuracion, ButtonType.OK);
+                }
+                
+                /*ObservableList<Ticket> ticketsSeleccionados = new TicketManager().getTickets();
+                JasperPrint jp = reporteHelper.getJasperPrintTicket(ticketsSeleccionados, App.configuracion);
+                ReporteViewerControlador rview = new ReporteViewerControlador(App);
+                rviewer.cargarReporte("Reporte de tickets generados", jp);
+                */
                 break;
             
             case "Detalles de caja":
                 pcaja = new ParametrosCajaControlador(App, ParametrosCajaControlador.VistaType.Caja);
                 pcaja.showAndWait();
                 
-                ObservableList<Ticket> ticketsSeleccionados = new TicketManager().getTickets();
-                JasperPrint jp = reporteHelper.getJasperPrintTicket(ticketsSeleccionados, App.configuracion);
-                ReporteViewerControlador rview = new ReporteViewerControlador(App);
-                rviewer.cargarReporte("Reporte de tickets generados", jp);
+                
                 break;
             
             case "Vendidos":

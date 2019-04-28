@@ -7,11 +7,16 @@ package sitetech.Helpers;
 
 import Util.Dialogo;
 import java.sql.ResultSet;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import org.hibernate.query.Query;
+import org.hibernate.type.TimestampType;
 
 public class dbHelper extends dbManager{
     //******************** QUERYS BASICAS *********************
@@ -49,11 +54,41 @@ public class dbHelper extends dbManager{
     
     public ObservableList<?> Select(String query)
     {
-        ResultSet result = null;
         try {
             if (this.conectarHb()){
                 List<Object> queryList = this.session.createQuery(query).list();
                 ObservableList<Object> ltemporal= FXCollections.observableArrayList(queryList);
+                
+                this.Cerrar();
+                return ltemporal;
+            }
+        } catch (Exception ex) {
+            Dialogo.mostrar(ex.getMessage(), "Error al seleccionar: ( '" + query + "' )", Alert.AlertType.ERROR, ButtonType.OK);
+            System.err.println(ex.getMessage());
+            return null;
+        }
+        
+        return null;
+    }
+    
+    public ObservableList<?> Select(String query, HashMap<String, Object> parametros)
+    {
+        try {
+            if (this.conectarHb()){
+                Query queryList = this.session.createQuery(query);
+                if (parametros != null){
+                    for (Map.Entry<String, Object> parametro : parametros.entrySet()) {
+                        System.out.println("clave=" + parametro.getKey() + ", valor=" + parametro.getValue());
+                        if ((parametro.getValue() instanceof Date)){
+                            Date fecha = (Date) parametro.getValue();
+                            queryList.setParameter(parametro.getKey(), fecha, TimestampType.INSTANCE );
+                        }
+                        else
+                            queryList.setParameter( parametro.getKey(), parametro.getValue() );
+                    }
+                }
+                
+                ObservableList<Object> ltemporal= FXCollections.observableArrayList(queryList.list());
                 
                 this.Cerrar();
                 System.out.println("=======================");

@@ -50,6 +50,8 @@ public class MainApp extends Application {
     @Override
     public void init() throws Exception {
         springContext = SpringApplication.run(MainApp.class);        
+        //String driver = "org.apache.derby.jdbc.EmbeddedDriver";
+        //Class.forName(driver).newInstance();
     }
 
     @Override

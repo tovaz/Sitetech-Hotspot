@@ -219,16 +219,20 @@ public class ReporteViewerControlador implements Initializable {
     public void cargarReporte(String titulo, JasperPrint jasperPrint) {
         this.jasperPrint = jasperPrint;
 
-        imageHeight = jasperPrint.getPageHeight() + 284;
-        imageWidth = jasperPrint.getPageWidth() + 201;
-        paginasReporte = jasperPrint.getPages().size();
-        lpagina.setText("1 de " + paginasReporte);
+        if (jasperPrint != null){
+            imageHeight = jasperPrint.getPageHeight() + 284;
+            imageWidth = jasperPrint.getPageWidth() + 201;
+            paginasReporte = jasperPrint.getPages().size();
+            lpagina.setText("1 de " + paginasReporte);
 
-        if(paginasReporte > 0) {
-            renderPage(1);
-        }
-        
-        lmensaje.setVisible(false);
+            if(paginasReporte > 0) {
+                renderPage(1);
+            }
+
+            lmensaje.setText("Error al cargar el reporte.");
+        } 
+        else
+            lmensaje.setVisible(false);
     }
     
     /**

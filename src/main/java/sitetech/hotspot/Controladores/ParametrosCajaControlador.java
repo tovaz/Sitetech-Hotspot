@@ -8,6 +8,7 @@ package sitetech.hotspot.Controladores;
 import Util.Validar;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import java.util.Date;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -30,6 +31,9 @@ public class ParametrosCajaControlador extends MiControlador {
     @FXML private AnchorPane pfechas;
     
     public boolean correcto;
+    public ButtonType BotonPresionado = ButtonType.Cancelar;
+    
+    public static enum ButtonType { Ok, Cancelar };
     public static enum VistaType { Fecha, Caja };
     private VistaType tipoVista;
     public ParametrosCajaControlador(MainApp _app, VistaType tipo) {
@@ -51,11 +55,28 @@ public class ParametrosCajaControlador extends MiControlador {
                 correcto = true;
         }
         
-        if (correcto) thisStage.close();
+        if (correcto) { BotonPresionado = ButtonType.Ok; thisStage.close(); }
     }
 
     @FXML
     public void oncancelar(ActionEvent event) {
+        BotonPresionado = ButtonType.Cancelar;
         thisStage.close();
     }
+
+    
+    public int getNumeroCaja() {
+        return Integer.parseInt(tcaja.getText());
+    }
+
+    public Date getFechaInicio() {
+        return java.sql.Date.valueOf(dpfechai.getValue());
+    }
+
+    public Date getFechaFin() {
+        return java.sql.Date.valueOf(dpfechaf.getValue());
+    }
+    
+    
+    
 }
