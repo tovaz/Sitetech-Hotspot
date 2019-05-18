@@ -36,7 +36,7 @@ public class Configuracion {
     private boolean codigoBarraVisible = false;
     
     private String FormatoMoneda = "GT";
-    private String Idioma = "es";
+    private String Idioma = "Spanish";
     
     @Transient
     private Currency Moneda;
@@ -124,11 +124,11 @@ public class Configuracion {
     }
 
     public MiLocale getRegionLocal() {
-        return new MiLocale(new Locale(Idioma, FormatoMoneda), FormatoMoneda);
+        return new MiLocale(new Locale(getIdioma(), FormatoMoneda), FormatoMoneda);
     }
 
     public Currency getMoneda() {
-        return Currency.getInstance(new Locale(Idioma, FormatoMoneda));
+        return Currency.getInstance(new Locale(getIdioma(), FormatoMoneda));
     }
     
     public boolean isCodigoBarraVisible() {
@@ -164,7 +164,9 @@ public class Configuracion {
     }
 
     public String getIdioma() {
-        return Idioma;
+        if (Idioma != null)
+            return Idioma;
+        else return "sp";
     }
 
     public void setIdioma(String Idioma) {

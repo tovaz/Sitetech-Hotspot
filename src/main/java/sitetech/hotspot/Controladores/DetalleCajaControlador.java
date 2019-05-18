@@ -121,7 +121,7 @@ public class DetalleCajaControlador implements Initializable {
             
         caja.setUsuarioCierre(App.usuarioLogeado);
         caja.setFechaCierre(new Date());
-        caja.setTotalCierre(caja.getTotal().subtract(retiro.retiro1));
+        caja.setTotalCierre(retiro.retiro1);
         
         try {
             cm.Editar(caja);

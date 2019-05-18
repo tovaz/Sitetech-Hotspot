@@ -14,6 +14,8 @@ import java.util.Currency;
 import java.util.Locale;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import sitetech.Helpers.dbHelper;
 import sitetech.hotspot.Modelos.Configuracion;
 import sitetech.hotspot.Modelos.ConfiguracionManager2;
@@ -24,10 +26,14 @@ import sitetech.hotspot.Modelos.ConfiguracionManager2;
  */
 public class Moneda {
     public static String Formatear(BigDecimal bd) {
-        Currency currency = Currency.getInstance(Locale.getDefault());
-        DecimalFormat df = new DecimalFormat(getSimbolo(currency.getCurrencyCode()) + " ###,###.00", new DecimalFormatSymbols(Locale.getDefault()));
-        
-        return df.format(bd);
+        try {
+            Currency currency = Currency.getInstance(Locale.getDefault());
+            DecimalFormat df = new DecimalFormat(getSimbolo(currency.getCurrencyCode()) + " ###,###.00", new DecimalFormatSymbols(Locale.getDefault()));
+            return df.format(bd);
+        } catch (Exception ex){
+            System.err.println("Error al convertir la moneda: " + ex.getMessage());
+            return bd.toString();
+        }
     }
     
     public static String Formatear(BigDecimal bd, Locale locale) {

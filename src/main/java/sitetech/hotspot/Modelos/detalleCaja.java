@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -33,7 +34,7 @@ public class detalleCaja {
     @OneToOne @JoinColumn(name = "idTicket")
     private Ticket ticket;
     
-    public enum TipoDetalle { VentaArticulo, Ingreso, Egreso, Venta_Ticket };
+    public enum TipoDetalle { Venta_Articulo, Ingreso, Egreso, Venta_Ticket };
     private TipoDetalle tipo;
     public enum EstadoDetalle { Correcto, anulado };
     private EstadoDetalle estado;
@@ -122,6 +123,52 @@ public class detalleCaja {
         this.estado = estado;
     }
     
+    //************************** UTILIZADO PARA LOS REPORTES *******************
+    @Transient String idCaja;
+    @Transient String tipoNombre;
+    @Transient String ticketNombre;
+    @Transient String ticketContraseña;
+    @Transient String ticketPrecio;
+    @Transient String ticketPaquete;
+    @Transient Date fechaApertura;
+    @Transient Date fechaCierre;
+    @Transient String usuarioCierre;
+
+    public String getIdCaja(){
+        return String.valueOf(caja.getId());
+    }
+    
+    public String getTipoNombre() {
+        return tipo.name();
+    }
+    
+    public String getTicketNombre() {
+        return ticket.getUsuario();
+    }
+
+    public String getTicketContraseña() {
+        return ticket.getContraseña();
+    }
+
+    public String getTicketPrecio() {
+        return ticket.getPaquete().getPrecioFormateado();
+    }
+
+    public String getTicketPaquete() {
+        return ticket.getPaqueteS();
+    }
+
+    public Date getFechaApertura() {
+        return caja.getFechaApertura();
+    }
+
+    public Date getFechaCierre() {
+        return caja.getFechaCierre();
+    }
+    
+    public String getUsuarioCierre() {
+        return caja.getUsuarioCierre().getNombre();
+    }
     
     
 }

@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -58,7 +59,8 @@ public class reporteHelper {
         Map<String,Object> parametros = new HashMap<String,Object>();
         parametros.put("dominio", config.getDominio()); // propiedad de configuracion
         parametros.put("iTicket", config.getImagenTicket()); // propiedad de configuracion
-                
+        parametros.put( JRParameter.REPORT_LOCALE, config.getRegionLocal().getLocale() );
+        
         try {
             JasperReport jp = (JasperReport) JRLoader.loadObject(mainApp.getClass().getResource("/Reportes/imprimirTicket.jasper"));
             JRBeanCollectionDataSource listaReporte = new JRBeanCollectionDataSource(listaTickets);
@@ -74,7 +76,7 @@ public class reporteHelper {
     
     public static JasperPrint getJasperPrint(String reporte_nombre, ObservableList<?> lista, Map<String,Object> parametros, Configuracion config ){
         MainApp mainApp = new MainApp();
-        //parametros.put("dominio", config.getDominio()); // propiedad de configuracion
+        parametros.put( JRParameter.REPORT_LOCALE, config.getRegionLocal().getLocale() );
                 
         try {
             JasperReport jp = (JasperReport) JRLoader.loadObject(mainApp.getClass().getResource(reporte_nombre));

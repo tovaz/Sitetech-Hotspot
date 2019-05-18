@@ -99,10 +99,12 @@ public class ReporteViewerControlador implements Initializable {
         
         slzoom.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                Double zoomVal = newValue.doubleValue();
-                zoom(zoomVal/100);
+                int valor = ((int)(newValue.intValue()/25) ) * 25;
+                slzoom.setValue(valor);
+                zoom((float)valor/100);
             }
         });
+        
     }
     
     @FXML
@@ -168,6 +170,23 @@ public class ReporteViewerControlador implements Initializable {
         renderPage(psel);
     }
     
+    @FXML
+    void onAcercar(ActionEvent event) {
+        if ((factorAnterior) < 1.75) factorAnterior +=0.25;
+        slzoom.setValue(factorAnterior*100);
+    }
+
+    @FXML
+    void onAjustar(ActionEvent event) {
+        
+    }
+
+    @FXML
+    void onAlejar(ActionEvent event) {
+        if ((factorAnterior) > 0.0) factorAnterior -=0.25;
+        slzoom.setValue(factorAnterior*100);
+    }
+
     
     // ***********************************************
     // Properties
@@ -201,7 +220,7 @@ public class ReporteViewerControlador implements Initializable {
     //**************** FUNCIONES PRINCIPALES ****************/
     public void mostrarReporte(String titulo, JasperPrint jasperPrint) {
         this.jasperPrint = jasperPrint;
-
+        
         imageHeight = jasperPrint.getPageHeight() + 284;
         imageWidth = jasperPrint.getPageWidth() + 201;
         paginasReporte = jasperPrint.getPages().size();
@@ -209,6 +228,7 @@ public class ReporteViewerControlador implements Initializable {
 
         if(paginasReporte > 0) {
             renderPage(1);
+            slzoom.setValue(100);
         }
 
         lmensaje.setVisible(false);
@@ -218,7 +238,7 @@ public class ReporteViewerControlador implements Initializable {
     
     public void cargarReporte(String titulo, JasperPrint jasperPrint) {
         this.jasperPrint = jasperPrint;
-
+        
         if (jasperPrint != null){
             imageHeight = jasperPrint.getPageHeight() + 284;
             imageWidth = jasperPrint.getPageWidth() + 201;
@@ -227,12 +247,17 @@ public class ReporteViewerControlador implements Initializable {
 
             if(paginasReporte > 0) {
                 renderPage(1);
+                slzoom.setValue(100);
             }
-
-            lmensaje.setText("Error al cargar el reporte.");
-        } 
-        else
             lmensaje.setVisible(false);
+            ireporte.setVisible(true);
+        } 
+        else{
+            desactivarBotones(0);
+            lmensaje.setVisible(true);
+            lmensaje.setText("Error al cargar el reporte.");
+            ireporte.setVisible(false);
+        }
     }
     
     /**
@@ -261,16 +286,20 @@ public class ReporteViewerControlador implements Initializable {
         badelante2.setDisable(isLastPage);
     }
     
-    double factorAnterior = 0;
+    float factorAnterior;
     /**
      * Scale image from ImageView
      * @param factor Zoom factor
      */
-    public void zoom(double factor) {
-        ireporte.setScaleX(factor);
-        ireporte.setScaleY(factor);
-        ireporte.setFitHeight(imageHeight + factor);
-        ireporte.setFitWidth(imageWidth + factor);
+    public void zoom(float factor) {
+        //ireporte.setScaleX(factor);
+        //ireporte.setScaleY(factor);
+        //ireporte.setFitHeight(imageHeight + factor);
+        //ireporte.setFitWidth(imageWidth + factor);
+        
+        System.out.println("FACTOR: " + factor);
+        factorAnterior = factor;
+        ireporte.setImage(pageToImage(currentPage.getValue()));
     }
     
     /**
@@ -280,7 +309,8 @@ public class ReporteViewerControlador implements Initializable {
      */
     private Image pageToImage(int pageNumber) {
         try {
-            float zoom = (float) 2.66;
+            float zoom = (float)0.74 + factorAnterior;
+            System.out.println("ZOOM: " + zoom);
             
             BufferedImage image = (BufferedImage) JasperPrintManager.printPageToImage(jasperPrint, pageNumber - 1, zoom);
             WritableImage fxImage = new WritableImage(imageHeight, imageWidth);

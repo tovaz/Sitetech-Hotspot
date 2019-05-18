@@ -127,15 +127,17 @@ public class ConfiguracionController implements Initializable {
         String[] paises = Locale.getISOCountries();
         ObservableList<MiLocale> locales = FXCollections.observableArrayList();
        
-        for (String countryCode : paises) {
-            Locale obj = new Locale(conf.getIdioma(), countryCode);
-            cbpais.getItems().add(obj.getDisplayCountry());
-            
-            MiLocale ml = new MiLocale(obj, obj.getDisplayCountry());
-            locales.add(ml);
-            if (ml.getLocale().getCountry().equals(conf.getFormatoMoneda()))
-                cbmoneda.getSelectionModel().select(ml);
-	}
+        if (conf.getIdioma() != null){
+            for (String countryCode : paises) {
+                Locale obj = new Locale(conf.getIdioma(), countryCode);
+                cbpais.getItems().add(obj.getDisplayCountry());
+
+                MiLocale ml = new MiLocale(obj, obj.getDisplayCountry());
+                locales.add(ml);
+                if (ml.getLocale().getCountry().equals(conf.getFormatoMoneda()))
+                    cbmoneda.getSelectionModel().select(ml);
+            }
+        }
         
         FXCollections.sort(locales);
         cbmoneda.setItems(locales); 
@@ -147,6 +149,7 @@ public class ConfiguracionController implements Initializable {
                 lemoneda.setText(Moneda.Formatear( new BigDecimal(5100.50), newValue.getLocale() ) );
             }
         });
+        System.err.println("********* IDIOMA: " + conf.getIdioma());
     }
     
     public void showStage() {
@@ -155,8 +158,10 @@ public class ConfiguracionController implements Initializable {
     
     @FXML
     void guardarAction(ActionEvent event) {
+        if (!cbpais.getValue().isEmpty())
+            conf.setPais(cbpais.getValue());
+        
         conf.setEmpresa(tempresa.getText());
-        conf.setPais(cbpais.getValue());
         conf.setEstado(testado.getText());
         conf.setCiudad(tciudad.getText());
         conf.setDireccion(tdireccion.getText());

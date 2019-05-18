@@ -7,6 +7,7 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -44,10 +45,6 @@
                         </Label>
                      </graphic></JFXButton>
                   <VBox alignment="TOP_CENTER">
-                     <children>
-                        <Label text="Zoom" />
-                        <JFXSlider fx:id="slzoom" max="175.0" min="25.0" minorTickCount="1" prefHeight="38.0" prefWidth="200.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="100.0" />
-                     </children>
                      <padding>
                         <Insets left="10.0" right="10.0" />
                      </padding>
@@ -93,7 +90,7 @@
                                     <FontAwesomeIcon glyphStyle="-fx-fill: -colorTexto;" iconName="ANGLE_RIGHT" />
                                  </graphic>
                               </JFXButton>
-                              <JFXButton fx:id="badelante2" ellipsisString="" prefWidth="20.0" styleClass="btn-default2" text=" ">
+                              <JFXButton fx:id="badelante2" ellipsisString="" prefWidth="30.0" styleClass="btn-default2" text=" ">
                                  <graphic>
                                     <FontAwesomeIcon glyphStyle="-fx-fill:  -fx-accent;" iconName="ANGLE_DOUBLE_RIGHT" />
                                  </graphic>
@@ -105,7 +102,7 @@
                         </HBox>
                      </children>
                      <padding>
-                        <Insets right="10.0" />
+                        <Insets left="15.0" right="25.0" />
                      </padding>
                   </VBox>
                   <MenuButton alignment="CENTER_RIGHT" maxHeight="30.0" minHeight="30.0" mnemonicParsing="false" prefHeight="30.0" style="-fx-background-radius: 20px;" styleClass="btn-default2" text="Exportar como">
@@ -150,7 +147,7 @@
          <center>
             <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="AS_NEEDED" pannable="true" vbarPolicy="AS_NEEDED">
                <content>
-                  <StackPane fx:id="stack" style="-fx-background-color: -colorFondo2;">
+                  <StackPane fx:id="stack" cache="true" style="-fx-background-color: -colorFondo2;">
                      <children>
                         <Group>
                            <children>
@@ -174,6 +171,31 @@
                </content>
             </ScrollPane>
          </center>
+         <bottom>
+            <ButtonBar buttonMinWidth="20.0" buttonOrder="" centerShape="false" prefHeight="40.0" scaleShape="false" style="-fx-background-color: -colorFondo;" BorderPane.alignment="CENTER_RIGHT">
+              <buttons>
+                  <JFXButton maxWidth="32.0" onAction="#onAjustar" styleClass="btn-default2" text=" ">
+                     <graphic>
+                        <FontAwesomeIcon glyphStyle="-fx-fill: -fx-accent;" iconName="FILE_TEXT_ALT" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton layoutX="764.0" layoutY="16.0" maxWidth="32.0" onAction="#onAlejar" style="-fx-background-radius: 5px; -fx-background-color: -colorFondo;" styleClass="btn-default-borde" text=" ">
+                     <graphic>
+                        <FontAwesomeIcon glyphStyle="-fx-fill: -colorTexto2;" iconName="SEARCH_MINUS" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXSlider fx:id="slzoom" blockIncrement="25.0" max="175.0" min="25.0" minorTickCount="25" prefHeight="38.0" prefWidth="200.0" showTickLabels="true" snapToTicks="true" value="100.0" />
+                  <JFXButton layoutX="510.0" layoutY="16.0" maxWidth="32.0" onAction="#onAcercar" style="-fx-background-radius: 5px; -fx-background-color: -colorFondo;" styleClass="btn-default-borde" text=" ">
+                     <graphic>
+                        <FontAwesomeIcon glyphStyle="-fx-fill: -colorTexto2;" iconName="SEARCH_PLUS" />
+                     </graphic>
+                  </JFXButton>
+              </buttons>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </ButtonBar>
+         </bottom>
       </BorderPane>
    </children>
    <stylesheets>

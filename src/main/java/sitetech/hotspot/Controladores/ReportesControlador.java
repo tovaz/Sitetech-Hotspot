@@ -17,25 +17,12 @@ import javafx.scene.control.TreeView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
-import net.sf.jasperreports.view.JasperViewer;
 import sitetech.Helpers.imagenHelper;
 import sitetech.Helpers.reporteHelper;
 import sitetech.hotspot.MainApp;
 import sitetech.hotspot.Modelos.Caja;
 import sitetech.hotspot.Modelos.CajaManager;
-import sitetech.hotspot.Modelos.Ticket;
-import sitetech.hotspot.Modelos.TicketManager;
 
 /**
  * FXML Controller class
@@ -128,7 +115,19 @@ public class ReportesControlador extends MiControlador {
                 pcaja = new ParametrosCajaControlador(App, ParametrosCajaControlador.VistaType.Caja);
                 pcaja.showAndWait();
                 
-                
+                Map<String,Object> parametros2 = new HashMap<String,Object>();
+                parametros2.put("UsuarioLogueado", App.usuarioLogeado.getNombre()); 
+
+                try {
+                    ObservableList<Caja> cajas = cm.getDetallesdeCaja(pcaja.getNumeroCaja());
+                    JasperPrint jp = reporteHelper.getJasperPrint("/Reportes/Caja/DetallesdeCaja.jasper", cajas, parametros2, App.configuracion);
+                    
+                    rviewer.cargarReporte("Reporte de caja", jp);
+                    App.agregarEscena("reporte", rviewer.thisStage.getScene());
+                } catch (Exception ex) { 
+                    System.out.println(ex.getMessage()); 
+                    Dialogo.mostrarError(ex.getMessage(), "Error al cargar el reporte", App.configuracion, ButtonType.OK);
+                }
                 break;
             
             case "Vendidos":

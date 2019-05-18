@@ -181,7 +181,7 @@ public class Caja {
     }
     
     public String getTotalF(){
-        return Moneda.Formatear(this.total.subtract(totalEgreso));
+        return Moneda.Formatear(this.total);
     }
     
     public String getTotalIngresoF(){
@@ -200,9 +200,13 @@ public class Caja {
         this.totalCierre = totalCierre;
     }
     
+    //**************************************************************/
+    
     @Transient private String uCierre;
     @Transient private String uApertura;
-
+    @Transient String CajaInicialS;
+    @Transient String TotalCierreS;
+    
     public String getuCierre() {
         return UsuarioCierre.getNombre();
     }
@@ -211,6 +215,12 @@ public class Caja {
         return UsuarioApertura.getNombre();
     }
     
+    public String getCajaInicialS(){
+        return Moneda.Formatear(cajaInicial);
+    }
     
+    public String getTotalCierreS(){
+        return Moneda.Formatear(totalCierre);
+    }
     
 }

@@ -36,7 +36,23 @@ public class CajaManager {
         HashMap<String, Object> parametros = new HashMap<String, Object>();
         parametros.put("fechaI", FechaInicio);
         parametros.put("fechaF", FechaFin);
-        Object l = DbHelper.Select("FROM Caja WHERE UsuarioCierre is not null AND fechaCierre BETWEEN :fechaI AND :fechaF ORDER BY fechaCierre", parametros);
+        Object l = DbHelper.Select("FROM Caja WHERE fechaCierre BETWEEN :fechaI AND :fechaF ORDER BY fechaCierre", parametros);
+        ObservableList<Caja> lista = (ObservableList<Caja>)l;
+        
+        //System.out.println("LISTA DE CAJAS *****");
+        //Gson gson = new Gson();
+        //System.out.println(gson.toJson(lista));
+        
+        if (lista.isEmpty())
+            return null;
+        else
+            return lista;
+    }
+    
+    public ObservableList<Caja> getDetallesdeCaja(int NumeroCaja){
+        HashMap<String, Object> parametros = new HashMap<String, Object>();
+        parametros.put("cajax", NumeroCaja);
+        Object l = DbHelper.Select("FROM detalleCaja WHERE caja.id = :cajax ORDER BY tipo asc, fechaCreacion asc", parametros);
         ObservableList<Caja> lista = (ObservableList<Caja>)l;
         
         //System.out.println("LISTA DE CAJAS *****");
@@ -111,6 +127,7 @@ public class CajaManager {
         if ( DbHelper.Agregar(detalle) ){
             switch (detalle.getTipo().name()){
                 case "Venta_Ticket":
+                    caja.setTotalIngreso(caja.getTotalIngreso().add(detalle.getMonto()) );
                     caja.setTotal( caja.getTotal().add(detalle.getMonto()) );
                     break;
                 

@@ -133,6 +133,7 @@ public class MainController implements Initializable, ArrastrarScene {
     UsuariosController uvController;
     RoutersController rController;
     PaquetesController pController;
+    IeCajaController ieCaja;
     @FXML
     private void onMenuAction(ActionEvent event) throws IOException {
         MenuItem mi = (MenuItem) event.getSource();
@@ -192,6 +193,14 @@ public class MainController implements Initializable, ArrastrarScene {
             case "Consultar caja": case "Cerrar caja":
                 DetalleCajaControlador detallesC = new DetalleCajaControlador(App);
                 detallesC.showStage();
+                break;
+            case "Ingreso":
+                ieCaja = new IeCajaController(App);
+                ieCaja.mostrarIngreso();
+                break;
+            case "Egreso":
+                ieCaja = new IeCajaController(App);
+                ieCaja.mostrarEgreso();
                 break;
         }
 
