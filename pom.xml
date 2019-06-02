@@ -55,12 +55,25 @@
             <optional>false</optional>
         </dependency>
         
-        <!-- JFXtras  -->
-        <!--dependency>
-            <groupId>org.jfxtras</groupId>
-            <artifactId>jfxtras-all</artifactId>
-            <version>8.0-r6</version>
-        </dependency-->
+        <!-- Codigo de Barras  -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.4.0</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>zxing-parent</artifactId>
+            <version>3.4.0</version>
+            <type>pom</type>
+        </dependency>
 
         <!-- Mikrotik API  -->
         <dependency>
@@ -91,11 +104,11 @@
         </dependency>
 
         <!-- SQLite JDBC library -->
-        <!--dependency>
+        <dependency>
            <groupId>org.hsqldb</groupId>
            <artifactId>hsqldb</artifactId>
            <version>2.4.1</version>
-        </dependency-->
+        </dependency>
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>

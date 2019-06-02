@@ -59,6 +59,8 @@ public class reporteHelper {
         Map<String,Object> parametros = new HashMap<String,Object>();
         parametros.put("dominio", config.getDominio()); // propiedad de configuracion
         parametros.put("iTicket", config.getImagenTicket()); // propiedad de configuracion
+        parametros.put("mostrarImagen", config.isImagenVisible()); // propiedad de configuracion
+        parametros.put("mostrarCodigo", config.isCodigoBarraVisible()); // propiedad de configuracion
         parametros.put( JRParameter.REPORT_LOCALE, config.getRegionLocal().getLocale() );
         
         try {
@@ -77,12 +79,19 @@ public class reporteHelper {
     public static JasperPrint getJasperPrint(String reporte_nombre, ObservableList<?> lista, Map<String,Object> parametros, Configuracion config ){
         MainApp mainApp = new MainApp();
         parametros.put( JRParameter.REPORT_LOCALE, config.getRegionLocal().getLocale() );
+        parametros.put( "HIBERNATE_SESSION", dbManager.configureSessionFactory().openSession() );
                 
         try {
             JasperReport jp = (JasperReport) JRLoader.loadObject(mainApp.getClass().getResource(reporte_nombre));
-            JRBeanCollectionDataSource listaReporte = new JRBeanCollectionDataSource(lista);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jp, (Map<String,Object>)parametros, listaReporte);
-
+            JasperPrint jasperPrint;
+            if (lista != null){
+                JRBeanCollectionDataSource listaReporte = new JRBeanCollectionDataSource(lista);
+                jasperPrint = JasperFillManager.fillReport(jp, (Map<String,Object>)parametros, listaReporte);
+            }
+            else{
+                jasperPrint = JasperFillManager.fillReport(jp, parametros);
+            }
+            
             return jasperPrint;
         } catch (JRException ex) { 
             System.out.println(ex.getMessage()); 

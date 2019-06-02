@@ -64,6 +64,10 @@ public class ConfiguracionController implements Initializable {
     @FXML private JFXComboBox<ThemeColor> cbtema;
     @FXML private JFXToggleButton tbtoolbar;
     @FXML private JFXToggleButton tbmenu;
+    @FXML private JFXToggleButton tgmostrarImagen;
+    @FXML private JFXTextField tusername;
+    @FXML private JFXToggleButton tgSincronizarConsumo;
+    @FXML private JFXToggleButton tgRegistrarVenta;
     
     private ConfiguracionManager2 cm;
     private MainApp App;
@@ -101,9 +105,16 @@ public class ConfiguracionController implements Initializable {
         tdireccion.setText(conf.getDireccion());
         timagen.setText(conf.getImagenTicket());
         tdominio.setText(conf.getDominio());
-        tgmostrarBarras.setSelected(conf.isCodigoBarraVisible());
+        
         tbmenu.setSelected(conf.isColorMenu());
         tbtoolbar.setSelected(conf.isColorToolbar());
+        
+        //***************** CONFIGURACIONES DE TICKETS Y SINCRONIZACION **************
+        tusername.setText(conf.getDefaultUsername());
+        tgSincronizarConsumo.setSelected(conf.isSincronizarConsumo());
+        tgRegistrarVenta.setSelected(conf.isSincronizarVenta());
+        tgmostrarBarras.setSelected(conf.isCodigoBarraVisible());
+        tgmostrarImagen.setSelected(conf.isImagenVisible());
         
         File fimg = new File(conf.getImagenTicket());
         iticket.setImage(new Image( fimg.toURI().toString()) );
@@ -167,7 +178,6 @@ public class ConfiguracionController implements Initializable {
         conf.setDireccion(tdireccion.getText());
         conf.setImagenTicket(timagen.getText());
         conf.setDominio(tdominio.getText());
-        conf.setCodigoBarraVisible(tgmostrarBarras.isSelected());
         
         // CONFIGURACION DE APARIENCIA
         conf.setColorEnfasis(cbenfasis.getValue().getNombre());
@@ -178,6 +188,13 @@ public class ConfiguracionController implements Initializable {
         conf.setIdioma(cbidioma.getValue());
         conf.setFormatoMoneda(cbmoneda.getValue().getLocale().getCountry());
 
+        // CONFIGURACION DE TICKET Y SINCRONIZACION
+        conf.setCodigoBarraVisible(tgmostrarBarras.isSelected());
+        conf.setImagenVisible(tgmostrarImagen.isSelected());
+        conf.setSincronizarConsumo(tgSincronizarConsumo.isSelected());
+        conf.setSincronizarVenta(tgRegistrarVenta.isSelected());
+        conf.setDefaultUsername(tusername.getText());
+        
         if (conf.getId() == 777)
             cm.Agregar(conf);
         else

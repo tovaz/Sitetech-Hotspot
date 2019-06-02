@@ -2,27 +2,58 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Tickets" language="groovy" columnCount="5" printOrder="Horizontal" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="115" columnSpacing="1" leftMargin="15" rightMargin="15" topMargin="15" bottomMargin="15" uuid="44c68a96-9c22-4299-bb5a-63d1c0f033be">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="1"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="dominio" class="java.lang.String"/>
 	<parameter name="iTicket" class="java.lang.String"/>
+	<parameter name="mostrarImagen" class="java.lang.Boolean"/>
+	<parameter name="mostrarCodigo" class="java.lang.Boolean"/>
 	<queryString language="hql">
-		<![CDATA[]]>
+		<![CDATA[from Ticket]]>
 	</queryString>
-	<field name="usuario" class="java.lang.Object"/>
-	<field name="contraseña" class="java.lang.Object"/>
-	<field name="fechaCreacion" class="java.lang.Object"/>
-	<field name="limiteDias" class="java.lang.Object"/>
-	<field name="limiteGigasDown" class="java.lang.Object"/>
-	<field name="limiteGigasUp" class="java.lang.Object"/>
-	<field name="limiteHoras" class="java.lang.Object"/>
-	<field name="limiteMegasDown" class="java.lang.Object"/>
-	<field name="limiteMegasUp" class="java.lang.Object"/>
-	<field name="limiteMinutos" class="java.lang.Object"/>
-	<field name="duracion" class="java.lang.Object"/>
+	<field name="contraseña" class="java.lang.String"/>
+	<field name="diasConsumidos" class="java.lang.Integer"/>
+	<field name="duracion" class="java.lang.String"/>
+	<field name="duracionConsumida" class="java.lang.String"/>
+	<field name="eliminado" class="java.lang.Boolean"/>
+	<field name="estado" class="sitetech.hotspot.Modelos.Ticket$EstadosType"/>
+	<field name="estadoS" class="java.lang.String"/>
+	<field name="fechaActualizacion" class="java.util.Date"/>
+	<field name="fechaCreacion" class="java.util.Date"/>
+	<field name="fechaVenta" class="java.util.Date"/>
+	<field name="gigasConsumidosDown" class="java.lang.Double"/>
+	<field name="gigasConsumidosUp" class="java.lang.Double"/>
+	<field name="horasConsumidas" class="java.lang.Integer"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="internetConsumido" class="java.lang.String"/>
+	<field name="ip" class="java.lang.String"/>
+	<field name="limiteDias" class="java.lang.Integer"/>
+	<field name="limiteGigasDown" class="java.lang.Double"/>
+	<field name="limiteGigasUp" class="java.lang.Double"/>
+	<field name="limiteHoras" class="java.lang.Integer"/>
+	<field name="limiteInternet" class="java.lang.String"/>
+	<field name="limiteInternetDown" class="java.lang.String"/>
+	<field name="limiteInternetUp" class="java.lang.String"/>
+	<field name="limiteMegasDown" class="java.lang.Double"/>
+	<field name="limiteMegasUp" class="java.lang.Double"/>
+	<field name="limiteMinutos" class="java.lang.Integer"/>
+	<field name="mac" class="java.lang.String"/>
+	<field name="megasConsumidoDown" class="java.lang.Double"/>
+	<field name="megasConsumidoUp" class="java.lang.Double"/>
+	<field name="megasConsumidosDown" class="java.lang.Double"/>
+	<field name="megasConsumidosUp" class="java.lang.Double"/>
+	<field name="minutosConsumidos" class="java.lang.Integer"/>
+	<field name="paquete" class="sitetech.hotspot.Modelos.Paquete"/>
+	<field name="paqueteS" class="java.lang.String"/>
+	<field name="porcentajeDescarga" class="java.lang.Double"/>
+	<field name="porcentajeSubida" class="java.lang.Double"/>
 	<field name="precio" class="java.lang.String"/>
-	<field name="limiteInternet" class="java.lang.Object"/>
+	<field name="router" class="sitetech.hotspot.Modelos.Router"/>
+	<field name="usuario" class="java.lang.String"/>
 	<variable name="formatearMoneda" class="java.text.NumberFormat">
 		<variableExpression><![CDATA[NumberFormat.getCurrencyInstance($P{REPORT_LOCALE})]]></variableExpression>
+	</variable>
+	<variable name="codigoBarra" class="java.lang.String">
+		<variableExpression><![CDATA[$P{dominio}+"?"+"name="+$F{usuario}+"&password="+$F{contraseña}]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
@@ -53,7 +84,7 @@
 				<reportElement mode="Transparent" x="0" y="4" width="113" height="171" uuid="1846436f-206c-4b14-ad1a-f983cd0bf68d"/>
 			</rectangle>
 			<textField>
-				<reportElement x="3" y="26" width="107" height="30" forecolor="#0033CC" uuid="69ce23ff-dd53-47f0-a758-f1bbd7a8000f"/>
+				<reportElement x="3" y="24" width="107" height="30" forecolor="#0033CC" uuid="69ce23ff-dd53-47f0-a758-f1bbd7a8000f"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="17"/>
 				</textElement>
@@ -67,82 +98,97 @@
 				<text><![CDATA[Usuario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="49" width="107" height="16" uuid="d5ac2ca9-ff50-452d-91b5-6c473d2b82e3"/>
+				<reportElement x="3" y="43" width="107" height="12" uuid="d5ac2ca9-ff50-452d-91b5-6c473d2b82e3"/>
 				<textElement textAlignment="Center">
 					<font size="9"/>
 				</textElement>
 				<text><![CDATA[Contraseña]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="3" y="58" width="107" height="24" uuid="2d58061e-a97a-4b52-946d-a9f40e00a916"/>
+				<reportElement x="3" y="52" width="107" height="22" uuid="2d58061e-a97a-4b52-946d-a9f40e00a916"/>
 				<textElement textAlignment="Center">
 					<font size="17"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{contraseña}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="79" width="113" height="1" forecolor="#666666" uuid="a7acad0b-fcdd-43a8-911f-8dd8d36caacc"/>
+				<reportElement x="0" y="73" width="113" height="1" forecolor="#666666" uuid="a7acad0b-fcdd-43a8-911f-8dd8d36caacc"/>
 			</line>
 			<staticText>
-				<reportElement x="3" y="80" width="107" height="16" uuid="15204ded-339f-4a71-bc06-9cc46b147041"/>
+				<reportElement x="3" y="74" width="107" height="16" uuid="15204ded-339f-4a71-bc06-9cc46b147041"/>
 				<textElement textAlignment="Left">
 					<font size="9" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Limite de tiempo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="106" width="107" height="16" uuid="78c03514-6b06-4774-8fdd-2eb3175f9ab8"/>
+				<reportElement x="3" y="95" width="107" height="14" uuid="78c03514-6b06-4774-8fdd-2eb3175f9ab8"/>
 				<textElement textAlignment="Left">
 					<font size="9"/>
 				</textElement>
 				<text><![CDATA[Limite de internet]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="3" y="90" width="107" height="19" uuid="c03661d3-0f37-4770-b394-e849d13df513"/>
+				<reportElement x="3" y="83" width="107" height="13" uuid="c03661d3-0f37-4770-b394-e849d13df513"/>
 				<textElement>
-					<font size="12"/>
+					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{duracion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="117" width="107" height="18" uuid="abd851c0-a313-4933-b3c0-025c92dc941d"/>
+				<reportElement x="3" y="106" width="107" height="14" uuid="abd851c0-a313-4933-b3c0-025c92dc941d"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{limiteInternet}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="3" y="7" width="38" height="22" uuid="7d444537-f17e-4a0f-9ca6-ab4d6a97d7b8"/>
+				<reportElement x="6" y="7" width="28" height="22" uuid="7d444537-f17e-4a0f-9ca6-ab4d6a97d7b8">
+					<printWhenExpression><![CDATA[$P{mostrarImagen}]]></printWhenExpression>
+				</reportElement>
 				<imageExpression><![CDATA[$P{iTicket}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="41" y="131" width="69" height="18" uuid="0acf3abb-63ab-42ac-8b9f-4f4ea9452250"/>
-				<textElement textAlignment="Right">
-					<font size="12" isBold="true"/>
+				<reportElement x="3" y="129" width="69" height="13" uuid="0acf3abb-63ab-42ac-8b9f-4f4ea9452250"/>
+				<textElement>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="3" y="132" width="38" height="16" uuid="8a361ee1-e00d-4198-ae3b-3bbf72150ca6"/>
+				<reportElement x="3" y="118" width="38" height="12" uuid="8a361ee1-e00d-4198-ae3b-3bbf72150ca6"/>
 				<textElement textAlignment="Left">
 					<font size="9"/>
 				</textElement>
 				<text><![CDATA[Precio: ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="148" width="63" height="16" uuid="bd766e04-9716-43c8-9704-c33b14fcabc7"/>
+				<reportElement x="3" y="141" width="63" height="12" uuid="bd766e04-9716-43c8-9704-c33b14fcabc7">
+					<printWhenExpression><![CDATA[$P{dominio}!=null?true:false]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Left">
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[Solo ingresa a:]]></text>
+				<text><![CDATA[Ingresa a:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="3" y="159" width="107" height="16" uuid="7be97f3b-4622-41dc-af0f-847849079e71"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font size="10" isBold="true"/>
+				<reportElement x="3" y="152" width="63" height="22" uuid="7be97f3b-4622-41dc-af0f-847849079e71"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{dominio}]]></textFieldExpression>
 			</textField>
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle" isUsingCache="true" onErrorType="Blank">
+				<reportElement mode="Transparent" x="66" y="121" width="44" height="52" uuid="4ab2e165-c5fe-4789-9a9c-56f3fdf3202e">
+					<printWhenExpression><![CDATA[$P{mostrarCodigo}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
+    new com.google.zxing.qrcode.QRCodeWriter().encode(
+        $V{codigoBarra},
+        com.google.zxing.BarcodeFormat.QR_CODE, 300, 300
+    )
+)]]></imageExpression>
+			</image>
 		</band>
 	</detail>
 </jasperReport>

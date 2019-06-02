@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="310.0" style="-fx-background-color: -colorFondo2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="379.0" prefWidth="310.0" style="-fx-background-color: -colorFondo2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <stylesheets>
       <URL value="@../../styles/Temas/Tema-Celeste.css" />
       <URL value="@../../styles/Temas/Tema-Claro.css" />
@@ -22,17 +22,17 @@
       <URL value="@../../styles/botones.css" />
    </stylesheets>
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="280.0" layoutX="20.0" layoutY="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: -colorFondo; -fx-stroke: -colorFondo5;" width="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
-      <HBox alignment="CENTER_RIGHT" layoutX="140.0" layoutY="30.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" style="-fx-background-color: -fx-accent;" AnchorPane.bottomAnchor="340.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="270.0" layoutX="20.0" layoutY="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: -colorFondo; -fx-stroke: -colorFondo5;" width="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+      <HBox alignment="CENTER_RIGHT" layoutX="140.0" layoutY="30.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" style="-fx-background-color: -fx-accent;" AnchorPane.bottomAnchor="330.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label style="-fx-text-fill: #eee;" text="Caja No. ">
                <font>
-                  <Font size="16.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
             <Label fx:id="lcaja" nodeOrientation="RIGHT_TO_LEFT" prefHeight="27.0" prefWidth="105.0" style="-fx-text-fill: #eee;" text="9999999">
                <font>
-                  <Font size="16.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
          </children>
@@ -65,7 +65,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label text="Total Ingresos:" GridPane.rowIndex="3">
+            <Label text="Otros Ingresos:" GridPane.rowIndex="3">
                <font>
                   <Font size="14.0" />
                </font>
@@ -119,7 +119,7 @@
          </children>
       </GridPane>
       <JFXSpinner fx:id="spespere" layoutX="103.0" layoutY="236.0" prefHeight="68.0" prefWidth="105.0" style="-fx-background-color: transparent;" visible="false" AnchorPane.bottomAnchor="50.0" />
-      <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="340.0">
+      <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="320.0">
          <children>
             <JFXButton fx:id="bcancelar" cancelButton="true" maxHeight="-Infinity" minHeight="-Infinity" onAction="#onCancelar" prefHeight="35.0" prefWidth="150.0" styleClass="btn-default" text="Cancelar" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="10.0" />
             <JFXButton fx:id="bcerrar" layoutX="150.0" maxHeight="-Infinity" minHeight="-Infinity" onAction="#onCerrarCaja" prefHeight="35.0" prefWidth="150.0" styleClass="btn-rojo" text="Cerrar Caja" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />

@@ -68,7 +68,7 @@
 }
 
 .menu-item:focused {
-    -fx-background: derive(-fx-secundary, 70%);
+    -fx-background: derive(-fx-secundary, 90%);
     -fx-background-radius: 10;
 }
 

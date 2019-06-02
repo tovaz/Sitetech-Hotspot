@@ -3,8 +3,8 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXSpinner?>
-<?import com.jfoenix.controls.JFXToolbar?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToolbar?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
@@ -12,7 +12,6 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -107,9 +106,9 @@
                             <children>
                                 <ToolBar fx:id="ticketToolbar" blendMode="SRC_ATOP" prefWidth="757.0" styleClass="ticket-toolbar" VBox.vgrow="ALWAYS">
                                     <items>
-                              <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../Imagenes/hotspot-100.png" />
+                                    <Image url="@../../Imagenes/ico.png" />
                                  </image>
                               </ImageView>
                                         <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGenerarAction" prefHeight="55.0" prefWidth="120.0" text=" ">

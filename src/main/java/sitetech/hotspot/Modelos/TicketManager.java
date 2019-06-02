@@ -34,15 +34,19 @@ public class TicketManager {
     }
     
     public void AgregarTicket(Ticket tq) {
+        tq.setEstadoS(tq.getEstado().name());
         DbHelper.Agregar(tq);
     }
 
     public void EditarTicket(Ticket tq) {
+        tq.setEstadoS(tq.getEstado().name());
         DbHelper.Editar(tq);
     }
 
     public void EliminarTicket(Ticket tq) {
         tq.setEliminado(true);
+        tq.setEstado(Ticket.EstadosType.Eliminado);
+        tq.setEstadoS(tq.getEstado().name());
         DbHelper.Editar(tq);
     }
     

@@ -8,6 +8,7 @@ package sitetech.hotspot.Modelos;
 import Util.MiLocale;
 import java.util.Currency;
 import java.util.Locale;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,7 +34,6 @@ public class Configuracion {
     private String Pais = "Guatemala";
     private String Estado = "Guatemala";
     private String Ciudad = "Guatemala";
-    private boolean codigoBarraVisible = false;
     
     private String FormatoMoneda = "GT";
     private String Idioma = "Spanish";
@@ -46,9 +46,21 @@ public class Configuracion {
     private boolean colorToolbar = false;
     private boolean colorMenu = true;
     
+    //************ OPCIONES CON TICKETS Y SINCRONIZACION *************
+    @Column(name = "imagenVisible", columnDefinition = "boolean default true", nullable = false)
+    private boolean imagenVisible = true;
+    @Column(name = "codigoBarraVisible", columnDefinition = "boolean default false", nullable = false)
+    private boolean codigoBarraVisible = false;
+    @Column(name = "sincronizarConsumo", columnDefinition = "boolean default true", nullable = false)
+    private boolean sincronizarConsumo = true;
+    @Column(name = "sincronizarVenta", columnDefinition = "boolean default false", nullable = false)
+    private boolean sincronizarVenta = false;
+    
+    private String defaultUsername = "Usuario";
+    
+    
     @Transient
     private MiLocale RegionLocal; 
-
     public Configuracion() {
     }
     
@@ -187,6 +199,38 @@ public class Configuracion {
 
     public void setColorMenu(boolean colorMenu) {
         this.colorMenu = colorMenu;
+    }
+
+    public boolean isImagenVisible() {
+        return imagenVisible;
+    }
+
+    public void setImagenVisible(boolean imagenVisible) {
+        this.imagenVisible = imagenVisible;
+    }
+
+    public String getDefaultUsername() {
+        return defaultUsername;
+    }
+
+    public void setDefaultUsername(String defaultUsername) {
+        this.defaultUsername = defaultUsername;
+    }
+
+    public boolean isSincronizarConsumo() {
+        return sincronizarConsumo;
+    }
+
+    public void setSincronizarConsumo(boolean sincronizarConsumo) {
+        this.sincronizarConsumo = sincronizarConsumo;
+    }
+
+    public boolean isSincronizarVenta() {
+        return sincronizarVenta;
+    }
+
+    public void setSincronizarVenta(boolean sincronizarVenta) {
+        this.sincronizarVenta = sincronizarVenta;
     }
 
     

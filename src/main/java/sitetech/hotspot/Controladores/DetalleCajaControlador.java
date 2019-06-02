@@ -81,10 +81,10 @@ public class DetalleCajaControlador implements Initializable {
         }
         
         ltickets.setText(tickets);
-        ltotaltickets.setText(Moneda.Formatear(totalTickets, Locale.getDefault()));
+        ltotaltickets.setText(Moneda.Formatear(totalTickets));
         lcaja.setText(String.valueOf(caja.getId()));
         lcajainicial.setText( Moneda.Formatear(caja.getCajaInicial()) );
-        lingresos.setText(caja.getTotalIngresoF());
+        lingresos.setText(Moneda.Formatear(caja.getTotalIngreso().subtract(totalTickets)));
         legresos.setText(caja.getTotalEgresoF());
         ltotal.setText(caja.getTotalF());
     }

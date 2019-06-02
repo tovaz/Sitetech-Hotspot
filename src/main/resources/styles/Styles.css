@@ -3,6 +3,11 @@
     -fx-font-size: 15 pt;
 }
 
+.menu-item:focused .degradado1 {
+    -fx-fill: derive(-fx-accent, -50%);
+    /*-fx-text-fill: red;*/
+}
+
 .menuEnfasis .label {
     -fx-text-fill: #eee;
 }
@@ -27,20 +32,17 @@
     -fx-background-color: linear-gradient(to top right, #1299e2, #51d5fF);
 }
 
-/******************** COLOR TOOLBAR *******************************/
+/************************* COLOR TOOLBAR *******************************/
 .ticket-toolbar .jfx-button{
-    -fx-background-color: rgba(255,255,255,0.6);
+    -fx-background-color: rgba(255,255,255,0.9);
     -fx-background-radius: 5px;
+    -fx-skin: 'Util.MyButtonSkin';
 }
 
 .ticket-toolbar .jfx-button .label {
     -fx-text-fill: #333;
 }
 
-.ticket-toolbar .jfx-button:hover {
-    -fx-background-color: rgba(255,255,255,0.8);
-    -fx-background-radius: 5px;
-}
 
 .ticket-toolbar .jfx-button .label:hover{
     -fx-text-fill: #222;
@@ -55,11 +57,13 @@
 }
 
  .degradado1 {
-     -fx-fill: linear-gradient(derive(-fx-accent, 10%), derive(-fx-accent, 80%));
+     -fx-fill: -fx-accent;
+     /*-fx-fill: linear-gradient(derive(-fx-accent, 10%), derive(-fx-accent, 80%));*/
  }
  
   .degradado2 {
-     -fx-fill: linear-gradient(derive(-fx-secundary, 10%), derive(-fx-secundary, 80%));
+      -fx-fill: -fx-accent;
+     /*fx-fill: linear-gradient(derive(-fx-secundary, 10%), derive(-fx-secundary, 80%));*/
  }
  
  .degradado3 {

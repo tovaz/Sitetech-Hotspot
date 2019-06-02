@@ -252,12 +252,15 @@ public class ReporteViewerControlador implements Initializable {
             lmensaje.setVisible(false);
             ireporte.setVisible(true);
         } 
-        else{
-            desactivarBotones(0);
-            lmensaje.setVisible(true);
-            lmensaje.setText("Error al cargar el reporte.");
-            ireporte.setVisible(false);
-        }
+        else
+            errorReporte("Error al cargar el reporte.");
+    }
+    
+    public void errorReporte(String mensaje){
+        desactivarBotones(0);
+        lmensaje.setVisible(true);
+        lmensaje.setText(mensaje);
+        ireporte.setVisible(false);
     }
     
     /**
@@ -286,17 +289,12 @@ public class ReporteViewerControlador implements Initializable {
         badelante2.setDisable(isLastPage);
     }
     
-    float factorAnterior;
+    float factorAnterior = 1;
     /**
      * Scale image from ImageView
      * @param factor Zoom factor
      */
     public void zoom(float factor) {
-        //ireporte.setScaleX(factor);
-        //ireporte.setScaleY(factor);
-        //ireporte.setFitHeight(imageHeight + factor);
-        //ireporte.setFitWidth(imageWidth + factor);
-        
         System.out.println("FACTOR: " + factor);
         factorAnterior = factor;
         ireporte.setImage(pageToImage(currentPage.getValue()));

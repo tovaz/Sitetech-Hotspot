@@ -42,16 +42,14 @@ public class MainApp extends Application {
     public Usuario usuarioLogeado = null;
     public Caja cajaAbierta;
     public Configuracion configuracion;
-    public static Image iconoApp = new Image(MainApp.class.getResourceAsStream( "/Imagenes/ico.png" ));;
+    public static Image iconoApp = new Image(MainApp.class.getResourceAsStream( "/Imagenes/ico.png" ));
     
     public static Stage mainStage;
     
     
     @Override
     public void init() throws Exception {
-        springContext = SpringApplication.run(MainApp.class);        
-        //String driver = "org.apache.derby.jdbc.EmbeddedDriver";
-        //Class.forName(driver).newInstance();
+        springContext = SpringApplication.run(MainApp.class);
     }
 
     @Override

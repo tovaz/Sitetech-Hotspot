@@ -25,7 +25,7 @@ public class dbManager {
     
     private static SessionFactory sessionFactory = null;  
        
-    private static SessionFactory configureSessionFactory() throws HibernateException {  
+    public static SessionFactory configureSessionFactory() throws HibernateException {  
         Configuration configuration = new Configuration();  
         configuration.configure();  
          

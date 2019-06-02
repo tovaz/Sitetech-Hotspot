@@ -23,6 +23,7 @@ import sitetech.Helpers.reporteHelper;
 import sitetech.hotspot.MainApp;
 import sitetech.hotspot.Modelos.Caja;
 import sitetech.hotspot.Modelos.CajaManager;
+import sitetech.hotspot.Modelos.TicketManager;
 
 /**
  * FXML Controller class
@@ -33,12 +34,18 @@ public class ReportesControlador extends MiControlador {
 
     @FXML private AnchorPane preporte;
     @FXML private TreeView<String> tvlista;
-    private ReporteViewerControlador rviewer;
-    
+    public ReporteViewerControlador rviewer;
+    private ParametrosCajaControlador pcaja;
+    private CajaManager cm;
+    private TicketManager tm;
+            
     public ReportesControlador(MainApp _app) {
-        //(String escena, String titulo, Modality modalidad, Configuracion conf)
         cargarEscena("/Reportes/Reportes.fxml", "Reportes", Modality.WINDOW_MODAL, _app);
         rviewer = new ReporteViewerControlador(App);
+        
+        cm = new CajaManager();
+        tm = new TicketManager();
+        
         cargarInfo();
     }
     
@@ -48,11 +55,13 @@ public class ReportesControlador extends MiControlador {
         TreeItem itemsCaja = new TreeItem("Caja", imagenHelper.getIcono(FontAwesomeIconName.MONEY, "12px", "-fx-fill: -fx-accent;"));
         itemsCaja.getChildren().add(new TreeItem("Cajas por fecha", imagenHelper.getIcono(FontAwesomeIconName.CIRCLE_ALT, "12px", "-fx-fill: -fx-accent;")));
         itemsCaja.getChildren().add(new TreeItem("Detalles de caja", imagenHelper.getIcono(FontAwesomeIconName.CIRCLE_ALT, "12px", "-fx-fill: -fx-accent;")));
+        itemsCaja.getChildren().add(new TreeItem("Caja actual", imagenHelper.getIcono(FontAwesomeIconName.CIRCLE_ALT, "12px", "-fx-fill: -fx-accent;")));
         rootItem.getChildren().add(itemsCaja);
         
         TreeItem itemsTickets = new TreeItem("Tickets", imagenHelper.getIcono(FontAwesomeIconName.TAGS, "12px", "-fx-fill: -fx-accent;"));
         itemsTickets.getChildren().add(new TreeItem("Vendidos", imagenHelper.getIcono(FontAwesomeIconName.CIRCLE_ALT, "12px", "-fx-fill: -fx-accent;")));
-        itemsTickets.getChildren().add(new TreeItem("Sin Vender", imagenHelper.getIcono(FontAwesomeIconName.CIRCLE_ALT, "12px", "-fx-fill: -fx-accent;")));
+        itemsTickets.getChildren().add(new TreeItem("No Vendidos", imagenHelper.getIcono(FontAwesomeIconName.CIRCLE_ALT, "12px", "-fx-fill: -fx-accent;")));
+        itemsTickets.getChildren().add(new TreeItem("Todos", imagenHelper.getIcono(FontAwesomeIconName.CIRCLE_ALT, "12px", "-fx-fill: -fx-accent;")));
         rootItem.getChildren().add(itemsTickets);
         
         rootItem.setExpanded(true);
@@ -65,6 +74,7 @@ public class ReportesControlador extends MiControlador {
         }catch (Exception ex){ 
             Dialogo.mostrarError("Error al cargar el reporte", "Error", App.configuracion, ButtonType.OK); 
         }
+        
     }
     
     @FXML
@@ -73,69 +83,120 @@ public class ReportesControlador extends MiControlador {
         selectTreeView(selectedItem);
     }
     
-    ParametrosCajaControlador pcaja;
     private void selectTreeView(TreeItem<String> selectedItem){
-        CajaManager cm = new CajaManager();
-        System.out.println("Selected Text : " + selectedItem.getValue());
+        if (pcaja == null)
+            pcaja = new ParametrosCajaControlador(App);
+        
         switch (selectedItem.getValue()){
             case "Cajas por fecha":
-                pcaja = new ParametrosCajaControlador(App, ParametrosCajaControlador.VistaType.Fecha);
-                pcaja.showAndWait();
-                Map<String,Object> parametros = new HashMap<String,Object>();
-                parametros.put("FechaInicio", pcaja.getFechaInicio());
-                parametros.put("FechaFin", pcaja.getFechaFin()); 
-                parametros.put("UsuarioLogueado", App.usuarioLogeado.getNombre()); 
-
-                try {
-                    ObservableList<Caja> cajas = cm.getPorFecha(pcaja.getFechaInicio(), pcaja.getFechaFin());
-                    JasperPrint jp = reporteHelper.getJasperPrint("/Reportes/Caja/CajasporFecha.jasper", cajas, parametros, App.configuracion);
-                    
-                    //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                    
-                    rviewer.cargarReporte("Reporte de cajas por fechas", jp);
-                    App.agregarEscena("reporte", rviewer.thisStage.getScene());
+                pcaja.showFechas();
                 
-                    /*JasperViewer jv = new JasperViewer(jp, false);
-                    jv.setTitle("Reporte de cajas");
-                    jv.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ticketprint.png")).getImage());
-                    jv.setVisible(true);*/
-                } catch (Exception ex) { 
-                    System.out.println(ex.getMessage()); 
-                    Dialogo.mostrarError(ex.getMessage(), "Error al cargar el reporte", App.configuracion, ButtonType.OK);
+                if (pcaja.BotonPresionado == ParametrosCajaControlador.ButtonType.Ok){
+                    try {
+                        ObservableList<Caja> cajas = cm.getPorFecha(pcaja.getFechaInicio(), pcaja.getFechaFin());
+                        JasperPrint jp = reporteHelper.getJasperPrint("/Reportes/Caja/CajasporFecha.jasper", cajas, generarParametros(pcaja, "hola", ""), App.configuracion);
+
+                        if (cajas != null)
+                            rviewer.cargarReporte("Reporte de cajas por fechas", jp);
+                        else
+                            rviewer.errorReporte("No se encontraron registros para generar un reporte.");
+
+                        App.agregarEscena("reporte", rviewer.thisStage.getScene());
+
+                    } catch (Exception ex) { 
+                        System.out.println(ex.getMessage()); 
+                        Dialogo.mostrarError(ex.getMessage(), "Error al cargar el reporte", App.configuracion, ButtonType.OK);
+                    }
                 }
                 
-                /*ObservableList<Ticket> ticketsSeleccionados = new TicketManager().getTickets();
-                JasperPrint jp = reporteHelper.getJasperPrintTicket(ticketsSeleccionados, App.configuracion);
-                ReporteViewerControlador rview = new ReporteViewerControlador(App);
-                rviewer.cargarReporte("Reporte de tickets generados", jp);
-                */
                 break;
             
             case "Detalles de caja":
-                pcaja = new ParametrosCajaControlador(App, ParametrosCajaControlador.VistaType.Caja);
-                pcaja.showAndWait();
+                pcaja.showCaja();
                 
-                Map<String,Object> parametros2 = new HashMap<String,Object>();
-                parametros2.put("UsuarioLogueado", App.usuarioLogeado.getNombre()); 
-
-                try {
-                    ObservableList<Caja> cajas = cm.getDetallesdeCaja(pcaja.getNumeroCaja());
-                    JasperPrint jp = reporteHelper.getJasperPrint("/Reportes/Caja/DetallesdeCaja.jasper", cajas, parametros2, App.configuracion);
-                    
-                    rviewer.cargarReporte("Reporte de caja", jp);
-                    App.agregarEscena("reporte", rviewer.thisStage.getScene());
-                } catch (Exception ex) { 
-                    System.out.println(ex.getMessage()); 
-                    Dialogo.mostrarError(ex.getMessage(), "Error al cargar el reporte", App.configuracion, ButtonType.OK);
+                if (pcaja.BotonPresionado == ParametrosCajaControlador.ButtonType.Ok){
+                    showDetalleCaja(pcaja.getNumeroCaja());
                 }
                 break;
             
-            case "Vendidos":
+            case "Caja actual":
+                showDetalleCaja(App.cajaAbierta.getId());
                 break;
                 
-            case "Sin Vender":
+            case "Vendidos":
+                pcaja.showFechaTicket();
+                if (pcaja.BotonPresionado == ParametrosCajaControlador.ButtonType.Ok){
+                    try {
+                        JasperPrint jp = reporteHelper.getJasperPrint("/Reportes/Tickets/Tickets.jasper", null, generarParametros(pcaja, "Reporte de Tickets Vendidos", "Vendido"), App.configuracion);
+                        rviewer.cargarReporte("Reporte de tickets", jp);
+                        
+                        App.agregarEscena("reporte", rviewer.thisStage.getScene());
+                    } catch (Exception ex) { 
+                        System.out.println(ex.getMessage()); 
+                        Dialogo.mostrarError(ex.getMessage(), "Error al cargar el reporte", App.configuracion, ButtonType.OK);
+                    }
+                }
                 break;
+                
+            case "No Vendidos":
+                pcaja.showFechaTicket();
+                if (pcaja.BotonPresionado == ParametrosCajaControlador.ButtonType.Ok){
+                    try {
+                        JasperPrint jp = reporteHelper.getJasperPrint("/Reportes/Tickets/Tickets.jasper", null, generarParametros(pcaja, "Reporte de Tickets no Vendidos", "Activo"), App.configuracion);
+                        rviewer.cargarReporte("Reporte de tickets", jp);
+                        
+                        App.agregarEscena("reporte", rviewer.thisStage.getScene());
+                    } catch (Exception ex) { 
+                        System.out.println(ex.getMessage()); 
+                        Dialogo.mostrarError(ex.getMessage(), "Error al cargar el reporte", App.configuracion, ButtonType.OK);
+                    }
+                }
+                break;
+            
+            case "Todos":
+                pcaja.showFechaTicket();
+                if (pcaja.BotonPresionado == ParametrosCajaControlador.ButtonType.Ok){
+                    try {
+                        JasperPrint jp = reporteHelper.getJasperPrint("/Reportes/Tickets/Tickets.jasper", null, generarParametros(pcaja, "Reporte de Tickets", ""), App.configuracion);
+                        rviewer.cargarReporte("Reporte de tickets", jp);
+                        
+                        App.agregarEscena("reporte", rviewer.thisStage.getScene());
+                    } catch (Exception ex) { 
+                        System.out.println(ex.getMessage()); 
+                        Dialogo.mostrarError(ex.getMessage(), "Error al cargar el reporte", App.configuracion, ButtonType.OK);
+                    }
+                }
+                break;
+                
+            default: break;
         }
     }
     
+    private Map<String,Object> generarParametros(ParametrosCajaControlador pcaja, String titulo, String estado){
+        Map<String,Object> parametros = new HashMap<String,Object>();
+        parametros.put("FechaInicio", pcaja.getFechaInicio());
+        parametros.put("FechaFin", pcaja.getFechaFin()); 
+        parametros.put("UsuarioLogueado", App.usuarioLogeado.getNombre()); 
+        parametros.put("titulo", titulo);
+        parametros.put("Estado", "%"+estado+"%"); 
+        return parametros;
+    } 
+    
+    public void showDetalleCaja(int caja){
+        Map<String,Object> parametros = new HashMap<String,Object>();
+        parametros.put("UsuarioLogueado", App.usuarioLogeado.getNombre()); 
+        try {
+            ObservableList<Caja> cajas = cm.getDetallesdeCaja(caja);
+            JasperPrint jp = reporteHelper.getJasperPrint("/Reportes/Caja/DetallesdeCaja.jasper", cajas, parametros, App.configuracion);
+
+            if (cajas != null)
+                rviewer.cargarReporte("Reporte de caja", jp);
+            else
+                rviewer.errorReporte("No se encontraron registros para generar un reporte.");
+            App.agregarEscena("reporte", rviewer.thisStage.getScene());
+        } catch (Exception ex) { 
+            System.out.println(ex.getMessage()); 
+            Dialogo.mostrarError(ex.getMessage(), "Error al cargar el reporte", App.configuracion, ButtonType.OK);
+        }
+    }
 }

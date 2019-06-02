@@ -316,10 +316,25 @@ public class Ticket {
     }
     
     
-    //************** FUNCIONES ADICIONALES ***************************
+    //********************* FUNCIONES ADICIONALES ***************************
     @Transient public String Duracion;
+    @Transient public String InternetConsumido;
     @Transient public String LimiteInternetDown;
     @Transient public String LimiteInternetUp;
+    private String estadoS;
+    
+    public String getEstadoS(){
+        return estadoS;
+    }
+    
+    public void setEstadoS(String st){
+        estadoS = st;
+    }
+    
+    
+    public String getInternetConsumido(){
+        return Math.round(getMegasConsumidosDown())  + " Mb ↓ y " + Math.round(getMegasConsumidosUp()) + " Mb ↑ ";
+    }
     
     public Double getPorcentajeDescarga(){
         return (getmegasConsumidoDown()*100)/(getLimiteMegasDown() + (getLimiteGigasDown()*1024) )/100;
@@ -397,10 +412,6 @@ public class Ticket {
             _duracion += " ** Llego al limite **";
         
         return _duracion;
-        
-        /*String duracion = String.valueOf(diasConsumidos) + " dias y " + String.valueOf(horasConsumidas) + " hr " + String.valueOf(minutosConsumidos) + " min";
-        if (duracion.equals("0 dias y 0 hr 0 min")) return "Aun sin consumir";
-        else return duracion;*/
     }
     
     

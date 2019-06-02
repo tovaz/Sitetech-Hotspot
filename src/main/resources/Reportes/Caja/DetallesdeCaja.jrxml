@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="582" leftMargin="15" rightMargin="15" topMargin="15" bottomMargin="15" uuid="761d8776-c533-4a34-a069-2bee39b23745">
 	<property name="ireport.zoom" value="1.2100000000000029"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="150"/>
 	<subDataset name="dataset1" uuid="e1434742-b90d-4a3e-8f4f-84f428c8522d">
 		<queryString language="hql">
 			<![CDATA[SELECT SUM(monto) as total FROM detalleCaja GROUP BY tipo]]>
@@ -242,12 +242,12 @@
 			<rectangle>
 				<reportElement x="0" y="0" width="582" height="70" forecolor="#C8C8C8" backcolor="#F0F0F0" uuid="7a52c267-e3b8-4b1f-866f-d09377ba9e99"/>
 			</rectangle>
-			<textField>
-				<reportElement x="370" y="2" width="209" height="20" uuid="6aa23569-2cc3-4ba6-96ca-5ea785300830"/>
+			<textField pattern="dd/MM/yyyy h:mm a">
+				<reportElement x="356" y="2" width="98" height="20" uuid="6aa23569-2cc3-4ba6-96ca-5ea785300830"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Fecha de impresion: " + new java.util.Date()]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Fecha de impresion: "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="5" y="4" width="133" height="20" uuid="654e0735-0e0f-4ef4-a712-5ae9ef67ce59"/>
@@ -261,21 +261,26 @@
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Fecha de apertura " + $F{caja}.getFechaCreacion()]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Fecha de apertura " + new SimpleDateFormat("MM/dd/yyyy H:mm:ss a").format($F{caja}.getFechaApertura())]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="5" y="47" width="237" height="20" uuid="1c7fe35b-bfa3-4b6b-9b7f-c699ca5d661e"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{caja}.getFechaCierre() != null ? "Fecha de cierre: " + $F{caja}.getFechaCierre() : "Fecha de cierre:  sin cerrar "]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{caja}.getFechaCierre() != null ? "Fecha de cierre: " + new SimpleDateFormat("MM/dd/yyyy").format($F{caja}.getFechaCierre()) : "Fecha de cierre:  sin cerrar "]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="370" y="47" width="209" height="20" uuid="ba9b59d4-5b8f-4ab1-89e0-350579ea8216"/>
+				<reportElement x="356" y="47" width="223" height="20" uuid="ba9b59d4-5b8f-4ab1-89e0-350579ea8216"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{caja}.getUsuarioCierre() != null ? "Usuario Cierre: " + $F{caja}.getUsuarioCierre().getNombre() : "Usuario Cierre: * ninguno"]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h:mm a">
+				<reportElement x="454" y="2" width="128" height="20" uuid="f66697bc-1198-42ae-bfb8-4f178dc7f977"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" " + new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
@@ -363,7 +368,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$V{countTickets}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="dd/MM/yyyy H:mm:ss a">
 				<reportElement x="420" y="1" width="76" height="12" uuid="ce249daf-f9d8-47ac-813c-29be7b29d454"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
@@ -484,7 +489,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$V{formatearMoneda}.format( $F{monto} )]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="dd/MM/yyyy H:mm:ss a" isBlankWhenNull="false">
 				<reportElement x="226" y="0" width="127" height="12" uuid="efab24a1-625d-4a76-af57-5ba329d610d3"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
@@ -513,7 +518,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER} + " de" + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
-			<textField pattern="dd/MM/yyyy h.mm a">
+			<textField pattern="dd/MM/yyyy h:mm a">
 				<reportElement x="105" y="2" width="170" height="20" uuid="eb570cc8-10f5-4f8e-b1a6-2bacaf33dac7"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>

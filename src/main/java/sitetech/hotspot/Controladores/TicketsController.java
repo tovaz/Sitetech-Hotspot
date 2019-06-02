@@ -156,6 +156,11 @@ public class TicketsController implements Initializable, ArrastrarScene {
     void onBuscarAction(ActionEvent event) {
         listaTickets = tm.buscarTickets(tnombre.getText(), cbpaquetes.getValue(), cbestado.getValue());
         tvtickets.setItems(listaTickets);
+        
+        for (Ticket tc : listaTickets){ // Only worked for update Status name from database to all tickets generated before.
+            tc.setEstadoS(tc.getEstado().name());
+            tm.EditarTicket(tc);
+        }
     }
 
     //****************************************************************************************

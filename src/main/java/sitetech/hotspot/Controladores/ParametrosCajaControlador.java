@@ -29,20 +29,35 @@ public class ParametrosCajaControlador extends MiControlador {
     @FXML private Label lfechai;
     @FXML private Label lfechaf;
     @FXML private AnchorPane pfechas;
+    @FXML private Label lfechaTicket;
     
     public boolean correcto;
     public ButtonType BotonPresionado = ButtonType.Cancelar;
     
     public static enum ButtonType { Ok, Cancelar };
-    public static enum VistaType { Fecha, Caja };
+    public static enum VistaType { Fecha, Caja, Fecha_Ticket };
     private VistaType tipoVista;
-    public ParametrosCajaControlador(MainApp _app, VistaType tipo) {
-        tipoVista = tipo;
-        cargarEscena("/Reportes/Caja/parametrosCaja.fxml", "Parametros de seleccion", Modality.APPLICATION_MODAL, _app);
-        
-        if (tipoVista == VistaType.Caja) pfechas.setVisible(false);
-        if (tipoVista == VistaType.Fecha) tcaja.setVisible(false);
+    public ParametrosCajaControlador(MainApp _app) {
+        cargarEscena("/Reportes/Caja/parametrosCaja.fxml", "Parametros de seleccion", Modality.WINDOW_MODAL, _app);
     }
+    
+    //********************** OPCIONES DE VISUALIZACION ********************
+    public void showFechas(){    
+        lfechaTicket.setVisible(false);
+        pfechas.setVisible(true); tcaja.setVisible(false); dpfechai.requestFocus(); tipoVista = VistaType.Fecha;
+        this.showAndWait();
+    }
+    public void showCaja(){
+        lfechaTicket.setVisible(false);
+        tcaja.setVisible(true); tcaja.setText(""); pfechas.setVisible(false); tcaja.requestFocus(); tipoVista = VistaType.Caja;
+        this.showAndWait();
+    }
+    public void showFechaTicket(){
+        pfechas.setVisible(true);
+        lfechaTicket.setVisible(true); tcaja.setVisible(false); dpfechai.requestFocus(); tipoVista = VistaType.Fecha_Ticket;
+        this.showAndWait();
+    }
+    //*******************************************************************
     
     @FXML
     public void onaceptar(ActionEvent event) {

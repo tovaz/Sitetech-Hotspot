@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="284.0" prefWidth="300.0" styleClass="fondoApp" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" >
+<AnchorPane id="AnchorPane" prefHeight="285.0" prefWidth="300.0" style="-fx-background-color: -colorFondo;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <stylesheets>
       <URL value="@../../styles/Styles.css" />
       <URL value="@../../styles/Temas/Tema-Azul.css" />
@@ -21,17 +20,17 @@
       <URL value="@../../styles/validation.css" />
    </stylesheets>
    <children>
-      <VBox alignment="CENTER" prefHeight="263.0" prefWidth="354.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+      <VBox alignment="TOP_CENTER" prefHeight="227.0" prefWidth="270.0" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
          <children>
             <Label fx:id="ltitulo" text="Ingreso en caja">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
                <VBox.margin>
-                  <Insets />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
-            <VBox prefWidth="354.0">
+            <VBox prefHeight="177.0" prefWidth="270.0">
                <children>
                   <Label fx:id="ltipo" text="Tipo de Ingreso">
                      <VBox.margin>
@@ -64,30 +63,30 @@
                   </JFXTextField>
                </children>
             </VBox>
-            <HBox>
-               <children>
-                  <JFXButton cancelButton="true" onAction="#onCancelar" prefHeight="35.0" styleClass="btn-default" text="Cancelar">
-                     <graphic>
-                        <FontAwesomeIcon glyphStyle="-fx-fill: -colorTexto;" glyphStyleClass="" iconName="CLOSE" />
-                     </graphic>
-                     <HBox.margin>
-                        <Insets left="25.0" />
-                     </HBox.margin>
-                  </JFXButton>
-                  <JFXButton defaultButton="true" maxHeight="-Infinity" minHeight="-Infinity" onAction="#onAceptar" prefHeight="35.0" text="Aceptar">
-                     <graphic>
-                        <FontAwesomeIcon glyphStyle="-fx-fill: #eee" iconName="CHECK" />
-                     </graphic>
-                     <HBox.margin>
-                        <Insets left="40.0" />
-                     </HBox.margin>
-                  </JFXButton>
-               </children>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </HBox>
          </children>
       </VBox>
+      <HBox style="-fx-background-color: -colorFondo2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <JFXButton cancelButton="true" onAction="#onCancelar" prefHeight="35.0" styleClass="btn-default" text="Cancelar">
+               <graphic>
+                  <FontAwesomeIcon glyphStyle="-fx-fill: -colorTexto;" glyphStyleClass="" iconName="CLOSE" />
+               </graphic>
+               <HBox.margin>
+                  <Insets left="35.0" />
+               </HBox.margin>
+            </JFXButton>
+            <JFXButton defaultButton="true" maxHeight="-Infinity" minHeight="-Infinity" onAction="#onAceptar" prefHeight="35.0" text="Aceptar">
+               <graphic>
+                  <FontAwesomeIcon glyphStyle="-fx-fill: #eee" iconName="CHECK" />
+               </graphic>
+               <HBox.margin>
+                  <Insets left="45.0" />
+               </HBox.margin>
+            </JFXButton>
+         </children>
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+      </HBox>
    </children>
 </AnchorPane>

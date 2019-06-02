@@ -17,8 +17,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="fondo-gris2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="650.0" styleClass="fondo-gris2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox style="-fx-background-color: -fx-accent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -106,18 +107,24 @@
                                     <Font size="14.0" />
                                  </font></JFXTextField>
                               <JFXButton layoutX="304.0" layoutY="36.0" onAction="#examinarAction" styleClass="btn-default2" text="Examinar" />
-                              <ImageView fx:id="iticket" fitHeight="50.0" fitWidth="50.0" layoutX="377.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" styleClass="borde-Indigo">
+                              <ImageView fx:id="iticket" fitHeight="50.0" fitWidth="100.0" layoutX="402.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" styleClass="borde-Indigo">
                                  <image>
-                                    <Image url="@../../Imagenes/icon.png" />
+                                    <Image url="@../../Imagenes/ico.png" />
                                  </image>
                               </ImageView>
-                              <JFXToggleButton fx:id="tgmostrarBarras" layoutX="20.0" layoutY="117.0" selected="true" text="Mostrar codigo de barras" AnchorPane.leftAnchor="20.0" />
+                              <JFXToggleButton fx:id="tgmostrarBarras" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="26.0" layoutY="195.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="270.0" selected="true" text="Mostrar codigo de barras en el ticket" AnchorPane.leftAnchor="26.0" />
                               <JFXTextField fx:id="tdominio" focusColor="#304ffe" labelFloat="true" layoutX="22.0" layoutY="85.0" prefHeight="25.0" prefWidth="200.0" promptText="Dominio para el codigo de barras" text="sitetech.com/checkticket" AnchorPane.leftAnchor="22.0">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXToggleButton layoutX="22.0" layoutY="163.0" text="Mostrar codigo de barras" AnchorPane.leftAnchor="20.0" />
+                              <JFXToggleButton fx:id="tgmostrarImagen" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="26.0" layoutY="232.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="270.0" text="Mostrar imagen en el ticket" AnchorPane.leftAnchor="26.0" />
+                              <JFXTextField fx:id="tusername" focusColor="#304ffe" labelFloat="true" layoutX="22.0" layoutY="150.0" prefHeight="25.0" prefWidth="200.0" promptText="Nombre del Username por default" text="Internet">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXTextField>
+                              <Text layoutX="234.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: -colorTexto2;" text="Nombre de usuario por default, para autenticar solo por contraseña; Asegurate que el mismo este configurado en el router tambien." wrappingWidth="385.638671875" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -125,9 +132,37 @@
                         <FontAwesomeIcon fill="#f2f2f2" iconName="TICKET" size="20px" />
                      </graphic>
                   </Tab>
+                  <Tab text="Sincronizacion">
+                     <graphic>
+                        <FontAwesomeIcon fill="#eeeeee" iconName="REFRESH" size="20PX" />
+                     </graphic>
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: -colorFondo;">
+                           <children>
+                              <Label layoutX="14.0" layoutY="18.0" text="Tickets" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="18.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <JFXToggleButton fx:id="tgSincronizarConsumo" alignment="CENTER_LEFT" layoutX="40.0" layoutY="43.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="420.0" selected="true" style="-fx-text-fill: -colorTexto;" text="Sincronizar consumo de tiempo e internet">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </JFXToggleButton>
+                              <Text fill="#d03232" layoutX="101.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: -colorTexto;" text="Sincronizar el consumo de tiempo e internet  del router en la base de datos del programa." wrappingWidth="240.3359375" />
+                              <JFXToggleButton fx:id="tgRegistrarVenta" alignment="CENTER_LEFT" layoutX="40.0" layoutY="110.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="420.0" selected="true" style="-fx-text-fill: -colorTexto;" text="Registrar venta de ticket, cuando ya este en uso en el router">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </JFXToggleButton>
+                              <Text fill="#d03232" layoutX="101.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: -colorTexto;" text="Al verificar el router, si un ticket se encuentra en uso, se registra en el sistema como una venta de ese dia." wrappingWidth="340.3359375" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
                   <Tab text="Formatos">
                      <graphic>
-                        <FontAwesomeIcon fill="#eeeeee" iconName="USD" size="20PX" />
+                        <FontAwesomeIcon fill="#eeeeee" iconName="LANGUAGE" size="20PX" />
                      </graphic>
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: -colorFondo;">
@@ -154,17 +189,17 @@
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: -colorFondo;">
                            <children>    
-                              <Label layoutX="53.0" layoutY="43.0" text="Color de enfasis" AnchorPane.topAnchor="43.0" />
-                              <JFXComboBox fx:id="cbenfasis" layoutX="151.0" layoutY="23.0" onAction="#enfasisAction" prefHeight="25.0" prefWidth="175.0" style="-fx-font-size: 14px;" AnchorPane.topAnchor="30.0" />
-                              <Label layoutX="108.0" layoutY="121.0" text="Tema" />
-                              <JFXComboBox fx:id="cbtema" layoutX="151.0" layoutY="108.0" onAction="#enfasisAction" prefHeight="25.0" prefWidth="175.0" style="-fx-font-size: 14px;" />
-                              <JFXToggleButton fx:id="tbtoolbar" layoutX="68.0" layoutY="151.0" onAction="#enfasisAction" text="Mostrar color de enfasis en Toolbar" />
-                              <JFXToggleButton fx:id="tbmenu" layoutX="68.0" layoutY="209.0" onAction="#enfasisAction" text="Mostrar color de enfasis en el menu" />
+                              <Label layoutX="14.0" layoutY="43.0" text="Color de enfasis" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="43.0" />
+                              <JFXComboBox fx:id="cbenfasis" layoutX="112.0" layoutY="30.0" onAction="#enfasisAction" prefHeight="25.0" prefWidth="175.0" style="-fx-font-size: 14px;" AnchorPane.topAnchor="30.0" />
+                              <Label layoutX="69.0" layoutY="121.0" text="Tema" />
+                              <JFXComboBox fx:id="cbtema" layoutX="112.0" layoutY="108.0" onAction="#enfasisAction" prefHeight="25.0" prefWidth="175.0" style="-fx-font-size: 14px;" />
+                              <JFXToggleButton fx:id="tbtoolbar" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="30.0" layoutY="166.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#enfasisAction" prefHeight="30.0" prefWidth="280.0" text="Mostrar color de enfasis en toolbar" AnchorPane.leftAnchor="20.0" />
+                              <JFXToggleButton fx:id="tbmenu" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="30.0" layoutY="203.0" minHeight="-Infinity" onAction="#enfasisAction" prefHeight="30.0" prefWidth="280.0" text="Mostrar color de enfasis en el menu" AnchorPane.leftAnchor="20.0" />
                            </children>
                         </AnchorPane>
                      </content>
                      <graphic>
-                        <FontAwesomeIcon fill="#e4e4e4" iconName="IMAGE" size="20px" />
+                        <FontAwesomeIcon fill="#e4e4e4" iconName="PAINT_BRUSH" size="20px" />
                      </graphic>
                   </Tab>
                </tabs>

@@ -2,48 +2,43 @@ package sitetech.hotspot.Controladores;
 
 import Util.ArrastrarScene;
 import Util.Dialogo;
-import Util.Moneda;
 import com.jfoenix.controls.JFXSpinner;
 import sitetech.hotspot.Temas;
 import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import javafx.scene.effect.MotionBlur;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import sitetech.Helpers.DateTimeHelper;
 import sitetech.Helpers.LabelHelper;
 import sitetech.hotspot.MainApp;
 import sitetech.hotspot.Modelos.Caja;
+import sitetech.hotspot.Modelos.CajaManager;
 import sitetech.hotspot.Modelos.Router;
 import sitetech.hotspot.Modelos.RouterManager;
 import sitetech.hotspot.Modelos.Ticket;
 import sitetech.hotspot.Modelos.TicketManager;
 import sitetech.hotspot.Modelos.Usuario;
+import sitetech.hotspot.Modelos.detalleCaja;
 
 public class MainController implements Initializable, ArrastrarScene {
 
@@ -133,6 +128,7 @@ public class MainController implements Initializable, ArrastrarScene {
     UsuariosController uvController;
     RoutersController rController;
     PaquetesController pController;
+    ReportesControlador reportesControlador;
     IeCajaController ieCaja;
     @FXML
     private void onMenuAction(ActionEvent event) throws IOException {
@@ -158,8 +154,8 @@ public class MainController implements Initializable, ArrastrarScene {
                 break;
             
             case "Reportes":
-                ReportesControlador rControlador = new ReportesControlador(App);
-                rControlador.show();
+                reportesControlador = new ReportesControlador(App);
+                reportesControlador.show();
                 break;
             
             case "Configuracion":
@@ -190,18 +186,28 @@ public class MainController implements Initializable, ArrastrarScene {
             break;
             
             //*************** CAJA MENU ******************//
-            case "Consultar caja": case "Cerrar caja":
-                DetalleCajaControlador detallesC = new DetalleCajaControlador(App);
-                detallesC.showStage();
+            case "Consultar caja": 
+                reportesControlador = new ReportesControlador(App);
+                reportesControlador.show();
+                reportesControlador.showDetalleCaja(App.cajaAbierta.getId());
                 break;
+                
             case "Ingreso":
                 ieCaja = new IeCajaController(App);
                 ieCaja.mostrarIngreso();
                 break;
+                
             case "Egreso":
                 ieCaja = new IeCajaController(App);
                 ieCaja.mostrarEgreso();
                 break;
+                
+            case "Cerrar caja":
+                DetalleCajaControlador detallesC = new DetalleCajaControlador(App);
+                detallesC.showStage();
+                break;
+                
+            default: break;
         }
 
     }
@@ -210,6 +216,13 @@ public class MainController implements Initializable, ArrastrarScene {
         
     }    
 
+    @FXML
+    void onclickCaja(MouseEvent event) {
+        reportesControlador = new ReportesControlador(App);
+        reportesControlador.show();
+        reportesControlador.showDetalleCaja(App.cajaAbierta.getId());
+    }
+    
     @FXML
     void cerrarAction(ActionEvent event) {
         Platform.exit();
@@ -273,13 +286,15 @@ public class MainController implements Initializable, ArrastrarScene {
     public syncTicket sync;
     @FXML
     void onsincronizar(ActionEvent event) {
-        spsincronizando.setVisible(true);
-        LabelHelper.asignarTexto(lsincronizando, "Sincronizando tickets ...");
-        
-        if (sync == null)
-           sync = new syncTicket();
-        
-        sync.run();
+        if (App.configuracion.isSincronizarConsumo() || App.configuracion.isSincronizarVenta()){
+            spsincronizando.setVisible(true);
+            LabelHelper.asignarTexto(lsincronizando, "Sincronizando tickets ...");
+
+            if (sync == null)
+               sync = new syncTicket();
+
+            sync.run();
+        }
     }
     
     ObservableList<Ticket> ticketsActualizados;
@@ -298,17 +313,32 @@ public class MainController implements Initializable, ArrastrarScene {
                 for (Ticket tcRouter : listaRouter){
                     for (Ticket tc : listaDb){
                         if (tc.getUsuario().equals(tcRouter.getUsuario())){
-                            tc.setDiasConsumidos( tcRouter.getDiasConsumidos() );
-                            tc.setHorasConsumidas(tcRouter.getHorasConsumidas());
-                            tc.setMinutosConsumidos(tcRouter.getMinutosConsumidos());
+                             if (App.configuracion.isSincronizarConsumo()){ //Sincronizamos el consumo
+                                tc.setDiasConsumidos( tcRouter.getDiasConsumidos() );
+                                tc.setHorasConsumidas(tcRouter.getHorasConsumidas());
+                                tc.setMinutosConsumidos(tcRouter.getMinutosConsumidos());
 
-                            tc.setGigasConsumidosDown(tcRouter.getGigasConsumidosDown());
-                            tc.setGigasConsumidosUp(tcRouter.getGigasConsumidosUp());
+                                tc.setGigasConsumidosDown(tcRouter.getGigasConsumidosDown());
+                                tc.setGigasConsumidosUp(tcRouter.getGigasConsumidosUp());
 
-                            tc.setMegasConsumidosDown(tcRouter.getMegasConsumidosDown());
-                            tc.setMegasConsumidosUp(tcRouter.getMegasConsumidosUp());
+                                tc.setMegasConsumidosDown(tcRouter.getMegasConsumidosDown());
+                                tc.setMegasConsumidosUp(tcRouter.getMegasConsumidosUp());
+                            }
+                             
+                            if (!tc.getDuracionConsumida().equals("Aun sin consumir")) //Vendemos el ticket y lo agregamos a la caja actual
+                                if (App.configuracion.isSincronizarVenta()){
+                                    CajaManager cm = new CajaManager();
+                                    detalleCaja dt = new detalleCaja(App.cajaAbierta, tc, detalleCaja.TipoDetalle.Venta_Ticket, "", tc.getPaquete().getPrecio(), detalleCaja.EstadoDetalle.Correcto);
 
-                            //lsincronizando.setText("Sinc. " + tc.getUsuario());
+                                    Caja caja = cm.agregarDetalle(dt);
+                                    if ( caja != null){
+                                        tc.setFechaVenta(new Date());
+                                        tc.setEstado(Ticket.EstadosType.Vendido);
+                                        tm.EditarTicket(tc);
+                                        App.actualizarCaja(caja);
+                                    }
+                                }
+                            
                             tm.EditarTicket(tc); //Actualizamos el ticket en la DB
                             ticketsActualizados.add(tc);
                         }
