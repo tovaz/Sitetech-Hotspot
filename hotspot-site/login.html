@@ -55,7 +55,19 @@
           </div>
         
         <div class="row justify-content-md-center">
-        <section class="col-md-6 col-xs-10 login-wrap">
+        
+        <section class="col-md-6 col-xs-10 login-wrap" >
+            <div class="tab" role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item"><a class="nav-link active" href="#tab-uyc"  role="tab" data-toggle="tab">Usuario y Clave</a></li>
+                <li class="nav-item"><a class="nav-link" href="#tab-voucher" role="tab" data-toggle="tab">Voucher Codigo</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://laksa19.github.io/myqr">Codigo QR</a></li>
+            </ul>
+            
+        <div class="tab-content tabs" id="nav-tabContent">
+             
+        <div id="tab-uyc" role="tabpanel" class="tab-pane fade show active">
                 $(if chap-id)
                         <form name="sendin" action="$(link-login-only)" method="post">
                                 <input type="hidden" name="username" />
@@ -82,7 +94,6 @@
                         <img  src="img/logo.png" alt="Home" height="100" />
                     </a>
                     
-                    <video id="preview"></video>
                     <div class="row">
                         <div class="col-md-12 text-center">
                                 $(if error)
@@ -118,7 +129,85 @@
                         </div>
                         <div class="form-group row text-center mt-4">
                             <div class="col-md-12">
-                                <button class="btn btn-primary btn-lg btn-block text-uppercase" type="submit">Iniciar Sesion</button>
+                                <button class="btn btn-primary btn-lg btn-block text-uppercase" type="submit">Conectar</button>
+                            </div>
+                        </div>
+                        <div class="form-group row mb-0 text-center">
+                                <div class="col-md-12">
+                                    <p class="text-muted mb-0">Si no tienes los datos de acceso, compra tu ticket en el internet.</p>
+                                </div>
+                        </div>
+                    </form>
+                </div>
+          </div>
+        </div>
+        
+            
+        <div id="tab-voucher" role="tabpanel" class="tab-pane fade ">
+                $(if chap-id)
+                        <form name="sendin" action="$(link-login-only)" method="post">
+                                <input type="hidden" name="username" />
+                                <input type="hidden" name="password" />
+                                <input type="hidden" name="dst" value="$(link-orig)" />
+                                <input type="hidden" name="popup" value="true" />
+                        </form>
+
+                        <script type="text/javascript" src="/md5.js"></script>
+                        <script type="text/javascript">
+                        <!--
+                            function doLogin() {
+                                document.sendin.username.value = document.login.username.value;
+                                document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+                                document.sendin.submit();
+                                return false;
+                            }
+                        //-->
+                        </script>
+                $(endif)
+            <div class="login-box card">
+                <div class="card-body">
+                    <a href="login.html" class="text-center d-block mb-3">
+                        <img  src="img/logo.png" alt="Home" height="100" />
+                    </a>
+                    
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                                $(if error)
+                                        <div class="alert alert-danger">$(error)</div>
+                                    $(endif)
+
+                                    <p class="mb-0">Porfavor indetificate para usar nuestro servicio de internet.</p>
+
+                                    $(if trial == 'yes')
+                                        <div class="alert alert-success">
+                                            <img class="fluid-img" src="img/free.png" style="height:100px"/>
+                                            <p class="mb-0">
+                                                <b>10 Minutos Gratis !!</b>
+                                                Te regalamos 10 minutos para que pruebes nuestro servicio, <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)"> click aqui</a>.
+                                            </p>
+                                        </div>
+                                    $(endif)
+                                </div>
+                    </div>
+                    <form class="form-horizontal" id="loginform" name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
+                        <input type="hidden" name="dst" value="http://www.google.com" />
+                                        <input type="hidden" name="popup" value="true" />
+
+                        <div class="form-group row mt-4" style="display: none">
+                            <div class="col-md-12">
+                                <input class="form-control" type="text" name="username" value="xYz+=123" required="" placeholder="Usuario">
+                            </div>
+                        </div>
+                                        
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <input class="form-control" name="password" type="password" required="" placeholder="Codigo del voucher">
+                            </div>
+                        </div>
+                                        
+                        <div class="form-group row text-center mt-4">
+                            <div class="col-md-12">
+                                <button class="btn btn-primary btn-lg btn-block text-uppercase" type="submit">Conectar</button>
                             </div>
                         </div>
                         <div class="form-group row mb-0 text-center">
@@ -129,27 +218,39 @@
                     </form>
                 </div>
           </div>
-        </section>
         </div>
+        
+            <div id="qrdiv" role="tabpanel" class="tab-pane fade" style="height: 100%; width: 100%">
+
+        </div>
+    </div>
+            
+            
+    
+    </div>
+    </section>
+            
+  </div>
 </div>
-<script type="text/javascript">
-      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-      scanner.addListener('scan', function (content) {
-        alert(content);
-      });
-      Instascan.Camera.getCameras().then(function (cameras) {
-        if (cameras.length > 0) {
-          scanner.start(cameras[0]);
-        } else {
-          console.error('No cameras found.');
+    <script type="text/javascript">
+        
+        function load_home() {
+            document.getElementById("qrdiv").innerHTML='<object type="text/html" data="https://laksa19.github.io/myqr" ></object>';
         }
-      }).catch(function (e) {
-        console.error(e);
-      });
+        
+        function load_qr () {
+            fetch("https://laksa19.github.io/myqr", {mode: 'no-cors'} )
+            .then((response) => response.text())
+            .then((html) => {
+                document.getElementById("qrdiv").innerHTML = html;
+            })
+            .catch((error) => {
+                console.warn(error);
+            });
+        } 
     </script>
     
     <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script src="js/instascan.min.js"></script>
     <script type="text/javascript" src="packages/bootstrap/libraries/tether.js"></script>
     <script type="text/javascript" src="packages/bootstrap/libraries/popper.js"></script>
     <script type="text/javascript" src="packages/bootstrap/bootstrap.js"></script>
