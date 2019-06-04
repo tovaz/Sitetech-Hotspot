@@ -1,0 +1,4 @@
+/*C35*/SET SCHEMA PUBLIC
+DELETE FROM CONFIGURACION WHERE ID=3
+INSERT INTO CONFIGURACION VALUES(3,'Guatemala','http://st.cklogin/','Sitetech','Guatemala','GT','Spanish','Guatemala',TRUE,'Indigo',TRUE,'Claro',FALSE,'0 Calle D11B','file:/F:/DOCUMENTOS/Documents/NetBeansProjects/hotspot/target/classes/Imagenes/icon.png','Usuario',TRUE,FALSE,FALSE)
+COMMIT

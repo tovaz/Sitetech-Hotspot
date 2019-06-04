@@ -22,6 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.effect.MotionBlur;
 import javafx.scene.input.MouseEvent;
@@ -53,6 +54,9 @@ public class MainController implements Initializable, ArrastrarScene {
     @FXML private Label lcajaTotal;
     @FXML private Label lsincronizando;
     @FXML private JFXSpinner spsincronizando;
+    @FXML private MenuItem meliminar;
+    @FXML private MenuItem mgenerar;
+    @FXML private Menu madministrar;
     
     TicketsController tc;
     @Override
@@ -61,7 +65,7 @@ public class MainController implements Initializable, ArrastrarScene {
         tc = new TicketsController(App);
         try {
             tc.cargarPanel(panelPrincipal);
-            //Temas.aplicarTema(tc.nodo.getScene(), App.configuracion);
+            aplicarPermisos();
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
         }
@@ -280,6 +284,29 @@ public class MainController implements Initializable, ArrastrarScene {
                 thisStage.close();
             }
         }
+    }
+    
+    public void aplicarPermisos(){
+        tc.aplicarPermisos(); // Aplicar permisos en ticket manager
+        
+        switch (App.usuarioLogeado.getPrivilegios()){
+            case "Usuario":
+                meliminar.setDisable(true);
+                madministrar.setDisable(true);
+            break;
+            
+            case "Administrador":
+                meliminar.setDisable(false);
+                madministrar.setDisable(false);
+                mgenerar.setDisable(false);
+            break;
+            
+            case "Cajero":
+                meliminar.setDisable(true);
+                mgenerar.setDisable(true);
+            break;
+        }
+        
     }
     
     //**************************************** SINCRONIZACION DE INFORMACION TICKETS DB Y TICKETS EN ROUTER

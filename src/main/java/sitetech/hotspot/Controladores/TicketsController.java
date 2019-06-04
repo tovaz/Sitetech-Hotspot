@@ -59,6 +59,7 @@ public class TicketsController implements Initializable, ArrastrarScene {
     @FXML private TableView<Ticket> tvtickets;
     @FXML private AnchorPane panelTicket;
     @FXML private JFXButton beliminar;
+    @FXML private JFXButton bgenerar;
     @FXML private VBox ptrabajando;
     @FXML private Label ltrabajando;
     @FXML private JFXSpinner sptrabajando;
@@ -163,6 +164,23 @@ public class TicketsController implements Initializable, ArrastrarScene {
         }
     }
 
+    public void aplicarPermisos(){
+        switch (App.usuarioLogeado.getPrivilegios()){
+            case "Usuario":
+                beliminar.setDisable(true);
+            break;
+            
+            case "Administrador":
+                beliminar.setDisable(false);
+                bgenerar.setDisable(false);
+            break;
+            
+            case "Cajero":
+                bgenerar.setDisable(true);
+                beliminar.setDisable(true);
+            break;
+        }
+    }
     //****************************************************************************************
     //<editor-fold desc="ACCIONES AL ELIMINAR UN TICKET">  **************************
     //****************************************************************************************

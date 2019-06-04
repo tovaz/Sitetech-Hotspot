@@ -132,6 +132,7 @@ public class MainApp extends Application {
             this.mainScene();                       // ABRE LA ESCENA CENTRAL ( MAIN SCENE )
             
             //agregarVariable("usuarioLogeado", usuarioLogeado);
+            mainControlador.aplicarPermisos();
             mainControlador.actualizarInfo(usuarioLogeado, cajaAbierta);
             
             if (splash != null)

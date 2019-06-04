@@ -52,7 +52,7 @@
                                  </graphic>
                               </MenuItem>
                               <SeparatorMenuItem mnemonicParsing="false" text="separadormenu" />
-                                      <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Generar tickets">
+                                      <MenuItem fx:id="mgenerar" mnemonicParsing="false" onAction="#onMenuAction" text="Generar tickets">
                                  <graphic>
                                     <FontAwesomeIcon glyphStyleClass="degradado1" iconName="PLUS" size="18PX" />
                                  </graphic>
@@ -63,7 +63,7 @@
                                  </graphic>
                               </MenuItem>
                                       <SeparatorMenuItem mnemonicParsing="false" text="separadormenu" />
-                                      <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Eliminar ticket">
+                                      <MenuItem fx:id="meliminar" mnemonicParsing="false" onAction="#onMenuAction" text="Eliminar ticket">
                                  <graphic>
                                     <FontAwesomeIcon glyphStyleClass="degradado1" iconName="TRASH" size="18PX" />
                                  </graphic>
@@ -71,7 +71,7 @@
                                       <MenuItem disable="true" mnemonicParsing="false" text="Modificar Ticket" />
                                   </items>
                               </Menu>
-                              <Menu mnemonicParsing="false" text="Administracion">
+                              <Menu fx:id="madministrar" mnemonicParsing="false" text="Administracion">
                                   <items>
                                       <MenuItem mnemonicParsing="false" onAction="#onMenuAction" text="Usuarios">
                                  <graphic>

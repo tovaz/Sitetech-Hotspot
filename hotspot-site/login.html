@@ -82,7 +82,7 @@
                         <img  src="img/logo.png" alt="Home" height="100" />
                     </a>
                     
-                    
+                    <video id="preview"></video>
                     <div class="row">
                         <div class="col-md-12 text-center">
                                 $(if error)
@@ -95,8 +95,8 @@
                                         <div class="alert alert-success">
                                             <img class="fluid-img" src="img/free.png" style="height:100px"/>
                                             <p class="mb-0">
-                                                <b>15 Minutos Gratis !!</b>
-                                                Te regalamos 15 minutos para que pruebes nuestro servicio, <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)"> click aqui</a>.
+                                                <b>10 Minutos Gratis !!</b>
+                                                Te regalamos 10 minutos para que pruebes nuestro servicio, <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)"> click aqui</a>.
                                             </p>
                                         </div>
                                     $(endif)
@@ -133,13 +133,27 @@
         </div>
 </div>
 <script type="text/javascript">
-<!--
-  document.login.username.focus();
-//-->
-</script>
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="packages/bootstrap/libraries/tether.js"></script>
-<script type="text/javascript" src="packages/bootstrap/libraries/popper.js"></script>
-<script type="text/javascript" src="packages/bootstrap/bootstrap.js"></script>
+      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+      scanner.addListener('scan', function (content) {
+        alert(content);
+      });
+      Instascan.Camera.getCameras().then(function (cameras) {
+        if (cameras.length > 0) {
+          scanner.start(cameras[0]);
+        } else {
+          console.error('No cameras found.');
+        }
+      }).catch(function (e) {
+        console.error(e);
+      });
+    </script>
+    
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script src="js/instascan.min.js"></script>
+    <script type="text/javascript" src="packages/bootstrap/libraries/tether.js"></script>
+    <script type="text/javascript" src="packages/bootstrap/libraries/popper.js"></script>
+    <script type="text/javascript" src="packages/bootstrap/bootstrap.js"></script>
+
+
 </body>
 </html>

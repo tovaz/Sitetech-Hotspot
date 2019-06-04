@@ -111,7 +111,7 @@
                                     <Image url="@../../Imagenes/ico.png" />
                                  </image>
                               </ImageView>
-                                        <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGenerarAction" prefHeight="55.0" prefWidth="120.0" text=" ">
+                                        <JFXButton fx:id="bgenerar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGenerarAction" prefHeight="55.0" prefWidth="120.0" text=" ">
                                             <graphic>
                                                 <VBox alignment="CENTER" prefHeight="55.0" prefWidth="110.0">
                                                     <children>
