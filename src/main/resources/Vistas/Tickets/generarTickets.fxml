@@ -177,11 +177,19 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </JFXButton>
-                        <JFXCheckBox fx:id="checkNumeros" checkedColor="#304ffe" style="-fx-text-fill: -fx-mid-text-color;" text="Usar solo numeros en la contraseña">
+                        <VBox>
+                           <children>
+                              <JFXCheckBox fx:id="checkNumeros" checkedColor="#304ffe" selected="true" style="-fx-text-fill: -fx-mid-text-color;" text="Usar solo numeros en la contraseña" />
+                              <JFXCheckBox fx:id="checkCodigos" checkedColor="#304ffe" style="-fx-text-fill: -fx-mid-text-color;" text="Generar usuarios con la contraseña default configurada.">
+                                 <VBox.margin>
+                                    <Insets top="8.0" />
+                                 </VBox.margin>
+                              </JFXCheckBox>
+                           </children>
                            <HBox.margin>
-                              <Insets left="30.0" />
+                              <Insets left="10.0" />
                            </HBox.margin>
-                        </JFXCheckBox>
+                        </VBox>
                      </children>
                      <VBox.margin>
                         <Insets />

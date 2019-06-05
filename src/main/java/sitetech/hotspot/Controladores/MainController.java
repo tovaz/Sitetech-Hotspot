@@ -2,6 +2,8 @@ package sitetech.hotspot.Controladores;
 
 import Util.ArrastrarScene;
 import Util.Dialogo;
+import animatefx.animation.*;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSpinner;
 import sitetech.hotspot.Temas;
 import java.io.IOException;

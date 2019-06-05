@@ -9,7 +9,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="shortcut icon" type="image/png" href="favicon.png"/>
 <link rel="stylesheet" type="text/css" media="all" href="packages/bootstrap/bootstrap.css">
+<link rel="stylesheet" href="css/font-awesome.css">
 <link rel="stylesheet" type="text/css" media="all" href="css/theme.css">
+    
 </head>
 
 <body style="background-image:url(img/bg.jpg);">
@@ -20,10 +22,10 @@
         </div>
         <br/>
         <div class="card-deck">
-            <div class="card">
-              <img class="card-img-top" src="img/youtubemp3.png">
+            <div class="card text-white bg-secondary">
+              <!--img class="card-img-top" src="img/youtubemp3.png"-->
               <div class="card-body">
-                <h5 class="card-title text-info">1 HORA de internet ilimitado.</h5>
+                <h5 class="card-title">1 HORA de internet ilimitado.</h5>
                 <p class="card-text">Descargas mas de 100 canciones si sos pilas...</p>
               </div>
               <div class="card-footer">
@@ -31,10 +33,11 @@
               </div>
             </div>
             
-            <div class="card">
-              <img class="card-img-top" src="img/redes.png">
+            
+            <div class="card text-white bg-danger">
+              <!--img class="card-img-top" src="img/redes.png"-->
               <div class="card-body">
-                <h5 class="card-title text-primary">1 DIA de internet.</h5>
+                <h5 class="card-title">1 DIA de internet.</h5>
                 <p class="card-text">Chatea todo el dia.</p>
               </div>
               <div class="card-footer">
@@ -42,10 +45,10 @@
               </div>
             </div>
             
-            <div class="card">
-              <img class="card-img-top" src="img/descargar.png">
+            <div class="card text-white bg-success">
+              <!--img class="card-img-top" src="img/descargar.png"-->
               <div class="card-body">
-                <h5 class="card-title text-danger">2 HORAS de internet ilimitado.</h5>
+                <h5 class="card-title">2 HORAS de internet ilimitado.</h5>
                 <p class="card-text">Descarga videos, series, peliculas.</p>
               </div>
               <div class="card-footer">
@@ -57,17 +60,23 @@
         <div class="row justify-content-md-center">
         
         <section class="col-md-6 col-xs-10 login-wrap" >
+            <a href="login.html" class="text-center d-block mb-3">
+                <img  src="img/logo.png" alt="Home" height="100" />
+            </a>
+            
+            <ul class="nav nav-tabs bg-secondary" role="tablist">
+                <li class="nav-item item1"><a class="nav-link " href="#tab-uyc"  role="tab" data-toggle="tab"><i class="fa fa-address-card"></i> <br/>Usuario y Clave</a></li>
+                <li class="nav-item item2"><a class="nav-link active" href="#tab-voucher" role="tab" data-toggle="tab"><i class="fa fa-credit-card-alt"></i> <br/>Solo Codigo</a></li>
+                <li class="nav-item item3"><a class="nav-link" href="https://laksa19.github.io/myqr"><i class="fa fa-qrcode"></i> <br/>Codigo QR</a></li>
+            </ul>
+            
             <div class="tab" role="tabpanel">
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item"><a class="nav-link active" href="#tab-uyc"  role="tab" data-toggle="tab">Usuario y Clave</a></li>
-                <li class="nav-item"><a class="nav-link" href="#tab-voucher" role="tab" data-toggle="tab">Voucher Codigo</a></li>
-                <li class="nav-item"><a class="nav-link" href="https://laksa19.github.io/myqr">Codigo QR</a></li>
-            </ul>
+            
             
         <div class="tab-content tabs" id="nav-tabContent">
              
-        <div id="tab-uyc" role="tabpanel" class="tab-pane fade show active">
+        <div id="tab-uyc" role="tabpanel" class="tab-pane fade">
                 $(if chap-id)
                         <form name="sendin" action="$(link-login-only)" method="post">
                                 <input type="hidden" name="username" />
@@ -88,12 +97,8 @@
                         //-->
                         </script>
                 $(endif)
-            <div class="login-box card">
+            <div class="login-box">
                 <div class="card-body">
-                    <a href="login.html" class="text-center d-block mb-3">
-                        <img  src="img/logo.png" alt="Home" height="100" />
-                    </a>
-                    
                     <div class="row">
                         <div class="col-md-12 text-center">
                                 $(if error)
@@ -143,33 +148,9 @@
         </div>
         
             
-        <div id="tab-voucher" role="tabpanel" class="tab-pane fade ">
-                $(if chap-id)
-                        <form name="sendin" action="$(link-login-only)" method="post">
-                                <input type="hidden" name="username" />
-                                <input type="hidden" name="password" />
-                                <input type="hidden" name="dst" value="$(link-orig)" />
-                                <input type="hidden" name="popup" value="true" />
-                        </form>
-
-                        <script type="text/javascript" src="/md5.js"></script>
-                        <script type="text/javascript">
-                        <!--
-                            function doLogin() {
-                                document.sendin.username.value = document.login.username.value;
-                                document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
-                                document.sendin.submit();
-                                return false;
-                            }
-                        //-->
-                        </script>
-                $(endif)
-            <div class="login-box card">
+        <div id="tab-voucher" role="tabpanel" class="tab-pane fade show active ">
+            <div class="login-box">
                 <div class="card-body">
-                    <a href="login.html" class="text-center d-block mb-3">
-                        <img  src="img/logo.png" alt="Home" height="100" />
-                    </a>
-                    
                     <div class="row">
                         <div class="col-md-12 text-center">
                                 $(if error)
@@ -193,15 +174,15 @@
                         <input type="hidden" name="dst" value="http://www.google.com" />
                                         <input type="hidden" name="popup" value="true" />
 
-                        <div class="form-group row mt-4" style="display: none">
+                        <div class="form-group row mt-4">
                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="username" value="xYz+=123" required="" placeholder="Usuario">
+                                <input class="form-control" type="text" name="username" value="$(username)" required="" placeholder="Codigo del voucher">
                             </div>
                         </div>
                                         
-                        <div class="form-group row">
+                        <div class="form-group row" style="display: none">
                             <div class="col-md-12">
-                                <input class="form-control" name="password" type="password" required="" placeholder="Codigo del voucher">
+                                <input class="form-control" name="password" type="password" value="voucher" placeholder="Contraseña por defult">
                             </div>
                         </div>
                                         
@@ -217,6 +198,7 @@
                         </div>
                     </form>
                 </div>
+            </div>
           </div>
         </div>
         

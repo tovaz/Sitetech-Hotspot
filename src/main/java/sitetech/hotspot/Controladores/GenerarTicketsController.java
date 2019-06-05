@@ -16,8 +16,6 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSpinner;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import static javafx.collections.FXCollections.observableArrayList;
@@ -44,7 +42,6 @@ import sitetech.hotspot.Modelos.Router;
 import sitetech.hotspot.Modelos.RouterManager;
 import sitetech.hotspot.Modelos.Ticket;
 import sitetech.hotspot.Modelos.TicketManager;
-import sitetech.hotspot.Temas;
 
 /**
  * FXML Controller class
@@ -58,6 +55,8 @@ public class GenerarTicketsController implements Initializable {
     @FXML private JFXComboBox<String> cbcontraseña;
     @FXML private TableView<Ticket> tvtickets;
     @FXML private JFXCheckBox checkNumeros;
+    @FXML private JFXCheckBox checkCodigos;
+    
     @FXML private TextField tcantidad;
     @FXML private Label ltrabajando;
     @FXML private JFXSpinner sptrabajando;
@@ -151,12 +150,9 @@ public class GenerarTicketsController implements Initializable {
                 break; 
             }
             
-            String contraseña;
-            if (checkNumeros.isSelected()) {
-                contraseña = cadenaAletoria.generarNumeros(longcontraseña);
-            } else {
-                contraseña = cadenaAletoria.generarCadena(longcontraseña);
-            }
+            String contraseña = generarContraseña(longcontraseña);
+            if (checkCodigos.isSelected())
+                contraseña= App.configuracion.getDefaultUsername();
             
             String usuario = crearUsuario(longusuario, listaTicketsRt, listaTickets);
             Ticket tx = new Ticket(i, usuario, contraseña, Ticket.EstadosType.Generado, cbpaquetes.getValue(), cbrouters.getValue());
@@ -193,6 +189,15 @@ public class GenerarTicketsController implements Initializable {
         System.out.println("Usuario creado: " + usuario);
         return usuario;
     }
+    
+    public String generarContraseña(int longcontraseña){
+        if (checkNumeros.isSelected()) {
+            return cadenaAletoria.generarNumeros(longcontraseña);
+        } else {
+            return cadenaAletoria.generarCadena(longcontraseña);
+        }
+    }
+    
 
     public void actualizarTabla() {
         tvtickets.getColumns().get(0).setCellValueFactory(new PropertyValueFactory("Id"));

@@ -10,6 +10,10 @@ import Util.Dialogo;
 import Util.Mikrotik;
 import Util.Moneda;
 import Util.StageManager;
+import animatefx.animation.LightSpeedOut;
+import animatefx.animation.Pulse;
+import animatefx.animation.ZoomIn;
+import animatefx.animation.ZoomOut;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSpinner;
@@ -30,6 +34,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -162,6 +167,7 @@ public class TicketsController implements Initializable, ArrastrarScene {
             tc.setEstadoS(tc.getEstado().name());
             tm.EditarTicket(tc);
         }
+        
     }
 
     public void aplicarPermisos(){
@@ -254,7 +260,17 @@ public class TicketsController implements Initializable, ArrastrarScene {
     }
         
     //****************************************************************************************
-    //</editor-fold>
+    @FXML
+    void onMouseEnter(MouseEvent event) {
+        JFXButton bt = (JFXButton)event.getSource();
+        new ZoomIn(bt).play();
+    }
+
+    @FXML
+    void onMouseExit(MouseEvent event) {
+        JFXButton bt = (JFXButton)event.getSource();
+        new ZoomOut(bt).play();
+    }
     //****************************************************************************************
     
     GenerarTicketsController genTicket;

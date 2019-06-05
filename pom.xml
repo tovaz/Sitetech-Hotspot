@@ -109,13 +109,22 @@
            <artifactId>hsqldb</artifactId>
            <version>2.4.1</version>
         </dependency>
+        
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>
             <version>10.14.2.0</version>
         </dependency>
 
+        <!-- ANIMACIONES -->
+        <dependency>
+            <groupId>io.github.typhon0</groupId>
+            <artifactId>AnimateFX</artifactId>
+            <version>1.2.1</version>
+        </dependency>
 
+        
+        
         <!-- junit test -->
         <dependency>
             <groupId>junit</groupId>

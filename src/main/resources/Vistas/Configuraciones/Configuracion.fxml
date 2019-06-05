@@ -119,12 +119,12 @@
                                  </font>
                               </JFXTextField>
                               <JFXToggleButton fx:id="tgmostrarImagen" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="26.0" layoutY="232.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="270.0" text="Mostrar imagen en el ticket" AnchorPane.leftAnchor="26.0" />
-                              <JFXTextField fx:id="tusername" focusColor="#304ffe" labelFloat="true" layoutX="22.0" layoutY="150.0" prefHeight="25.0" prefWidth="200.0" promptText="Nombre del Username por default" text="Internet">
+                              <JFXTextField fx:id="tusername" focusColor="#304ffe" labelFloat="true" layoutX="22.0" layoutY="150.0" prefHeight="25.0" prefWidth="200.0" promptText="Contraseña por default" text="Internet">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </JFXTextField>
-                              <Text layoutX="234.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: -colorTexto2;" text="Nombre de usuario por default, para autenticar solo por contraseña; Asegurate que el mismo este configurado en el router tambien." wrappingWidth="385.638671875" />
+                              <Text layoutX="234.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: -colorTexto2;" text="Contraseña por default, para autenticar solo por usuario o codigo; Asegurate que el mismo este configurado en el router tambien." wrappingWidth="385.638671875" />
                            </children>
                         </AnchorPane>
                      </content>

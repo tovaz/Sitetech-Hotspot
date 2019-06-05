@@ -7,6 +7,7 @@
 	<parameter name="iTicket" class="java.lang.String"/>
 	<parameter name="mostrarImagen" class="java.lang.Boolean"/>
 	<parameter name="mostrarCodigo" class="java.lang.Boolean"/>
+	<parameter name="Configuracion" class="sitetech.hotspot.Modelos.Configuracion"/>
 	<queryString language="hql">
 		<![CDATA[from Ticket]]>
 	</queryString>
@@ -53,7 +54,7 @@
 		<variableExpression><![CDATA[NumberFormat.getCurrencyInstance($P{REPORT_LOCALE})]]></variableExpression>
 	</variable>
 	<variable name="codigoBarra" class="java.lang.String">
-		<variableExpression><![CDATA[$P{dominio}+"?"+"name="+$F{usuario}+"&password="+$F{contraseña}]]></variableExpression>
+		<variableExpression><![CDATA[$P{dominio}+"/login?"+"username="+$F{usuario}+"&password="+$F{contraseña}]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
@@ -84,28 +85,16 @@
 				<reportElement mode="Transparent" x="0" y="4" width="113" height="171" uuid="1846436f-206c-4b14-ad1a-f983cd0bf68d"/>
 			</rectangle>
 			<textField>
-				<reportElement x="3" y="24" width="107" height="30" forecolor="#0033CC" uuid="69ce23ff-dd53-47f0-a758-f1bbd7a8000f"/>
+				<reportElement x="3" y="23" width="107" height="30" forecolor="#0033CC" uuid="69ce23ff-dd53-47f0-a758-f1bbd7a8000f"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="17"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{usuario}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="3" y="11" width="107" height="16" uuid="d9ad7562-b7f4-413d-aa73-c0bedf2af483"/>
-				<textElement textAlignment="Center">
-					<font size="9"/>
-				</textElement>
-				<text><![CDATA[Usuario]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="3" y="43" width="107" height="12" uuid="d5ac2ca9-ff50-452d-91b5-6c473d2b82e3"/>
-				<textElement textAlignment="Center">
-					<font size="9"/>
-				</textElement>
-				<text><![CDATA[Contraseña]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="3" y="52" width="107" height="22" uuid="2d58061e-a97a-4b52-946d-a9f40e00a916"/>
+				<reportElement x="3" y="52" width="107" height="22" uuid="2d58061e-a97a-4b52-946d-a9f40e00a916">
+					<printWhenExpression><![CDATA[!$F{contraseña}.equals($P{Configuracion}.getDefaultUsername())]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center">
 					<font size="17"/>
 				</textElement>
@@ -172,14 +161,14 @@
 				<text><![CDATA[Ingresa a:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="3" y="152" width="63" height="22" uuid="7be97f3b-4622-41dc-af0f-847849079e71"/>
+				<reportElement x="3" y="152" width="57" height="22" uuid="7be97f3b-4622-41dc-af0f-847849079e71"/>
 				<textElement verticalAlignment="Top">
 					<font size="8" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{dominio}]]></textFieldExpression>
 			</textField>
 			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle" isUsingCache="true" onErrorType="Blank">
-				<reportElement mode="Transparent" x="66" y="121" width="44" height="52" uuid="4ab2e165-c5fe-4789-9a9c-56f3fdf3202e">
+				<reportElement mode="Transparent" x="60" y="121" width="50" height="52" uuid="4ab2e165-c5fe-4789-9a9c-56f3fdf3202e">
 					<printWhenExpression><![CDATA[$P{mostrarCodigo}]]></printWhenExpression>
 				</reportElement>
 				<imageExpression><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
@@ -189,6 +178,20 @@
     )
 )]]></imageExpression>
 			</image>
+			<textField>
+				<reportElement x="10" y="7" width="100" height="17" uuid="e95d16bd-0e8e-45ae-9608-35aec13609bc">
+					<printWhenExpression><![CDATA[!$F{contraseña}.equals($P{Configuracion}.getDefaultUsername())]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Usuario"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="42" width="106" height="14" uuid="fb8e5f9b-76a5-42c2-bdfe-c3bc61cd86ed"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{contraseña}.equals($P{Configuracion}.getDefaultUsername())? "Codigo del voucher":"Contraseña"]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>

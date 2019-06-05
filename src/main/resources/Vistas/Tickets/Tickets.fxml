@@ -111,7 +111,7 @@
                                     <Image url="@../../Imagenes/ico.png" />
                                  </image>
                               </ImageView>
-                                        <JFXButton fx:id="bgenerar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGenerarAction" prefHeight="55.0" prefWidth="120.0" text=" ">
+                                        <JFXButton fx:id="bgenerar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGenerarAction" onMouseEntered="#onMouseEnter" onMouseExited="#onMouseExit" prefHeight="55.0" prefWidth="120.0" text=" ">
                                             <graphic>
                                                 <VBox alignment="CENTER" prefHeight="55.0" prefWidth="110.0">
                                                     <children>
@@ -121,7 +121,7 @@
                                                 </VBox>
                                             </graphic>
                                         </JFXButton>
-                                        <JFXButton alignment="CENTER" contentDisplay="CENTER" maxHeight="55.0" minHeight="55.0" mnemonicParsing="false" onAction="#onImprimirAction" prefHeight="55.0" prefWidth="120.0" text=" ">
+                                        <JFXButton alignment="CENTER" contentDisplay="CENTER" maxHeight="55.0" minHeight="55.0" mnemonicParsing="false" onAction="#onImprimirAction" onMouseEntered="#onMouseEnter" onMouseExited="#onMouseExit" prefHeight="55.0" prefWidth="120.0" text=" ">
                                             <graphic>
                                                 <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
                                                     <children>
@@ -131,7 +131,7 @@
                                                 </VBox>
                                             </graphic>
                                         </JFXButton>
-                                        <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onVenderAction" prefHeight="55.0" prefWidth="120.0" text=" ">
+                                        <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onVenderAction" onMouseEntered="#onMouseEnter" onMouseExited="#onMouseExit" prefHeight="55.0" prefWidth="120.0" text=" ">
                                             <graphic>
                                                 <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
                                                     <children>
@@ -142,12 +142,12 @@
                                             </graphic>
                                         </JFXButton>
                                         <Separator orientation="VERTICAL" />
-                                        <JFXButton fx:id="beliminar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onEliminarAction" prefHeight="55.0" prefWidth="100.0" text=" ">
+                                        <JFXButton fx:id="beliminar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onEliminarAction" onMouseEntered="#onMouseEnter" onMouseExited="#onMouseExit" prefHeight="55.0" prefWidth="100.0" text=" ">
                                             <graphic>
-                                                <VBox alignment="CENTER" prefHeight="59.0" prefWidth="90.0">
+                                                <VBox alignment="CENTER" mouseTransparent="true" prefHeight="59.0" prefWidth="90.0">
                                                     <children>
-                                          <FontAwesomeIcon glyphStyle="-fx-fill: -fx-accent;" iconName="TRASH" size="25px" />
-                                                        <Label text="Eliminar" />
+                                          <FontAwesomeIcon glyphStyle="-fx-fill: -fx-accent;" iconName="TRASH" mouseTransparent="true" size="25px" />
+                                                        <Label mouseTransparent="true" text="Eliminar" />
                                                     </children>
                                                 </VBox>
                                             </graphic>
