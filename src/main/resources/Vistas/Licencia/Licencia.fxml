@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="principal" prefHeight="520.0" prefWidth="462.0" styleClass="fondoApp2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox fx:id="plicencia" alignment="TOP_CENTER" layoutX="10.0" layoutY="116.0" prefHeight="400.0" prefWidth="442.0" AnchorPane.topAnchor="135.0">
+         <children>
+            <Label text="Informacion del negocio">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <GridPane prefHeight="93.0">
+               <columnConstraints>
+                  <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="90.0" minWidth="90.0" prefWidth="90.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="372.0" minWidth="100.0" prefWidth="334.0" />
+                  <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="66.0" minWidth="66.0" prefWidth="66.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               </rowConstraints>
+               <children>
+                  <Label alignment="BOTTOM_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Negocio:" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER" />
+                  <JFXTextField fx:id="tnegocio" editable="false" prefHeight="25.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="tpais" editable="false" prefHeight="25.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <Label alignment="BOTTOM_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="60.0" text="Pais:" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER" />
+                  <FontAwesomeIcon glyphStyleClass="txt-indigo" iconName="BUILDING_ALT" size="40px" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets left="20.0" top="40.0" />
+                     </GridPane.margin>
+                  </FontAwesomeIcon>
+               </children>
+            </GridPane>
+            <Label layoutX="10.0" layoutY="10.0" text="Informacion de la aplicacion">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
+            <GridPane prefHeight="118.0">
+               <columnConstraints>
+                  <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="90.0" minWidth="90.0" prefWidth="90.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="372.0" minWidth="100.0" prefWidth="334.0" />
+                  <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="66.0" minWidth="66.0" prefWidth="66.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               </rowConstraints>
+               <children>
+                  <Label alignment="BOTTOM_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Aplicacion:" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER" />
+                  <JFXTextField fx:id="tapp" editable="false" maxHeight="-Infinity" prefHeight="25.0" prefWidth="226.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <Label alignment="BOTTOM_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Version:" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER" />
+                  <JFXTextField fx:id="tversion" editable="false" prefHeight="25.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <Label alignment="BOTTOM_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Tipo Licencia:" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER" />
+                  <FontAwesomeIcon glyphStyleClass="txt-turquesa" iconName="CONNECTDEVELOP" size="40px" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowSpan="3" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets top="30.0" />
+                     </GridPane.margin>
+                  </FontAwesomeIcon>
+                  <JFXComboBox fx:id="ttlicencia" disable="true" prefHeight="25.0" prefWidth="332.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.vgrow="NEVER">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </JFXComboBox>
+               </children>
+            </GridPane>
+            <Label layoutX="10.0" layoutY="123.0" text="Informacion de la licencia">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <GridPane prefHeight="118.0">
+               <columnConstraints>
+                  <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="90.0" minWidth="90.0" prefWidth="90.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="372.0" minWidth="100.0" prefWidth="334.0" />
+                  <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="66.0" minWidth="66.0" prefWidth="66.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               </rowConstraints>
+               <children>
+                  <Label alignment="BOTTOM_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Licencia key:" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER" />
+                  <JFXTextField fx:id="tlicencia" editable="false" maxHeight="-Infinity" prefHeight="25.0" prefWidth="226.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="tfechaCreacion" editable="false" prefHeight="25.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <Label alignment="BOTTOM_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Fecha creacion:" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER" />
+                  <FontAwesomeIcon glyphStyleClass="txt-rosado" iconName="KEY" size="40px" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets top="30.0" />
+                     </GridPane.margin>
+                  </FontAwesomeIcon>
+               </children>
+            </GridPane>
+            <JFXButton fx:id="bactivar" onAction="#onactivar" prefHeight="55.0" prefWidth="160.0" styleClass="btn-azul" text=" ">
+               <graphic>
+                  <VBox alignment="TOP_CENTER">
+                     <children>
+                        <FontAwesomeIcon glyphStyle="-fx-fill: #eee" glyphStyleClass="" iconName="KEY" size="22px" />
+                        <Label style="-fx-text-fill: #eee;" text="Activar Programa" />
+                     </children>
+                  </VBox>
+               </graphic>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </JFXButton>
+         </children>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
+      </VBox>
+      <Label layoutX="10.0" layoutY="10.0" text="Informacion de la licencia">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="BOTTOM_RIGHT" layoutX="12.0" layoutY="53.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Cliente Id:" />
+      <TextArea fx:id="tclientId" layoutX="71.0" layoutY="29.0" prefHeight="71.0" prefWidth="385.0" style="-fx-background-color: transparent;" wrapText="true" AnchorPane.rightAnchor="10.0">
+         <padding>
+            <Insets bottom="5.0" top="5.0" />
+         </padding>
+      </TextArea>
+      <JFXButton fx:id="babrir" defaultButton="true" layoutX="267.0" layoutY="100.0" onAction="#onabrir" prefHeight="30.0" style="-fx-text-fill: #333;" styleClass="btn-dg-azul-turquesa" text="Abrir archivo de licencia">
+         <graphic>
+            <FontAwesomeIcon glyphStyle="-fx-fill: #333" glyphStyleClass="" iconName="FILE" />
+         </graphic>
+      </JFXButton>
+      <AnchorPane fx:id="psinlicencia" layoutX="43.0" layoutY="171.42857360839844" visible="false" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="10.0">
+         <children>
+            <Label layoutX="61.0" layoutY="129.0" styleClass="txt-rosado" text="Aun no se a activado la aplicacion" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <FontAwesomeIcon glyphStyle="-fx-fill: #fccf55" glyphStyleClass="" iconName="KEY" layoutX="185.0" layoutY="102.0" size="35px" AnchorPane.leftAnchor="185.0" />
+            <FontAwesomeIcon glyphStyleClass="txt-lima" iconName="UNLOCK" layoutX="291.0" layoutY="70.0" size="80PX" AnchorPane.leftAnchor="300.0" />
+            <FontAwesomeIcon glyphStyleClass="txt-azul" iconName="ARROW_RIGHT" layoutX="156.0" layoutY="63.0" size="60PX" AnchorPane.leftAnchor="175.0" />
+            <Label layoutX="55.0" layoutY="174.57142639160156" styleClass="txt-rosado">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Text layoutX="64.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: -colorTexto2;" text="Necesita proporcionar su numero de Cliente Id, para que le generen un archivo de licencia." wrappingWidth="312.537109375">
+               <font>
+                  <Font size="13.0" />
+               </font></Text>
+            <Text layoutX="64.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: -colorTexto2;" text="Si ya dispone de un archivo de licencia, de click en el boton &quot;Abrir archivo de licencia&quot;" wrappingWidth="312.537109375">
+               <font>
+                  <Font size="13.0" />
+               </font></Text>
+            <FontAwesomeIcon glyphStyleClass="txt-azul" iconName="INFO" layoutX="42.0" layoutY="183.0" size="25px" />
+            <FontAwesomeIcon glyphStyleClass="txt-azul" iconName="INFO" layoutX="42.0" layoutY="227.0" size="25px" />
+            <JFXButton fx:id="babrir1" cancelButton="true" layoutX="160.0" layoutY="264.0" onAction="#oncerrar" prefHeight="40.0" prefWidth="100.0" styleClass="btn-dg-rojo-rosado" text="Cerrar" AnchorPane.rightAnchor="168.0">
+               <graphic>
+                  <FontAwesomeIcon glyphStyle="-fx-fill: #eee" glyphStyleClass="" iconName="CLOSE" />
+               </graphic>
+            </JFXButton>
+            <FontAwesomeIcon glyphStyleClass="txt-rosado" iconName="LOCK" layoutX="51.0" layoutY="70.0" size="80PX" AnchorPane.leftAnchor="50.0" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </AnchorPane>
+   </children>
+   <stylesheets>
+      <URL value="@../../../../../../Sitetech-License-Manager/src/main/resources/styles/Temas/Tema-Azul.css" />
+      <URL value="@../../../../../../Sitetech-License-Manager/src/main/resources/styles/Temas/Tema-Claro.css" />
+      <URL value="@../../../../../../Sitetech-License-Manager/src/main/resources/styles/Styles.css" />
+      <URL value="@../../../../../../Sitetech-License-Manager/src/main/resources/styles/botones.css" />
+   </stylesheets>
+</AnchorPane>

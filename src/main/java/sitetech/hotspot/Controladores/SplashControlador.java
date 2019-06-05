@@ -84,8 +84,8 @@ public class SplashControlador implements Initializable {
     }
     
     public void postSplash(){
-        App.checkLogin("admin", "correr", this);
-        //App.loginScene(this);
+        //App.checkLogin("admin", "correr", this);
+        App.loginScene(this);
         //thisStage.close();
     }
     class SplashScreen extends Task {

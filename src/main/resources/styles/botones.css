@@ -367,64 +367,64 @@
 
 /* *********************************** TEXTOS ****************************/
 .txt-rojo {
-  -fx-text-fill: #D50000; }
+  -fx-text-fill: #D50000; -fx-fill:#D50000; }
 
 .txt-azul {
-  -fx-text-fill: #2962FF; }
+  -fx-text-fill: #2962FF; -fx-fill: #2962FF}
 
 .txt-indigo {
-  -fx-text-fill: #304FFE; }
+  -fx-text-fill: #304FFE; -fx-fill: #304FFE}
 
 .txt-rosado {
-  -fx-text-fill: #C51162; }
+  -fx-text-fill: #C51162; -fx-fill: #C51162}
 
 .txt-verde {
-  -fx-text-fill: #1B5E20; }
+  -fx-text-fill: #1B5E20; -fx-fill: #1B5E20}
 
 .txt-verde2 {
-  -fx-text-fill: #2E7D32; }
+  -fx-text-fill: #2E7D32; -fx-fill: #2E7D32}
 
 .txt-verde3 {
-  -fx-text-fill: #0F9D58; }
+  -fx-text-fill: #0F9D58; -fx-fill: #0F9D58}
 
 .txt-lima {
-  -fx-text-fill: #64DD17; }
+  -fx-text-fill: #64DD17; -fx-fill: #64DD17}
 
 .txt-lima2 {
-  -fx-text-fill: #76FF03; }
+  -fx-text-fill: #76FF03; -fx-fill: #76FF03}
 
 .txt-lima3 {
-  -fx-text-fill: #AEEA00; }
+  -fx-text-fill: #AEEA00;  -fx-fill: #AEEA00}
 
 .txt-cafes {
-  -fx-text-fill: #3E2723; }
+  -fx-text-fill: #3E2723; -fx-fill: #3E2723}
 
 .txt-gris1 {
-  -fx-text-fill: #212121; }
+  -fx-text-fill: #212121; -fx-fill: #212121}
 
 .txt-gris2 {
-  -fx-text-fill: #424242; }
+  -fx-text-fill: #424242; -fx-fill: #424242}
 
 .txt-gris1 {
-  -fx-text-fill: #757575; }
+  -fx-text-fill: #757575; -fx-fill: #757575}
 
 .txt-gri2 {
-  -fx-text-fill: #616161; }
+  -fx-text-fill: #616161; -fx-fill: #616161}
 
 .txt-gri3 {
-  -fx-text-fill: #424242; }
+  -fx-text-fill: #424242; -fx-fill: #424242}
 
 .txt-gri4 {
-  -fx-text-fill: #212121; }
+  -fx-text-fill: #212121; -fx-fill: #212121}
 
 .txt-turquesa {
-  -fx-text-fill: #00BFA5; }
+  -fx-text-fill: #00BFA5; -fx-fill: #00BFA5}
 
 .txt-turquesa2 {
-  -fx-text-fill: #1DE9B6; }
+  -fx-text-fill: #1DE9B6; -fx-fill: #1DE9B6}
 
 .txt-celeste {
-  -fx-text-fill: #0091EA; }
+  -fx-text-fill: #0091EA; -fx-fill: #0091EA}
 
 /************************* TEXTOS CLAROS ****************************/
 .txt-rojo-claro {

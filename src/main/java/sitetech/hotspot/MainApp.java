@@ -17,10 +17,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import sitetech.Helpers.dbHelper;
 import sitetech.Helpers.dbManager;
+import sitetech.hotspot.Controladores.LicenciaController;
 import sitetech.hotspot.Controladores.LoginController;
 import sitetech.hotspot.Controladores.MainController;
 import sitetech.hotspot.Controladores.SplashControlador;
-import static sitetech.hotspot.Controladores.SplashControlador.thisStage;
 import sitetech.hotspot.Modelos.Caja;
 import sitetech.hotspot.Modelos.CajaManager;
 import sitetech.hotspot.Modelos.Configuracion;
@@ -77,8 +77,6 @@ public class MainApp extends Application {
         configuracion = ConfiguracionManager2.getConfiguracion(new dbHelper());
         checkConeccion();
         Locale.setDefault(configuracion.getRegionLocal().getLocale());
-        
-        
     }
     
     public void checkConeccion() throws Exception{
@@ -97,17 +95,20 @@ public class MainApp extends Application {
     
     public void agregarEscena(String key, Scene scene){
         escenas.put(key, scene);
-        //primaryStage.setUserData(escenas);
     }
     
     public static void main(String[] args) {
         launch(args);
     }
 
-    public void loginScene(SplashControlador splash) {
-        logc = new LoginController(this);        
-        if (splash != null) splash.thisStage.close();
-        logc.showStage();
+    public SplashControlador Splash;
+    public void loginScene(SplashControlador _splash) {
+        Splash = _splash;
+        if (checkLicencia()){ // Chequeamos si la licencia es valida
+            logc = new LoginController(this);        
+            if (_splash != null) _splash.thisStage.close();
+            logc.showStage();
+        }
     }
 
     public void mainScene() {
@@ -123,6 +124,11 @@ public class MainApp extends Application {
         mainControlador.actualizarInfo(usuarioLogeado, cajaAbierta);
     }
 
+    public boolean checkLicencia(){
+        LicenciaController lic = new LicenciaController(this);
+        return lic.showLicencia();
+    }
+    
     public boolean checkLogin(String usuario, String contraseña, SplashControlador splash){
         usuarioManager um = new usuarioManager();
         boolean login = um.checkLogin(usuario, contraseña);

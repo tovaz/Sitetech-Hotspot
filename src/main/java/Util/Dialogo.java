@@ -74,6 +74,11 @@ public class Dialogo {
         return mostrar(mensaje, titulo, AlertType.ERROR, config, btn);
     }
     
+    public static ButtonType mostrarError(String mensaje, String titulo, ButtonType... btn)
+    {
+        return mostrar(mensaje, titulo, AlertType.ERROR, btn);
+    }
+    
     public static Optional<Retiro>  CerrarCaja(Configuracion config, Caja caja){
         Dialog<Retiro> dialog = new Dialog<>();
         
