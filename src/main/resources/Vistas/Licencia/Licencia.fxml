@@ -168,7 +168,7 @@
          </font>
       </Label>
       <Label alignment="BOTTOM_RIGHT" layoutX="12.0" layoutY="53.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Cliente Id:" />
-      <TextArea fx:id="tclientId" editable="false" layoutX="71.0" layoutY="29.0" prefHeight="71.0" prefWidth="378.0" style="-fx-background-color: transparent;" wrapText="true" AnchorPane.rightAnchor="10.0">
+      <TextArea fx:id="tclientId" editable="false" layoutX="71.0" layoutY="29.0" prefHeight="71.0" prefWidth="378.0" style="-fx-background-color: transparent; -fx-text-fill: -colorTexto2;" styleClass="client-id" wrapText="true" AnchorPane.rightAnchor="10.0">
          <padding>
             <Insets bottom="5.0" top="5.0" />
          </padding>
@@ -230,10 +230,11 @@
       </JFXButton>
    </children>
    <stylesheets>
-      <URL value="@../../../../../../Sitetech-License-Manager/src/main/resources/styles/Temas/Tema-Azul.css" />
-      <URL value="@../../../../../../Sitetech-License-Manager/src/main/resources/styles/Temas/Tema-Claro.css" />
-      <URL value="@../../../../../../Sitetech-License-Manager/src/main/resources/styles/Styles.css" />
-      <URL value="@../../../../../../Sitetech-License-Manager/src/main/resources/styles/botones.css" />
+      <URL value="@../../styles/Temas/Tema-Azul.css" />
+      <URL value="@../../styles/Temas/Tema-Claro.css" />
+      <URL value="@../../styles/Styles.css" />
+      <URL value="@../../styles/botones.css" />
+      <URL value="@../../styles/validation.css" />
       <URL value="@../../styles/validation.css" />
    </stylesheets>
 </AnchorPane>

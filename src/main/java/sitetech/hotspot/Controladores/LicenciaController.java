@@ -197,6 +197,7 @@ public class LicenciaController extends MiControlador {
                 psinlicencia.setVisible(false);
                 plicencia.setVisible(true);
                 pprincipal.getStyleClass().remove("fondoApp2");
+                pprincipal.setStyle("-fx-background-color: -colorFondo2");
                 loadInfo(licenciaFile);
             }
             else
