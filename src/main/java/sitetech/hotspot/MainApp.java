@@ -2,6 +2,7 @@ package sitetech.hotspot;
 
 import Util.Dialogo;
 import Util.StageManager;
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Locale;
@@ -113,6 +114,7 @@ public class MainApp extends Application {
 
     public void mainScene() {
         cajaAbierta = cm.getCajaAbierta(usuarioLogeado);
+        if (lic != null) lic.thisStage.hide();
         if (mainControlador == null)
             mainControlador = new MainController(this);
         
@@ -124,9 +126,17 @@ public class MainApp extends Application {
         mainControlador.actualizarInfo(usuarioLogeado, cajaAbierta);
     }
 
+    public LicenciaController lic = null;
     public boolean checkLicencia(){
-        LicenciaController lic = new LicenciaController(this);
-        return lic.showLicencia();
+        try {
+            lic = new LicenciaController(this);
+            return lic.checkLicencia();
+        }
+        catch (Exception ex){
+            System.err.println(ex.getMessage());
+        }
+        
+        return false;
     }
     
     public boolean checkLogin(String usuario, String contraseña, SplashControlador splash){

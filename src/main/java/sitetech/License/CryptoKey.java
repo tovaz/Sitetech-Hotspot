@@ -101,13 +101,13 @@ public class CryptoKey {
             ObjectInputStream inputStream = new ObjectInputStream( cipherInputStream );
             SealedObject sealedObject = (SealedObject) inputStream.readObject();
             
-            System.err.println("Licencia optenida");
+            System.err.println("Licencia obtenida");
             return (Licencia) sealedObject.getObject( cipher );
         }
         catch (Exception ex){
             System.err.println("ERROR al obtener la licencia");
             System.err.println(ex.getMessage());
-            Dialogo.mostrarError(ex.getMessage(), "Error al intentar leer la licencia.", ButtonType.OK);
+            //Dialogo.mostrarError(ex.getMessage(), "Error al intentar leer la licencia.", ButtonType.OK);
         }
         return null;
     }

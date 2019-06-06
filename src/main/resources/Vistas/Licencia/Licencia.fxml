@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import java.net.URL?>
@@ -16,11 +17,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="principal" prefHeight="520.0" prefWidth="462.0" styleClass="fondoApp2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" fx:id="pprincipal" prefHeight="520.0" prefWidth="462.0" styleClass="fondoApp2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fx:id="plicencia" alignment="TOP_CENTER" layoutX="10.0" layoutY="116.0" prefHeight="400.0" prefWidth="442.0" AnchorPane.topAnchor="135.0">
          <children>
-            <Label text="Informacion del negocio">
+            <Label style="-fx-text-fill: -colorTexto;" text="Informacion del negocio">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -55,7 +56,7 @@
                   </FontAwesomeIcon>
                </children>
             </GridPane>
-            <Label layoutX="10.0" layoutY="10.0" text="Informacion de la aplicacion">
+            <Label layoutX="10.0" layoutY="10.0" style="-fx-text-fill: -colorTexto;" text="Informacion de la aplicacion">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -100,7 +101,7 @@
                   </JFXComboBox>
                </children>
             </GridPane>
-            <Label layoutX="10.0" layoutY="123.0" text="Informacion de la licencia">
+            <Label layoutX="10.0" layoutY="123.0" style="-fx-text-fill: -colorTexto;" text="Informacion de la licencia">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -108,7 +109,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <GridPane prefHeight="118.0">
+            <GridPane prefHeight="118.0" prefWidth="442.0">
                <columnConstraints>
                   <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="90.0" minWidth="90.0" prefWidth="90.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="372.0" minWidth="100.0" prefWidth="334.0" />
@@ -138,6 +139,11 @@
                   </FontAwesomeIcon>
                </children>
             </GridPane>
+            <JFXSpinner fx:id="spactivando" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" prefWidth="30.0" visible="false">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="-5.0" />
+               </VBox.margin>
+            </JFXSpinner>
             <JFXButton fx:id="bactivar" onAction="#onactivar" prefHeight="55.0" prefWidth="160.0" styleClass="btn-azul" text=" ">
                <graphic>
                   <VBox alignment="TOP_CENTER">
@@ -153,7 +159,7 @@
             </JFXButton>
          </children>
          <padding>
-            <Insets bottom="10.0" />
+            <Insets bottom="10.0" top="10.0" />
          </padding>
       </VBox>
       <Label layoutX="10.0" layoutY="10.0" text="Informacion de la licencia">
@@ -162,12 +168,12 @@
          </font>
       </Label>
       <Label alignment="BOTTOM_RIGHT" layoutX="12.0" layoutY="53.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Cliente Id:" />
-      <TextArea fx:id="tclientId" layoutX="71.0" layoutY="29.0" prefHeight="71.0" prefWidth="385.0" style="-fx-background-color: transparent;" wrapText="true" AnchorPane.rightAnchor="10.0">
+      <TextArea fx:id="tclientId" editable="false" layoutX="71.0" layoutY="29.0" prefHeight="71.0" prefWidth="378.0" style="-fx-background-color: transparent;" wrapText="true" AnchorPane.rightAnchor="10.0">
          <padding>
             <Insets bottom="5.0" top="5.0" />
          </padding>
       </TextArea>
-      <JFXButton fx:id="babrir" defaultButton="true" layoutX="267.0" layoutY="100.0" onAction="#onabrir" prefHeight="30.0" style="-fx-text-fill: #333;" styleClass="btn-dg-azul-turquesa" text="Abrir archivo de licencia">
+      <JFXButton fx:id="babrir" defaultButton="true" layoutX="253.0" layoutY="100.0" onAction="#onabrir" prefHeight="28.0" prefWidth="192.0" style="-fx-text-fill: #333;" styleClass="btn-dg-azul-turquesa" text="Abrir archivo de licencia">
          <graphic>
             <FontAwesomeIcon glyphStyle="-fx-fill: #333" glyphStyleClass="" iconName="FILE" />
          </graphic>
@@ -203,16 +209,31 @@
                </graphic>
             </JFXButton>
             <FontAwesomeIcon glyphStyleClass="txt-rosado" iconName="LOCK" layoutX="51.0" layoutY="70.0" size="80PX" AnchorPane.leftAnchor="50.0" />
+            <AnchorPane fx:id="perror" layoutX="27.0" layoutY="117.0" prefHeight="139.0" prefWidth="385.0" style="-fx-background-color: -colorFondo;" styleClass="customControlError">
+               <children>
+                  <Text fx:id="lerror" layoutX="16.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ff2222;" styleClass="txt-rojo" text="El archivo de licencia no es valido para este equipo. Verifica que el Cliente Id sea valido, y comunicate con el proveedor de licencias." wrappingWidth="353.537109375" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </AnchorPane>
+      <JFXButton fx:id="bcopiar" defaultButton="true" layoutX="89.0" layoutY="100.0" onAction="#oncopiar" prefHeight="28.0" prefWidth="142.0" styleClass="btn-default" text="Copiar Cliente Id">
+         <graphic>
+            <FontAwesomeIcon glyphStyle="-fx-fill: -colorTexto2" glyphStyleClass="" iconName="COPY" />
+         </graphic>
+      </JFXButton>
    </children>
    <stylesheets>
       <URL value="@../../../../../../Sitetech-License-Manager/src/main/resources/styles/Temas/Tema-Azul.css" />
       <URL value="@../../../../../../Sitetech-License-Manager/src/main/resources/styles/Temas/Tema-Claro.css" />
       <URL value="@../../../../../../Sitetech-License-Manager/src/main/resources/styles/Styles.css" />
       <URL value="@../../../../../../Sitetech-License-Manager/src/main/resources/styles/botones.css" />
+      <URL value="@../../styles/validation.css" />
    </stylesheets>
 </AnchorPane>
