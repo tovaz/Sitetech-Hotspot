@@ -48,10 +48,10 @@ public class Temas {
         return FXCollections.observableArrayList(tc1,tc2,tc3,tc4,tc5,tc6,tc7,tc8,tc9,tc10);
     }
     
-    public static Map<String, String> getTemasMap(){
-        Map<String, String> TemasMap =   new HashMap<String, String>();
-        TemasMap.put("Claro", "/styles/Temas/Tema-Claro.css");
-        TemasMap.put("Obscuro", "/styles/Temas/Tema-Obscuro.css");
+    public static Map<String, ThemeColor> getTemasMap(){
+        Map<String, ThemeColor> TemasMap =   new HashMap<String, ThemeColor>();
+        for (ThemeColor tx : getTemas())
+            TemasMap.put(tx.getNombre(), tx);
         return TemasMap;
     }
     

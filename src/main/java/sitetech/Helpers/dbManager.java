@@ -1,6 +1,7 @@
 
 package sitetech.Helpers;
 
+import Util.Dialogo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,6 +10,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.ButtonType;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -20,11 +22,7 @@ import org.hibernate.cfg.Configuration;
  * @author megan
  */
 public class dbManager {
-    public String url = "src\\hotspot.db";
-    public Connection conexion;
-    
     private static SessionFactory sessionFactory = null;  
-       
     public static SessionFactory configureSessionFactory() throws HibernateException {  
         Configuration configuration = new Configuration();  
         configuration.configure();  
@@ -75,41 +73,31 @@ public class dbManager {
         return false;
     }
     
-    public void conectar(){
-        try {
-            conexion = DriverManager.getConnection("jdbc:sqlite:" + url);
-            if (conexion!=null) {
-                System.out.println("Conectado a la base de datos.");
-            }
-        }catch (SQLException ex) {
-            System.err.println("No se ha podido conectar a la base de datos\n"+ex.getMessage());
+    public static Connection getConnection(){
+        try{
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+            String userDir = System.getProperty("user.dir") + "\\hotspot\\";
+            return (Connection)DriverManager.getConnection("jdbc:derby:" + userDir);
         }
-    }
-    public void cerrar(){
-           try {
-               conexion.close();
-           } catch (SQLException ex) {
-               Logger.getLogger(dbManager.class.getName()).log(Level.SEVERE, null, ex);
-           }
-    }
-    
-    public void createDb(){
-        ResultSet result = null;
-        try {
-            this.conectar();
-            PreparedStatement st = conexion.prepareStatement("select * from alumnos");
-            result = st.executeQuery();
-            while (result.next()) {
-                System.out.print("ID: ");
-                System.out.println(result.getInt("id"));
-            }
-            
-            this.cerrar();
-        }catch (SQLException ex) {
-            Logger.getLogger(dbManager.class.getName()).log(Level.SEVERE, null, ex);
+        catch (Exception ex) {
+            Dialogo.mostrarError(ex.getMessage(), "Error al conectar a la base de datos.", ButtonType.OK);
         }
+        
+        return null;
     }
     
-    
+    public static Connection restoreDb(String ruta){
+        try{
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+            String userDir = System.getProperty("user.dir") + "\\hotspot";
+            Connection cn = DriverManager.getConnection("jdbc:derby:" + userDir + ";createFrom=" + ruta + ";logDevice=" + ruta + "\\log");
+            return cn;
+        }
+        catch (Exception ex) {
+            Dialogo.mostrarError(ex.getMessage(), "Error al restaurar.", ButtonType.OK);
+        }
+        
+        return null;
+    }
     
 }

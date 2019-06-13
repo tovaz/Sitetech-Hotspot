@@ -6,18 +6,21 @@ import Util.Dialogo;
 import Util.MiLocale;
 import Util.Moneda;
 import Util.StageManager;
+import com.jfoenix.controls.JFXButton;
 import sitetech.hotspot.ThemeColor;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXSpinner;
+import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXToggleButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
-import java.text.NumberFormat;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -34,11 +37,17 @@ import sitetech.hotspot.Modelos.Configuracion;
 import sitetech.hotspot.Modelos.ConfiguracionManager2;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.control.Tab;
+import javafx.scene.text.Text;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import org.springframework.util.StringUtils;
+import sitetech.Helpers.backupHelper;
 import sitetech.hotspot.MainApp;
 
 /**
@@ -48,27 +57,21 @@ import sitetech.hotspot.MainApp;
  */
 public class ConfiguracionController implements Initializable {
 
-    @FXML private JFXTextField tempresa;
     @FXML private JFXComboBox<String> cbpais;
-    @FXML private JFXTextField testado;
-    @FXML private JFXTextField tciudad;
-    @FXML private JFXTextField tdireccion;
-    @FXML private JFXTextField timagen;
-    @FXML private JFXTextField tdominio;
+    @FXML private JFXTextField testado, tciudad, tdireccion, timagen, tdominio, tempresa, tusername, tcarpeta;
     @FXML private JFXComboBox<MiLocale> cbmoneda;
     @FXML private JFXComboBox<String> cbidioma;
     @FXML private Label lemoneda;
+    @FXML private Text ttrabajando;
     @FXML private JFXToggleButton tgmostrarBarras;
     @FXML private ImageView iticket;
-    @FXML private JFXComboBox<ThemeColor> cbenfasis;
-    @FXML private JFXComboBox<ThemeColor> cbtema;
-    @FXML private JFXToggleButton tbtoolbar;
-    @FXML private JFXToggleButton tbmenu;
-    @FXML private JFXToggleButton tgmostrarImagen;
-    @FXML private JFXTextField tusername;
-    @FXML private JFXToggleButton tgSincronizarConsumo;
-    @FXML private JFXToggleButton tgRegistrarVenta;
-    
+    @FXML private JFXComboBox<ThemeColor> cbenfasis, cbtema;
+    @FXML private JFXToggleButton tbtoolbar, tbmenu, tgmostrarImagen, tgSincronizarConsumo, tgRegistrarVenta, tbbackup;
+    @FXML private JFXTabPane tabs;
+    @FXML private Tab tabtickets, tabnegocio, tabformatos, tabsincronizacion, tabdb, tabapariencia;
+    @FXML private JFXButton bnegocio;
+    @FXML private JFXSpinner sptrabajando;
+        
     private ConfiguracionManager2 cm;
     private MainApp App;
     public final Stage thisStage;
@@ -94,6 +97,9 @@ public class ConfiguracionController implements Initializable {
         
         cargarPaises();
         cargarIdiomas();
+        System.err.println(cbenfasis);
+        System.err.println(cbtema);
+        
         cargarColores(cbenfasis, Temas.getEnfasis(), true);
         cargarColores(cbtema, Temas.getTemas(), false);
         
@@ -116,8 +122,41 @@ public class ConfiguracionController implements Initializable {
         tgmostrarBarras.setSelected(conf.isCodigoBarraVisible());
         tgmostrarImagen.setSelected(conf.isImagenVisible());
         
+        //********************* CONFIGURACION DE BACKUP BASE DE DATOS *****************
+        dbMensaje(false, "");
+        tcarpeta.setText(conf.getDirBackup());
+        tbbackup.setSelected(conf.isHacerBackup());
+        
+        
         File fimg = new File(conf.getImagenTicket());
         iticket.setImage(new Image( fimg.toURI().toString()) );
+        bmenuAnterior = bnegocio;
+        
+    }
+    
+    JFXButton bmenuAnterior = null;
+    @FXML
+    void onclickMenu(ActionEvent event) {
+        JFXButton btn = (JFXButton)event.getTarget();
+        SingleSelectionModel<Tab> selectionModel = tabs.getSelectionModel();
+        
+        bmenuAnterior.getStyleClass().remove("activo");
+        btn.getStyleClass().add("activo");
+        bmenuAnterior = btn;
+        switch (btn.getText()){
+            case "Negocio": selectionModel.select(tabnegocio); break;
+            case "Ticket": selectionModel.select(tabtickets); break;
+            case "Sincronizacion": selectionModel.select(tabsincronizacion); break;            
+            case "Formatos": selectionModel.select(tabformatos); break;
+            case "Apariencia": selectionModel.select(tabapariencia); break;
+            case "Bases de Datos": selectionModel.select(tabdb); break;
+        }
+    }
+    
+    private void agregarTab(String texto, Node iconPath) {
+        for (Tab tx : tabs.getTabs()){
+            tx.setGraphic(new Group(new Label(texto, iconPath)));
+        }
     }
     
     private void cargarIdiomas(){ 
@@ -195,6 +234,11 @@ public class ConfiguracionController implements Initializable {
         conf.setSincronizarVenta(tgRegistrarVenta.isSelected());
         conf.setDefaultUsername(tusername.getText());
         
+        //********************* CONFIGURACION DE BACKUP BASE DE DATOS *****************
+        conf.setDirBackup(tcarpeta.getText());
+        conf.setHacerBackup(tbbackup.isSelected());
+        
+        
         if (conf.getId() == 777)
             cm.Agregar(conf);
         else
@@ -206,6 +250,9 @@ public class ConfiguracionController implements Initializable {
     
     @FXML
     void cancelarAction(ActionEvent event) {
+        ThemeColor tema = Temas.getTemasMap().get(App.configuracion.getColorTema());
+        ThemeColor enfasis = Temas.getCssporNombre(App.configuracion.getColorEnfasis(), Temas.getEnfasis());
+        aplicarTema(tema, enfasis);
         ((Node)(event.getSource())).getScene().getWindow().hide();
     }
 
@@ -232,7 +279,11 @@ public class ConfiguracionController implements Initializable {
     void enfasisAction(ActionEvent event) {
         ThemeColor enfasisSeleccionado = cbenfasis.getValue();
         ThemeColor temaSeleccionado = cbtema.getValue();
+        aplicarTema(enfasisSeleccionado, temaSeleccionado);
         
+    }
+    
+    public void aplicarTema(ThemeColor enfasisSeleccionado, ThemeColor temaSeleccionado){
         Iterator it = App.escenas.keySet().iterator();
         while(it.hasNext()){
           String key = (String)it.next();
@@ -241,14 +292,17 @@ public class ConfiguracionController implements Initializable {
                 Temas.aplicarTema(enfasisSeleccionado, temaSeleccionado, sx);
                 Temas.colorearBarras(sx, tbmenu.isSelected(), tbtoolbar.isSelected());
           }
-          
-          System.out.println("Escena: " + key );
+           System.out.println("Escena: " + key );
         }
         
         Temas.aplicarTema(enfasisSeleccionado, temaSeleccionado, thisStage.getScene());
+        Temas.colorearBarras(thisStage.getScene(), tbmenu.isSelected(), tbtoolbar.isSelected());
     }
-    
+        
     private void cargarColores(JFXComboBox<ThemeColor> cb, ObservableList<ThemeColor> colores, boolean enfasis){
+        for (ThemeColor x : colores)
+            System.out.println(x.getNombre());
+        
         cb.setItems(colores);
         for (ThemeColor tc : cb.getItems()){
             if ( tc.getNombre().equals(conf.getColorEnfasis() ) && enfasis )
@@ -266,5 +320,78 @@ public class ConfiguracionController implements Initializable {
         
         cb.setCellFactory(factory);
         cb.setButtonCell(factory.call(null));
-   }   
+   }
+    
+    /************************* BACKUP BASES DE DATOS ***********************/
+    /***********************************************************************/
+    Runnable hiloTerminado = new Runnable() { @Override public void run(){ dbMensaje(false, ""); } };
+    boolean errImport = false;
+    private String openDir(){
+        DirectoryChooser seldir = new DirectoryChooser();
+        seldir.setTitle("Selecciona una carpeta para guardar el Backup");
+        File file = seldir.showDialog(thisStage);
+        if (file != null) return file.getPath() + "\\";
+        
+        return null;
+    }
+    
+    @FXML
+    void onexaminarCarpeta(ActionEvent event) {
+        String dir = openDir();
+        if (dir != null)
+            tcarpeta.setText(dir);
+    }
+    
+    @FXML
+    void onExportar(ActionEvent event) {
+        String dir = openDir();
+        if (dir != null){
+            dbMensaje(true, "Exportando base de datos, espere porfavor.");
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    backupHelper.exportar(dir);
+                    Platform.runLater( hiloTerminado );
+                }
+            }).start();
+        }
+    }
+
+    @FXML
+    void onImportar(ActionEvent event) {
+        String dir = openDir();
+        System.out.println("Restaurando desde backup: " + dir);
+        if (dir != null){
+            ButtonType bconfirmar = Dialogo.mostrarConfirmacion("¿Desea realmente eliminar los datos actuales y reemplazarlos por los datos del backup ?", "Restaurar desde Backup", App.configuracion, ButtonType.YES, ButtonType.NO);
+            if (bconfirmar == ButtonType.YES){
+                dbMensaje(true, "Restaurando desde backup: " + dir);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        errImport = backupHelper.restoreDb(dir);
+                        Platform.runLater( hiloTerminado );
+                    }
+                }).start();
+            }
+        }
+    }
+    
+    @FXML
+    void onBackup(ActionEvent event) {
+        dbMensaje(true, "Realizando Copia de Seguridad ...");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                backupHelper.exportar(tcarpeta.getText());
+                Platform.runLater( hiloTerminado );
+            }
+        }).start();
+    }
+    
+    private void dbMensaje(boolean estado, String mensaje){
+        sptrabajando.setVisible(estado);
+        ttrabajando.setVisible(estado);
+        ttrabajando.setText(mensaje);
+        if (!errImport)  Dialogo.mostrarAlerta("Error al intentar restablecer la base de datos desde el directorio seleccionado, intenta seleccionar otro directorio o subcarpeta.", "Error al restaurar", App.configuracion, ButtonType.OK);
+    }
 }

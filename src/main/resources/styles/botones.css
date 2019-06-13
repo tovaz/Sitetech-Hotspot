@@ -365,6 +365,39 @@
 .btn-dg-rojo-rosado:hover {
   -fx-background-color: linear-gradient(to top right, #D50000, #ff4085); }
 
+
+.btn-dg-default1 {
+  -fx-background-color: linear-gradient(to top right, -fx-accent, derive(-fx-accent, 60%)); 
+}
+.btn-dg-default1:hover {
+  -fx-background-color: linear-gradient(to top right, -fx-accent, derive(-fx-accent, 60%)); 
+}
+
+.btn-borde-default {
+  -fx-background-color: transparent !important;
+  -fx-border-width: 1px;
+  -fx-border-color: derive(-fx-accent, -10%);
+  -fx-border-radius: 20px;
+  -fx-background-radius: 20px;
+  
+  -fx-text-fill: -fx-accent;
+}
+
+.btn-borde-default  .glyph-icon {
+    -fx-fill: -fx-accent;
+    -fx-text-fill: -fx-accent;
+}
+
+.btn-borde-default:hover {
+  -fx-background-color: transparent !important;
+  -fx-border-width: 1px;
+  -fx-border-color: derive(-fx-secundary, -10%);
+  -fx-border-radius: 20px;
+  -fx-background-radius: 20px;
+  
+  -fx-text-fill: -fx-accent;
+}
+
 /* *********************************** TEXTOS ****************************/
 .txt-rojo {
   -fx-text-fill: #D50000; -fx-fill:#D50000; }

@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXToggleButton?>
@@ -19,33 +20,26 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="650.0" styleClass="fondo-gris2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="866.0" styleClass="fondo-gris2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox style="-fx-background-color: -fx-accent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox style="-fx-background-color: -fx-accent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane maxHeight="32.0" minHeight="32.0" prefHeight="32.0" VBox.vgrow="ALWAYS">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <children>
-                  <Label alignment="CENTER" prefHeight="20.0" prefWidth="600.0" styleClass="txt-gris-claro1" text="Configuraciones" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-               </children>
-            </AnchorPane>
-            <JFXTabPane tabMinWidth="100.0" VBox.vgrow="ALWAYS">
+            <JFXTabPane fx:id="tabs" rotateGraphic="true" side="LEFT" style="-fx-min-width: 150px;" tabClosingPolicy="UNAVAILABLE" tabMinWidth="100.0" VBox.vgrow="ALWAYS">
                <tabs>
-                <Tab text="Negocio">
+                <Tab fx:id="tabnegocio" closable="false" text="Negocio">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: -colorFondo;">
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: -colorFondo2;">
                            <children>
                               <VBox layoutX="23.0" layoutY="25.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="271.0" prefWidth="370.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
+                                    <Label text="INFORMACION DEL NEGOCIO | EMPRESA">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                    </Label>
                                     <JFXTextField fx:id="tempresa" focusColor="#304ffe" labelFloat="true" promptText="Nombre del negocio" text="asdfasdfadsf">
                                        <VBox.margin>
                                           <Insets bottom="15.0" top="10.0" />
@@ -88,126 +82,194 @@
                                     </JFXTextField>
                                  </children>
                                  <padding>
-                                    <Insets bottom="10.0" left="20.0" right="10.0" top="20.0" />
+                                    <Insets bottom="10.0" left="20.0" right="10.0" top="25.0" />
                                  </padding>
                               </VBox>
                            </children>
                         </AnchorPane>
                      </content>
-                     <graphic>
-                        <FontAwesomeIcon fill="#eeeeee" iconName="BUILDING" size="20px" />
-                     </graphic>
                   </Tab>
-                  <Tab text="Tickets">
+                  <Tab fx:id="tabtickets" closable="false" text="Tickets">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: -colorFondo;">
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: -colorFondo2;">
                            <children>
-                              <JFXTextField fx:id="timagen" focusColor="#304ffe" labelFloat="true" layoutX="20.0" layoutY="26.0" prefHeight="25.0" prefWidth="282.0" promptText="Imagen a mostrar en el ticket" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="30.0">
+                              <JFXTextField fx:id="timagen" focusColor="#304ffe" labelFloat="true" layoutX="21.0" layoutY="52.0" prefHeight="30.0" prefWidth="327.0" promptText="Imagen a mostrar en el ticket" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="52.0">
                                  <font>
                                     <Font size="14.0" />
                                  </font></JFXTextField>
-                              <JFXButton layoutX="304.0" layoutY="36.0" onAction="#examinarAction" styleClass="btn-default2" text="Examinar" />
-                              <ImageView fx:id="iticket" fitHeight="50.0" fitWidth="100.0" layoutX="402.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" styleClass="borde-Indigo">
+                              <JFXButton layoutX="354.0" layoutY="58.0" onAction="#examinarAction" styleClass="btn-default" text="Examinar">
+                                 <graphic>
+                                    <FontAwesomeIcon glyphStyle="-fx-fill: -colorTexto2" iconName="IMAGE" size="17px" />
+                                 </graphic></JFXButton>
+                              <ImageView fx:id="iticket" fitHeight="50.0" fitWidth="100.0" layoutX="452.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" styleClass="borde-Indigo">
                                  <image>
                                     <Image url="@../../Imagenes/ico.png" />
                                  </image>
                               </ImageView>
-                              <JFXToggleButton fx:id="tgmostrarBarras" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="26.0" layoutY="195.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="270.0" selected="true" text="Mostrar codigo de barras en el ticket" AnchorPane.leftAnchor="26.0" />
-                              <JFXTextField fx:id="tdominio" focusColor="#304ffe" labelFloat="true" layoutX="22.0" layoutY="85.0" prefHeight="25.0" prefWidth="200.0" promptText="Dominio para el codigo de barras" text="sitetech.com/checkticket" AnchorPane.leftAnchor="22.0">
+                              <JFXToggleButton fx:id="tgmostrarBarras" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="20.0" layoutY="323.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="270.0" selected="true" text="Mostrar codigo de barras en el ticket" AnchorPane.leftAnchor="20.0" />
+                              <JFXTextField fx:id="tdominio" focusColor="#304ffe" labelFloat="true" layoutX="21.0" layoutY="189.0" prefHeight="25.0" prefWidth="200.0" promptText="Dominio para el codigo de barras" text="sitetech.com/checkticket" AnchorPane.leftAnchor="21.0">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXToggleButton fx:id="tgmostrarImagen" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="26.0" layoutY="232.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="270.0" text="Mostrar imagen en el ticket" AnchorPane.leftAnchor="26.0" />
-                              <JFXTextField fx:id="tusername" focusColor="#304ffe" labelFloat="true" layoutX="22.0" layoutY="150.0" prefHeight="25.0" prefWidth="200.0" promptText="Contraseña por default" text="Internet">
+                              <JFXToggleButton fx:id="tgmostrarImagen" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="20.0" layoutY="355.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="270.0" text="Mostrar imagen en el ticket" AnchorPane.leftAnchor="14.0" />
+                              <JFXTextField fx:id="tusername" focusColor="#304ffe" labelFloat="true" layoutX="21.0" layoutY="254.0" prefHeight="25.0" prefWidth="200.0" promptText="Contraseña por default" text="Internet" AnchorPane.leftAnchor="21.0">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </JFXTextField>
-                              <Text layoutX="234.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: -colorTexto2;" text="Contraseña por default, para autenticar solo por usuario o codigo; Asegurate que el mismo este configurado en el router tambien." wrappingWidth="385.638671875" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                     <graphic>
-                        <FontAwesomeIcon fill="#f2f2f2" iconName="TICKET" size="20px" />
-                     </graphic>
-                  </Tab>
-                  <Tab text="Sincronizacion">
-                     <graphic>
-                        <FontAwesomeIcon fill="#eeeeee" iconName="REFRESH" size="20PX" />
-                     </graphic>
-                     <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: -colorFondo;">
-                           <children>
-                              <Label layoutX="14.0" layoutY="18.0" text="Tickets" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="18.0">
+                              <Text layoutX="235.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: -colorTexto2;" text="Contraseña por default, para autenticar solo por usuario o codigo; Asegurate que el mismo este configurado en el router tambien." wrappingWidth="385.638671875" />
+                              <Label text="IMPRESION DE TICKETS" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="25.0">
                                  <font>
-                                    <Font name="System Bold" size="16.0" />
+                                    <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <JFXToggleButton fx:id="tgSincronizarConsumo" alignment="CENTER_LEFT" layoutX="40.0" layoutY="43.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="420.0" selected="true" style="-fx-text-fill: -colorTexto;" text="Sincronizar consumo de tiempo e internet">
+                              <Label layoutX="21.0" layoutY="146.0" text="CODIGO DE BARRAS Y CODIGO DE VOUCHER" AnchorPane.leftAnchor="21.0">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
-                              </JFXToggleButton>
-                              <Text fill="#d03232" layoutX="101.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: -colorTexto;" text="Sincronizar el consumo de tiempo e internet  del router en la base de datos del programa." wrappingWidth="240.3359375" />
-                              <JFXToggleButton fx:id="tgRegistrarVenta" alignment="CENTER_LEFT" layoutX="40.0" layoutY="110.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="420.0" selected="true" style="-fx-text-fill: -colorTexto;" text="Registrar venta de ticket, cuando ya este en uso en el router">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </JFXToggleButton>
-                              <Text fill="#d03232" layoutX="101.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: -colorTexto;" text="Al verificar el router, si un ticket se encuentra en uso, se registra en el sistema como una venta de ese dia." wrappingWidth="340.3359375" />
+                              </Label>
                            </children>
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Formatos">
-                     <graphic>
-                        <FontAwesomeIcon fill="#eeeeee" iconName="LANGUAGE" size="20PX" />
-                     </graphic>
+                  <Tab fx:id="tabformatos" text="Formatos">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: -colorFondo;">
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: -colorFondo2;">
                            <children>
-                                <JFXComboBox fx:id="cbmoneda" focusColor="#304ffe" labelFloat="true" layoutX="20.0" layoutY="87.0" prefHeight="25.0" prefWidth="200.0" promptText="Moneda" style="-fx-font-size: 14px;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="87.0" />
-                                <Label layoutX="228.0" layoutY="94.0" text="Ejemplo:" AnchorPane.topAnchor="94.0">
+                                <JFXComboBox fx:id="cbmoneda" focusColor="#304ffe" labelFloat="true" layoutX="20.0" layoutY="122.0" prefHeight="25.0" prefWidth="200.0" promptText="Moneda" style="-fx-font-size: 14px;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="122.0" />
+                                <Label layoutX="228.0" layoutY="129.0" text="Ejemplo:" AnchorPane.topAnchor="129.0">
                                    <font>
                                       <Font size="13.0" />
                                    </font>
                                 </Label>
-                                <Label fx:id="lemoneda" layoutX="284.0" layoutY="94.0" text="Q. 100.00" AnchorPane.topAnchor="94.0">
+                                <Label fx:id="lemoneda" layoutX="284.0" layoutY="129.0" text="Q. 100.00" AnchorPane.topAnchor="129.0">
                                    <font>
                                       <Font name="System Bold" size="13.0" />
                                    </font>
                                 </Label>
 
-                                <JFXComboBox fx:id="cbidioma" focusColor="#304ffe" labelFloat="true" layoutX="20.0" layoutY="42.0" prefHeight="25.0" prefWidth="200.0" promptText="Idioma" style="-fx-font-size: 14px;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="30.0" />
+                                <JFXComboBox fx:id="cbidioma" focusColor="#304ffe" labelFloat="true" layoutX="20.0" layoutY="65.0" prefHeight="25.0" prefWidth="200.0" promptText="Idioma" style="-fx-font-size: 14px;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="65.0" />
+                              <Label text="FORMATO DE MONEDA" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="25.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
                               
                            </children>
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Apariencia">
+                  <Tab fx:id="tabsincronizacion" closable="false" text="Actualizacion">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: -colorFondo;">
-                           <children>    
-                              <Label layoutX="14.0" layoutY="43.0" text="Color de enfasis" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="43.0" />
-                              <JFXComboBox fx:id="cbenfasis" layoutX="112.0" layoutY="30.0" onAction="#enfasisAction" prefHeight="25.0" prefWidth="175.0" style="-fx-font-size: 14px;" AnchorPane.topAnchor="30.0" />
-                              <Label layoutX="69.0" layoutY="121.0" text="Tema" />
-                              <JFXComboBox fx:id="cbtema" layoutX="112.0" layoutY="108.0" onAction="#enfasisAction" prefHeight="25.0" prefWidth="175.0" style="-fx-font-size: 14px;" />
-                              <JFXToggleButton fx:id="tbtoolbar" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="30.0" layoutY="166.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#enfasisAction" prefHeight="30.0" prefWidth="280.0" text="Mostrar color de enfasis en toolbar" AnchorPane.leftAnchor="20.0" />
-                              <JFXToggleButton fx:id="tbmenu" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="30.0" layoutY="203.0" minHeight="-Infinity" onAction="#enfasisAction" prefHeight="30.0" prefWidth="280.0" text="Mostrar color de enfasis en el menu" AnchorPane.leftAnchor="20.0" />
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: -colorFondo2;">
+                           <children>
+                              <JFXToggleButton fx:id="tgSincronizarConsumo" alignment="CENTER_LEFT" layoutX="40.0" layoutY="60.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="420.0" selected="true" style="-fx-text-fill: -colorTexto;" text="Sincronizar consumo de tiempo e internet">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </JFXToggleButton>
+                              <Text fill="#d03232" layoutX="101.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: -colorTexto;" text="Sincronizar el consumo de tiempo e internet  del router en la base de datos del programa." wrappingWidth="240.3359375" />
+                              <JFXToggleButton fx:id="tgRegistrarVenta" alignment="CENTER_LEFT" layoutX="40.0" layoutY="127.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="420.0" selected="true" style="-fx-text-fill: -colorTexto;" text="Registrar venta de ticket, cuando ya este en uso en el router">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </JFXToggleButton>
+                              <Text fill="#d03232" layoutX="101.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: -colorTexto;" text="Al verificar el router, si un ticket se encuentra en uso, se registra en el sistema como una venta de ese dia." wrappingWidth="340.3359375" />
+                              <Label layoutX="26.0" layoutY="26.0" text="SINCRONIZACION DE TICKETS" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="25.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </content>
-                     <graphic>
-                        <FontAwesomeIcon fill="#e4e4e4" iconName="PAINT_BRUSH" size="20px" />
-                     </graphic>
+                  </Tab>
+                  <Tab fx:id="tabdb" text="Base de Datos">
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: -colorFondo2;">
+                           <children>
+                              <Label layoutX="20.0" layoutY="44.0" text="Directorio donde seguardara la copia de seguridad" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="50.0" />
+                              <JFXToggleButton fx:id="tbbackup" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="20.0" layoutY="106.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="289.0" text="Realizar una copia de seguridad cada dia." AnchorPane.leftAnchor="12.0" />
+                              <JFXTextField fx:id="tcarpeta" layoutX="20.0" layoutY="67.0" prefHeight="25.0" prefWidth="406.0" AnchorPane.topAnchor="67.0" />
+                              <Label layoutX="20.0" layoutY="26.0" text="COPIA DE SEGURIDAD" AnchorPane.topAnchor="25.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <JFXButton layoutX="433.0" layoutY="67.0" onAction="#onexaminarCarpeta" styleClass="btn-default" text="Examinar">
+                                 <graphic>
+                                    <FontAwesomeIcon glyphStyle="-fx-fill: -colorTexto2" iconName="FOLDER_OPEN_ALT" size="17px" />
+                                 </graphic></JFXButton>
+                              <Label layoutX="20.0" layoutY="243.0" text="BASES DE DATOS" AnchorPane.leftAnchor="20.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <JFXButton fx:id="bbackup" graphicTextGap="10.0" layoutX="20.0" layoutY="161.0" onAction="#onBackup" prefWidth="300.0" styleClass="btn-borde-default" text="Realizar copia de seguridad ahora" AnchorPane.leftAnchor="20.0">
+                                 <graphic>
+                                    <FontAwesomeIcon glyphStyle="-fx-fill: -fx-accent" iconName="DATABASE" size="15PX" />
+                                 </graphic>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                              </JFXButton>
+                              <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="20.0" layoutY="276.0" onAction="#onExportar" prefWidth="210.0" styleClass="btn-default" text="Exportar Base de Datos" AnchorPane.leftAnchor="20.0">
+                                 <graphic>
+                                    <FontAwesomeIcon glyphStyle="-fx-fill: -colorTexto2" iconName="EXTERNAL_LINK" size="15PX" />
+                                 </graphic>
+                                 <padding>
+                                    <Insets bottom="8.0" left="17.0" right="8.0" top="8.0" />
+                                 </padding>
+                              </JFXButton>
+                              <JFXButton alignment="BASELINE_LEFT" graphicTextGap="20.0" layoutX="20.0" layoutY="398.0" onAction="#onImportar" prefWidth="210.0" styleClass="btn-default" text="Recuperar backup" AnchorPane.leftAnchor="20.0">
+                                 <graphic>
+                                    <FontAwesomeIcon glyphStyle="-fx-fill: -colorTexto2" iconName="REFRESH" size="15PX" />
+                                 </graphic>
+                                 <padding>
+                                    <Insets bottom="8.0" left="17.0" right="8.0" top="8.0" />
+                                 </padding>
+                              </JFXButton>
+                              <JFXSpinner fx:id="sptrabajando" layoutX="408.0" layoutY="310.0" />
+                              <Text fx:id="ttrabajando" layoutX="310.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: -colorTexto2;" text="Realizando copia de seguridad" textAlignment="CENTER" wrappingWidth="269.0" />
+                              <Label fx:id="lultimacopia" layoutX="20.0" layoutY="136.0" text="Ultima copia de seguridad realizada: " AnchorPane.leftAnchor="20.0" />
+                              <Label layoutX="27.0" layoutY="374.0" text="Recuperar los datos de otra instalacion." AnchorPane.leftAnchor="20.0" />
+                              <Text layoutX="20.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ff2222;" text="Esto borrara todos los datos en la base de datos actual. Solamente quedaran los datos del backup." wrappingWidth="326.177734375" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="tabapariencia" text="Apariencia">
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: -colorFondo2;">
+                           <children>    
+                              <Label layoutX="27.0" layoutY="122.0" text="Color de enfasis:" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="122.0" />
+                              <JFXComboBox fx:id="cbenfasis" layoutX="125.0" layoutY="109.0" onAction="#enfasisAction" prefHeight="25.0" prefWidth="175.0" style="-fx-font-size: 14px;" AnchorPane.topAnchor="109.0" />
+                              <Label layoutX="82.0" layoutY="74.0" text="Tema:" />
+                              <JFXComboBox fx:id="cbtema" layoutX="125.0" layoutY="59.0" onAction="#enfasisAction" prefHeight="25.0" prefWidth="175.0" style="-fx-font-size: 14px;" />
+                              <JFXToggleButton fx:id="tbtoolbar" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="20.0" layoutY="186.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#enfasisAction" prefHeight="30.0" prefWidth="280.0" text="Mostrar color de enfasis en toolbar" AnchorPane.leftAnchor="20.0" />
+                              <JFXToggleButton fx:id="tbmenu" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="20.0" layoutY="223.0" minHeight="-Infinity" onAction="#enfasisAction" prefHeight="30.0" prefWidth="280.0" text="Mostrar color de enfasis en el menu" AnchorPane.leftAnchor="20.0" />
+                              <Label text="COLORES DE LA INTERFACE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="25.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </content>
                   </Tab>
                </tabs>
             </JFXTabPane>
-            <ButtonBar buttonMinWidth="100.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="55.0" prefWidth="200.0" style="-fx-background-color: -colorFondo2;">
+            <ButtonBar buttonMinWidth="100.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="55.0" prefWidth="200.0" styleClass="fondo-degradado2">
                <buttons>
-                  <JFXButton defaultButton="true" onAction="#guardarAction" prefHeight="40.0" styleClass="btn-primario" text="Guardar" />
-                  <JFXButton cancelButton="true" layoutX="515.0" layoutY="18.0" onAction="#cancelarAction" prefHeight="40.0" styleClass="btn-default" text="Cancelar" />
+                  <JFXButton defaultButton="true" graphicTextGap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" onAction="#guardarAction" prefHeight="40.0" prefWidth="130.0" styleClass="btn-primario" text="Guardar">
+                     <graphic>
+                        <FontAwesomeIcon glyphStyle="-fx-fill: #eee" iconName="SAVE" size="17px" />
+                     </graphic></JFXButton>
+                  <JFXButton cancelButton="true" graphicTextGap="10.0" layoutX="515.0" layoutY="18.0" maxWidth="-Infinity" minWidth="-Infinity" onAction="#cancelarAction" prefHeight="40.0" prefWidth="130.0" styleClass="btn-default2" text="Cancelar">
+                     <graphic>
+                        <FontAwesomeIcon glyphStyle="-fx-fill: -colorTexto2" iconName="CLOSE" size="17px" />
+                     </graphic></JFXButton>
                </buttons>
                <VBox.margin>
                   <Insets />
@@ -218,12 +280,49 @@
             </ButtonBar>
          </children>
       </VBox>
+      <VBox prefHeight="200.0" prefWidth="225.0" style="-fx-background-color: -fx-accent;" styleClass="menu-configuracion" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXButton fx:id="bnegocio" alignment="BASELINE_LEFT" graphicTextGap="40.0" onAction="#onclickMenu" styleClass="activo" text="Negocio">
+               <graphic>
+                  <FontAwesomeIcon glyphStyle="-fx-fill: #eee" iconName="BUILDING_ALT" size="25px" />
+               </graphic>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="35.0" layoutX="10.0" layoutY="40.0" onAction="#onclickMenu" text="Ticket">
+               <graphic>
+                  <FontAwesomeIcon glyphStyle="-fx-fill: #eee" iconName="TICKET" size="25px" />
+               </graphic>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="40.0" layoutX="10.0" layoutY="134.0" onAction="#onclickMenu" text="Formatos">
+               <graphic>
+                  <FontAwesomeIcon glyphStyle="-fx-fill: #eee" iconName="LANGUAGE" size="25px" />
+               </graphic>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="40.0" layoutX="10.0" layoutY="87.0" onAction="#onclickMenu" text="Sincronizacion">
+               <graphic>
+                  <FontAwesomeIcon glyphStyle="-fx-fill: #eee" iconName="REFRESH" size="25px" />
+               </graphic>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="40.0" layoutX="10.0" layoutY="192.0" onAction="#onclickMenu" text="Bases de Datos">
+               <graphic>
+                  <FontAwesomeIcon glyphStyle="-fx-fill: #eee" iconName="DATABASE" size="25px" />
+               </graphic>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="35.0" layoutX="10.0" layoutY="181.0" onAction="#onclickMenu" text="Apariencia">
+               <graphic>
+                  <FontAwesomeIcon glyphStyle="-fx-fill: #eee" iconName="PAINT_BRUSH" size="25px" />
+               </graphic>
+            </JFXButton>
+         </children>
+         <padding>
+            <Insets bottom="80.0" top="32.0" />
+         </padding>
+      </VBox>
    </children>
    <stylesheets>
-      <URL value="@../../styles/botones.css" />
       <URL value="@../../styles/Styles.css" />
       <URL value="@../../styles/validation.css" />
       <URL value="@../../styles/Temas/Tema-Celeste.css" />
-      <URL value="@../../styles/Temas/Tema-Obscuro.css" />
+      <URL value="@../../styles/Temas/Tema-Claro.css" />
+      <URL value="@../../styles/botones.css" />
    </stylesheets>
 </AnchorPane>

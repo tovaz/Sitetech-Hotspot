@@ -56,6 +56,12 @@ public class Configuracion {
     @Column(name = "sincronizarVenta", columnDefinition = "boolean default false", nullable = false)
     private boolean sincronizarVenta = false;
     
+    //************ OPCIONES DE BACKUP BASE DE DATOS *************
+    
+    private String dirBackup = "C:\\";
+    @Column(name = "hacerBackup", columnDefinition = "boolean default true", nullable = false)
+    private boolean hacerBackup = true;
+    
     private String defaultUsername = "Usuario";
     
     
@@ -233,6 +239,23 @@ public class Configuracion {
         this.sincronizarVenta = sincronizarVenta;
     }
 
+    public String getDirBackup() {
+        return dirBackup;
+    }
+
+    public void setDirBackup(String dirBackup) {
+        this.dirBackup = dirBackup;
+    }
+
+    public boolean isHacerBackup() {
+        return hacerBackup;
+    }
+
+    public void setHacerBackup(boolean hacerBackup) {
+        this.hacerBackup = hacerBackup;
+    }
+
+    
     
     
     

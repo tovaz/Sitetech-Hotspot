@@ -346,10 +346,33 @@
     -fx-font-size: 14.0;
 }
 
+/************ LICENCIA **********************/
 .client-id .content, .content:disabled {
     -fx-background-color: -colorFondo2;
     
     -fx-border-style: dotted;
     -fx-border-width: 1;
     -fx-border-color: -fx-accent;
+}
+
+/* **************** TAB PANEL CONFIGURACIONES **************/
+.jfx-tab-pane {
+    -fx-tab-max-height: 0 ;
+} 
+.jfx-tab-pane .tab-header-area {
+    visibility: hidden ;
+}
+
+.menu-configuracion .jfx-button{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-pref-width: 250px;
+    -fx-font-size: 15px;
+    -fx-padding: 10px 0px 10px 20px;
+}
+
+.menu-configuracion  .activo{
+    -fx-background-color: rgba(255,255,255, 0.3);
+    -fx-border-width: 0px 0px 0px 3px;
+    -fx-border-color: rgba(255,255,255, 0.4);
 }

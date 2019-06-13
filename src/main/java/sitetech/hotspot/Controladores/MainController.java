@@ -112,14 +112,21 @@ public class MainController implements Initializable, ArrastrarScene {
         
         App.agregarEscena("scene_main", thisStage.getScene());
         
-        // Sincronizar los tickest y programar la tarea cada 30 segundos ... TASK
-        spsincronizando.setVisible(true);
-        LabelHelper.asignarTexto(lsincronizando, "Sincronizando tickets ...");
-        timer = new Timer ();
-        if (sync == null) sync = new syncTicket();
-        timer.schedule(sync, 10000, 300000);
+        SincronizarTickets();
     }
 
+    public void SincronizarTickets(){// Sincronizar los tickest y programar la tarea cada 30 segundos ... TASK
+        spsincronizando.setVisible(false);
+        if (App.configuracion.isSincronizarConsumo() && App.configuracion.isSincronizarVenta()){
+            spsincronizando.setVisible(true);
+            LabelHelper.asignarTexto(lsincronizando, "Sincronizando tickets ...");
+            timer = new Timer ();
+            if (sync == null) sync = new syncTicket();
+            timer.schedule(sync, 10000, 300000);
+        }else
+            LabelHelper.asignarTexto(lsincronizando, "Sincronizacion deshabilitada.");
+    }
+    
     public void showStage() {
         panelPrincipal.setEffect(null);
         thisStage.show();

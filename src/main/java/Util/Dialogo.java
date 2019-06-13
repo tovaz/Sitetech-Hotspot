@@ -36,7 +36,7 @@ public class Dialogo {
         DialogPane dialogPane = alert.getDialogPane();
         ObservableList<String> enfasis = getCssporNombre(config.getColorEnfasis(), Temas.getEnfasis()).getCssList();
         dialogPane.getStylesheets().add( enfasis.get(3) );
-        dialogPane.getStylesheets().add( Temas.getTemasMap().get(config.getColorTema()) );
+        dialogPane.getStylesheets().add( Temas.getTemasMap().get(config.getColorTema()).getCssList().get(0) );
         dialogPane.getStyleClass().add("dialog-pane");
         
         //mostrar2(null, DialogType.COMMON, titulo, mensaje, btn);
@@ -112,7 +112,7 @@ public class Dialogo {
         
         DialogPane dialogPane = dialog.getDialogPane();
         dialogPane.getStylesheets().add( enfasis.get(3) );
-        dialogPane.getStylesheets().add( Temas.getTemasMap().get(config.getColorTema()) );
+        dialogPane.getStylesheets().add( Temas.getTemasMap().get(config.getColorTema()).getCssList().get(0) );
         dialogPane.getStyleClass().add("dialog-pane");
         //**********************************************************************
         
