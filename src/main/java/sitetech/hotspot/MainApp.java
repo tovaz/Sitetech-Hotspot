@@ -2,6 +2,7 @@ package sitetech.hotspot;
 
 import Util.Dialogo;
 import Util.StageManager;
+import Util.backupCron;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -9,6 +10,7 @@ import java.util.Locale;
 import java.util.Map;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
@@ -46,7 +48,7 @@ public class MainApp extends Application {
     public static Image iconoApp = new Image(MainApp.class.getResourceAsStream( "/Imagenes/ico.png" ));
     
     public static Stage mainStage;
-    
+    private backupCron backups;
     
     @Override
     public void init() throws Exception {
@@ -55,12 +57,10 @@ public class MainApp extends Application {
 
     @Override
     public void stop(){
-        if ( mainControlador != null){
-            try {
-                mainControlador.sync.cancel();
-                mainControlador.timer.cancel();
-            } catch (Exception ex){ System.err.println(ex.getMessage()); }
-        }
+        try {
+            Platform.exit();
+            System.exit(0);
+        } catch (Exception ex){ System.err.println(ex.getMessage()); }
         springContext.stop();
     }
     
@@ -78,8 +78,16 @@ public class MainApp extends Application {
         configuracion = ConfiguracionManager2.getConfiguracion(new dbHelper());
         checkConeccion();
         Locale.setDefault(configuracion.getRegionLocal().getLocale());
+        configurarBackup();
     }
     
+    private void configurarBackup(){ // REALIZAR COPIA DE SEGURIDAD DB, SI ESTA ACTIVADA LA OPCION
+        if (configuracion.isHacerBackup()){
+            backupCron backups = new backupCron("jdbc:derby:hotspot", configuracion.getDirBackup()); // INICIA AL BACKUP A LA 11 PM
+            backups.run();
+            backups.start(23);
+        }
+    }
     public void checkConeccion() throws Exception{
         dbManager dbm = new dbManager();
         if (!dbm.conectarHb()){

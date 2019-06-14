@@ -368,7 +368,7 @@ public class ConfiguracionController implements Initializable {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        errImport = backupHelper.restoreDb(dir);
+                        errImport = !backupHelper.restoreDb(dir);
                         Platform.runLater( hiloTerminado );
                     }
                 }).start();
@@ -392,6 +392,9 @@ public class ConfiguracionController implements Initializable {
         sptrabajando.setVisible(estado);
         ttrabajando.setVisible(estado);
         ttrabajando.setText(mensaje);
-        if (!errImport)  Dialogo.mostrarAlerta("Error al intentar restablecer la base de datos desde el directorio seleccionado, intenta seleccionar otro directorio o subcarpeta.", "Error al restaurar", App.configuracion, ButtonType.OK);
+        if (errImport)  
+            Dialogo.mostrarAlerta("Error al intentar restablecer la base de datos desde el directorio seleccionado, intenta seleccionar otro directorio o subcarpeta.", "Error al restaurar", App.configuracion, ButtonType.OK);
+        
+        errImport = false;
     }
 }

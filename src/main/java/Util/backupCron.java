@@ -57,9 +57,7 @@ public class backupCron extends TimerTask
     {
         timer = new Timer();
         //schedule a backup task everyday at the specified time, starting tomorrow. 
-        timer.scheduleAtFixedRate(this,
-                                          getTomorrowTime(backupTime),
-                                          BACKUP_INTERVAL);
+        timer.scheduleAtFixedRate(this,getTomorrowTime(backupTime), BACKUP_INTERVAL);
     }
  
  
@@ -79,14 +77,13 @@ public class backupCron extends TimerTask
         }
     }
  
-     
     /**
          * Performs back up of the database
      * @param conn  Connnection to the database that is to be backed up.
      */
     private void backupDatabase(Connection conn) throws SQLException
     {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM.dd.yy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd");
         String backupDirectory = backupPath + "/" + dateFormat.format(new Date());
                 String sqlstmt = "CALL SYSCS_UTIL.SYSCS_BACKUP_DATABASE(?)";
         CallableStatement cs = conn.prepareCall(sqlstmt); 

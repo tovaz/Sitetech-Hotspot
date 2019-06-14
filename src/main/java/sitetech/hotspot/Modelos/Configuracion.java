@@ -58,7 +58,7 @@ public class Configuracion {
     
     //************ OPCIONES DE BACKUP BASE DE DATOS *************
     
-    private String dirBackup = "C:\\";
+    private String dirBackup = "C:\\hotspot_back\\";
     @Column(name = "hacerBackup", columnDefinition = "boolean default true", nullable = false)
     private boolean hacerBackup = true;
     
