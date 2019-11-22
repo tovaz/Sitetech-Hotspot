@@ -10,6 +10,7 @@ import Util.Dialogo;
 import Util.Mikrotik;
 import Util.Moneda;
 import Util.StageManager;
+import Util.columnIndex;
 import animatefx.animation.LightSpeedOut;
 import animatefx.animation.Pulse;
 import animatefx.animation.ZoomIn;
@@ -23,6 +24,9 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import static javafx.collections.FXCollections.observableArrayList;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,12 +36,15 @@ import javafx.scene.Node;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import net.sf.jasperreports.engine.JasperPrint;
 import sitetech.Helpers.reporteHelper;
 import sitetech.hotspot.MainApp;
@@ -47,14 +54,13 @@ import sitetech.hotspot.Modelos.Router;
 import sitetech.hotspot.Modelos.RouterManager;
 import sitetech.hotspot.Modelos.Ticket;
 import sitetech.hotspot.Modelos.TicketManager;
-import sitetech.hotspot.Temas;
 
 /**
  * FXML Controller class
  *
  * @author willi
  */
-public class TicketsController implements Initializable, ArrastrarScene {
+public class TicketsController implements Initializable {
     public final Stage thisStage;
 
     @FXML private AnchorPane ticketsPanel;
@@ -124,7 +130,8 @@ public class TicketsController implements Initializable, ArrastrarScene {
     }
 
     public void actualizarTabla() {
-        tvtickets.getColumns().get(0).setCellValueFactory(new PropertyValueFactory("Id"));
+        //tvtickets.getColumns().get(0).setCellValueFactory(new PropertyValueFactory("Id"));
+        tvtickets.getColumns().get(0).setCellFactory(new columnIndex());
         tvtickets.getColumns().get(1).setCellValueFactory(new PropertyValueFactory("Usuario"));
         
         //TableColumn paqueteColum = tvtickets.getColumns().get(2);

@@ -24,6 +24,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,8 +41,10 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.util.Duration;
 import org.codehaus.groovy.tools.FileSystemCompiler;
+import sitetech.Helpers.DateTimeHelper;
 import sitetech.License.CryptoKey;
 import sitetech.License.Licencia;
+import sitetech.License.Licencia.tipoType;
 import sitetech.hotspot.MainApp;
 
 /**
@@ -52,13 +55,8 @@ import sitetech.hotspot.MainApp;
 public class LicenciaController extends MiControlador {
 
     @FXML private VBox plicencia;
-    @FXML private JFXTextField tnegocio;
-    @FXML private JFXTextField tpais;
-    @FXML private JFXTextField tapp;
-    @FXML private JFXTextField tversion;
+    @FXML private JFXTextField tnegocio, tpais, tapp, tversion, tfechaVencimiento, tlicencia, tfechaCreacion;
     @FXML private JFXComboBox<Licencia.tipoType> ttlicencia;
-    @FXML private JFXTextField tlicencia;
-    @FXML private JFXTextField tfechaCreacion;
     @FXML private JFXButton bcopiar;
     @FXML private JFXButton bactivar;
     @FXML private TextArea tclientId;
@@ -107,11 +105,13 @@ public class LicenciaController extends MiControlador {
         String licFileTemp = System.getProperty("user.dir") + "\\license.lic_";
         File file = null;
         
+        //if (true) return true; // PARA DESACTIVAR LA COMPROBACION DE LICENCIA
+        
         if (Files.exists(Paths.get(licFile))){ //Copiamos la licencia a un archivo temporal, para no bloquearla al abrirla
             try {
-            Files.deleteIfExists(Paths.get(licFileTemp));
-            Files.copy(Paths.get(licFile), Paths.get(licFileTemp), opciones);
-            file = new File(licFileTemp);
+                Files.deleteIfExists(Paths.get(licFileTemp));
+                Files.copy(Paths.get(licFile), Paths.get(licFileTemp), opciones);
+                file = new File(licFileTemp);
             }catch (IOException ex){ System.err.println(ex.getMessage());}
         }
         else
@@ -132,6 +132,8 @@ public class LicenciaController extends MiControlador {
     
     public void loadInfo(Licencia lic){
         String fechaCreacion = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lic.getFechaCreacion());
+        String fechaVencimiento = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lic.getFechaVencimiento());
+    
         tnegocio.setText(lic.getNegocio());
         tpais.setText(lic.getPais()); 
         tapp.setText(lic.getNombreApp());
@@ -140,7 +142,7 @@ public class LicenciaController extends MiControlador {
         tlicencia.setText(lic.getLicencia());
         //tclientId.setText(lic.getEncriptedUID());
         tfechaCreacion.setText(fechaCreacion);
-        
+        tfechaVencimiento.setText(fechaVencimiento);
         licencia = lic;
     }
     
@@ -209,8 +211,20 @@ public class LicenciaController extends MiControlador {
         Licencia licenciaFile = CryptoKey.leerLicencia(file.getAbsolutePath());
         archivo = file;
         if (licenciaFile != null){
-            if (licencia.getEncriptedUID().equals(licenciaFile.getEncriptedUID())) // LA LICENCIA TIENE EL IDENTIFICADOR PARA EL CLIENTE ID CORRECTO.
-                return true;
+            licencia = licenciaFile;
+            System.out.println("FECHA VE: " + licencia.getFechaVencimiento());
+            System.out.println("FECHA CRE: " + licencia.getFechaCreacion());
+            System.out.println("FECHA LIC: " + licencia.getFechaLicencia());
+            System.out.println("TIPO: " + licencia.getTipoLicencia().name());
+            checkDate(licencia);
+            if (licencia.getEncriptedUID().equals(licenciaFile.getEncriptedUID())) {// LA LICENCIA TIENE EL IDENTIFICADOR PARA EL CLIENTE ID CORRECTO.
+                if (licencia.getTipoLicencia() == tipoType.Completa)
+                    return true;
+                if (licencia.getTipoLicencia() == tipoType.Prueba)
+                    return checkDate(licencia);
+                if (licencia.getTipoLicencia() == tipoType.FreeWare)
+                    return true;
+            }
         }
         else{
             lerror.setText("El archivo de licencia es invalido, comunicate con el proveedor de licencias.");
@@ -218,6 +232,19 @@ public class LicenciaController extends MiControlador {
             Dialogo.mostrarError("El archivo de licencia es invalido, comunicate con el proveedor de licencias.", "Licencia invalida", App.configuracion, ButtonType.OK);
         }
         
+        return false;
+    }
+
+    private boolean checkDate(Licencia _lic){
+        Date dateNTP = DateTimeHelper.getNTPDate();
+        long dias = DateTimeHelper.getDifferenceDays(dateNTP, _lic.getFechaVencimiento());
+        System.out.println("DIAS: " + dias);
+        if ( dias > 0 )
+            return true;
+        else 
+            if (_lic.getTipoLicencia() == tipoType.Prueba)
+                Dialogo.mostrarError("La licencia ya vencio, porfavor compra una nueva licencia.", "Licencia de prueba", App.configuracion, ButtonType.OK);
+
         return false;
     }
     

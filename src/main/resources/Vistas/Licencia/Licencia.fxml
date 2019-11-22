@@ -111,11 +111,12 @@
             </Label>
             <GridPane prefHeight="118.0" prefWidth="442.0">
                <columnConstraints>
-                  <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="90.0" minWidth="90.0" prefWidth="90.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="372.0" minWidth="100.0" prefWidth="334.0" />
+                  <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="106.0" minWidth="90.0" prefWidth="104.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="372.0" minWidth="100.0" prefWidth="272.0" />
                   <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="66.0" minWidth="66.0" prefWidth="66.0" />
                </columnConstraints>
                <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" />
                </rowConstraints>
@@ -137,6 +138,8 @@
                         <Insets top="30.0" />
                      </GridPane.margin>
                   </FontAwesomeIcon>
+                  <JFXTextField fx:id="tfechaVencimiento" editable="false" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="262.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                  <Label alignment="BOTTOM_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Fecha vencimiento:" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <JFXSpinner fx:id="spactivando" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" prefWidth="30.0" visible="false">

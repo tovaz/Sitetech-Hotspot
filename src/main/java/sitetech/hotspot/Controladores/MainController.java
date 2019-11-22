@@ -1,9 +1,6 @@
 package sitetech.hotspot.Controladores;
 
-import Util.ArrastrarScene;
 import Util.Dialogo;
-import animatefx.animation.*;
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSpinner;
 import sitetech.hotspot.Temas;
 import java.io.IOException;
@@ -29,7 +26,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.effect.MotionBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import sitetech.Helpers.LabelHelper;
@@ -43,7 +39,7 @@ import sitetech.hotspot.Modelos.TicketManager;
 import sitetech.hotspot.Modelos.Usuario;
 import sitetech.hotspot.Modelos.detalleCaja;
 
-public class MainController implements Initializable, ArrastrarScene {
+public class MainController implements Initializable {
 
     public MainApp App;
     public Stage thisStage;
@@ -81,9 +77,14 @@ public class MainController implements Initializable, ArrastrarScene {
     }
 
     public void actualizarInfo(Usuario user, Caja caja){
-        lusuario.setText(user.getNombre());
-        lcaja.setText( String.valueOf(caja.getId() ));
-        lcajaTotal.setText( caja.getTotalF() );
+        try {
+            lusuario.setText(user.getNombre());
+            lcaja.setText( String.valueOf(caja.getId() ));
+            lcajaTotal.setText( caja.getTotalF() );
+        }
+        catch (Exception e){
+            System.err.println(e.getMessage());
+        }
     }
     
     public Timer  timer;
@@ -96,7 +97,6 @@ public class MainController implements Initializable, ArrastrarScene {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/Vistas/mainScene.fxml"));
             loader.setController(this);
-            //loader.setControllerFactory(App.springContext::getBean); // SPRING BOOT
             
             thisStage.initStyle(StageStyle.DECORATED);
             Scene scene = new Scene((Parent) loader.load());
@@ -104,6 +104,7 @@ public class MainController implements Initializable, ArrastrarScene {
             Temas.aplicarTema(scene, App.configuracion);
             
             thisStage.getIcons().add(App.iconoApp); // ICONO DE LA APP
+            
             thisStage.setScene(scene);
             thisStage.setTitle("Hotspot 1.0");
         } catch (IOException e) {
@@ -117,7 +118,7 @@ public class MainController implements Initializable, ArrastrarScene {
 
     public void SincronizarTickets(){// Sincronizar los tickest y programar la tarea cada 30 segundos ... TASK
         spsincronizando.setVisible(false);
-        if (App.configuracion.isSincronizarConsumo() && App.configuracion.isSincronizarVenta()){
+        if (App.configuracion.isSincronizarConsumo() || App.configuracion.isSincronizarVenta()){
             spsincronizando.setVisible(true);
             LabelHelper.asignarTexto(lsincronizando, "Sincronizando tickets ...");
             timer = new Timer ();
@@ -243,34 +244,10 @@ public class MainController implements Initializable, ArrastrarScene {
 
     @FXML
     void minimizarAction(ActionEvent event) {
-        thisStage.setIconified(true);
     }
-
-    private boolean isMaximized = false;
-    private double ancho, alto, x, y;
 
     @FXML
     void maximizarAction(ActionEvent event) {
-        Screen screen = Screen.getPrimary();
-        javafx.geometry.Rectangle2D bounds = screen.getVisualBounds();
-
-        if (!isMaximized) {
-            x = thisStage.getX();
-            y = thisStage.getY();
-            ancho = thisStage.getWidth();
-            alto = thisStage.getHeight();
-
-            thisStage.setX(bounds.getMinX());
-            thisStage.setY(bounds.getMinY());
-            thisStage.setWidth(bounds.getWidth());
-            thisStage.setHeight(bounds.getHeight());
-        } else {
-            thisStage.setX(x);
-            thisStage.setY(y);
-            thisStage.setWidth(ancho);
-            thisStage.setHeight(alto);
-        }
-        isMaximized = !isMaximized;
     }
     
     @FXML
@@ -301,7 +278,7 @@ public class MainController implements Initializable, ArrastrarScene {
         switch (App.usuarioLogeado.getPrivilegios()){
             case "Usuario":
                 meliminar.setDisable(true);
-                madministrar.setDisable(true);
+                
             break;
             
             case "Administrador":
@@ -312,7 +289,6 @@ public class MainController implements Initializable, ArrastrarScene {
             
             case "Cajero":
                 meliminar.setDisable(true);
-                mgenerar.setDisable(true);
             break;
         }
         
@@ -348,8 +324,13 @@ public class MainController implements Initializable, ArrastrarScene {
             if (listaRouter != null){
                 for (Ticket tcRouter : listaRouter){
                     for (Ticket tc : listaDb){
+                        boolean editar = false;
                         if (tc.getUsuario().equals(tcRouter.getUsuario())){
-                             if (App.configuracion.isSincronizarConsumo()){ //Sincronizamos el consumo
+                            System.out.println("Internet: " + tc.getInternetConsumido() + " -ROUTER- " + tcRouter.getInternetConsumido());
+                            
+                            boolean actualizar = !tc.getInternetConsumido().equals(tcRouter.getInternetConsumido());
+                            
+                             if (App.configuracion.isSincronizarConsumo() && actualizar){ //Sincronizamos el consumo
                                 tc.setDiasConsumidos( tcRouter.getDiasConsumidos() );
                                 tc.setHorasConsumidas(tcRouter.getHorasConsumidas());
                                 tc.setMinutosConsumidos(tcRouter.getMinutosConsumidos());
@@ -359,9 +340,10 @@ public class MainController implements Initializable, ArrastrarScene {
 
                                 tc.setMegasConsumidosDown(tcRouter.getMegasConsumidosDown());
                                 tc.setMegasConsumidosUp(tcRouter.getMegasConsumidosUp());
+                                editar = true;
                             }
                              
-                            if (!tc.getDuracionConsumida().equals("Aun sin consumir")) //Vendemos el ticket y lo agregamos a la caja actual
+                            if (!tc.getDuracionConsumida().equals("Aun sin consumir") && tc.getEstado() == Ticket.EstadosType.Activo){ //Vendemos el ticket y lo agregamos a la caja actual
                                 if (App.configuracion.isSincronizarVenta()){
                                     CajaManager cm = new CajaManager();
                                     detalleCaja dt = new detalleCaja(App.cajaAbierta, tc, detalleCaja.TipoDetalle.Venta_Ticket, "", tc.getPaquete().getPrecio(), detalleCaja.EstadoDetalle.Correcto);
@@ -370,13 +352,17 @@ public class MainController implements Initializable, ArrastrarScene {
                                     if ( caja != null){
                                         tc.setFechaVenta(new Date());
                                         tc.setEstado(Ticket.EstadosType.Vendido);
-                                        tm.EditarTicket(tc);
+                                        //tm.EditarTicket(tc);
                                         App.actualizarCaja(caja);
                                     }
+                                    editar = true;
                                 }
+                            }
                             
-                            tm.EditarTicket(tc); //Actualizamos el ticket en la DB
-                            ticketsActualizados.add(tc);
+                            if (editar){
+                                //tm.EditarTicket(tc); //Actualizamos el ticket en la DB
+                                ticketsActualizados.add(tc);
+                            }
                         }
                     }
                 }
@@ -392,7 +378,9 @@ public class MainController implements Initializable, ArrastrarScene {
     }
     
     private void guardarTickets(){ // Actualizamos el ticket en la lista que vemos
+        TicketManager tm = new TicketManager();
         for (Ticket tx : ticketsActualizados){
+            tm.EditarTicket(tx);
             for (int i=0; i<tc.listaTickets.size(); i++){
                 if (tc.listaTickets.get(i).getId() == tx.getId())
                     tc.listaTickets.set(i, tx); 
@@ -401,7 +389,7 @@ public class MainController implements Initializable, ArrastrarScene {
         
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
         if (ticketsActualizados.isEmpty())
-            LabelHelper.asignarTexto(lsincronizando, "No se actualizo ningun ticket, verifique conexion con el router. <" + java.time.LocalTime.now().format(dtf) + ">");
+            LabelHelper.asignarTexto(lsincronizando, "No se actualizo ningun ticket, ultima sync | " + java.time.LocalTime.now().format(dtf) + " |");
         else
             LabelHelper.asignarTexto(lsincronizando, "Se actualizaron " + ticketsActualizados.size() + " tickets. <" + java.time.LocalTime.now().format(dtf) + ">");
         
@@ -415,6 +403,8 @@ public class MainController implements Initializable, ArrastrarScene {
             spsincronizando.setVisible(true);
             lsincronizando.setText("Sincronizando tickets ...");
             th = new Thread(() -> actualizarTickets());
+            //System.out.println("PRIORIDAD THREAD: " + th.getPriority());
+            th.setPriority(1);
             th.start();
         }
 

@@ -1,8 +1,9 @@
 package sitetech.License;
 
-import Util.Dialogo;
 import java.io.Serializable;
-import javafx.scene.control.ButtonType;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 import static sitetech.License.CryptoKey.getMD5;
 
 /**
@@ -47,6 +48,7 @@ public class Licencia implements Serializable{
         this.tipoLicencia = tipo;
         this.diasValidos = diasValidos;
         this.fechaCreacion = new java.sql.Timestamp(System.currentTimeMillis());
+        this.fechaVencimiento = new Timestamp(addDays(fechaCreacion, diasValidos).getTime());
     }
 
     public String getEncriptedUID() {
@@ -119,6 +121,7 @@ public class Licencia implements Serializable{
     }
 
     public void setDiasValidos(int diasValidos) {
+        this.fechaVencimiento = new Timestamp(addDays(fechaCreacion, diasValidos).getTime());
         this.diasValidos = diasValidos;
     }
 
@@ -164,6 +167,12 @@ public class Licencia implements Serializable{
         this.fechaCreacion = fechaCreacion;
     }
     
-    
+    public static Date addDays(Date date, int days)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, days); //minus number would decrement the days
+        return cal.getTime();
+    }
     
 }

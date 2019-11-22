@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Thu Nov 21 12:48:26 CST 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-016e-8f4b-49dc-0000054f6e00 
+on database directory F:\DOCUMENTOS\Documents\NetBeansProjects\hotspot\Instalador 1.0\1.0 app\hotspot with class loader org.springframework.boot.loader.LaunchedURLClassLoader@5d099f62 
+Loaded from jar:file:/F:/DOCUMENTOS/Documents/NetBeansProjects/hotspot/Instalador%201.0/1.0%20app/hotspot.exe!/BOOT-INF/lib/derby-10.14.2.0.jar!/
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_201-b09
+user.dir=F:\DOCUMENTOS\Documents\NetBeansProjects\hotspot\Instalador 1.0\1.0 app
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

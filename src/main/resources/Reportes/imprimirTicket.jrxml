@@ -179,18 +179,18 @@
 )]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="10" y="7" width="100" height="17" uuid="e95d16bd-0e8e-45ae-9608-35aec13609bc">
-					<printWhenExpression><![CDATA[!$F{contraseña}.equals($P{Configuracion}.getDefaultUsername())]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="10" y="7" width="100" height="17" uuid="e95d16bd-0e8e-45ae-9608-35aec13609bc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Usuario"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{contraseña}.equals($P{Configuracion}.getDefaultUsername())? "Codigo":"Usuario"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="4" y="42" width="106" height="14" uuid="fb8e5f9b-76a5-42c2-bdfe-c3bc61cd86ed"/>
+				<reportElement x="4" y="42" width="106" height="14" uuid="fb8e5f9b-76a5-42c2-bdfe-c3bc61cd86ed">
+					<printWhenExpression><![CDATA[!$F{contraseña}.equals($P{Configuracion}.getDefaultUsername())]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{contraseña}.equals($P{Configuracion}.getDefaultUsername())? "Codigo del voucher":"Contraseña"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Contraseña"]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

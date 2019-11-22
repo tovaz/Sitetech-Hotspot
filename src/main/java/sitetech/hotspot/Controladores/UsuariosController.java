@@ -1,6 +1,8 @@
 package sitetech.hotspot.Controladores;
 
+import Util.Dialogo;
 import Util.StageManager;
+import Util.columnIndex;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -52,7 +54,7 @@ public class UsuariosController implements Initializable {
     public void cargarTabla(){
         um = new usuarioManager();
         //tvusuarios.getColumns().get(1).setCellValueFactory( new PropertyValueFactory("id") );
-        tvusuarios.getColumns().get(1).setCellValueFactory( new PropertyValueFactory("Id") );
+        tvusuarios.getColumns().get(1).setCellFactory(new columnIndex());
         tvusuarios.getColumns().get(2).setCellValueFactory( new PropertyValueFactory("Nombre") );
         tvusuarios.getColumns().get(3).setCellValueFactory( new PropertyValueFactory("Privilegios") );
         tvusuarios.getColumns().get(4).setCellValueFactory( new PropertyValueFactory("Activo") );
@@ -92,21 +94,25 @@ public class UsuariosController implements Initializable {
             adUsuario.showEditar(uSeleccionado, this);
         }
         else
-            Util.util.mostrarAlerta("Debe de seleccionar un usuario para poder editarlo.", "No a seleccionado ningun usuario", ButtonType.OK);
+            Dialogo.mostrarAlerta("Debe de seleccionar un usuario para poder editarlo.", "No a seleccionado ningun usuario", App.configuracion, ButtonType.OK);
     }
     
      @FXML
     void onEliminarAction(ActionEvent event) {
         uSeleccionado = tvusuarios.getSelectionModel().getSelectedItem();
         if (uSeleccionado != null) {
-            ButtonType btn = Util.util.mostrarAlerta("¿Desea realmente eliminar al usuario \" " + uSeleccionado.getNombre() + "\" ?", "Eliminar Usuario", ButtonType.YES, ButtonType.NO);
-            if ( btn == ButtonType.YES) {
-                um.EliminarUsuario(uSeleccionado);
-                um.getUsuarios();
+            if (!uSeleccionado.getNombre().equals("admin")){
+                ButtonType btn = Dialogo.mostrarConfirmacion("¿Desea realmente eliminar al usuario \" " + uSeleccionado.getNombre() + "\" ?", "Eliminar Usuario", App.configuracion, ButtonType.YES, ButtonType.NO);
+                if ( btn == ButtonType.YES) {
+                    um.EliminarUsuario(uSeleccionado);
+                    um.getUsuarios();
+                }
             }
+            else
+                Dialogo.mostrarError("No puede eliminar el usuario admin.", "Error al eliminar usuario", App.configuracion, ButtonType.OK);
         }
         else
-            Util.util.mostrarAlerta("Debe de seleccionar un usuario para poder eliminarlo.", "Eliminar Usuario", ButtonType.OK);
+            Dialogo.mostrarAlerta("Debe de seleccionar un usuario para poder eliminarlo.", "Eliminar Usuario", App.configuracion, ButtonType.OK);
     }
     
     @FXML

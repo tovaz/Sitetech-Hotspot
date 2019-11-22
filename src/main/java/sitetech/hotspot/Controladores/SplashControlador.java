@@ -39,7 +39,7 @@ import sitetech.hotspot.Temas;
  */
 public class SplashControlador implements Initializable {
 
-    @FXML private Label lmensaje;
+    @FXML public Label lmensaje;
     @FXML private JFXSpinner spcargando;
     
     @FXML private AnchorPane rootPanel;
@@ -91,7 +91,7 @@ public class SplashControlador implements Initializable {
     class SplashScreen extends Task {
         @Override
         public Object call() throws IOException, InterruptedException{
-            Thread.sleep(2000);
+            Thread.sleep(1000);
             
             try {
                 App.cargarApp();

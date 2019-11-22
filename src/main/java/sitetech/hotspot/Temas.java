@@ -22,16 +22,16 @@ public class Temas {
     public static ObservableList<ThemeColor> getEnfasis(){
         //String[] css = new String[]{"/styles/botones.css", "/styles/Styles.css", "/styles/validation.css"};
         
-        ObservableList<String> indigo = FXCollections.observableArrayList( "/styles/Styles.css", "/styles/validation.css", "/styles/botones.css", "/styles/Temas/Tema-Indigo.css"  );
-        ObservableList<String> turquesa = FXCollections.observableArrayList(  "/styles/Styles.css", "/styles/validation.css", "/styles/botones.css", "/styles/Temas/Tema-Turquesa.css"  );
-        ObservableList<String> rosado = FXCollections.observableArrayList(  "/styles/Styles.css", "/styles/validation.css", "/styles/botones.css", "/styles/Temas/Tema-Rosado.css"  );
-        ObservableList<String> azul = FXCollections.observableArrayList( "/styles/Styles.css", "/styles/validation.css", "/styles/botones.css", "/styles/Temas/Tema-Azul.css" );
-        ObservableList<String> celeste = FXCollections.observableArrayList( "/styles/Styles.css", "/styles/validation.css", "/styles/botones.css", "/styles/Temas/Tema-Celeste.css" );
-        ObservableList<String> lima = FXCollections.observableArrayList( "/styles/Styles.css", "/styles/validation.css", "/styles/botones.css", "/styles/Temas/Tema-Lima.css" );
-        ObservableList<String> light = FXCollections.observableArrayList( "/styles/Styles.css", "/styles/validation.css", "/styles/botones.css", "/styles/Temas/Tema-Light.css" );
-        ObservableList<String> dark = FXCollections.observableArrayList( "/styles/Styles.css", "/styles/validation.css", "/styles/botones.css", "/styles/Temas/Tema-Dark.css" );
-        ObservableList<String> naranja = FXCollections.observableArrayList( "/styles/Styles.css", "/styles/validation.css", "/styles/botones.css", "/styles/Temas/Tema-Naranja.css" );
-        ObservableList<String> verde = FXCollections.observableArrayList( "/styles/Styles.css", "/styles/validation.css", "/styles/botones.css", "/styles/Temas/Tema-Verde.css" );
+        ObservableList<String> indigo = FXCollections.observableArrayList( "/styles/validation.css", "/styles/botones.css", "/styles/Temas/Tema-Indigo.css", "/styles/Styles.css"  );
+        ObservableList<String> turquesa = FXCollections.observableArrayList(  "/styles/validation.css", "/styles/botones.css", "/styles/Temas/Tema-Turquesa.css", "/styles/Styles.css"  );
+        ObservableList<String> rosado = FXCollections.observableArrayList(  "/styles/validation.css", "/styles/botones.css", "/styles/Temas/Tema-Rosado.css", "/styles/Styles.css" );
+        ObservableList<String> azul = FXCollections.observableArrayList( "/styles/validation.css", "/styles/botones.css", "/styles/Temas/Tema-Azul.css", "/styles/Styles.css" );
+        ObservableList<String> celeste = FXCollections.observableArrayList( "/styles/validation.css", "/styles/botones.css", "/styles/Temas/Tema-Celeste.css", "/styles/Styles.css" );
+        ObservableList<String> lima = FXCollections.observableArrayList( "/styles/validation.css", "/styles/botones.css", "/styles/Temas/Tema-Lima.css", "/styles/Styles.css" );
+        ObservableList<String> light = FXCollections.observableArrayList( "/styles/validation.css", "/styles/botones.css", "/styles/Temas/Tema-Light.css", "/styles/Styles.css" );
+        ObservableList<String> dark = FXCollections.observableArrayList( "/styles/validation.css", "/styles/botones.css", "/styles/Temas/Tema-Dark.css", "/styles/Styles.css" );
+        ObservableList<String> naranja = FXCollections.observableArrayList( "/styles/validation.css", "/styles/botones.css", "/styles/Temas/Tema-Naranja.css", "/styles/Styles.css" );
+        ObservableList<String> verde = FXCollections.observableArrayList( "/styles/validation.css", "/styles/botones.css", "/styles/Temas/Tema-Verde.css", "/styles/Styles.css" );
         
         
         ThemeColor tc1 = new ThemeColor("Indigo", "304FFE", indigo);

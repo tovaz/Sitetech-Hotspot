@@ -1,6 +1,8 @@
 package sitetech.hotspot.Controladores;
 
+import Util.Dialogo;
 import Util.StageManager;
+import Util.columnIndex;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -46,7 +48,7 @@ public class RoutersController implements Initializable {
     }
     
     public void cargarTabla(){
-        tvrouters.getColumns().get(0).setCellValueFactory( new PropertyValueFactory("Id") );
+        tvrouters.getColumns().get(1).setCellFactory(new columnIndex());
         tvrouters.getColumns().get(2).setCellValueFactory( new PropertyValueFactory("Nombre") );
         tvrouters.getColumns().get(3).setCellValueFactory( new PropertyValueFactory("Ip") );
         tvrouters.getColumns().get(4).setCellValueFactory( new PropertyValueFactory("puertoApi") );
@@ -84,21 +86,21 @@ public class RoutersController implements Initializable {
             cargarTabla();
         }
         else
-            Util.util.mostrarAlerta("Debe de seleccionar un router para poder editarlo.", "No a seleccionado ningun router", ButtonType.OK);
+            Dialogo.mostrarAlerta("Debe de seleccionar un router para poder editarlo.", "No a seleccionado ningun router", App.configuracion, ButtonType.OK);
     }
 
     @FXML
     private void EliminarRouterAction(ActionEvent event) {
         rSeleccionado = tvrouters.getSelectionModel().getSelectedItem();
         if (rSeleccionado != null) {
-            ButtonType btn = Util.util.mostrarAlerta("¿Desea realmente eliminar al router \" " + rSeleccionado.getNombre() + "\" ?", "Eliminar Router", ButtonType.YES, ButtonType.NO);
+            ButtonType btn = Dialogo.mostrarConfirmacion("¿Desea realmente eliminar al router \" " + rSeleccionado.getNombre() + "\" ?", "Eliminar Router", App.configuracion, ButtonType.YES, ButtonType.NO);
             if ( btn == ButtonType.YES) {
                 rm.EliminarRouter(rSeleccionado);
                 cargarTabla();
             }
         }
         else
-            Util.util.mostrarAlerta("Debe de seleccionar un router para poder eliminarlo.", "Eliminar Router", ButtonType.OK);
+            Dialogo.mostrarAlerta("Debe de seleccionar un router para poder eliminarlo.", "Eliminar Router", App.configuracion, ButtonType.OK);
     }
     
     

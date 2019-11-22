@@ -356,10 +356,11 @@
 }
 
 /* **************** TAB PANEL CONFIGURACIONES **************/
-.jfx-tab-pane {
+.tabConfig {
     -fx-tab-max-height: 0 ;
-} 
-.jfx-tab-pane .tab-header-area {
+}
+
+.tabConfig .tab-header-area {
     visibility: hidden ;
 }
 
@@ -375,4 +376,22 @@
     -fx-background-color: rgba(255,255,255, 0.3);
     -fx-border-width: 0px 0px 0px 3px;
     -fx-border-color: rgba(255,255,255, 0.4);
+}
+
+/******************************************* TITLE BAR *************/
+.jfx-decorator .jfx-decorator-buttons-container {
+    -fx-background-color: -fx-accent;
+}
+
+.jfx-decorator .resize-border {
+    -fx-border-color: -fx-accent;
+    -fx-border-width: 0 2 2 2;
+}
+
+.combo-centrado{
+    -fx-font-size: 15px;
+}
+
+.combo-centrado:center-aligned>.list-cell{
+    -fx-alignment: center;
 }

@@ -6,11 +6,17 @@
 package sitetech.Helpers;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.net.InetAddress;
+import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
+
+//Importamos las librerias de Apache Commons
+import org.apache.commons.net.ntp.NTPUDPClient;
+import org.apache.commons.net.ntp.TimeInfo;
 
 /**
  *
@@ -23,6 +29,11 @@ public class DateTimeHelper {
         return dateFormat.format(fecha);
     }
     
+    public static String getFecha(){
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        Date fecha = new Date();
+        return dateFormat.format(fecha);
+    }
             
     public static TiempoDividido dividirTiempo(String tiempo){
         Pattern pdias = Pattern.compile("(\\d?\\d)[d].*");
@@ -67,6 +78,39 @@ public class DateTimeHelper {
         }
         
         
+    }
+    
+    
+    public static Date getNTPDate() {
+        String servidor = "0.north-america.pool.ntp.org";
+        Date fechaRecibida = null;
+        NTPUDPClient cliente = new NTPUDPClient();
+        cliente.setDefaultTimeout(5000);
+        try {
+            InetAddress hostAddr = InetAddress.getByName(servidor);
+            TimeInfo fecha = cliente.getTime(hostAddr);
+            
+            //Recibimos y convertimos la fecha a formato DATE
+            fechaRecibida = new Date(fecha.getMessage().getTransmitTimeStamp().getTime());
+        } catch (Exception e) {
+            System.err.println("Error "+e.getMessage());
+        }
+        
+        cliente.close();
+        return fechaRecibida == null ? new Date() : fechaRecibida ;
+    }
+    
+    public static long getDifferenceDays(Date d1, Date d2) {
+        long diff = d2.getTime() - d1.getTime();
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+    }
+    
+    public static Date addDays(Date date, int days)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, days); //minus number would decrement the days
+        return cal.getTime();
     }
 }
 

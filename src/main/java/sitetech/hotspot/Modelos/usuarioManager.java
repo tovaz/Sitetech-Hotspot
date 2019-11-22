@@ -62,7 +62,7 @@ public class usuarioManager {
     {
         Usuario ux = null;
         if (listaUsuarios == null){
-            ux = new Usuario(0, nombre, contraseña, "Administrador", false, true);
+            ux = new Usuario(0, "admin", "admin", "Administrador", false, true);
             ux.setContraseña(contraseña);
             this.AgregarUsuario(ux);
             

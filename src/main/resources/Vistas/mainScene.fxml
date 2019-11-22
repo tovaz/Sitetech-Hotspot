@@ -134,10 +134,10 @@
                </VBox.margin>
             </HBox>
                     <AnchorPane fx:id="panelPrincipal" style="-fx-background-color: #eee;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS" />
-            <HBox style="-fx-background-color: -colorFondo2; -fx-border-color: -colorFondo5;">
+            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" style="-fx-background-color: -colorFondo3; -fx-border-color: -colorFondo5;">
                <children>
                   <Separator maxWidth="10.0" minWidth="10.0" orientation="VERTICAL" prefWidth="10.0" />
-                  <Label fx:id="lsincronizando" maxWidth="-Infinity" minHeight="-Infinity" text="Sincronizando tickets" HBox.hgrow="ALWAYS">
+                  <Label fx:id="lsincronizando" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" text="Sincronizando tickets" wrapText="true" HBox.hgrow="ALWAYS">
                      <padding>
                         <Insets right="10.0" />
                      </padding>

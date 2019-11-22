@@ -7,6 +7,7 @@ package sitetech.hotspot.Controladores;
 
 import Util.StageManager;
 import Util.Validar;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
@@ -20,7 +21,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sitetech.Helpers.mailHelper;
 import sitetech.hotspot.MainApp;
+import sitetech.hotspot.Modelos.Usuario;
+import sitetech.hotspot.Modelos.usuarioManager;
 
 /**
  * FXML Controller class
@@ -29,17 +33,13 @@ import sitetech.hotspot.MainApp;
  */
 public class LoginController implements Initializable {
 
-    @FXML
-    private Label ltusuario;
-    @FXML
-    private Label ltcontraseña;
+    @FXML private Label ltusuario;
+    @FXML private Label ltcontraseña;
     
-    @FXML
-    private JFXTextField  tusuario;
-    @FXML
-    private JFXTextField  tcontraseña;
-    @FXML
-    private Pane plogin;
+    @FXML private JFXComboBox<Usuario> cbusuario;
+    @FXML private JFXTextField tusuario;
+    @FXML private JFXTextField tcontraseña;
+    @FXML private Pane plogin;
     
     private MainApp App;
     public final Stage thisStage;
@@ -58,9 +58,14 @@ public class LoginController implements Initializable {
         thisStage = new Stage();
         StageManager.cargarStage("/Vistas/login.fxml", "Iniciar Sesion", thisStage, this, Modality.APPLICATION_MODAL, App.configuracion);
         App.agregarEscena("scene_login", thisStage.getScene());
+        
+        cargarUsuarios();
     }
     
-    
+    private void cargarUsuarios(){
+        usuarioManager um = new usuarioManager();
+        cbusuario.getItems().setAll(um.getUsuarios());
+    }
     
     @FXML
     public void testAction(ActionEvent event) throws IOException
@@ -71,7 +76,7 @@ public class LoginController implements Initializable {
     @FXML
     public void loginAction (ActionEvent event) throws IOException{
         if (camposValidos()) {
-            if (App.checkLogin(tusuario.getText(), tcontraseña.getText(), null))
+            if (App.checkLogin(cbusuario.getSelectionModel().getSelectedItem().getNombre(), tcontraseña.getText(), null))
                 thisStage.close();
             else
                 plogin.setVisible(true);
@@ -79,9 +84,8 @@ public class LoginController implements Initializable {
     }
     
     private boolean camposValidos(){
-        if (Validar.esTextfieldVacio(tusuario, ltusuario, "Debe ingresar un usuario.")) return false;
+        if (!Validar.esComboboxCorrecto(cbusuario, ltusuario, "Debe seleccionar un usuario.")) return false;
         if (Validar.esTextfieldVacio(tcontraseña, ltcontraseña, "Debe ingresar una contraseña.")) return false;
-        
         
         return true;
     }

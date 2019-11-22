@@ -24,7 +24,7 @@
    <children>
       <VBox style="-fx-background-color: -fx-accent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXTabPane fx:id="tabs" rotateGraphic="true" side="LEFT" style="-fx-min-width: 150px;" tabClosingPolicy="UNAVAILABLE" tabMinWidth="100.0" VBox.vgrow="ALWAYS">
+            <JFXTabPane fx:id="tabs" rotateGraphic="true" side="LEFT" style="-fx-min-width: 150px;" styleClass="tabConfig" tabClosingPolicy="UNAVAILABLE" tabMinWidth="100.0" VBox.vgrow="ALWAYS">
                <tabs>
                 <Tab fx:id="tabnegocio" closable="false" text="Negocio">
                      <content>

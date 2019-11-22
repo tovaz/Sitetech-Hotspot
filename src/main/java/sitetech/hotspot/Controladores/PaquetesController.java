@@ -1,7 +1,9 @@
 
 package sitetech.hotspot.Controladores;
 
+import Util.Dialogo;
 import Util.StageManager;
+import Util.columnIndex;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
@@ -51,7 +53,7 @@ public class PaquetesController implements Initializable {
     }
     
     public void cargarTabla(){
-        tvpaquetes.getColumns().get(0).setCellValueFactory( new PropertyValueFactory("Id") );
+        tvpaquetes.getColumns().get(1).setCellFactory(new columnIndex());
         tvpaquetes.getColumns().get(2).setCellValueFactory( new PropertyValueFactory("Nombre") );
         tvpaquetes.getColumns().get(3).setCellValueFactory( new PropertyValueFactory("PrecioFormateado") );
         tvpaquetes.getColumns().get(4).setCellValueFactory( new PropertyValueFactory("Duracion") );
@@ -87,21 +89,21 @@ public class PaquetesController implements Initializable {
             cargarTabla();
         }
         else
-            Util.util.mostrarAlerta("Debe de seleccionar un paquete para poder editarlo.", "No a seleccionado ningun paquete", ButtonType.OK);
+            Dialogo.mostrarAlerta("Debe de seleccionar un paquete para poder editarlo.", "No a seleccionado ningun paquete", App.configuracion, ButtonType.OK);
     }
 
     @FXML
     private void EliminarAction(ActionEvent event) {
         pSeleccionado = tvpaquetes.getSelectionModel().getSelectedItem();
         if (pSeleccionado != null) {
-            ButtonType btn = Util.util.mostrarAlerta("¿Desea realmente eliminar al paquete \" " + pSeleccionado.getNombre() + "\" ?", "Eliminar Paquete", ButtonType.YES, ButtonType.NO);
+            ButtonType btn = Dialogo.mostrarConfirmacion("¿Desea realmente eliminar al paquete \" " + pSeleccionado.getNombre() + "\" ?", "Eliminar Paquete", App.configuracion, ButtonType.YES, ButtonType.NO);
             if ( btn == ButtonType.YES) {
                 pm.EliminarPaquete(pSeleccionado);
                 cargarTabla();
             }
         }
         else
-            Util.util.mostrarAlerta("Debe de seleccionar un paquete para poder eliminarlo.", "Eliminar Paquete", ButtonType.OK);
+            Dialogo.mostrarAlerta("Debe de seleccionar un paquete para poder eliminarlo.", "Eliminar Paquete", App.configuracion, ButtonType.OK);
     }
     
 }

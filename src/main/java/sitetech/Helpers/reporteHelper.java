@@ -54,14 +54,20 @@ public class reporteHelper {
         }
     }
     
-    public static JasperPrint getJasperPrintTicket(ObservableList<Ticket> listaTickets,Configuracion config){
+    public static JasperPrint getJasperPrintTicket(ObservableList<Ticket> listaTickets, Configuracion config){
         MainApp mainApp = new MainApp();
         Map<String,Object> parametros = new HashMap<String,Object>();
+        
+        if (filesHelper.Exist(config.getImagenTicket()))
+            parametros.put("iTicket", config.getImagenTicket()); // propiedad de configuracion
+        else
+            parametros.put("iTicket", config.getClass().getResource("/Imagenes/icon.png").toString()); // propiedad de configuracion
+        
         parametros.put("dominio", config.getDominio()); // propiedad de configuracion
-        parametros.put("iTicket", config.getImagenTicket()); // propiedad de configuracion
         parametros.put("mostrarImagen", config.isImagenVisible()); // propiedad de configuracion
         parametros.put("mostrarCodigo", config.isCodigoBarraVisible()); // propiedad de configuracion
         parametros.put( JRParameter.REPORT_LOCALE, config.getRegionLocal().getLocale() );
+        parametros.put("Configuracion", config); // propiedad de configuracion
         
         try {
             JasperReport jp = (JasperReport) JRLoader.loadObject(mainApp.getClass().getResource("/Reportes/imprimirTicket.jasper"));

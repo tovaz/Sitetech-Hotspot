@@ -1,5 +1,6 @@
 package sitetech.hotspot.Controladores;
 
+import Util.Dialogo;
 import Util.StageManager;
 import Util.Validar;
 import com.jfoenix.controls.JFXComboBox;
@@ -15,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -77,13 +79,17 @@ public class adUsuarioController implements Initializable {
     
     @FXML
     void agregarAction(ActionEvent event) throws Throwable {
-        if (camposValidos(true)){
-            Usuario ux = new Usuario(0, tusuario.getText(), "123", cbprivilegios.getValue(), false, checkDeshabilitado.isSelected());
-            ux.setContraseña(tcontraseña.getText());
+        if (!tusuario.getText().equals("admin")){
+            if (camposValidos(true)){
+                Usuario ux = new Usuario(0, tusuario.getText(), "123", cbprivilegios.getValue(), false, checkDeshabilitado.isSelected());
+                ux.setContraseña(tcontraseña.getText());
 
-            uvController.AgregarUsuario(ux);
-            bcancelar(event);
+                uvController.AgregarUsuario(ux);
+                bcancelar(event);
+            }
         }
+        else
+            Dialogo.mostrarAlerta("Solo puede existir un usuario con nombre admin.", "Error al agregar el usuario", App.configuracion, ButtonType.OK);
     }
 
     @FXML
@@ -116,6 +122,13 @@ public class adUsuarioController implements Initializable {
         
         thisStage.setTitle("Editar Usuario");
         ltitulo.setText("Editar Usuario");
+        
+        if (usuario.getNombre().equals("admin")) {
+            tusuario.setEditable(false);
+            if (usuario.getPrivilegios().equals("Administrador")) 
+                cbprivilegios.setDisable(true);
+        }
+        
         this.showStage();
     }
     

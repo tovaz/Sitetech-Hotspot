@@ -10,6 +10,7 @@ import Util.Mikrotik;
 import Util.StageManager;
 import Util.Validar;
 import Util.cadenaAletoria;
+import Util.columnIndex;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
@@ -104,8 +105,8 @@ public class GenerarTicketsController implements Initializable {
 
         PaqueteManager pm = new PaqueteManager();
         RouterManager rm = new RouterManager();
-        cbpaquetes.getItems().setAll(pm.listaPaquetes);
-        cbrouters.getItems().setAll(rm.listaRouters);
+        cbpaquetes.getItems().setAll(pm.getPaquetes());
+        cbrouters.getItems().setAll(rm.getRouters());
 
         bguardar.setDisable(true);
         bimprimir.setDisable(true);
@@ -200,7 +201,7 @@ public class GenerarTicketsController implements Initializable {
     
 
     public void actualizarTabla() {
-        tvtickets.getColumns().get(0).setCellValueFactory(new PropertyValueFactory("Id"));
+        tvtickets.getColumns().get(0).setCellFactory(new columnIndex());
         tvtickets.getColumns().get(1).setCellValueFactory(new PropertyValueFactory("Usuario"));
         tvtickets.getColumns().get(2).setCellValueFactory(new PropertyValueFactory("Contraseña"));
         tvtickets.getColumns().get(3).setCellValueFactory(new PropertyValueFactory("Paquete"));

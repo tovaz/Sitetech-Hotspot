@@ -65,18 +65,24 @@ public class MainApp extends Application {
     }
     
     
+    SplashControlador sc;
     @Override
     public void start(Stage stage) throws Exception {
         mainStage = new Stage();
-        StageManager.SplashScreen(this);
+        sc = new SplashControlador(this);
+        sc.mostrar();
+        //StageManager.SplashScreen(this);
     }
     
     public void cargarApp() throws Exception{
         cm = new CajaManager();
+        //sc.lmensaje.setText("Cargando clases ...");
         
         Locale.setDefault(Locale.forLanguageTag("es"));
         configuracion = ConfiguracionManager2.getConfiguracion(new dbHelper());
         checkConeccion();
+        
+        //sc.lmensaje.setText("Revisando Base de Datos ...");
         Locale.setDefault(configuracion.getRegionLocal().getLocale());
         configurarBackup();
     }
@@ -137,6 +143,7 @@ public class MainApp extends Application {
     public LicenciaController lic = null;
     public boolean checkLicencia(){
         try {
+            sc.lmensaje.setText("Revisando informacion de licencia");
             lic = new LicenciaController(this);
             return lic.checkLicencia();
         }

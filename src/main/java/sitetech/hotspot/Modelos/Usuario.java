@@ -122,6 +122,10 @@ public class Usuario{
     
     public String toString()
     {
+        return nombre;
+    }
+    
+    public String toString2(){
         return "id: " + id + " ** nombre: " + nombre + " ** contraseña: " + contraseña + " ** privilegios: " + privilegios + 
                 " ** eliminado: " + eliminado + " ** deshabilitado: " + activo;
     }

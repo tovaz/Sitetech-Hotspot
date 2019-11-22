@@ -88,7 +88,7 @@ public class TicketManager {
             tc.setGigasConsumidosUp(MegasConsumidosUp.intValue());
             
             _listaTicketsRt.add(tc);
-            System.out.println( map.get("name") + " - "  + map.get("password"));
+            //System.out.println( map.get("name") + " - "  + map.get("password"));
         }
 
         return _listaTicketsRt;
