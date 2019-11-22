@@ -106,7 +106,7 @@ public class MainController implements Initializable {
             thisStage.getIcons().add(App.iconoApp); // ICONO DE LA APP
             
             thisStage.setScene(scene);
-            thisStage.setTitle("Hotspot 1.0");
+            thisStage.setTitle("Hotspot 1.1");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

@@ -35,6 +35,7 @@ public class LoginController implements Initializable {
 
     @FXML private Label ltusuario;
     @FXML private Label ltcontraseña;
+    @FXML private Label laviso;
     
     @FXML private JFXComboBox<Usuario> cbusuario;
     @FXML private JFXTextField tusuario;
@@ -64,6 +65,14 @@ public class LoginController implements Initializable {
     
     private void cargarUsuarios(){
         usuarioManager um = new usuarioManager();
+        if (um.getUsuarios() == null){
+            Usuario ux = new Usuario(0, "admin", "admin", "Administrador", false, true);
+            ux.setContraseña("admin");
+            um.AgregarUsuario(ux);
+            laviso.setVisible(true);
+            laviso.setText("Es primer uso del programa, inicie sesion con usuario: admin y contraseña: admin");
+        }
+        
         cbusuario.getItems().setAll(um.getUsuarios());
     }
     

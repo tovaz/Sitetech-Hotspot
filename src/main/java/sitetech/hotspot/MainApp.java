@@ -97,7 +97,7 @@ public class MainApp extends Application {
     public void checkConeccion() throws Exception{
         dbManager dbm = new dbManager();
         if (!dbm.conectarHb()){
-            Dialogo.mostrarError("Error al intentar comunicarse con la base de datos.", "Error coneccion de base de datos.", configuracion, ButtonType.OK);
+            Dialogo.mostrarError("Error al intentar comunicarse con la base de datos.", "Error conexion de base de datos.", configuracion, ButtonType.OK);
             stop();
         }
     }
