@@ -30,6 +30,7 @@ El codigo es gratuito, creado por William Salvador Valdez y compartido para que 
 
 [Ver imagenes del proyecto](https://www.behance.net/gallery/84841141/Sitetech-Hotspot) 
 
-[](https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/32a25984841141.5d6954701f968.png)
-[](https://mir-s3-cdn-cf.behance.net/project_modules/disp/48bdac84841141.5d695470201fd.png)
+[Dashboard](https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/32a25984841141.5d6954701f968.png)
+
+[Login](https://mir-s3-cdn-cf.behance.net/project_modules/disp/48bdac84841141.5d695470201fd.png)
 
