@@ -23,7 +23,7 @@ El codigo es gratuito, creado por William Salvador Valdez y compartido para que 
 - Utiliza Netbeans o Eclipse
 - Java 8
 - Build el proyecto
-
+- **Requiere Custom Control** creado por mi, lo puedes descarrgar [aqui](https://github.com/tovaz/customControls)
 ```
 
 **Proyecto desarrollado con** `JavaFx` 
