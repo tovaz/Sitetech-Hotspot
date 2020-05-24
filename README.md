@@ -19,29 +19,16 @@ Tener configurado un servidor hotspot en el RB y comprobar que funciona, así co
 El codigo es gratuito, creado por William Salvador Valdez y compartido para que podamos seguir agregando funciones todos.
 
 ```markdown
-Syntax highlighted code block
+## Solamente clona el proyecto.
+- Utiliza Netbeans o Eclipse
+- Java 8
+- Build el proyecto
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+**Proyecto desarrollado con** `JavaFx` 
+Ver imagenes del proyecto
+[Link](https://www.behance.net/gallery/84841141/Sitetech-Hotspot) 
+![Image](https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/32a25984841141.5d6954701f968.png)
+![Image](https://mir-s3-cdn-cf.behance.net/project_modules/disp/48bdac84841141.5d695470201fd.png)
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/tovaz/proyectos/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
