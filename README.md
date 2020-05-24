@@ -11,7 +11,7 @@ Con Sitetech Hotspot inicia operaciones en menos de 5 minutos.
 ### ¿Para que sirve Fichas HotSpot?
 Sirve para crear usuarios de prepago por tiempo (Horas, Dias, Semanas, etc..) o por trafico (100 MB, 1GB, etc). El inicio de sesión puede se por PIN, usuario y contraseña o Codigo QR. Estos usuarios son creados en su Servidor HotSpot Mikrotik.
 
-### ¿Qué necesito para crear fichas en wisphub?
+### ¿Qué necesito para crear fichas ?
 Tener configurado un servidor hotspot en el RB y comprobar que funciona, así como tener conocimientos básicos de Mikrotik. 
 
 ### Contribuye con el desarrollo
@@ -33,4 +33,3 @@ El codigo es gratuito, creado por William Salvador Valdez y compartido para que 
 ![Dashboard](https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/32a25984841141.5d6954701f968.png)
 
 ![Login](https://mir-s3-cdn-cf.behance.net/project_modules/disp/48bdac84841141.5d695470201fd.png)
-
