@@ -25,8 +25,8 @@ El codigo es gratuito, creado por William Salvador Valdez y compartido para que 
 - Build el proyecto
 ```
 
-**Proyecto desarrollado en ** `JavaFx` 
-Requiere **Custom Control** creado por mi, lo puedes descargar [aqui](https://github.com/tovaz/customControls)
+- **Proyecto desarrollado en** `JavaFx` 
+- Requiere **Custom Control** creado por mi, lo puedes descargar [aqui](https://github.com/tovaz/customControls)
 
 [Ver imagenes del proyecto](https://www.behance.net/gallery/84841141/Sitetech-Hotspot) 
 
